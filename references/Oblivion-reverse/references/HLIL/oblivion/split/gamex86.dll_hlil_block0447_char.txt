@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 447 | Name: char */
+
+10046fa0  char (* data_10046fa0)[0xb] = data_10048350 {"weapon_bfg"}

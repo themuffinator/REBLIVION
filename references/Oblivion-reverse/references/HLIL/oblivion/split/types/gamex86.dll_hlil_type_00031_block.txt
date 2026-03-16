@@ -1,0 +1,7 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Kind: type */
+/* Name: block */
+
+100450fc  {
+100450fc      [0x0] =  0x0004510e
+10045100  }

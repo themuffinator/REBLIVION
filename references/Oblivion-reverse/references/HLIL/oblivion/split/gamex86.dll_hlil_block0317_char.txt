@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 317 | Name: char */
+
+10046aa8  char (* data_10046aa8)[0x23] = data_10048da0 {"models/items/armor/screen/tris.m…"}

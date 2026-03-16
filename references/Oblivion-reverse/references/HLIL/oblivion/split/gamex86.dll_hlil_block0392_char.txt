@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 392 | Name: char */
+
+10046d88  char (* data_10046d88)[0x10] = data_10046320 {"Detonation Pack"}

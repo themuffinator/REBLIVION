@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 478 | Name: char */
+
+100470d8  char (* data_100470d8)[0x1d] = data_100480a4 {"models/objects/rtdu/rtdu.md2"}

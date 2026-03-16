@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 133 | Name: if */
+
+1002ac17              unimplemented  {fld st0, dword [esp+0x1c]}

@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 280 | Name: __check_overflow_exit */
+
+1003ede8  bool c1 = unimplemented  {fst qword [esp], st0}

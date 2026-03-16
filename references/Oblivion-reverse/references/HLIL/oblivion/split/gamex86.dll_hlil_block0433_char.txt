@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 433 | Name: char */
+
+10046f28  char (* data_10046f28)[0x21] = data_10048484 {"models/weapons/g_hyperb/tris.md2"}

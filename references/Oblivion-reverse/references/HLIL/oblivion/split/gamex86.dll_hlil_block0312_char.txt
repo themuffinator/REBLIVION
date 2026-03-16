@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 312 | Name: char */
+
+10046a60  char (* data_10046a60)[0x22] = data_10048df8 {"models/items/armor/shard/tris.md…"}

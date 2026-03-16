@@ -1,0 +1,23 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 201 | Name: block */
+
+1002fd5c  {
+1002fd5c      [0x00] =  0x1002f997
+1002fd60      [0x01] =  0x1002f99e
+1002fd64      [0x02] =  0x1002f9a5
+1002fd68      [0x03] =  0x1002f990
+1002fd6c      [0x04] =  0x1002f9e2
+1002fd70      [0x05] =  0x1002f989
+1002fd74      [0x06] =  0x1002f982
+1002fd78      [0x07] =  0x1002f9e2
+1002fd7c      [0x08] =  0x1002f9ac
+1002fd80      [0x09] =  0x1002f9ac
+1002fd84      [0x0a] =  0x1002f9dd
+1002fd88      [0x0b] =  0x1002f9b3
+1002fd8c      [0x0c] =  0x1002f9dd
+1002fd90      [0x0d] =  0x1002f9ba
+1002fd94      [0x0e] =  0x1002f9dd
+1002fd98      [0x0f] =  0x1002f9e2
+1002fd9c      [0x10] =  0x1002f9cf
+1002fda0      [0x11] =  0x1002f9d6
+1002fda4  }

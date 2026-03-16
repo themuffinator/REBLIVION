@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 39 | Name: block */
+
+1000355c      unimplemented  {fstp st0, st0}

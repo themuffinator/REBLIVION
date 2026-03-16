@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 352 | Name: char */
+
+10046c20  char (* data_10046c20)[0xe] = data_10048ae4 {"Super Shotgun"}

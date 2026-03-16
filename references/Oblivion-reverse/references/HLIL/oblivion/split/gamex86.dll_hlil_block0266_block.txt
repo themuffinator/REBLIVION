@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 266 | Name: block */
+
+1003b239      unimplemented  {fstp qword [ebp-0x8], st0}

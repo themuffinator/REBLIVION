@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 370 | Name: char */
+
+10046ccc  char (* data_10046ccc)[0x55] = data_10048934 {"weapons/chngnu1a.wav weapons/chn…"}

@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 311 | Name: char */
+
+10046a5c  char (* data_10046a5c)[0x12] = data_10048e1c {"misc/ar2_pkup.wav"}

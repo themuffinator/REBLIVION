@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 362 | Name: char */
+
+10046c84  char (* data_10046c84)[0x69] = data_100489f4 {"weapons/machgf1b.wav weapons/mac…"}

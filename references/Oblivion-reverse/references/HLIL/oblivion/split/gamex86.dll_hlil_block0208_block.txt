@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 208 | Name: block */
+
+10030f2a              bool c_6 = unimplemented  {sbb ecx, ecx}

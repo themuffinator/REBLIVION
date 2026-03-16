@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 300 | Name: char */
+
+100469b8  char (* data_100469b8)[0x12] = data_10048ec0 {"item_armor_combat"}

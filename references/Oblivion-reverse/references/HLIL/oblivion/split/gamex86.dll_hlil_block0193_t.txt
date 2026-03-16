@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 193 | Name: t */
+
+1002abf5                  is_unordered.t(unimplemented  {fcomp st0, dword [esp+0x24]}, temp10_1)

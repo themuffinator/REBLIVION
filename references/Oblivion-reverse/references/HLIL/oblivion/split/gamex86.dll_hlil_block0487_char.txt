@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 487 | Name: char */
+
+10047168  char (* data_10047168)[0x21] = data_1004803c {"models/items/plasmapack/tris.md2"}

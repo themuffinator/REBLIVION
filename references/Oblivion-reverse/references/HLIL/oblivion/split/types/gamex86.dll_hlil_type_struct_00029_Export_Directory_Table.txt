@@ -1,0 +1,17 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Kind: type (struct) */
+/* Name: Export_Directory_Table */
+
+100450d0  {
+100450d0      uint32_t exportFlags = 0x0
+100450d4      uint32_t timeDateStamp = 0x3813b9fb
+100450d8      uint16_t majorVersion = 0x0
+100450da      uint16_t minorVersion = 0x0
+100450dc      uint32_t nameRva = 0x45102
+100450e0      uint32_t ordinalBase = 0x1
+100450e4      uint32_t addressTableEntries = 0x1
+100450e8      uint32_t numberOfNamePointers = 0x1
+100450ec      uint32_t exportAddressTableRva = 0x450f8
+100450f0      uint32_t namePointerRva = 0x450fc
+100450f4      uint32_t ordinalTableRva = 0x45100
+100450f8  }

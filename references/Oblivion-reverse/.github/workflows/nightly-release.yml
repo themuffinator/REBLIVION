@@ -1,0 +1,123 @@
+name: Nightly Release
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 3 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nightly-release
+  cancel-in-progress: false
+
+jobs:
+  metadata:
+    runs-on: ubuntu-latest
+    outputs:
+      release_tag: ${{ steps.vars.outputs.release_tag }}
+      release_name: ${{ steps.vars.outputs.release_name }}
+      base_version: ${{ steps.vars.outputs.base_version }}
+      nightly_stamp: ${{ steps.vars.outputs.nightly_stamp }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: vars
+        shell: bash
+        run: |
+          set -euo pipefail
+          base_version="$(tr -d '\r\n' < VERSION)"
+          if [[ ! "$base_version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "VERSION must contain semantic version text like 0.1.0" >&2
+            exit 1
+          fi
+          nightly_stamp="$(date -u +%Y%m%d)"
+          release_tag="v${base_version}-nightly.${nightly_stamp}"
+          release_name="Nightly ${release_tag}"
+          {
+            echo "base_version=$base_version"
+            echo "nightly_stamp=$nightly_stamp"
+            echo "release_tag=$release_tag"
+            echo "release_name=$release_name"
+          } >> "$GITHUB_OUTPUT"
+
+  build-linux:
+    needs: metadata
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - id: package
+        shell: bash
+        env:
+          NIGHTLY_STAMP: ${{ needs.metadata.outputs.nightly_stamp }}
+          RELEASE_TAG: ${{ needs.metadata.outputs.release_tag }}
+        run: bash scripts/release/nightly-linux.sh
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nightly-linux
+          path: ${{ steps.package.outputs.archive_path }}
+
+  build-macos:
+    needs: metadata
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - id: package
+        shell: bash
+        env:
+          NIGHTLY_STAMP: ${{ needs.metadata.outputs.nightly_stamp }}
+          RELEASE_TAG: ${{ needs.metadata.outputs.release_tag }}
+        run: bash scripts/release/nightly-macos.sh
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nightly-macos
+          path: ${{ steps.package.outputs.archive_path }}
+
+  build-windows:
+    needs: metadata
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - id: package
+        shell: pwsh
+        env:
+          NIGHTLY_STAMP: ${{ needs.metadata.outputs.nightly_stamp }}
+          RELEASE_TAG: ${{ needs.metadata.outputs.release_tag }}
+        run: ./scripts/release/nightly-windows.ps1
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nightly-windows
+          path: ${{ steps.package.outputs.archive_path }}
+
+  release:
+    needs:
+      - metadata
+      - build-linux
+      - build-macos
+      - build-windows
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: nightly-*
+          path: release-assets
+          merge-multiple: true
+      - uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true
+          artifacts: |
+            release-assets/*.tar.gz
+            release-assets/*.zip
+          artifactErrorsFailBuild: true
+          body: |
+            Automated nightly build for Oblivion Reverse.
+            
+            Base version: `${{ needs.metadata.outputs.base_version }}`
+            Nightly stamp: `${{ needs.metadata.outputs.nightly_stamp }}`
+            
+            Each archive contains an `oblivion/` folder with the platform game module and `oblivion.cfg`.
+          makeLatest: false
+          name: ${{ needs.metadata.outputs.release_name }}
+          removeArtifacts: true
+          replacesArtifacts: true
+          tag: ${{ needs.metadata.outputs.release_tag }}

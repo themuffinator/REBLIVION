@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 261 | Name: block */
+
+1003b227      int64_t temp1_1 = unimplemented  {fstp qword [ebp-0x8], st0}

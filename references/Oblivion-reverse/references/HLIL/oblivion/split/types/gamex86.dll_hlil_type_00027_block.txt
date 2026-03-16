@@ -1,0 +1,158 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Kind: type */
+/* Name: block */
+
+.text section ended  {0x10001000-0x100433d6}
+
+.rdata section started  {0x10044000-0x10045119}
+10044000  HANDLE (__stdcall* const KERNEL32:GetCurrentProcess)() = GetCurrentProcess
+10044004  uint32_t (__stdcall* const KERNEL32:GetTimeZoneInformation)(TIME_ZONE_INFORMATION* lpTimeZoneInformation) = GetTimeZoneInformation
+10044008  void (__stdcall* const KERNEL32:GetSystemTime)(SYSTEMTIME* lpSystemTime) = GetSystemTime
+1004400c  void (__stdcall* const KERNEL32:GetLocalTime)(SYSTEMTIME* lpSystemTime) = GetLocalTime
+10044010  PSTR (__stdcall* const KERNEL32:GetCommandLineA)() = GetCommandLineA
+10044014  uint32_t (__stdcall* const KERNEL32:GetVersion)() = GetVersion
+10044018  FARPROC (__stdcall* const KERNEL32:GetProcAddress)(HMODULE hModule, PSTR lpProcName) = GetProcAddress
+1004401c  HMODULE (__stdcall* const KERNEL32:GetModuleHandleA)(PSTR lpModuleName) = GetModuleHandleA
+10044020  uint32_t (__stdcall* const KERNEL32:GetCurrentThreadId)() = GetCurrentThreadId
+10044024  BOOL (__stdcall* const KERNEL32:TlsSetValue)(uint32_t dwTlsIndex, void* lpTlsValue) = TlsSetValue
+10044028  uint32_t (__stdcall* const KERNEL32:TlsAlloc)() = TlsAlloc
+1004402c  BOOL (__stdcall* const KERNEL32:TlsFree)(uint32_t dwTlsIndex) = TlsFree
+10044030  void (__stdcall* const KERNEL32:SetLastError)(enum WIN32_ERROR dwErrCode) = SetLastError
+10044034  void* (__stdcall* const KERNEL32:TlsGetValue)(uint32_t dwTlsIndex) = TlsGetValue
+10044038  enum WIN32_ERROR (__stdcall* const KERNEL32:GetLastError)() = GetLastError
+1004403c  void (__stdcall* const KERNEL32:RaiseException)(uint32_t dwExceptionCode, uint32_t dwExceptionFlags, uint32_t nNumberOfArguments, uint32_t* lpArguments) __noreturn = RaiseException
+10044040  BOOL (__stdcall* const KERNEL32:HeapDestroy)(HANDLE hHeap) = HeapDestroy
+10044044  HANDLE (__stdcall* const KERNEL32:HeapCreate)(enum HEAP_FLAGS flOptions, uint32_t dwInitialSize, uint32_t dwMaximumSize) = HeapCreate
+10044048  BOOL (__stdcall* const KERNEL32:VirtualFree)(void* lpAddress, uint32_t dwSize, enum VIRTUAL_FREE_TYPE dwFreeType) = VirtualFree
+1004404c  void (__stdcall* const KERNEL32:InitializeCriticalSection)(CRITICAL_SECTION* lpCriticalSection) = InitializeCriticalSection
+10044050  void (__stdcall* const KERNEL32:DeleteCriticalSection)(CRITICAL_SECTION* lpCriticalSection) = DeleteCriticalSection
+10044054  void (__stdcall* const KERNEL32:EnterCriticalSection)(CRITICAL_SECTION* lpCriticalSection) = EnterCriticalSection
+10044058  void (__stdcall* const KERNEL32:LeaveCriticalSection)(CRITICAL_SECTION* lpCriticalSection) = LeaveCriticalSection
+1004405c  void (__stdcall* const KERNEL32:ExitProcess)(uint32_t uExitCode) __noreturn = ExitProcess
+10044060  void* (__stdcall* const KERNEL32:HeapAlloc)(HANDLE hHeap, enum HEAP_FLAGS dwFlags, uint32_t dwBytes) = HeapAlloc
+10044064  void* (__stdcall* const KERNEL32:VirtualAlloc)(void* lpAddress, uint32_t dwSize, enum VIRTUAL_ALLOCATION_TYPE flAllocationType, enum PAGE_PROTECTION_FLAGS flProtect) = VirtualAlloc
+10044068  void* (__stdcall* const KERNEL32:HeapReAlloc)(HANDLE hHeap, enum HEAP_FLAGS dwFlags, void* lpMem, uint32_t dwBytes) = HeapReAlloc
+1004406c  int32_t (__stdcall* const KERNEL32:WideCharToMultiByte)(uint32_t CodePage, uint32_t dwFlags, wchar16* lpWideCharStr, int32_t cchWideChar, PSTR lpMultiByteStr, int32_t cbMultiByte, PSTR lpDefaultChar, BOOL* lpUsedDefaultChar) = WideCharToMultiByte
+10044070  BOOL (__stdcall* const KERNEL32:WriteFile)(HANDLE hFile, uint8_t* lpBuffer, uint32_t nNumberOfBytesToWrite, uint32_t* lpNumberOfBytesWritten, OVERLAPPED* lpOverlapped) = WriteFile
+10044074  BOOL (__stdcall* const KERNEL32:ReadFile)(HANDLE hFile, uint8_t* lpBuffer, uint32_t nNumberOfBytesToRead, uint32_t* lpNumberOfBytesRead, OVERLAPPED* lpOverlapped) = ReadFile
+10044078  BOOL (__stdcall* const KERNEL32:CloseHandle)(HANDLE hObject) = CloseHandle
+1004407c  int32_t (* const KERNEL32:InterlockedDecrement)() = InterlockedDecrement
+10044080  int32_t (* const KERNEL32:InterlockedIncrement)() = InterlockedIncrement
+10044084  BOOL (__stdcall* const KERNEL32:TerminateProcess)(HANDLE hProcess, uint32_t uExitCode) = TerminateProcess
+10044088  BOOL (__stdcall* const KERNEL32:HeapFree)(HANDLE hHeap, enum HEAP_FLAGS dwFlags, void* lpMem) = HeapFree
+1004408c  uint32_t (__stdcall* const KERNEL32:SetHandleCount)(uint32_t uNumber) = SetHandleCount
+10044090  HANDLE (__stdcall* const KERNEL32:GetStdHandle)(enum STD_HANDLE nStdHandle) = GetStdHandle
+10044094  enum FILE_TYPE (__stdcall* const KERNEL32:GetFileType)(HANDLE hFile) = GetFileType
+10044098  void (__stdcall* const KERNEL32:GetStartupInfoA)(STARTUPINFOA* lpStartupInfo) = GetStartupInfoA
+1004409c  uint32_t (__stdcall* const KERNEL32:GetModuleFileNameA)(HMODULE hModule, uint8_t* lpFilename, uint32_t nSize) = GetModuleFileNameA
+100440a0  BOOL (__stdcall* const KERNEL32:FreeEnvironmentStringsA)(PSTR penv) = FreeEnvironmentStringsA
+100440a4  BOOL (__stdcall* const KERNEL32:FreeEnvironmentStringsW)(PWSTR penv) = FreeEnvironmentStringsW
+100440a8  PSTR (__stdcall* const KERNEL32:GetEnvironmentStrings)() = GetEnvironmentStrings
+100440ac  PWSTR (__stdcall* const KERNEL32:GetEnvironmentStringsW)() = GetEnvironmentStringsW
+100440b0  int32_t (__stdcall* const KERNEL32:MultiByteToWideChar)(uint32_t CodePage, enum MULTI_BYTE_TO_WIDE_CHAR_FLAGS dwFlags, uint8_t* lpMultiByteStr, int32_t cbMultiByte, wchar16* lpWideCharStr, int32_t cchWideChar) = MultiByteToWideChar
+100440b4  BOOL (__stdcall* const KERNEL32:GetStringTypeA)(uint32_t Locale, uint32_t dwInfoType, uint8_t* lpSrcStr, int32_t cchSrc, uint16_t* lpCharType) = GetStringTypeA
+100440b8  BOOL (__stdcall* const KERNEL32:GetStringTypeW)(uint32_t dwInfoType, wchar16* lpSrcStr, int32_t cchSrc, uint16_t* lpCharType) = GetStringTypeW
+100440bc  uint32_t (__stdcall* const KERNEL32:SetFilePointer)(HANDLE hFile, int32_t lDistanceToMove, int32_t* lpDistanceToMoveHigh, enum SET_FILE_POINTER_MOVE_METHOD dwMoveMethod) = SetFilePointer
+100440c0  BOOL (__stdcall* const KERNEL32:SetStdHandle)(enum STD_HANDLE nStdHandle, HANDLE hHandle) = SetStdHandle
+100440c4  BOOL (__stdcall* const KERNEL32:FlushFileBuffers)(HANDLE hFile) = FlushFileBuffers
+100440c8  HANDLE (__stdcall* const KERNEL32:CreateFileA)(PSTR lpFileName, uint32_t dwDesiredAccess, enum FILE_SHARE_MODE dwShareMode, SECURITY_ATTRIBUTES* lpSecurityAttributes, enum FILE_CREATION_DISPOSITION dwCreationDisposition, enum FILE_FLAGS_AND_ATTRIBUTES dwFlagsAndAttributes, HANDLE hTemplateFile) = CreateFileA
+100440cc  BOOL (__stdcall* const KERNEL32:GetCPInfo)(uint32_t CodePage, CPINFO* lpCPInfo) = GetCPInfo
+100440d0  int32_t (__stdcall* const KERNEL32:LCMapStringA)(uint32_t Locale, uint32_t dwMapFlags, uint8_t* lpSrcStr, int32_t cchSrc, PSTR lpDestStr, int32_t cchDest) = LCMapStringA
+100440d4  int32_t (__stdcall* const KERNEL32:LCMapStringW)(uint32_t Locale, uint32_t dwMapFlags, wchar16* lpSrcStr, int32_t cchSrc, PWSTR lpDestStr, int32_t cchDest) = LCMapStringW
+100440d8  uint32_t (__stdcall* const KERNEL32:GetACP)() = GetACP
+100440dc  uint32_t (__stdcall* const KERNEL32:GetOEMCP)() = GetOEMCP
+100440e0  HMODULE (__stdcall* const KERNEL32:LoadLibraryA)(PSTR lpLibFileName) = LoadLibraryA
+100440e4  void (__stdcall* const KERNEL32:RtlUnwind)(void* TargetFrame, void* TargetIp, EXCEPTION_RECORD* ExceptionRecord, void* ReturnValue) = RtlUnwind
+100440e8  BOOL (__stdcall* const KERNEL32:SetEndOfFile)(HANDLE hFile) = SetEndOfFile
+100440ec  enum COMPARESTRING_RESULT (__stdcall* const KERNEL32:CompareStringA)(uint32_t Locale, uint32_t dwCmpFlags, char* lpString1, int32_t cchCount1, char* lpString2, int32_t cchCount2) = CompareStringA
+100440f0  enum COMPARESTRING_RESULT (__stdcall* const KERNEL32:CompareStringW)(uint32_t Locale, uint32_t dwCmpFlags, wchar16* lpString1, int32_t cchCount1, wchar16* lpString2, int32_t cchCount2) = CompareStringW
+100440f4  BOOL (__stdcall* const KERNEL32:SetEnvironmentVariableA)(PSTR lpName, PSTR lpValue) = SetEnvironmentVariableA
+
+100440f8                                                                          00 00 00 00 00 00 00 00                          ........
+
+10044100  int32_t data_10044100 = 0x41700000
+10044104  int32_t data_10044104 = 0x3f800000
+10044108  int32_t data_10044108 = 0x38000100
+1004410c  int32_t data_1004410c = 0x0
+10044110  int32_t data_10044110 = 0x447a0000
+10044114  int32_t data_10044114 = 0x43fa0000
+10044118  int32_t data_10044118 = 0x42a00000
+
+1004411c                                                                                      00 00 00 00                              ....
+
+10044120  int64_t data_10044120 = 0x3ff0000000000000
+10044128  char const data_10044128[0x6] = "333333"
+
+1004412e                                            d3 3f                                                                .?
+
+10044130  int32_t data_10044130 = 0x42c80000
+10044134  int32_t data_10044134 = 0x439d8000
+10044138  int32_t data_10044138 = 0x42340000
+1004413c  int32_t data_1004413c = 0x40000000
+10044140  int64_t data_10044140 = 0x3fe0000000000000
+10044148  int32_t data_10044148 = 0x4cbebc20
+1004414c  int32_t data_1004414c = 0x40a00000
+10044150  int64_t data_10044150 = 0x4014000000000000
+10044158  int32_t data_10044158 = 0x3f000000
+1004415c  int32_t data_1004415c = 0x41a00000
+10044160  int32_t data_10044160 = 0x42800000
+10044164  int32_t data_10044164 = 0x41000000
+10044168  int64_t data_10044168 = 0x3fb999999999999a
+10044170  int64_t data_10044170 = 0x4024000000000000
+10044178  int64_t data_10044178 = 0x402e000000000000
+10044180  int64_t data_10044180 = 0x407f400000000000
+10044188  int64_t data_10044188 = 0x4099000000000000
+10044190  int32_t data_10044190 = 0x42480000
+
+10044194                                                              00 00 00 00                                              ....
+
+10044198  int64_t data_10044198 = 0x3fc999999999999a
+100441a0  int64_t data_100441a0 = 0x4000000000000000
+100441a8  int32_t data_100441a8 = 0x40800000
+100441ac  int32_t data_100441ac = -0x40000000
+100441b0  int32_t data_100441b0 = 0x41200000
+100441b4  int32_t data_100441b4 = 0x40400000
+100441b8  int32_t data_100441b8 = 0x41c80000
+100441bc  int32_t data_100441bc = -0x40800000
+100441c0  int32_t data_100441c0 = 0x42700000
+100441c4  int32_t data_100441c4 = 0x43960000
+100441c8  int64_t data_100441c8 = 0x4008000000000000
+100441d0  int32_t data_100441d0 = 0x41e80000
+
+100441d4                                                              00 00 00 00                                              ....
+
+100441d8  int64_t data_100441d8 = 0x4069000000000000
+100441e0  int64_t data_100441e0 = 0x4059000000000000
+100441e8  int32_t data_100441e8 = 0x43480000
+100441ec  int32_t data_100441ec = -0x3c6a0000
+100441f0  int32_t data_100441f0 = 0x44160000
+
+100441f4                                                              00 00 00 00                                              ....
+
+100441f8  int64_t data_100441f8 = 0x4082c00000000000
+10044200  int32_t data_10044200 = 0x42000000
+
+10044204              00 00 00 00                                                                              ....
+
+10044208  int64_t data_10044208 = 0x3f81eb851eb851ec
+10044210  int64_t data_10044210 = 0x3f7eb851eb851eb8
+10044218  int64_t data_10044218 = -0x4010000000000000
+10044220  int32_t data_10044220 = 0x41f00000
+10044224  int32_t data_10044224 = 0x43360b61
+10044228  char const data_10044228[0x6] = "ffffff"
+
+1004422e                                            e6 3f                                                                .?
+
+10044230  int64_t data_10044230 = 0x3fd0000000000000
+10044238  int32_t data_10044238 = 0x41b00000
+1004423c  int32_t data_1004423c = 0x41d00000
+10044240  int32_t data_10044240 = 0x41100000
+10044244  int32_t data_10044244 = 0x41400000
+10044248  int32_t data_10044248 = 0x43800000
+
+1004424c                                      00 00 00 00                                                              ....
+
+10044250  int64_t data_10044250 = 0x3f50624dd2f1a9fc
+10044258  char const data_10044258[0x0] = 
+10044258  {
+10044258  }

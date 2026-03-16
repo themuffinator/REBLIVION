@@ -1,0 +1,123 @@
+{
+  "defaults": {
+    "offset_0xbc": -20.0,
+    "offset_0xc0": -20.0,
+    "offset_0xc4": -32.0,
+    "offset_0xc8": 20.0,
+    "offset_0xcc": 20.0,
+    "offset_0xd0": 12.0,
+    "offset_0xf8": 5.0,
+    "offset_0x1e4": 20.0,
+    "offset_0x23c": 90.0
+  },
+  "mmoves": {
+    "kigrax_move_stand": {
+      "start": 0,
+      "end": 27,
+      "frame_array": "kigrax_frames_stand",
+      "endfunc": "NULL",
+      "aifunc": "ai_stand",
+      "dist": 0.0,
+      "hooks": {}
+    },
+    "kigrax_move_scan": {
+      "start": 28,
+      "end": 48,
+      "frame_array": "kigrax_frames_scan",
+      "endfunc": "NULL",
+      "aifunc": "ai_stand",
+      "dist": 0.0,
+      "hooks": {}
+    },
+    "kigrax_move_walk1": {
+      "start": 61,
+      "end": 82,
+      "frame_array": "kigrax_frames_walk1",
+      "endfunc": "NULL",
+      "aifunc": "ai_walk",
+      "dist": 4.0,
+      "hooks": {}
+    },
+    "kigrax_move_walk2": {
+      "start": 83,
+      "end": 104,
+      "frame_array": "kigrax_frames_walk2",
+      "endfunc": "NULL",
+      "aifunc": "ai_walk",
+      "dist": 4.0,
+      "hooks": {}
+    },
+    "kigrax_move_sight": {
+      "start": 105,
+      "end": 121,
+      "frame_array": "kigrax_frames_sight",
+      "endfunc": "NULL",
+      "aifunc": "ai_run",
+      "dist": 10.0,
+      "hooks": {}
+    },
+    "kigrax_move_run": {
+      "start": 122,
+      "end": 138,
+      "frame_array": "kigrax_frames_run",
+      "endfunc": "NULL",
+      "aifunc": "ai_run",
+      "dist": 15.0,
+      "hooks": {}
+    },
+    "kigrax_move_pain": {
+      "start": 139,
+      "end": 149,
+      "frame_array": "kigrax_frames_pain",
+      "endfunc": "kigrax_run",
+      "aifunc": "ai_move",
+      "dist": 0.0,
+      "hooks": {}
+    },
+    "kigrax_move_death": {
+      "start": 150,
+      "end": 168,
+      "frame_array": "kigrax_frames_death",
+      "endfunc": "kigrax_dead",
+      "aifunc": "ai_move",
+      "dist": 0.0,
+      "hooks": {
+        "163": "kigrax_dead"
+      }
+    },
+    "kigrax_move_melee1": {
+      "start": 169,
+      "end": 183,
+      "frame_array": "kigrax_frames_melee1",
+      "endfunc": "kigrax_melee",
+      "aifunc": "ai_charge",
+      "dist": 1.0,
+      "hooks": {
+        "176": "kigrax_strike1",
+        "180": "kigrax_strike1"
+      }
+    },
+    "kigrax_move_melee2": {
+      "start": 184,
+      "end": 194,
+      "frame_array": "kigrax_frames_melee2",
+      "endfunc": "kigrax_melee",
+      "aifunc": "ai_charge",
+      "dist": 1.0,
+      "hooks": {
+        "188": "kigrax_strike2"
+      }
+    },
+    "kigrax_move_attack": {
+      "start": 195,
+      "end": 204,
+      "frame_array": "kigrax_frames_attack",
+      "endfunc": "kigrax_run",
+      "aifunc": "ai_charge",
+      "dist": 0.0,
+      "hooks": {
+        "198": "kigrax_fire_plasma"
+      }
+    }
+  }
+}

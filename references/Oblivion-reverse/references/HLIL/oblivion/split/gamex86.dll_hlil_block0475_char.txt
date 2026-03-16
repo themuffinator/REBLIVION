@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 475 | Name: char */
+
+100470a0  char (* data_100470a0)[0x11] = data_1004630c {"Remote Detonator"}

@@ -1,0 +1,7 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Kind: type */
+/* Name: block */
+
+10045100  {
+10045100      [0x0] =  0x0000
+10045102  }

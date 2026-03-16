@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 191 | Name: t */
+
+1002abf5              unimplemented  {fcomp st0, dword [esp+0x24]} f- temp10_1

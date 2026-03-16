@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 260 | Name: block */
+
+1003b221      unimplemented  {fld st0, tword [&data_1005fcb0]}

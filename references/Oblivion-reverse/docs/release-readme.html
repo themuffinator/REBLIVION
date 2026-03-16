@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Oblivion Reconstructed Release Readme</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      background: #11151a;
+      color: #e7ecf2;
+      line-height: 1.6;
+    }
+    main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 40px 24px 64px;
+    }
+    h1, h2, h3 {
+      color: #f5f7fa;
+      line-height: 1.2;
+    }
+    h1 {
+      font-size: 2.4rem;
+      margin-bottom: 0.2em;
+    }
+    h2 {
+      margin-top: 1.8em;
+      border-bottom: 1px solid #2b3642;
+      padding-bottom: 0.25em;
+    }
+    .eyebrow {
+      color: #8fb7ff;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+    .panel {
+      background: #171d25;
+      border: 1px solid #283240;
+      border-radius: 14px;
+      padding: 20px 22px;
+      margin-top: 20px;
+    }
+    code, pre {
+      font-family: Consolas, "Courier New", monospace;
+    }
+    pre {
+      background: #0b0f14;
+      border: 1px solid #25303b;
+      border-radius: 10px;
+      padding: 14px;
+      overflow-x: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+    }
+    th, td {
+      border-bottom: 1px solid #2a3440;
+      text-align: left;
+      padding: 10px 8px;
+      vertical-align: top;
+    }
+    th {
+      color: #9dc1ff;
+    }
+    a {
+      color: #9dc1ff;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="eyebrow">Oblivion Reverse</div>
+    <h1>Release Readme</h1>
+    <p><strong>This project aims to reconstruct the original Oblivion Quake II mod source code as accurately as possible, including original retail bugs and quirks.</strong></p>
+    <p>The reconstruction is now in a mature, playable state from limited testing, but it should still be understood as a retail-parity recovery effort rather than a redesigned remaster.</p>
+
+    <div class="panel">
+      <p>This release archive contains an <code>oblivion/</code> directory with:</p>
+      <ul>
+        <li>the platform-specific game module binary</li>
+        <li><code>oblivion.cfg</code></li>
+        <li>this <code>README.html</code> document</li>
+      </ul>
+    </div>
+
+    <h2>Installation</h2>
+    <ol>
+      <li>Install the original Oblivion mod first from <a href="https://www.celephais.net/oblivion/main.html">the original Oblivion release page</a>.</li>
+      <li>Locate the Quake II installation that already contains the installed <code>oblivion/</code> game directory.</li>
+      <li>Extract this release archive directly into that Quake II installation.</li>
+      <li>Allow the extraction to replace the existing platform binary and <code>oblivion.cfg</code>.</li>
+      <li>Launch Quake II with <code>+set game oblivion</code>.</li>
+    </ol>
+
+    <p>This archive is an update for an existing Oblivion installation, not a standalone distribution of the full mod data.</p>
+
+    <h2>Included Binary Names</h2>
+    <p>The original retail Oblivion release was Windows-only. This reconstruction provides replacement game-module binaries for Windows, Linux, and macOS.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Platform</th>
+          <th>Binary</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Windows</td>
+          <td><code>gamex86.dll</code></td>
+        </tr>
+        <tr>
+          <td>Linux</td>
+          <td><code>game.so</code></td>
+        </tr>
+        <tr>
+          <td>macOS</td>
+          <td><code>game.dylib</code></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Project Intent</h2>
+    <p>
+      Oblivion Reverse is a retail-parity reconstruction project. Its purpose is preservation and accurate source recovery,
+      not redesign. If retail Oblivion behaved strangely, the reconstruction often needs to behave strangely too.
+    </p>
+    <p>
+      The cross-platform support in this archive comes from the reconstruction project itself; it is not a property of the original retail release.
+    </p>
+
+    <h2>Versioning</h2>
+    <p>
+      Nightly builds use the repository semantic base version plus a UTC nightly stamp, for example:
+      <code>v1.0.0-nightly.20260316</code>
+    </p>
+
+    <h2>License And Attribution</h2>
+    <p>
+      Original creative credit belongs to the original Oblivion release by Lethargy Software.
+      This reconstruction repository is distributed under the GNU General Public License v2.
+    </p>
+    <p>As tribute to the original release, the core Oblivion team credits are preserved here without the legacy contact addresses.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Discipline</th>
+          <th>Original Oblivion Team</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Programming</td>
+          <td>Mike "Gripp" Ruete; Tim "Argh" Wright</td>
+        </tr>
+        <tr>
+          <td>Level Design</td>
+          <td>Dan "Infliction" Haigh; Alex "MonkeyDonut" Gingell; Dan "Trebz" Nolan; Sean "Spider" Soucy</td>
+        </tr>
+        <tr>
+          <td>Artwork</td>
+          <td>John "MetalSlime" Fitzgibbons; Tyler "Witz" Wilson; Eli "Dunan" Karney; SmokyG</td>
+        </tr>
+        <tr>
+          <td>Models</td>
+          <td>Andrew "Betlog" Eglington; Matt Hasselman; John "Jonny" Gorden; Rorshach</td>
+        </tr>
+        <tr>
+          <td>Music</td>
+          <td>Carl "Dill" Bown</td>
+        </tr>
+        <tr>
+          <td>Website / Manual</td>
+          <td>Ryan "BabelFish" Freebern</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      Contributor credit also remains due where remnants of earlier reconstruction work may still be present.
+    </p>
+    <ul>
+      <li><strong>Konig Varorson</strong> for earlier monster recreation code that may have inadvertently helped guide parts of the reverse-engineering process. Repository: <a href="https://github.com/Konig-Varorson">github.com/Konig-Varorson</a></li>
+      <li><strong>Nicco</strong> for testing support and feedback that remains directly relevant to the project.</li>
+      <li><strong>Shaun "Cyberslash" Wilson</strong> for QuakeActor Beta Source Code that may still have remnants reflected in <code>misc_actor</code> and therefore warrants acknowledgment.</li>
+    </ul>
+  </main>
+</body>
+</html>

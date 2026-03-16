@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 212 | Name: t */
+
+100313bf      bool c1_1 = unimplemented  {fst dword [ebp+0x70], st0}

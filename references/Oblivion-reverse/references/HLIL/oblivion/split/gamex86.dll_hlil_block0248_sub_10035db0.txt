@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 248 | Name: sub_10035db0 */
+
+10036e06          unimplemented  {call sub_1001b880}

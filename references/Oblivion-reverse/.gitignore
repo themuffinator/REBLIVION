@@ -1,0 +1,5 @@
+/build*/
+/build-codex/
+/dist/
+/tmp/
+.codex*/

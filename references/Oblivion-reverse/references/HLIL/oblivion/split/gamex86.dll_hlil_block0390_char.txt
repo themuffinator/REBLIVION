@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 390 | Name: char */
+
+10046d80  char (* data_10046d80)[0x22] = data_1004878c {"models/weapons/v_detpack/tris.md…"}

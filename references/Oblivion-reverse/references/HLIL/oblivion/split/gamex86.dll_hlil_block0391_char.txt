@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 391 | Name: char */
+
+10046d84  char (* data_10046d84)[0xa] = data_10048780 {"a_detpack"}

@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 185 | Name: block */
+
+1002ac2c                  bool c0_13 = unimplemented  {fcomp st0, dword [esp+0x24]} f< temp12_1

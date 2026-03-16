@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 313 | Name: char */
+
+10046a6c  char (* data_10046a6c)[0xe] = data_10048e44 {"i_jacketarmor"}

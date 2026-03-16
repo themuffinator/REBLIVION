@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 473 | Name: char */
+
+10047098  char (* data_10047098)[0x24] = data_100480dc {"models/weapons/v_detonator/tris.…"}

@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 369 | Name: char */
+
+10046cbc  char (* data_10046cbc)[0x8] = data_10048a60 {"Bullets"}

@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 144 | Name: block */
+
+1002ac52                  unimplemented  {fcomp st0, dword [&data_100441bc]}

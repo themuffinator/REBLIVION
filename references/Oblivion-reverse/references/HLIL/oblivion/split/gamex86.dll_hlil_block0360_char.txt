@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 360 | Name: char */
+
+10046c68  char (* data_10046c68)[0xb] = data_10046370 {"Machinegun"}

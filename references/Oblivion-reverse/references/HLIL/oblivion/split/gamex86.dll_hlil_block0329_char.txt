@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 329 | Name: char */
+
+10046b44  char (* data_10046b44)[0x9] = data_10048cc0 {"w_pistol"}

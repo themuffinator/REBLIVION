@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 325 | Name: char */
+
+10046b1c  char (* data_10046b1c)[0x20] = data_10048d18 {"misc/power2.wav misc/power1.wav"}

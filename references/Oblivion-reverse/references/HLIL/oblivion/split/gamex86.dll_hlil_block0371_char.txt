@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 371 | Name: char */
+
+10046cd0  char (* data_10046cd0)[0xe] = data_10048924 {"ammo_grenades"}

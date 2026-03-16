@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 379 | Name: char */
+
+10046d18  char (* data_10046d18)[0xb] = data_10048830 {"ammo_mines"}

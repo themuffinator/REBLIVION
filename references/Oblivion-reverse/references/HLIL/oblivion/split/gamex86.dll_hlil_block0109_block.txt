@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 109 | Name: block */
+
+1001a45e      unimplemented  {fstp dword [esp], st0}

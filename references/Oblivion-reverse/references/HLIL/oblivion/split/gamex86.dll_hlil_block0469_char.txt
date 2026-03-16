@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 469 | Name: char */
+
+10047064  char (* data_10047064)[0xd] = data_100461a4 {"Rifle Plasma"}

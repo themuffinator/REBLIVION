@@ -1,0 +1,1812 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Kind: type */
+/* Name: block */
+
+1003ede8  bool c1 = unimplemented  {fst qword [esp], st0}
+1003ee12  int32_t eax_2
+1003ee12  int32_t eax_1
+1003ee12  
+1003ee12  if ((fconvert.d(arg3):4.d & 0x7ff00000) == 0x7ff00000)
+1003ee79      long double x87_r7_2 = arg3
+1003ee79      arg3 = fconvert.t(-1536.0)
+1003ee7b      __fscale(x87_r7_2, arg3)
+1003ee81      long double x87_r7_5 = fabs(arg3)
+1003ee83      long double temp1_1 = fconvert.t(1.7976931348623157e+308)
+1003ee83      x87_r7_5 - temp1_1
+1003ee8a      eax_1.w = (x87_r7_5 < temp1_1 ? 1 : 0) << 8
+1003ee8a          | (is_unordered.t(x87_r7_5, temp1_1) ? 1 : 0) << 0xa
+1003ee8a          | (x87_r7_5 == temp1_1 ? 1 : 0) << 0xe
+1003ee8d      eax_2 = 3
+1003ee8d      
+1003ee92      if (not(test_bit(eax_1:1.b, 6)) && not(test_bit(eax_1:1.b, 0)))
+1003ee94          arg3 = arg3 * fconvert.t(inf.0)
+1003ee12  else
+1003ee14      eax_1.w = __return_addr.w
+1003ee14      
+1003ee1c      if (eax_1.w == 0x27f)
+1003ee49          return 
+1003ee49      
+1003ee1e      eax_1.w &= 0x20
+1003ee22      int16_t x87control_1
+1003ee22      int16_t x87status_1
+1003ee22      
+1003ee22      if (eax_1.w != 0)
+1003ee45          x87control_1, x87status_1 = __fldcw_memmem16(__return_addr.w)
+1003ee49          return 
+1003ee49      
+1003ee25      bool c0
+1003ee25      bool c2
+1003ee25      bool c3
+1003ee25      eax_1.w =
+1003ee25          (c0 ? 1 : 0) << 8 | (c1 ? 1 : 0) << 9 | (c2 ? 1 : 0) << 0xa | (c3 ? 1 : 0) << 0xe
+1003ee27      eax_1.w &= 0x20
+1003ee27      
+1003ee2b      if (eax_1.w == 0)
+1003ee45          x87control_1, x87status_1 = __fldcw_memmem16(__return_addr.w)
+1003ee49          return 
+1003ee49      
+1003ee2d      eax_2 = 8
+1003ee2d  
+1003ee35  if (arg2 != 0x1d)
+1003ee37      __startOneArgErrorHandling(eax_2, arg2, arg3, arg1, __return_addr)
+1003ee3d      return 
+1003ee3d  
+1003ee3e  __startTwoArgErrorHandling(eax_2)
+
+1003edf9                                                                             83 ec 08 dd 14 24 8b                           .....$.
+1003ee00  44 24 04 83 c4 08 25 00 00 f0 7f 74 3d                                                           D$....%....t=
+1003ee4a                                dd 05                                                                        ..
+
+1003ee4c  void* data_1003ee4c = 0x1004467c
+
+1003ee50                                                  d9 c9 d9 fd dd d9 d9 c0 d9 e1 dc 1d                              ............
+
+1003ee5c  void* data_1003ee5c = 0x1004466c
+
+1003ee60  9b df e0 9e b8 04 00 00 00 73 c7 dc 0d 8c 46 04 10 eb bf                                         .........s....F....
+1003ee9c                                                                                      cc cc cc cc                              ....
+
+1003eea0    long double __convention("regparm") __startTwoArgErrorHandling(int32_t arg1, int32_t arg2, long double arg3 @ st0, int32_t arg4, int32_t arg5, int32_t arg6, int32_t arg7)
+
+1003eea6  int32_t var_24 = arg1
+1003eeac  int32_t var_14 = arg6
+1003eeb2  int32_t var_10 = arg7
+1003eec0  double var_c = fconvert.d(arg3)
+1003eec3  int32_t ecx
+1003eec3  int32_t var_20 = ecx
+1003eecc  int32_t var_1c = arg4
+1003eecf  int32_t var_18 = arg5
+1003eedb  int16_t arg_4
+1003eedb  sub_100418f6(arg2, &var_24, &arg_4)
+1003eeec  int16_t x87control_1
+1003eeec  int16_t x87status_1
+1003eeec  
+1003eeec  if (arg_4 != 0x27f)
+1003eeee      x87control_1, x87status_1 = __fldcw_memmem16(arg_4)
+1003eef2  return fconvert.t(var_c)
+
+
+1003eeb7    long double __convention("regparm") __startOneArgErrorHandling(int32_t arg1, int32_t arg2, long double arg3 @ st0, int32_t arg4, int32_t arg5)
+
+1003eebd  int32_t var_24 = arg1
+1003eec0  double var_c = fconvert.d(arg3)
+1003eec3  int32_t ecx
+1003eec3  int32_t var_20 = ecx
+1003eecc  int32_t var_1c = arg4
+1003eecf  int32_t var_18 = arg5
+1003eedb  int16_t arg_4
+1003eedb  sub_100418f6(arg2, &var_24, &arg_4)
+1003eeec  int16_t x87control_1
+1003eeec  int16_t x87status_1
+1003eeec  
+1003eeec  if (arg_4 != 0x27f)
+1003eeee      x87control_1, x87status_1 = __fldcw_memmem16(arg_4)
+1003eef2  return fconvert.t(var_c)
+
+
+1003eef3    uint32_t sub_1003eef3(uint32_t arg1)
+
+1003eef4  int32_t ebx = 0
+1003eef4  
+1003eefc  if (data_10061db8 == 0)
+1003ef0a      if (arg1 s>= 0x41 && arg1 s<= 0x5a)
+1003ef10          return arg1 + 0x20
+1003ef10      
+1003ef61      return arg1
+1003ef61  
+1003ef19  int32_t ecx_1 = InterlockedIncrement(&data_1006cdd8)
+1003ef19  
+1003ef2b  if (data_1006cdd4 != 0)
+1003ef2e      InterlockedDecrement(&data_1006cdd8)
+1003ef32      sub_1003c8a1(0x13)
+1003ef37      ecx_1 = 0x13
+1003ef3a      ebx = 1
+1003ef3a  
+1003ef3b  uint32_t var_10_1 = arg1
+1003ef3f  uint32_t eax_2 = sub_1003ef62(ecx_1)
+1003ef3f  
+1003ef4b  if (ebx == 0)
+1003ef58      InterlockedDecrement(&data_1006cdd8)
+1003ef4b  else
+1003ef4f      sub_1003c902(0x13)
+1003ef4f  
+1003ef5a  return eax_2
+
+
+1003ef62    uint32_t __fastcall sub_1003ef62(int32_t arg1)
+
+1003ef65  int32_t var_8 = arg1
+1003ef70  uint32_t arg_4
+1003ef70  
+1003ef70  if (data_10061db8 == 0)
+1003ef72      uint32_t eax_1 = arg_4
+1003ef72      
+1003ef81      if (eax_1 s>= 0x41 && eax_1 s<= 0x5a)
+1003ef87          return eax_1 + 0x20
+1003ef87      
+1003f02c      return eax_1
+1003f02c  
+1003ef8f  uint32_t ebx_1 = arg_4
+1003ef9c  BOOL eax_2
+1003ef9c  
+1003ef9c  if (ebx_1 s< 0x100)
+1003efa4      int32_t eax
+1003efa4      int32_t edx
+1003efa4      
+1003efa4      if (data_1005fed4 s<= 1)
+1003efb6          wchar16 (* eax_3)[0x21]
+1003efb6          eax_3.b = (*data_1005fcc8)[ebx_1].b
+1003efb9          eax_2 = eax_3 & 1
+1003efa4      else
+1003efa8          eax_2 = sub_1003b258(eax, edx, arg1, ebx_1)
+1003efa8  
+1003efbd  if (ebx_1 s>= 0x100 || eax_2 != 0)
+1003efcb      char eax_5 = (ebx_1 s>> 8).b
+1003efd6      void* eax_6
+1003efd6      
+1003efd6      if ((*(&(*data_1005fcc8)[zx.d(eax_5)] + 1) & 0x80) == 0)
+1003efe7          arg_4:1.b = 0
+1003efeb          arg_4.b = ebx_1.b
+1003efee          eax_6 = 1
+1003efd6      else
+1003efd8          arg_4:2.b = 0
+1003efde          arg_4.b = eax_5
+1003efe1          arg_4:1.b = ebx_1.b
+1003efe4          eax_6 = 2
+1003efe4      
+1003f005      int32_t eax_7 = sub_10041a4a(data_10061db8, 0x100, &arg_4, eax_6, &var_8, 3, 0, 1)
+1003f005      
+1003f00f      if (eax_7 != 0)
+1003f013          if (eax_7 != 1)
+1003f026              return zx.d(var_8:1.b) << 8 | zx.d(var_8.b)
+1003f026          
+1003f015          return zx.d(var_8.b)
+1003f015  
+1003efbf  return ebx_1
+
+
+1003f02d    int32_t sub_1003f02d()
+
+1003f02d  void* eax_1 = data_1005fb4c
+1003f02d  
+1003f034  if (eax_1 != 0)
+1003f036      eax_1()
+1003f036  
+1003f042  sub_1003f131(&data_10046008, 0x10046014)
+1003f059  return sub_1003f131(&data_10046000, 0x10046004)
+
+
+1003f05a    int32_t sub_1003f05a(uint32_t arg1)
+
+1003f06a  return sub_1003f07a(arg1, 1, 0)
+
+
+1003f06b    int32_t __cexit()
+
+1003f079  return sub_1003f07a(0, 0, 1)
+
+
+1003f07a    int32_t sub_1003f07a(uint32_t arg1, int32_t arg2, int32_t arg3)
+
+1003f07b  sub_1003f11f()
+1003f07b  
+1003f089  if (data_10061e1c == 1)
+1003f096      TerminateProcess(hProcess: GetCurrentProcess(), uExitCode: arg1)
+1003f096      noreturn
+1003f096  
+1003f0a6  data_10061e18 = 1
+1003f0ac  data_10061e14 = arg3.b
+1003f0ac  
+1003f0b2  if (arg2 == 0)
+1003f0b4      int32_t eax_2 = data_1006cdd0
+1003f0b4      
+1003f0bb      if (eax_2 != 0)
+1003f0c4          int32_t* i = data_1006cdcc - 4
+1003f0c4          
+1003f0c9          if (i u>= eax_2)
+1003f0dc              do
+1003f0cb                  int32_t eax_3 = *i
+1003f0cb                  
+1003f0cf                  if (eax_3 != 0)
+1003f0d1                      eax_3()
+1003f0d1                  
+1003f0d3                  i -= 4
+1003f0dc              while (i u>= data_1006cdd0)
+1003f0dc      
+1003f0e9      sub_1003f131(&data_10046018, 0x10046020)
+1003f0e9  
+1003f0fa  sub_1003f131(&data_10046024, 0x10046028)
+1003f0fa  
+1003f104  if (arg3 != 0)
+1003f10c      return sub_1003f128()
+1003f10c  
+1003f111  data_10061e1c = 1
+1003f117  ExitProcess(uExitCode: arg1)
+1003f117  noreturn
+
+1003f11d                                                                                         5f c3                                  _.
+
+1003f11f    int32_t sub_1003f11f()
+
+1003f127  return sub_1003c8a1(0xd)
+
+
+1003f128    int32_t sub_1003f128()
+
+1003f130  return sub_1003c902(0xd)
+
+
+1003f131    void sub_1003f131(int32_t* arg1, int32_t arg2)
+
+1003f13a  for (int32_t* i = arg1; i u< arg2; i = &i[1])
+1003f13c      int32_t eax = *i
+1003f13c      
+1003f140      if (eax != 0)
+1003f142          eax()
+
+
+1003f14b    uint32_t sub_1003f14b()
+
+1003f15e  void* esi = sub_10040bcd(0x480)
+1003f15e  
+1003f163  if (esi == 0)
+1003f167      sub_1003a356(0x1b)
+1003f167  
+1003f16d  data_1006ccc0 = esi
+1003f173  data_1006cdc0 = 0x20
+1003f173  
+1003f185  for (void* i = esi + 0x480; esi u< i; i = data_1006ccc0 + 0x480)
+1003f187      *(esi + 4) = 0
+1003f18b      *esi = 0xffffffff
+1003f18e      *(esi + 8) = 0
+1003f192      *(esi + 5) = 0xa
+1003f19b      esi += 0x24
+1003f19b  
+1003f1a9  STARTUPINFOA startupInfo
+1003f1a9  GetStartupInfoA(lpStartupInfo: &startupInfo)
+1003f1a9  
+1003f1b4  if (startupInfo.cbReserved2 != 0)
+1003f1ba      BYTE* lpReserved2 = startupInfo.lpReserved2
+1003f1ba      
+1003f1bf      if (lpReserved2 != 0)
+1003f1c5          int32_t i_1 = *lpReserved2
+1003f1c7          void* ebx_1 = &lpReserved2[4]
+1003f1cd          void* var_8_1 = ebx_1 + i_1
+1003f1cd          
+1003f1d7          if (i_1 s>= 0x800)
+1003f1d9              i_1 = 0x800
+1003f1d9          
+1003f1e1          if (data_1006cdc0 s< i_1)
+1003f1e3              void* esi_1 = &data_1006ccc4
+1003f1e3              
+1003f22f              do
+1003f1ed                  void* eax_3 = sub_10040bcd(0x480)
+1003f1ed                  
+1003f1f5                  if (eax_3 == 0)
+1003f233                      i_1 = data_1006cdc0
+1003f233                      break
+1003f233                  
+1003f1f7                  data_1006cdc0 += 0x20
+1003f1fe                  *esi_1 = eax_3
+1003f1fe                  
+1003f208                  for (void* j = eax_3 + 0x480; eax_3 u< j; j = *esi_1 + 0x480)
+1003f20a                      *(eax_3 + 4) = 0
+1003f20e                      *eax_3 = 0xffffffff
+1003f211                      *(eax_3 + 8) = 0
+1003f215                      *(eax_3 + 5) = 0xa
+1003f21b                      eax_3 += 0x24
+1003f21b                  
+1003f226                  esi_1 += 4
+1003f22f              while (data_1006cdc0 s< i_1)
+1003f22f          
+1003f239          int32_t esi_2 = 0
+1003f239          
+1003f23d          if (i_1 s> 0)
+1003f289              do
+1003f242                  HANDLE hFile_1 = *var_8_1
+1003f242                  
+1003f247                  if (hFile_1 != 0xffffffff)
+1003f249                      void* eax_4
+1003f249                      eax_4.b = *ebx_1
+1003f249                      
+1003f24d                      if ((eax_4.b & 1) != 0)
+1003f251                          enum FILE_TYPE eax_5
+1003f251                          
+1003f251                          if ((eax_4.b & 8) == 0)
+1003f254                              eax_5 = GetFileType(hFile: hFile_1)
+1003f254                          
+1003f25c                          if ((eax_4.b & 8) != 0 || eax_5 != FILE_TYPE_UNKNOWN)
+1003f272                              int32_t* eax_9 =
+1003f272                                  (&data_1006ccc0)[esi_2 s>> 5] + (esi_2 & 0x1f) * 0x24
+1003f27a                              *eax_9 = *var_8_1
+1003f27c                              int32_t ecx_8
+1003f27c                              ecx_8.b = *ebx_1
+1003f27e                              eax_9[1].b = ecx_8.b
+1003f27e                  
+1003f281                  var_8_1 += 4
+1003f285                  esi_2 += 1
+1003f286                  ebx_1 += 1
+1003f289              while (esi_2 s< i_1)
+1003f289  
+1003f2f4  for (int32_t i_2 = 0; i_2 s< 3; i_2 += 1)
+1003f28d      int32_t ecx_9 = data_1006ccc0
+1003f293      int32_t eax_10 = i_2 * 9
+1003f29a      int32_t* esi_3 = ecx_9 + (eax_10 << 2)
+1003f29a      
+1003f29d      if (*(ecx_9 + (eax_10 << 2)) != 0xffffffff)
+1003f2ec          esi_3[1].b |= 0x80
+1003f29d      else
+1003f2a1          esi_3[1].b = 0x81
+1003f2a5          enum STD_HANDLE nStdHandle
+1003f2a5          
+1003f2a5          if (i_2 != 0)
+1003f2af              int32_t eax_13 = neg.d(i_2 - 1)
+1003f2b3              nStdHandle = sbb.d(eax_13, eax_13, i_2 != 1) - 0xb
+1003f2a5          else
+1003f2a9              nStdHandle = STD_INPUT_HANDLE
+1003f2a9          
+1003f2b7          HANDLE hFile = GetStdHandle(nStdHandle)
+1003f2b7          
+1003f2c2          if (hFile == 0xffffffff)
+1003f2db              esi_3[1].b |= 0x40
+1003f2c2          else
+1003f2c5              enum FILE_TYPE eax_15 = GetFileType(hFile)
+1003f2c5              
+1003f2cd              if (eax_15 == FILE_TYPE_UNKNOWN)
+1003f2db                  esi_3[1].b |= 0x40
+1003f2cd              else
+1003f2cf                  int32_t eax_16 = eax_15 & 0xff
+1003f2d4                  *esi_3 = hFile
+1003f2d4                  
+1003f2d9                  if (eax_16 == 2)
+1003f2db                      esi_3[1].b |= 0x40
+1003f2d9                  else if (eax_16 == 3)
+1003f2e6                      esi_3[1].b |= 8
+1003f2e6  
+1003f306  return SetHandleCount(uNumber: data_1006cdc0)
+
+
+1003f307    void* sub_1003f307()
+
+1003f355  void* result
+1003f355  
+1003f355  for (int32_t* i = &data_1006ccc0; i s< &data_1006cdc0; i = &i[1])
+1003f30f      result = *i
+1003f30f      
+1003f313      if (result != 0)
+1003f315          void* j = result
+1003f315          
+1003f31e          if (j u< result + 0x480)
+1003f320              CRITICAL_SECTION* lpCriticalSection = j + 0xc
+1003f320              
+1003f33f              do
+1003f327                  if (lpCriticalSection->__offset(0xfffffffffffffffc).d != 0)
+1003f32a                      DeleteCriticalSection(lpCriticalSection)
+1003f32a                  
+1003f332                  j += 0x24
+1003f33a                  lpCriticalSection += 0x24
+1003f33f              while (j u< *i + 0x480)
+1003f33f          
+1003f343          result = sub_100396e7(*i)
+1003f348          *i = 0
+1003f348  
+1003f35a  return result
+
+
+1003f35b    int32_t sub_1003f35b()
+
+1003f366  if (data_1006cdc8 == 0)
+1003f368      sub_10042046()
+1003f368  
+1003f36d  char* esi = data_10061c4c
+1003f373  int32_t edi = 0
+1003f373  
+1003f375  while (true)
+1003f375      void* eax
+1003f375      eax.b = *esi
+1003f375      
+1003f379      if (eax.b == 0)
+1003f379          break
+1003f379      
+1003f37d      if (eax.b != 0x3d)
+1003f37f          edi += 1
+1003f37f      
+1003f387      esi = esi + sub_1003c6e0(esi) + 1
+1003f387  
+1003f39a  void* esi_1 = sub_10040bcd((edi << 2) + 4)
+1003f39f  data_10061dfc = esi_1
+1003f39f  
+1003f3a5  if (esi_1 == 0)
+1003f3a9      sub_1003a356(9)
+1003f3a9  
+1003f3af  char* edi_1 = data_10061c4c
+1003f3af  
+1003f3b7  while (*edi_1 != 0)
+1003f3c3      void* ebp_2 = sub_1003c6e0(edi_1) + 1
+1003f3c3      
+1003f3c7      if (*edi_1 != 0x3d)
+1003f3ca          void* eax_4 = sub_10040bcd(ebp_2)
+1003f3d2          *esi_1 = eax_4
+1003f3d2          
+1003f3d4          if (eax_4 == 0)
+1003f3d8              sub_1003a356(9)
+1003f3d8          
+1003f3e1          sub_10040000(*esi_1, edi_1)
+1003f3e7          esi_1 += 4
+1003f3e7      
+1003f3eb      edi_1 += ebp_2
+1003f3eb  
+1003f3f8  int32_t result = sub_100396e7(data_10061c4c)
+1003f3fe  data_10061c4c = 0
+1003f404  *esi_1 = 0
+1003f408  data_1006cdc4 = 1
+1003f413  return result
+
+
+1003f414    int32_t __fastcall sub_1003f414(int32_t arg1)
+
+1003f417  int32_t var_8 = arg1
+1003f418  int32_t var_c = arg1
+1003f418  
+1003f424  if (data_1006cdc8 == 0)
+1003f426      sub_10042046()
+1003f426  
+1003f437  GetModuleFileNameA(hModule: nullptr, lpFilename: &data_10061e20, nSize: 0x104)
+1003f43d  char* eax = data_1006de00
+1003f442  data_10061e0c = &data_10061e20
+1003f448  void* edi = &data_10061e20
+1003f448  
+1003f44c  if (*eax != 0)
+1003f44e      edi = eax
+1003f44e  
+1003f45b  sub_1003f4ad(edi, nullptr, nullptr, &var_8, &var_c)
+1003f46a  void* eax_3 = sub_10040bcd(var_c + (var_8 << 2))
+1003f46a  
+1003f476  if (eax_3 == 0)
+1003f47a      sub_1003a356(8)
+1003f47a  
+1003f491  sub_1003f4ad(edi, eax_3, eax_3 + (var_8 << 2), &var_8, &var_c)
+1003f49c  int32_t result = var_8 - 1
+1003f49d  data_10061df4 = eax_3
+1003f4a5  data_10061df0 = result
+1003f4ac  return result
+
+
+1003f4ad    int32_t* sub_1003f4ad(char* arg1, int32_t* arg2, char* arg3, int32_t* arg4, int32_t* arg5)
+
+1003f4b0  int32_t* ecx = arg5
+1003f4b8  *ecx = 0
+1003f4bb  char* esi = arg3
+1003f4bf  int32_t* edi = arg2
+1003f4c2  *arg4 = 1
+1003f4c8  char* eax_1 = arg1
+1003f4c8  
+1003f4cd  if (edi != 0)
+1003f4cf      *edi = esi
+1003f4d1      edi = &edi[1]
+1003f4d4      arg2 = edi
+1003f4d4  
+1003f4da  uint32_t edx
+1003f4da  
+1003f4da  if (*eax_1 != 0x22)
+1003f520      while (true)
+1003f520          *ecx += 1
+1003f520          
+1003f524          if (esi != 0)
+1003f526              edx.b = *eax_1
+1003f528              *esi = edx.b
+1003f52a              esi = &esi[1]
+1003f52a          
+1003f52b          edx.b = *eax_1
+1003f52d          eax_1 = &eax_1[1]
+1003f52d          
+1003f538          if ((*(zx.d(edx.b) + 0x1006cba1) & 4) != 0)
+1003f53a              *ecx += 1
+1003f53a              
+1003f53e              if (esi != 0)
+1003f540                  uint32_t ebx_1
+1003f540                  ebx_1.b = *eax_1
+1003f542                  *esi = ebx_1.b
+1003f544                  esi = &esi[1]
+1003f544              
+1003f545              eax_1 = &eax_1[1]
+1003f545          
+1003f549          if (edx.b == 0x20)
+1003f554              label_1003f554:
+1003f554              
+1003f556              if (edx.b != 0)
+1003f55d                  if (esi != 0)
+1003f55f                      esi[0xffffffff] = 0
+1003f55f                  
+1003f55d                  break
+1003f549          else if (edx.b != 0)
+1003f552              if (edx.b == 9)
+1003f552                  goto label_1003f554
+1003f552              
+1003f552              continue
+1003f552          
+1003f558          eax_1 -= 1
+1003f559          break
+1003f4da  else
+1003f4dc      while (true)
+1003f4dc          edx.b = eax_1[1]
+1003f4df          eax_1 = &eax_1[1]
+1003f4df          
+1003f4e3          if (edx.b == 0x22)
+1003f4e3              break
+1003f4e3          
+1003f4e7          if (edx.b == 0)
+1003f4e7              break
+1003f4e7          
+1003f4f3          if ((*(zx.d(edx.b) + 0x1006cba1) & 4) != 0)
+1003f4f5              *ecx += 1
+1003f4f5              
+1003f4f9              if (esi != 0)
+1003f4fb                  edx.b = *eax_1
+1003f4fd                  *esi = edx.b
+1003f4ff                  esi = &esi[1]
+1003f500                  eax_1 = &eax_1[1]
+1003f500          
+1003f501          *ecx += 1
+1003f501          
+1003f505          if (esi != 0)
+1003f507              edx.b = *eax_1
+1003f509              *esi = edx.b
+1003f50b              esi = &esi[1]
+1003f50b      
+1003f50e      *ecx += 1
+1003f50e      
+1003f512      if (esi != 0)
+1003f514          *esi = 0
+1003f517          esi = &esi[1]
+1003f517      
+1003f51b      if (*eax_1 == 0x22)
+1003f51d          eax_1 = &eax_1[1]
+1003f51d  
+1003f563  arg5 = nullptr
+1003f563  
+1003f56a  while (*eax_1 != 0)
+1003f570      while (true)
+1003f570          edx.b = *eax_1
+1003f570          
+1003f57a          if (edx.b != 0x20 && edx.b != 9)
+1003f57a              break
+1003f57a          
+1003f57c          eax_1 = &eax_1[1]
+1003f57c      
+1003f582      if (*eax_1 == 0)
+1003f582          break
+1003f582      
+1003f58a      if (edi != 0)
+1003f58c          *edi = esi
+1003f58e          edi = &edi[1]
+1003f591          arg2 = edi
+1003f591      
+1003f597      *arg4 += 1
+1003f597      
+1003f599      while (true)
+1003f599          arg1 = 1
+1003f5a0          uint32_t i_2 = 0
+1003f5a0          
+1003f5a5          while (*eax_1 == 0x5c)
+1003f5a7              eax_1 = &eax_1[1]
+1003f5a8              i_2 += 1
+1003f5a8          
+1003f5ae          if (*eax_1 == 0x22)
+1003f5b3              if ((i_2.b & 1) == 0)
+1003f5c3                  if (arg5 == 0 || eax_1[1] != 0x22)
+1003f5c9                      arg1 = nullptr
+1003f5c3                  else
+1003f5c5                      eax_1 = &eax_1[1]
+1003f5c5                  
+1003f5cc                  edi = arg2
+1003f5d4                  int32_t* edx_3
+1003f5d4                  edx_3.b = arg5 == 0
+1003f5d7                  arg5 = edx_3
+1003f5d7              
+1003f5da              i_2 u>>= 1
+1003f5da          
+1003f5e1          if (i_2 != 0)
+1003f5e3              int32_t i_1 = i_2
+1003f5ef              int32_t i
+1003f5ef              
+1003f5ef              do
+1003f5e6                  if (esi != 0)
+1003f5e8                      *esi = 0x5c
+1003f5eb                      esi = &esi[1]
+1003f5eb                  
+1003f5ec                  *ecx += 1
+1003f5ee                  i = i_1
+1003f5ee                  i_1 -= 1
+1003f5ef              while (i != 1)
+1003f5ef          
+1003f5f1          edx.b = *eax_1
+1003f5f1          
+1003f5f5          if (edx.b == 0)
+1003f5f5              break
+1003f5f5          
+1003f5fb          if (arg5 == 0)
+1003f600              if (edx.b == 0x20)
+1003f600                  break
+1003f600              
+1003f605              if (edx.b == 9)
+1003f605                  break
+1003f605          
+1003f60b          if (arg1 != 0)
+1003f60f              if (esi != 0)
+1003f61b                  if ((*(zx.d(edx.b) + 0x1006cba1) & 4) != 0)
+1003f61d                      *esi = edx.b
+1003f61f                      esi = &esi[1]
+1003f620                      eax_1 = &eax_1[1]
+1003f621                      *ecx += 1
+1003f621                  
+1003f623                  edx.b = *eax_1
+1003f625                  *esi = edx.b
+1003f627                  esi = &esi[1]
+1003f60f              else if ((*(zx.d(edx.b) + 0x1006cba1) & 4) != 0)
+1003f636                  eax_1 = &eax_1[1]
+1003f637                  *ecx += 1
+1003f637              
+1003f639              *ecx += 1
+1003f639          
+1003f63b          eax_1 = &eax_1[1]
+1003f63b      
+1003f643      if (esi != 0)
+1003f645          *esi = 0
+1003f648          esi = &esi[1]
+1003f648      
+1003f649      *ecx += 1
+1003f649  
+1003f652  if (edi != 0)
+1003f654      *edi = 0
+1003f654  
+1003f65d  *arg4 += 1
+1003f660  return arg4
+
+
+1003f661    void* sub_1003f661()
+
+1003f661  int32_t ecx
+1003f661  int32_t var_4 = ecx
+1003f662  int32_t var_8 = ecx
+1003f663  int32_t eax = data_10061f24
+1003f672  void* lpMultiByteStr_2 = nullptr
+1003f674  PWSTR esi = nullptr
+1003f676  char* penv = nullptr
+1003f676  
+1003f67a  if (eax == 0)
+1003f67e      esi = GetEnvironmentStringsW()
+1003f67e      
+1003f682      if (esi == 0)
+1003f696          penv = GetEnvironmentStrings()
+1003f696          
+1003f69a          if (penv == 0)
+1003f78a              return nullptr
+1003f78a          
+1003f6a0          data_10061f24 = 2
+1003f740          label_1003f740:
+1003f740          
+1003f740          if (penv == 0)
+1003f748              penv = GetEnvironmentStrings()
+1003f748              
+1003f74c              if (penv == 0)
+1003f78a                  return nullptr
+1003f78a          
+1003f750          char* penv_1 = penv
+1003f750          
+1003f752          if (*penv != 0)
+1003f754              while (true)
+1003f754                  penv_1 = &penv_1[1]
+1003f754                  
+1003f757                  if (*penv_1 == 0)
+1003f759                      penv_1 = &penv_1[1]
+1003f759                      
+1003f75c                      if (*penv_1 == 0)
+1003f75c                          break
+1003f75c          
+1003f769          void* esi_1 = sub_10040bcd(penv_1 - penv + 1)
+1003f769          
+1003f76e          if (esi_1 != 0)
+1003f777              sub_1003e070(esi_1, penv, penv_1 - penv + 1)
+1003f76e          else
+1003f770              esi_1 = nullptr
+1003f770          
+1003f780          FreeEnvironmentStringsA(penv)
+1003f786          return esi_1
+1003f786      
+1003f684      data_10061f24 = 1
+1003f67a  else if (eax != 1)
+1003f73c      if (eax != 2)
+1003f78a          return nullptr
+1003f78a      
+1003f73c      goto label_1003f740
+1003f73c  
+1003f6ba  if (esi == 0)
+1003f6be      esi = GetEnvironmentStringsW()
+1003f6be      
+1003f6c2      if (esi == 0)
+1003f78a          return nullptr
+1003f78a  
+1003f6cb  PWSTR eax_4 = esi
+1003f6cb  
+1003f6cd  if (*esi != 0)
+1003f6d0      while (true)
+1003f6d0          eax_4 = &eax_4[1]
+1003f6d0          
+1003f6d4          if (*eax_4 == 0)
+1003f6d7              eax_4 = &eax_4[1]
+1003f6d7              
+1003f6db              if (*eax_4 == 0)
+1003f6db                  break
+1003f6db  
+1003f6f4  int32_t cbMultiByte = WideCharToMultiByte(CodePage: 0, dwFlags: 0, lpWideCharStr: esi, 
+1003f6f4      cchWideChar: ((eax_4 - esi) s>> 1) + 1, lpMultiByteStr: nullptr, cbMultiByte: 0, 
+1003f6f4      lpDefaultChar: nullptr, lpUsedDefaultChar: nullptr)
+1003f6f4  
+1003f6fa  if (cbMultiByte != 0)
+1003f6fd      void* lpMultiByteStr = sub_10040bcd(cbMultiByte)
+1003f705      void* lpMultiByteStr_1 = lpMultiByteStr
+1003f705      
+1003f709      if (lpMultiByteStr != 0)
+1003f71a          if (WideCharToMultiByte(CodePage: 0, dwFlags: 0, lpWideCharStr: esi, 
+1003f71a                  cchWideChar: ((eax_4 - esi) s>> 1) + 1, lpMultiByteStr, cbMultiByte, 
+1003f71a                  lpDefaultChar: nullptr, lpUsedDefaultChar: nullptr) == 0)
+1003f720              sub_100396e7(lpMultiByteStr_1)
+1003f726              lpMultiByteStr_1 = nullptr
+1003f726          
+1003f72a          lpMultiByteStr_2 = lpMultiByteStr_1
+1003f72a  
+1003f72f  FreeEnvironmentStringsW(penv: esi)
+1003f735  return lpMultiByteStr_2
+
+
+1003f793    int32_t sub_1003f793() __pure
+
+1003f796  return 1
+
+
+1003f799    void* sub_1003f799()
+
+1003f799  void* result = data_10061c54
+1003f799  
+1003f7a1  if (result == 1)
+1003f7b5      label_1003f7b5:
+1003f7b5      sub_1003f7d2(0xfc)
+1003f7ba      int32_t eax = data_10061f28
+1003f7ba      
+1003f7c2      if (eax != 0)
+1003f7c4          eax()
+1003f7c4      
+1003f7cb      result = sub_1003f7d2(0xff)
+1003f7a1  else if (result == 0 && data_10061c58 == 1)
+1003f7ae      goto label_1003f7b5
+1003f7ae  
+1003f7d1  return result
+
+
+1003f7d2    void* sub_1003f7d2(uint32_t arg1)
+
+1003f7db  uint32_t i = arg1
+1003f7de  int32_t ecx = 0
+1003f7e0  void* result = &data_10060468
+1003f7e0  
+1003f7e7  while (i != *result)
+1003f7e9      result += 8
+1003f7ec      ecx += 1
+1003f7ec      
+1003f7f2      if (result s>= &data_100604f8)
+1003f7f2          break
+1003f7f2  
+1003f800  if (i == *((ecx << 3) + &data_10060468))
+1003f806      result = data_10061c54
+1003f806      
+1003f80e      if (result == 1)
+1003f905          label_1003f905:
+1003f905          OVERLAPPED* __saved_edi_3 = nullptr
+1003f907          uint32_t* lpNumberOfBytesWritten = &arg1
+1003f910          uint32_t nNumberOfBytesToWrite = sub_1003c6e0((&data_1006046c)[ecx * 2])
+1003f91c          return WriteFile(hFile: GetStdHandle(nStdHandle: STD_ERROR_HANDLE), 
+1003f91c              lpBuffer: (&data_1006046c)[ecx * 2], nNumberOfBytesToWrite, 
+1003f91c              lpNumberOfBytesWritten, lpOverlapped: __saved_edi_3)
+1003f91c      
+1003f81f      if (result == 0 && data_10061c58 == 1)
+1003f81f          goto label_1003f905
+1003f81f      
+1003f82b      if (i != 0xfc)
+1003f847          void filename
+1003f847          
+1003f847          if (GetModuleFileNameA(hModule: nullptr, lpFilename: &filename, nSize: 0x104)
+1003f847                  == 0)
+1003f855              sub_10040000(&filename, "<program name unknown>")
+1003f855          
+1003f864          void* edi_1 = &filename
+1003f864          
+1003f874          if (sub_1003c6e0(&filename) + 1 u> 0x3c)
+1003f88d              int32_t var_1b8_2 = 3
+1003f88f              void var_1e3
+1003f88f              edi_1 = sub_1003c6e0(&filename) + &var_1e3
+1003f897              sub_10039dc0(edi_1, "...", var_1b8_2)
+1003f897          
+1003f8ab          char var_a4[0xa0]
+1003f8ab          sub_10040000(&var_a4, "Runtime Error!\n\nProgram: ")
+1003f8b8          sub_10040010(&var_a4, edi_1)
+1003f8c9          sub_10040010(&var_a4, "\n\n")
+1003f8db          sub_10040010(&var_a4, (&data_1006046c)[ecx * 2])
+1003f8f1          return sub_10042062(&var_a4, "Microsoft Visual C++ Runtime Lib…", 0x12010)
+1003f8f1  
+1003f924  return result
+
+
+1003f925    int32_t sub_1003f925(int16_t arg1 @ x87control, int32_t arg2, int32_t arg3)
+
+1003f928  int32_t ecx
+1003f928  int32_t var_8 = ecx
+1003f92b  int16_t x87status
+1003f92b  int16_t temp0
+1003f92b  temp0, x87status = __fnstcw_memmem16(arg1)
+1003f92b  var_8.w = temp0
+1003f945  int32_t result = (sub_1003f970(var_8.w) & not.d(arg3)) | (arg2 & arg3)
+1003f952  int16_t x87control
+1003f952  int16_t x87status_1
+1003f952  x87control, x87status_1 = __fldcw_memmem16(sub_1003fa02(result).w)
+1003f959  return result
+
+
+1003f95a    int32_t sub_1003f95a(int32_t arg1, int32_t arg2)
+
+1003f96f  int16_t x87control
+1003f96f  return sub_1003f925(x87control, arg1, arg2 & 0xfff7ffff)
+
+
+1003f970    int32_t sub_1003f970(int16_t arg1) __pure
+
+1003f975  int32_t result = 0
+1003f975  
+1003f97c  if ((arg1.b & 1) != 0)
+1003f980      result = 0x10
+1003f980  
+1003f984  if ((arg1.b & 4) != 0)
+1003f986      result.b |= 8
+1003f986  
+1003f98b  if ((arg1.b & 8) != 0)
+1003f98d      result.b |= 4
+1003f98d  
+1003f992  if ((arg1.b & 0x10) != 0)
+1003f994      result.b |= 2
+1003f994  
+1003f999  if ((arg1.b & 0x20) != 0)
+1003f99b      result.b |= 1
+1003f99b  
+1003f9a0  if ((arg1.b & 2) != 0)
+1003f9a2      result |= 0x80000
+1003f9a2  
+1003f9a7  uint32_t ecx = zx.d(arg1)
+1003f9b7  int32_t edx_1 = ecx & 0xc00
+1003f9b7  
+1003f9be  if (edx_1 != 0)
+1003f9c6      if (edx_1 == 0x400)
+1003f9dc          result:1.b |= 1
+1003f9c6      else if (edx_1 == 0x800)
+1003f9d8          result |= 0x200
+1003f9ce      else if (edx_1 == 0xc00)
+1003f9d4          result |= 0x300
+1003f9d4  
+1003f9df  int32_t ecx_1 = ecx & 0x300
+1003f9df  
+1003f9e2  if (ecx_1 == 0)
+1003f9ef      result |= 0x20000
+1003f9e2  else if (ecx_1 == 0x200)
+1003f9e8      result |= 0x10000
+1003f9e8  
+1003f9fa  if ((arg1:1.b & 0x10) == 0)
+1003fa01      return result
+1003fa01  
+1003f9fc  return result | 0x40000
+
+
+1003fa02    int32_t sub_1003fa02(int32_t arg1) __pure
+
+1003fa07  int32_t result = 0
+1003fa07  
+1003fa0d  if ((arg1.b & 0x10) != 0)
+1003fa11      result = 1
+1003fa11  
+1003fa15  if ((arg1.b & 8) != 0)
+1003fa17      result.b |= 4
+1003fa17  
+1003fa1c  if ((arg1.b & 4) != 0)
+1003fa1e      result.b |= 8
+1003fa1e  
+1003fa23  if ((arg1.b & 2) != 0)
+1003fa25      result.b |= 0x10
+1003fa25  
+1003fa2a  if ((arg1.b & 1) != 0)
+1003fa2c      result.b |= 0x20
+1003fa2c  
+1003fa34  if ((arg1 & 0x80000) != 0)
+1003fa36      result.b |= 2
+1003fa36  
+1003fa3f  int32_t ecx_1 = arg1 & 0x300
+1003fa3f  
+1003fa46  if (ecx_1 != 0)
+1003fa4e      if (ecx_1 == 0x100)
+1003fa62          result:1.b |= 4
+1003fa4e      else if (ecx_1 == 0x200)
+1003fa5d          result:1.b |= 8
+1003fa52      else if (ecx_1 == 0x300)
+1003fa58          result:1.b |= 0xc
+1003fa58  
+1003fa67  int32_t ecx_3 = arg1 & 0x30000
+1003fa67  
+1003fa6d  if (ecx_3 == 0)
+1003fa7b      result |= 0x300
+1003fa6d  else if (ecx_3 == 0x10000)
+1003fa77      result |= 0x200
+1003fa77  
+1003fa85  if ((arg1 & 0x40000) != 0)
+1003fa87      result:1.b |= 0x10
+1003fa87  
+1003fa8a  return result
+
+
+1003fa8b    int32_t sub_1003fa8b(int32_t arg1, int32_t arg2)
+
+1003fa94  int32_t temp0 = divs.dp.d(sx.q(arg2), 0x20)
+1003fa94  
+1003fab2  if ((*(arg1 + (temp0 << 2))
+1003fab2          & not.d(0xffffffff << (0x1f - (mods.dp.d(sx.q(arg2), 0x20)).b))) != 0)
+1003fad3      return 0
+1003fad3  
+1003fab4  int32_t esi_1 = temp0 + 1
+1003fab4  
+1003fab8  if (esi_1 s>= 3)
+1003facf      return 1
+1003facf  
+1003faba  int32_t* eax_5 = arg1 + (esi_1 << 2)
+1003faba  
+1003fac0  while (true)
+1003fac0      if (*eax_5 != 0)
+1003fad3          return 0
+1003fad3      
+1003fac2      esi_1 += 1
+1003fac3      eax_5 = &eax_5[1]
+1003fac3      
+1003fac9      if (esi_1 s>= 3)
+1003facf          return 1
+
+
+1003fad4    int32_t sub_1003fad4(int32_t arg1, int32_t arg2)
+
+1003fae3  int32_t temp0 = divs.dp.d(sx.q(arg2), 0x20)
+1003faee  int32_t* edi = arg1 + (temp0 << 2)
+1003faff  int32_t i = sub_100420eb(*edi, 1 << (0x1f - (mods.dp.d(sx.q(arg2), 0x20)).b), edi)
+1003fb07  int32_t esi_1 = temp0 - 1
+1003fb07  
+1003fb08  if (temp0 - 1 s>= 0)
+1003fb0a      int32_t* edi_1 = arg1 + (esi_1 << 2)
+1003fb0a      
+1003fb0f      while (i != 0)
+1003fb16          i = sub_100420eb(*edi_1, 1, edi_1)
+1003fb1e          esi_1 -= 1
+1003fb1f          edi_1 -= 4
+1003fb1f          
+1003fb24          if (esi_1 s< 0)
+1003fb24              break
+1003fb24  
+1003fb29  return i
+
+
+1003fb2a    int32_t sub_1003fb2a(int32_t arg1, int32_t* arg2)
+
+1003fb2d  int32_t ecx
+1003fb2d  int32_t var_8 = ecx
+1003fb2e  int32_t var_c = ecx
+1003fb35  void* edi = arg2 - 1
+1003fb3b  int32_t result = 0
+1003fb48  int32_t temp0 = divs.dp.d(sx.q(edi + 1), 0x20)
+1003fb50  int32_t eax_5
+1003fb50  int32_t edx_1
+1003fb50  edx_1:eax_5 = sx.q(edi + 1)
+1003fb5c  int32_t* eax_7 = arg1 + (temp0 << 2)
+1003fb5c  
+1003fb6b  if ((*eax_7 & 1 << (0x1f - (mods.dp.d(edx_1:eax_5, 0x20)).b)) != 0
+1003fb6b          && sub_1003fa8b(arg1, edi + 2) == 0)
+1003fb87      result = sub_1003fad4(arg1, edi)
+1003fb87  
+1003fb98  *eax_7 &= 0xffffffff << (0x1f - (mods.dp.d(edx_1:eax_5, 0x20)).b)
+1003fb98  
+1003fba0  if (temp0 + 1 s< 3)
+1003fbac      __builtin_memset(s: arg1 + ((temp0 + 1) << 2), c: 0, n: (3 - (temp0 + 1)) << 2)
+1003fbac  
+1003fbb5  return result
+
+
+1003fbb6    int32_t* sub_1003fbb6(int32_t arg1, int32_t* arg2)
+
+1003fbb6  int32_t* result = arg2
+1003fbc1  int32_t* ecx_1 = arg1 - result
+1003fbc3  int32_t i_1 = 3
+1003fbcd  int32_t i
+1003fbcd  
+1003fbcd  do
+1003fbc6      *(ecx_1 + result) = *result
+1003fbc9      result = &result[1]
+1003fbcc      i = i_1
+1003fbcc      i_1 -= 1
+1003fbcd  while (i != 1)
+1003fbd0  return result
+
+
+1003fbd1    int32_t sub_1003fbd1(int32_t* arg1)
+
+1003fbd8  *arg1 = 0
+1003fbd8  void* edi_1 = &arg1[1]
+1003fbd9  *edi_1 = 0
+1003fbda  *(edi_1 + 4) = 0
+1003fbdc  return 0
+
+
+1003fbdd    int32_t sub_1003fbdd(int32_t* arg1)
+
+1003fbdd  int32_t* eax = arg1
+1003fbdd  
+1003fbef  for (int32_t i = 0; i s< 3; )
+1003fbe6      if (*eax != 0)
+1003fbf7          return 0
+1003fbf7      
+1003fbe8      i += 1
+1003fbe9      eax = &eax[1]
+1003fbe9  
+1003fbf4  return 1
+
+
+1003fbf8    int32_t* sub_1003fbf8(int32_t* arg1, int32_t arg2)
+
+1003fc06  int32_t* edi = arg1
+1003fc10  int32_t i_1 = 3
+1003fc17  int32_t temp0 = divs.dp.d(sx.q(arg2), 0x20)
+1003fc20  char temp1 = (mods.dp.d(sx.q(arg2), 0x20)).b
+1003fc22  arg2 = 0
+1003fc50  int32_t i
+1003fc50  
+1003fc50  do
+1003fc2e      int32_t eax_6 = *edi
+1003fc3e      *edi = eax_6 u>> temp1 | arg2
+1003fc45      edi = &edi[1]
+1003fc4a      i = i_1
+1003fc4a      i_1 -= 1
+1003fc4d      arg2 = (eax_6 & not.d(0xffffffff << temp1)) << (0x20 - temp1)
+1003fc50  while (i != 1)
+1003fc57  int32_t ebx_1 = 2
+1003fc5c  int32_t* ecx_5 = 8
+1003fc7e  int32_t* result
+1003fc7e  int32_t* temp3_1
+1003fc7e  
+1003fc7e  do
+1003fc62      if (ebx_1 s< temp0)
+1003fc73          result = arg1
+1003fc76          *(ecx_5 + result) = 0
+1003fc62      else
+1003fc6b          result = *(ecx_5 - (temp0 << 2) + arg1)
+1003fc6e          *(ecx_5 + arg1) = result
+1003fc6e      
+1003fc7a      ebx_1 -= 1
+1003fc7b      temp3_1 = ecx_5
+1003fc7b      ecx_5 -= 4
+1003fc7e  while (temp3_1 - 4 s>= 0)
+1003fc84  return result
+
+
+1003fc85    int32_t sub_1003fc85(int16_t* arg1, int32_t* arg2, int32_t* arg3)
+
+1003fc91  uint32_t ecx = zx.d(arg1[5])
+1003fc97  int16_t* ecx_1 = ecx & 0x8000
+1003fca3  int32_t var_10 = *(arg1 + 6)
+1003fca6  int32_t ecx_3 = *(arg1 + 2)
+1003fcb5  int32_t ebx_2 = (ecx & 0x7fff) - 0x3fff
+1003fcc7  uint32_t var_8 = zx.d(*arg1) << 0x10
+1003fcca  int32_t result
+1003fcca  int32_t esi_1
+1003fcca  
+1003fcca  if (ebx_2 != 0xffffc001)
+1003fcfa      void var_1c
+1003fcfa      sub_1003fbb6(&var_1c, &var_10)
+1003fcfa      
+1003fd10      if (sub_1003fb2a(&var_10, arg3[2]) != 0)
+1003fd12          ebx_2 += 1
+1003fd12      
+1003fd13      int32_t eax_5 = arg3[1]
+1003fd13      
+1003fd1d      if (ebx_2 s>= eax_5 - arg3[2])
+1003fd2d          if (ebx_2 s<= eax_5)
+1003fd3b              sub_1003fbb6(&var_10, &var_1c)
+1003fd45              sub_1003fbf8(&var_10, eax_5 - ebx_2)
+1003fd51              sub_1003fb2a(&var_10, arg3[2])
+1003fd5f              sub_1003fbf8(&var_10, arg3[3] + 1)
+1003fd64              goto label_1003fd67
+1003fd64          
+1003fd70          if (ebx_2 s< *arg3)
+1003fda0              var_10:3.b &= 0x7f
+1003fda8              esi_1 = arg3[5] + ebx_2
+1003fdaa              sub_1003fbf8(&var_10, arg3[3])
+1003fdb1              result = 0
+1003fd70          else
+1003fd76              sub_1003fbd1(&var_10)
+1003fd7e              var_10:3.b |= 0x80
+1003fd86              sub_1003fbf8(&var_10, arg3[3])
+1003fd91              esi_1 = arg3[5] + *arg3
+1003fcec              result = 1
+1003fd1d      else
+1003fd23          sub_1003fbd1(&var_10)
+1003fd67          label_1003fd67:
+1003fd67          esi_1 = 0
+1003fcec          result = 2
+1003fcca  else
+1003fccf      esi_1 = 0
+1003fccf      
+1003fcda      if (sub_1003fbdd(&var_10) != 0)
+1003fdb1          result = 0
+1003fcda      else
+1003fce4          sub_1003fbd1(&var_10)
+1003fcec          result = 2
+1003fcec  
+1003fdb9  int32_t edi_1 = arg3[4]
+1003fdc1  int32_t ecx_12 = neg.d(ecx_1)
+1003fdcd  int32_t esi_7 = esi_1 << (0x1f - (arg3[3]).b)
+1003fdcd      | (sbb.d(ecx_12, ecx_12, ecx_1 != 0) & 0x80000000) | var_10
+1003fdcd  
+1003fdd3  if (edi_1 == 0x40)
+1003fddb      arg2[1] = esi_7
+1003fdde      *arg2 = ecx_3
+1003fdd3  else if (edi_1 == 0x20)
+1003fdea      *arg2 = esi_7
+1003fdea  
+1003fdf0  return result
+
+
+1003fdf1    int32_t sub_1003fdf1(int16_t* arg1, int32_t* arg2)
+
+1003fe06  return sub_1003fc85(arg1, arg2, &data_100604f8)
+
+
+1003fe07    int32_t sub_1003fe07(int16_t* arg1, int32_t* arg2)
+
+1003fe1c  return sub_1003fc85(arg1, arg2, &data_10060510)
+
+
+1003fe1d    int32_t sub_1003fe1d(int32_t* arg1, void* arg2)
+
+1003fe34  void var_10
+1003fe34  sub_10041425(&var_10, &arg2, arg2, 0, 0, 0, 0)
+1003fe49  return sub_1003fdf1(&var_10, arg1)
+
+
+1003fe4a    int32_t sub_1003fe4a(int32_t* arg1, void* arg2)
+
+1003fe61  void var_10
+1003fe61  sub_10041425(&var_10, &arg2, arg2, 0, 0, 0, 0)
+1003fe76  return sub_1003fe07(&var_10, arg1)
+
+
+1003fe77    char* sub_1003fe77(char* arg1, char* arg2, int32_t arg3)
+
+1003fe7a  int32_t edx = arg3
+1003fe7e  char* ebx = arg2
+1003fe82  char* esi = arg1
+1003fe85  char* ecx = *(edx + 0xc)
+1003fe8c  *esi = 0x30
+1003fe91  char* result = &esi[1]
+1003fe91  
+1003fe93  if (ebx s> 0)
+1003fe95      arg1 = ebx
+1003fe98      ebx = nullptr
+1003feaf      char* i
+1003feaf      
+1003feaf      do
+1003fe9a          edx.b = *ecx
+1003fe9a          
+1003fe9e          if (edx.b == 0)
+1003fea8              edx = 0x30
+1003fe9e          else
+1003fea0              edx = sx.d(edx.b)
+1003fea3              ecx = &ecx[1]
+1003fea3          
+1003fea9          *result = edx.b
+1003feab          result = &result[1]
+1003feac          i = arg1
+1003feac          arg1 -= 1
+1003feaf      while (i != 1)
+1003feb1      edx = arg3
+1003feb1  
+1003feb4  *result = 0
+1003feb4  
+1003febe  if (ebx s>= 0 && *ecx s>= 0x35)
+1003fec0      while (true)
+1003fec0          result -= 1
+1003fec0          
+1003fec4          if (*result != 0x39)
+1003fec4              break
+1003fec4          
+1003fec6          *result = 0x30
+1003fec6      
+1003fecb      *result += 1
+1003fecb  
+1003fed0  if (*esi != 0x31)
+1003fee1      return sub_10040150(esi, &esi[1], sub_1003c6e0(&esi[1]) + 1)
+1003fee1  
+1003fed2  *(edx + 4) += 1
+1003feed  return result
+
+
+1003feee    int32_t* sub_1003feee(int32_t* arg1, char* arg2)
+
+1003fefe  int32_t var_10
+1003fefe  void arg_4
+1003fefe  sub_1003ff4a(&var_10, &arg_4)
+1003ff0b  int16_t var_2c
+1003ff0b  int16_t* var_38_1 = &var_2c
+1003ff0c  int32_t var_3c_1 = 0
+1003ff0e  int32_t var_40 = 0x11
+1003ff15  int32_t var_4c = var_10
+1003ff15  void var_48
+1003ff15  void* edi = &var_48
+1003ff15  void var_c
+1003ff15  void* esi = &var_c
+1003ff16  *edi = *esi
+1003ff17  *(edi + 4) = *(esi + 4)
+1003ff24  arg1[2] = sub_1004228c(var_4c)
+1003ff2b  char var_2a
+1003ff2b  *arg1 = sx.d(var_2a)
+1003ff31  arg1[1] = sx.d(var_2c)
+1003ff37  void var_28
+1003ff37  void* var_50 = &var_28
+1003ff39  sub_10040000(arg2, var_50)
+1003ff41  arg1[3] = arg2
+1003ff49  return arg1
+
+
+1003ff4a    int32_t* sub_1003ff4a(int32_t* arg1, int32_t* arg2)
+
+1003ff4d  int32_t ecx
+1003ff4d  int32_t var_8 = ecx
+1003ff54  int32_t eax
+1003ff54  eax.w = *(arg2 + 6)
+1003ff67  int32_t ecx_3 = eax u>> 4 & 0x7ff
+1003ff6f  int32_t edx_1 = *arg2
+1003ff71  uint32_t ebx = zx.d(ecx_3.w)
+1003ff79  int32_t eax_3 = arg2[1] & 0xfffff
+1003ff80  int32_t var_8_1 = 0x80000000
+1003ff83  int32_t edi_1
+1003ff83  
+1003ff83  if (ebx != 0)
+1003ff87      if (ebx == 0x7ff)
+1003ff91          edi_1 = 0x7fff
+1003ff87      else
+1003ff89          edi_1 = ecx_3 + 0x3c00
+1003ff89      
+1003ff87      goto label_1003ffc3
+1003ff87  
+1003ffa0  int32_t* result
+1003ffa0  
+1003ffa0  if (eax_3 != 0 || edx_1 != 0)
+1003ffb0      edi_1 = ecx_3 + 0x3c01
+1003ffb6      var_8_1 = 0
+1003ffc3      label_1003ffc3:
+1003ffc3      result = arg1
+1003ffc6      int32_t ecx_7 = edx_1 u>> 0x15 | eax_3 << 0xb | var_8_1
+1003ffcc      result[1] = ecx_7
+1003ffcf      *result = edx_1 << 0xb
+1003ffcf      
+1003ffd3      while ((0x80000000 & ecx_7) == 0)
+1003ffd5          int32_t edx_3 = *result
+1003ffde          int32_t ebx_3 = edx_3 u>> 0x1f | (ecx_7 * 2)
+1003ffe3          *result = edx_3 * 2
+1003ffe5          result[1] = ebx_3
+1003ffe8          edi_1 += 0xffff
+1003ffee          ecx_7 = ebx_3
+1003ffee      
+1003fff7      result[2].w = (eax & 0x8000).w | edi_1.w
+1003ffa0  else
+1003ffa2      result = arg1
+1003ffa5      result[1] = 0
+1003ffa8      *result = 0
+1003ffaa      result[2].w = 0
+1003ffaa  
+1003ffff  return result
+
+
+10040000    char* sub_10040000(char* arg1, char* arg2)
+
+10040001  char* edi = arg1
+10040071  char* ecx = arg2
+1004007b  int32_t edx
+1004007b  
+1004007b  while ((ecx & 3) != 0)
+1004007d      edx.b = *ecx
+1004007f      ecx = &ecx[1]
+1004007f      
+10040082      if (edx.b == 0)
+10040082          goto label_100400e8
+10040082      
+10040084      *edi = edx.b
+10040086      edi = &edi[1]
+10040086  
+1004009b  while (true)
+1004009b      int32_t eax_1 = *ecx
+100400a4      edx = *ecx
+100400a6      ecx = &ecx[4]
+100400a6      
+100400ae      if (((eax_1 ^ 0xffffffff ^ (0x7efefeff + eax_1)) & 0x81010100) != 0)
+100400b2          if (edx.b == 0)
+100400b2              break
+100400b2          
+100400b6          if (edx:1.b == 0)
+100400df              *edi = edx.w
+100400e7              return arg1
+100400e7          
+100400be          if ((edx & 0xff0000) == 0)
+100400d2              *edi = edx.w
+100400d9              edi[2] = 0
+100400de              return arg1
+100400de          
+100400c6          if ((edx & 0xff000000) == 0)
+100400ca              *edi = edx
+100400d1              return arg1
+100400d1      
+10040091      *edi = edx
+10040093      edi = &edi[4]
+10040093  
+100400e8  label_100400e8:
+100400e8  *edi = edx.b
+100400ef  return arg1
+
+10040007                       8d a4 24 00 00 00 00 8b ff                                                         ..$......
+
+10040010    char* sub_10040010(char* arg1, char* arg2)
+
+10040010  char* ecx = arg1
+1004001b  void* edi
+1004001b  
+1004001b  while ((ecx & 3) != 0)
+1004001d      char eax = *ecx
+1004001f      ecx = &ecx[1]
+1004001f      
+10040022      if (eax == 0)
+1004005f          label_1004005f:
+1004005f          edi = &ecx[0xffffffff]
+10040062          goto label_10040071
+10040062  
+1004002c  while (true)
+1004002c      int32_t eax_1 = *ecx
+1004003a      ecx = &ecx[4]
+1004003a      
+10040042      if (((eax_1 ^ 0xffffffff ^ (0x7efefeff + eax_1)) & 0x81010100) != 0)
+10040044          int32_t eax_4 = *(ecx - 4)
+10040044          
+10040049          if (eax_4.b == 0)
+1004006e              edi = &ecx[0xfffffffc]
+1004006e              break
+1004006e          
+1004004d          if (eax_4:1.b == 0)
+10040069              edi = &ecx[0xfffffffd]
+1004006c              break
+1004006c          
+10040054          if ((eax_4 & 0xff0000) == 0)
+10040064              edi = &ecx[0xfffffffe]
+10040067              break
+10040067          
+1004005b          if ((eax_4 & 0xff000000) == 0)
+1004005b              goto label_1004005f
+1004005b  
+10040071  label_10040071:
+10040071  char* ecx_1 = arg2
+1004007b  int32_t edx
+1004007b  
+1004007b  while ((ecx_1 & 3) != 0)
+1004007d      edx.b = *ecx_1
+1004007f      ecx_1 = &ecx_1[1]
+1004007f      
+10040082      if (edx.b == 0)
+10040082          goto label_100400e8
+10040082      
+10040084      *edi = edx.b
+10040086      edi += 1
+10040086  
+1004009b  while (true)
+1004009b      int32_t eax_5 = *ecx_1
+100400a4      edx = *ecx_1
+100400a6      ecx_1 = &ecx_1[4]
+100400a6      
+100400ae      if (((eax_5 ^ 0xffffffff ^ (0x7efefeff + eax_5)) & 0x81010100) != 0)
+100400b2          if (edx.b == 0)
+100400b2              break
+100400b2          
+100400b6          if (edx:1.b == 0)
+100400df              *edi = edx.w
+100400e7              return arg1
+100400e7          
+100400be          if ((edx & 0xff0000) == 0)
+100400d2              *edi = edx.w
+100400d9              *(edi + 2) = 0
+100400de              return arg1
+100400de          
+100400c6          if ((edx & 0xff000000) == 0)
+100400ca              *edi = edx
+100400d1              return arg1
+100400d1      
+10040091      *edi = edx
+10040093      edi += 4
+10040093  
+100400e8  label_100400e8:
+100400e8  *edi = edx.b
+100400ef  return arg1
+
+
+100400f0    char* sub_100400f0(char* arg1, char arg2, int32_t arg3)
+
+100400f0  int32_t i_3 = arg3
+100400f0  
+100400fa  if (i_3 == 0)
+10040147      return arg1
+10040147  
+100400fe  int32_t eax
+100400fe  eax.b = arg2
+10040103  char* edi = arg1
+10040103  
+10040108  if (i_3 u< 4)
+1004013b      label_1004013b:
+1004013b      int32_t i
+1004013b      
+1004013b      do
+10040137          *edi = eax.b
+10040139          edi = &edi[1]
+1004013a          i = i_3
+1004013a          i_3 -= 1
+1004013b      while (i != 1)
+10040108  else
+1004010c      int32_t i_2 = neg.d(arg1) & 3
+1004010c      
+1004010f      if (i_2 != 0)
+10040111          i_3 -= i_2
+10040117          int32_t i_1
+10040117          
+10040117          do
+10040113              *edi = eax.b
+10040115              edi = &edi[1]
+10040116              i_1 = i_2
+10040116              i_2 -= 1
+10040117          while (i_1 != 1)
+10040117      
+10040125      eax *= 0x1010101
+10040127      int32_t i_4 = i_3
+10040129      i_3 &= 3
+1004012c      uint32_t ecx_4 = i_4 u>> 2
+1004012c      
+1004012f      if (ecx_4 == 0)
+1004012f          goto label_1004013b
+1004012f      
+10040131      int32_t ecx_5
+10040131      edi, ecx_5 = __memfill_u32(edi, eax, ecx_4)
+10040131      
+10040135      if (i_3 != 0)
+10040135          goto label_1004013b
+10040135  
+10040142  return arg1
+
+10040148                          cc cc cc cc cc cc cc cc                                                          ........
+
+10040150    char* sub_10040150(char* arg1, char* arg2, int32_t arg3)
+
+10040155  char* esi = arg2
+1004015b  char* edi = arg1
+1004016a  uint32_t eax_1
+1004016a  
+1004016a  if (edi u> esi && edi u< &esi[arg3])
+100402e8      void* esi_1 = &esi[arg3 - 4]
+100402ec      void* edi_1 = &edi[arg3 - 4]
+100402f6      uint32_t ecx_4
+100402f6      
+100402f6      if ((edi_1 & 3) == 0)
+100402f8          ecx_4 = arg3 u>> 2
+100402f8          
+10040301          if (ecx_4 u< 8)
+10040312              jump((&jump_table_100403e0)[neg.d(ecx_4)])
+10040312          
+10040304          edi_1, esi_1 = __builtin_memcpy(dest: edi_1 - (ecx_4 << 2), 
+10040304              src: esi_1 - (ecx_4 << 2), n: ecx_4 << 2)
+10040304          
+10040307          switch (arg3 & 3)
+10040446              case 0
+10040446                  return arg1
+10040307              case 1
+10040307                  goto label_10040448
+10040307              case 2
+10040307                  goto label_10040458
+10040307              case 3
+10040307                  goto label_1004046c
+100402f6      else if (arg3 u< 4)
+10040326          switch (arg3)
+10040446              case 0
+10040446                  return arg1
+10040448              case 1
+10040448                  label_10040448:
+10040448                  eax_1.b = *(esi_1 + 3)
+1004044b                  *(edi_1 + 3) = eax_1.b
+10040454                  return arg1
+10040458              case 2
+10040458                  label_10040458:
+10040458                  eax_1.b = *(esi_1 + 3)
+1004045b                  *(edi_1 + 3) = eax_1.b
+1004045e                  eax_1.b = *(esi_1 + 2)
+10040461                  *(edi_1 + 2) = eax_1.b
+1004046a                  return arg1
+1004046c              case 3
+1004046c                  label_1004046c:
+1004046c                  eax_1.b = *(esi_1 + 3)
+1004046f                  *(edi_1 + 3) = eax_1.b
+10040472                  eax_1.b = *(esi_1 + 2)
+10040475                  *(edi_1 + 2) = eax_1.b
+10040478                  eax_1.b = *(esi_1 + 1)
+1004047b                  *(edi_1 + 1) = eax_1.b
+10040484                  return arg1
+10040326      else
+10040328          eax_1 = edi_1 & 3
+1004032b          int32_t ecx_6 = arg3 - eax_1
+1004032b          
+1004032d          switch (jump_table_10040338[eax_1])
+10040348              case 0x10040348
+10040348                  eax_1.b = *(esi_1 + 3)
+1004034d                  *(edi_1 + 3) = eax_1.b
+10040351                  ecx_4 = ecx_6 u>> 2
+10040351                  
+10040358                  if (ecx_4 u< 8)
+10040312                      jump((&jump_table_100403e0)[neg.d(ecx_4)])
+10040312                  
+1004035b                  edi_1, esi_1 = __builtin_memcpy(dest: edi_1 - 1 - (ecx_4 << 2), 
+1004035b                      src: esi_1 - 1 - (ecx_4 << 2), n: ecx_4 << 2)
+1004035b                  
+1004035e                  switch (3 & ecx_6)
+10040446                      case 0
+10040446                          return arg1
+1004035e                      case 1
+1004035e                          goto label_10040448
+1004035e                      case 2
+1004035e                          goto label_10040458
+1004035e                      case 3
+1004035e                          goto label_1004046c
+10040368              case 0x10040368
+10040368                  eax_1.b = *(esi_1 + 3)
+1004036d                  *(edi_1 + 3) = eax_1.b
+10040370                  eax_1.b = *(esi_1 + 2)
+10040373                  ecx_4 = ecx_6 u>> 2
+10040376                  *(edi_1 + 2) = eax_1.b
+10040376                  
+10040382                  if (ecx_4 u< 8)
+10040312                      jump((&jump_table_100403e0)[neg.d(ecx_4)])
+10040312                  
+10040385                  edi_1, esi_1 = __builtin_memcpy(dest: edi_1 - 2 - (ecx_4 << 2), 
+10040385                      src: esi_1 - 2 - (ecx_4 << 2), n: ecx_4 << 2)
+10040385                  
+10040388                  switch (3 & ecx_6)
+10040446                      case 0
+10040446                          return arg1
+10040388                      case 1
+10040388                          goto label_10040448
+10040388                      case 2
+10040388                          goto label_10040458
+10040388                      case 3
+10040388                          goto label_1004046c
+10040390              case 0x10040390
+10040390                  eax_1.b = *(esi_1 + 3)
+10040395                  *(edi_1 + 3) = eax_1.b
+10040398                  eax_1.b = *(esi_1 + 2)
+1004039b                  *(edi_1 + 2) = eax_1.b
+1004039e                  eax_1.b = *(esi_1 + 1)
+100403a1                  ecx_4 = ecx_6 u>> 2
+100403a4                  *(edi_1 + 1) = eax_1.b
+100403a4                  
+100403b0                  if (ecx_4 u< 8)
+10040312                      jump((&jump_table_100403e0)[neg.d(ecx_4)])
+10040312                  
+100403b7                  edi_1, esi_1 = __builtin_memcpy(dest: edi_1 - 3 - (ecx_4 << 2), 
+100403b7                      src: esi_1 - 3 - (ecx_4 << 2), n: ecx_4 << 2)
+100403b7                  
+100403ba                  switch (3 & ecx_6)
+10040446                      case 0
+10040446                          return arg1
+100403ba                      case 1
+100403ba                          goto label_10040448
+100403ba                      case 2
+100403ba                          goto label_10040458
+100403ba                      case 3
+100403ba                          goto label_1004046c
+100403ba  
+10040176  uint32_t ecx_1
+10040176  int32_t edx_1
+10040176  
+10040176  if ((edi & 3) != 0)
+10040196      if (arg3 u< 4)
+100401a4          jump(*(((arg3 - 4) << 2) + &data_100402a8))
+100401a4      
+10040198      eax_1 = edi & 3
+1004019b      int32_t ecx_3 = arg3 - 4 + eax_1
+1004019b      
+1004019d      switch (jump_table_100401b0[eax_1])
+100401c0          case 0x100401c0
+100401c0              edx_1 = 3 & ecx_3
+100401c2              eax_1.b = *esi
+100401c4              *edi = eax_1.b
+100401c6              eax_1.b = esi[1]
+100401c9              edi[1] = eax_1.b
+100401cc              eax_1.b = esi[2]
+100401cf              ecx_1 = ecx_3 u>> 2
+100401d2              edi[2] = eax_1.b
+100401d5              esi = &esi[3]
+100401d8              edi = &edi[3]
+100401d8              
+100401de              if (ecx_1 u>= 8)
+100401e0                  edi, esi = __builtin_memcpy(dest: edi, src: esi, n: ecx_1 << 2)
+100401e0                  
+100401e2                  switch (edx_1)
+100402ae                      case 0
+100402ae                          return arg1
+100401e2                      case 1
+100401e2                          goto label_100402b0
+100401e2                      case 2
+100401e2                          goto label_100402bc
+100401e2                      case 3
+100401e2                          goto label_100402d0
+100401ec          case 0x100401ec
+100401ec              edx_1 = 3 & ecx_3
+100401ee              eax_1.b = *esi
+100401f0              *edi = eax_1.b
+100401f2              eax_1.b = esi[1]
+100401f5              ecx_1 = ecx_3 u>> 2
+100401f8              edi[1] = eax_1.b
+100401fb              esi = &esi[2]
+100401fe              edi = &edi[2]
+100401fe              
+10040204              if (ecx_1 u>= 8)
+10040206                  edi, esi = __builtin_memcpy(dest: edi, src: esi, n: ecx_1 << 2)
+10040206                  
+10040208                  switch (edx_1)
+100402ae                      case 0
+100402ae                          return arg1
+10040208                      case 1
+10040208                          goto label_100402b0
+10040208                      case 2
+10040208                          goto label_100402bc
+10040208                      case 3
+10040208                          goto label_100402d0
+10040210          case 0x10040210
+10040210              edx_1 = 3 & ecx_3
+10040212              eax_1.b = *esi
+10040214              *edi = eax_1.b
+10040216              esi = &esi[1]
+10040217              ecx_1 = ecx_3 u>> 2
+1004021a              edi = &edi[1]
+1004021a              
+1004021e              if (ecx_1 u>= 8)
+10040220                  edi, esi = __builtin_memcpy(dest: edi, src: esi, n: ecx_1 << 2)
+10040220                  
+10040222                  switch (edx_1)
+100402ae                      case 0
+100402ae                          return arg1
+10040222                      case 1
+10040222                          goto label_100402b0
+10040222                      case 2
+10040222                          goto label_100402bc
+10040222                      case 3
+10040222                          goto label_100402d0
+10040176  else
+10040178      ecx_1 = arg3 u>> 2
+1004017b      edx_1 = arg3 & 3
+1004017b      
+10040181      if (ecx_1 u>= 8)
+10040183          edi, esi = __builtin_memcpy(dest: edi, src: esi, n: ecx_1 << 2)
+10040183          
+10040185          switch (edx_1)
+100402ae              case 0
+100402ae                  return arg1
+10040185              case 1
+10040185                  goto label_100402b0
+10040185              case 2
+10040185                  goto label_100402bc
+10040185              case 3
+10040185                  goto label_100402d0
+10040185  
+100401ac  switch (ecx_1)
+100401ac      case 0
+100401ac          goto label_1004028f
+100401ac      case 1
+100401ac          goto label_10040280
+100401ac      case 2
+100401ac          goto label_10040278
+100401ac      case 3
+100401ac          goto label_10040270
+100401ac      case 4
+100401ac          goto label_10040268
+100401ac      case 5
+100401ac          goto label_10040260
+100401ac      case 6
+100401ac          goto label_10040258
+10040250      case 7
+10040250          *(edi + (ecx_1 << 2) - 0x1c) = *(esi + (ecx_1 << 2) - 0x1c)
+10040258          label_10040258:
+10040258          *(edi + (ecx_1 << 2) - 0x18) = *(esi + (ecx_1 << 2) - 0x18)
+10040260          label_10040260:
+10040260          *(edi + (ecx_1 << 2) - 0x14) = *(esi + (ecx_1 << 2) - 0x14)
+10040268          label_10040268:
+10040268          *(edi + (ecx_1 << 2) - 0x10) = *(esi + (ecx_1 << 2) - 0x10)
+10040270          label_10040270:
+10040270          *(edi + (ecx_1 << 2) - 0xc) = *(esi + (ecx_1 << 2) - 0xc)
+10040278          label_10040278:
+10040278          *(edi + (ecx_1 << 2) - 8) = *(esi + (ecx_1 << 2) - 8)
+10040280          label_10040280:
+10040280          *(edi + (ecx_1 << 2) - 4) = *(esi + (ecx_1 << 2) - 4)
+10040284          eax_1 = ecx_1 << 2
+1004028b          esi = &esi[eax_1]
+1004028d          edi = &edi[eax_1]
+1004028f          label_1004028f:
+1004028f          
+1004028f          switch (edx_1)
+100402ae              case 0
+100402ae                  return arg1
+100402b0              case 1
+100402b0                  label_100402b0:
+100402b0                  eax_1.b = *esi
+100402b2                  *edi = eax_1.b
+100402ba                  return arg1
+100402bc              case 2
+100402bc                  label_100402bc:
+100402bc                  eax_1.b = *esi
+100402be                  *edi = eax_1.b
+100402c0                  eax_1.b = esi[1]
+100402c3                  edi[1] = eax_1.b
+100402cc                  return arg1
+100402d0              case 3
+100402d0                  label_100402d0:
+100402d0                  eax_1.b = *esi
+100402d2                  *edi = eax_1.b
+100402d4                  eax_1.b = esi[1]
+100402d7                  edi[1] = eax_1.b
+100402da                  eax_1.b = esi[2]
+100402dd                  edi[2] = eax_1.b
+100402e6                  return arg1
+
+100401ab                                   90                                                                         .
+100401b3                                                           90 c0 01 04 10 ec 01 04 10 10 02 04 10                     .............
+100401e9                             8d 49 00                                                                       .I.
+1004020f                                               90                                                                 .
+10040229                             8d 49 00                                                                       .I.
+1004022c  uint32_t jump_table_1004022c[0x8] = 
+1004022c  {
+1004022c      [0x0] =  0x1004028f
+10040230      [0x1] =  0x1004027c
+10040234      [0x2] =  0x10040274
+10040238      [0x3] =  0x1004026c
+1004023c      [0x4] =  0x10040264
+10040240      [0x5] =  0x1004025c
+10040244      [0x6] =  0x10040254
+10040248      [0x7] =  0x1004024c
+1004024c  }

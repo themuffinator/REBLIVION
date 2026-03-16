@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 337 | Name: char */
+
+10046b90  char (* data_10046b90)[0x8] = data_10048c1c {"Blaster"}

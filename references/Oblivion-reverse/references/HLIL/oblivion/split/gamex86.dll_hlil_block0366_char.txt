@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 366 | Name: char */
+
+10046ca8  char (* data_10046ca8)[0x20] = data_100489a4 {"models/weapons/v_chain/tris.md2"}

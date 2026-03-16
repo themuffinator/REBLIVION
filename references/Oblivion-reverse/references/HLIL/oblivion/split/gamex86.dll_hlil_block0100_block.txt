@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 100 | Name: block */
+
+10018b1a              bool c_2 = unimplemented  {sbb eax, eax}

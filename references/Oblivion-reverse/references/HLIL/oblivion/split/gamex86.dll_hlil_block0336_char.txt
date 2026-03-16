@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 336 | Name: char */
+
+10046b8c  char (* data_10046b8c)[0xa] = data_10048c24 {"w_blaster"}

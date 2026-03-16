@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 455 | Name: char */
+
+10046fe8  char (* data_10046fe8)[0x12] = data_10048268 {"weapon_deatomizer"}

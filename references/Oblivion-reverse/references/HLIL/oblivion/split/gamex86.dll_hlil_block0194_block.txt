@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 194 | Name: block */
+
+1002abf5              bool c3_11 = unimplemented  {fcomp st0, dword [esp+0x24]} f== temp10_1

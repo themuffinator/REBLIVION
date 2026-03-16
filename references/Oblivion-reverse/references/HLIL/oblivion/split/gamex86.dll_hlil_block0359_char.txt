@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 359 | Name: char */
+
+10046c64  char (* data_10046c64)[0xd] = data_10048a68 {"w_machinegun"}

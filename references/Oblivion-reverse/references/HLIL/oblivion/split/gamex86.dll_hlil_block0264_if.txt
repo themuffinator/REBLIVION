@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 264 | Name: if */
+
+1003b233      unimplemented  {fld st0, tword [&data_1005fcbc]}

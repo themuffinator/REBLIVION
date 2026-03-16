@@ -1,0 +1,22 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Kind: type (struct) */
+/* Name: Import_Directory_Table */
+
+10044b50  {
+10044b50      [0x0] = 
+10044b50      {
+10044b50          uint32_t importLookupTableRva = 0x44b78
+10044b54          uint32_t timeDateStamp = 0x0
+10044b58          uint32_t forwarderChain = 0x0
+10044b5c          uint32_t nameRva = 0x450bc
+10044b60          uint32_t importAddressTableRva = 0x44000
+10044b64      }
+10044b64      [0x1] = 
+10044b64      {
+10044b64          uint32_t importLookupTableRva = 0x0
+10044b68          uint32_t timeDateStamp = 0x0
+10044b6c          uint32_t forwarderChain = 0x0
+10044b70          uint32_t nameRva = 0x0
+10044b74          uint32_t importAddressTableRva = 0x0
+10044b78      }
+10044b78  }

@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 243 | Name: block */
+
+10036dd4          unimplemented  {fsub st0, dword [&data_10044164]}

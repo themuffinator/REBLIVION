@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 401 | Name: char */
+
+10046df0  char (* data_10046df0)[0xb] = data_100486f4 {"weapon_dod"}

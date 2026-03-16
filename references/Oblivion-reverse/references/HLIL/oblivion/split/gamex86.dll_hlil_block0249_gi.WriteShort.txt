@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 249 | Name: gi.WriteShort */
+
+10036e79  unimplemented  {fld st0, dword [edx+0x14]}

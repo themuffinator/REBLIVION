@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 318 | Name: char */
+
+10046ab4  char (* data_10046ab4)[0xe] = data_10048d90 {"i_powerscreen"}

@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 452 | Name: char */
+
+10046fc8  char (* data_10046fc8)[0x7] = data_10046330 {"BFG10K"}

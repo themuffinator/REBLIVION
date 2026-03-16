@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 485 | Name: char */
+
+10047150  char (* data_10047150)[0x11] = data_10048060 {"ammo_rifleplasma"}

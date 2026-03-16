@@ -1,0 +1,14 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Kind: type (struct) */
+/* Name: COFF_Header */
+
+100000e0  {
+100000e0      char magic[0x4] = "PE\x00", 0
+100000e4      enum coff_machine machine = IMAGE_FILE_MACHINE_I386
+100000e6      uint16_t numberOfSections = 0x4
+100000e8      uint32_t timeDateStamp = 0x3813b9fb
+100000ec      uint32_t pointerToSymbolTable = 0x0
+100000f0      uint32_t numberOfSymbols = 0x0
+100000f4      uint16_t sizeOfOptionalHeader = 0xe0
+100000f6      enum coff_characteristics characteristics = IMAGE_FILE_EXECUTABLE_IMAGE | IMAGE_FILE_LINE_NUMS_STRIPPED | IMAGE_FILE_LOCAL_SYMS_STRIPPED | IMAGE_FILE_32BIT_MACHINE | IMAGE_FILE_DLL
+100000f8  }

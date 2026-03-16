@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 451 | Name: char */
+
+10046fc4  char (* data_10046fc4)[0x6] = data_10048308 {"w_bfg"}

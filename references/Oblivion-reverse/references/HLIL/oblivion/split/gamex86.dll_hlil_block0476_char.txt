@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 476 | Name: char */
+
+100470c0  char (* data_100470c0)[0xc] = data_100480c4 {"weapon_rtdu"}

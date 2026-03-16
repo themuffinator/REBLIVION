@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 338 | Name: char */
+
+10046bac  char (* data_10046bac)[0x25] = data_10048bf4 {"weapons/blastf1a.wav misc/lasfly…"}

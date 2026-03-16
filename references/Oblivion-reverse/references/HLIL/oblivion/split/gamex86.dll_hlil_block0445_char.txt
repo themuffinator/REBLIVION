@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 445 | Name: char */
+
+10046f8c  char (* data_10046f8c)[0x6] = data_10048370 {"Slugs"}

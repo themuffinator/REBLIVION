@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 407 | Name: char */
+
+10046e38  char (* data_10046e38)[0x17] = data_100486dc {"weapon_grenadelauncher"}

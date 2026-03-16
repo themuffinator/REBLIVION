@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 310 | Name: char */
+
+10046a48  char (* data_10046a48)[0x11] = data_10048e30 {"item_armor_shard"}

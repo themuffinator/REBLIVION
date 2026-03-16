@@ -1,0 +1,12 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Kind: type */
+/* Name: block */
+
+1002fda4  {
+1002fda4      [0x0] =  0x1002fa11
+1002fda8      [0x1] =  0x1002fa43
+1002fdac      [0x2] =  0x1002fa72
+1002fdb0      [0x3] =  0x1002fa07
+1002fdb4      [0x4] =  0x1002fa79
+1002fdb8      [0x5] =  0x1002fa80
+1002fdbc  }

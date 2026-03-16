@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 273 | Name: if */
+
+1003b250      unimplemented  {fldpi }

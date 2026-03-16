@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 389 | Name: char */
+
+10046d78  char (* data_10046d78)[0x23] = data_100487b0 {"models/items/ammo/detpack/tris.m…"}

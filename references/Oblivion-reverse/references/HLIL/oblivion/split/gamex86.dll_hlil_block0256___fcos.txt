@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 256 | Name: __fcos */
+
+1003a0c9          c1_1 = unimplemented  {fcos }

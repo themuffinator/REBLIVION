@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 420 | Name: char */
+
+10046ea8  char (* data_10046ea8)[0x10] = data_100462fc {"Rocket Launcher"}

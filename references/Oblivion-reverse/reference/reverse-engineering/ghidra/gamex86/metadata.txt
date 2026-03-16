@@ -1,0 +1,15 @@
+program_name=gamex86.dll
+program_language=x86:LE:32:default
+program_compiler_spec=windows
+image_base=10000000
+function_count=762
+import_count=62
+export_count=1
+analysis_symbol_count=507
+decompiled_export_count=1
+decompiled_function_count=620
+binary_path=C:\q2Clean\oblivion\gamex86.dll
+binary_size=434176
+binary_last_write_time_utc=1999-10-24T20:15:00.0000000Z
+binary_md5=AAA70947E72B5DB82EDA10091562075B
+binary_sha256=20B8E2567CF0868455FD65D4942D92D4591414AA0391DE59A5B9EB5D3AF9409A

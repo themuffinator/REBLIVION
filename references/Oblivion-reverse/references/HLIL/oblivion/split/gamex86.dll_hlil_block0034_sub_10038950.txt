@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 34 | Name: sub_10038950 */
+
+10003540      unimplemented  {fild st0, dword [eax+0x23c]}

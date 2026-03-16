@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 241 | Name: block */
+
+10036dcc          unimplemented  {fild st0, dword [esi+0x23c]}

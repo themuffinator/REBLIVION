@@ -1,0 +1,143 @@
+{
+  "mmoves": {
+    "spider_move_stand": {"start": 0, "end": 54, "endfunc": null},
+    "spider_move_walk": {"start": 55, "end": 64, "endfunc": null},
+    "spider_move_run1": {"start": 65, "end": 74, "endfunc": "spider_run"},
+    "spider_move_run2": {"start": 75, "end": 80, "endfunc": null},
+    "spider_move_attack_left": {"start": 81, "end": 85, "endfunc": "spider_run"},
+    "spider_move_attack_right": {"start": 86, "end": 90, "endfunc": "spider_run"},
+    "spider_move_attack_dual": {"start": 91, "end": 98, "endfunc": "spider_run"},
+    "spider_move_melee_primary": {"start": 99, "end": 103, "endfunc": "spider_run"},
+    "spider_move_melee_secondary": {"start": 104, "end": 110, "endfunc": "spider_run"},
+    "spider_move_pain1": {"start": 111, "end": 116, "endfunc": "spider_run"},
+    "spider_move_pain2": {"start": 117, "end": 124, "endfunc": "spider_run"},
+    "spider_move_death1": {"start": 125, "end": 144, "endfunc": "spider_dead"},
+    "spider_move_death2": {"start": 145, "end": 164, "endfunc": "spider_dead"}
+  },
+  "audio": {
+    "step": "mutant/thud1.wav",
+    "sight_sequence": [
+      "mutant/mutsght1.wav",
+      "spider/sight.wav"
+    ],
+    "idle": "gladiator/gldidle1.wav",
+    "search": "gladiator/gldsrch1.wav",
+    "pain": ["gladiator/pain.wav", "gladiator/gldpain2.wav"],
+    "melee": ["gladiator/melee1.wav", "gladiator/melee2.wav", "gladiator/melee3.wav"]
+  },
+  "spawn": {
+    "mins": [-32.0, -32.0, -35.0],
+    "maxs": [32.0, 32.0, 32.0]
+  },
+  "corpse": {
+    "flag": 8,
+    "mins": [-32.0, -32.0, -30.0],
+    "maxs": [32.0, 32.0, 0.0]
+  },
+  "frame_payloads": {
+    "spider_frames_stand": {
+      "aifunc": "ai_stand",
+      "distances": [
+        0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 0.0, 0.0
+      ],
+      "hooks": [
+        null, null, null, null, null, null, null, null, null, null,
+        null, null, null, null, null, null, null, null, null, null,
+        null, null, null, null, null, null, null, null, null, null,
+        null, null, null, null, null, null, null, null, null, null,
+        null, null, null, null, null, null, null, null, null, null,
+        null, null, null, null, null
+      ]
+    },
+    "spider_frames_walk": {
+      "aifunc": "ai_walk",
+      "distances": [0.0, 4.0, 6.0, 4.0, 2.0, 0.0, 4.0, 6.0, 4.0, 2.0],
+      "hooks": [null, null, null, null, null, null, null, null, null, null]
+    },
+    "spider_frames_run1": {
+      "aifunc": "ai_run",
+      "distances": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+      "hooks": [
+        null, null, "spider_charge_start", null, null,
+        null, null, "spider_charge_end", null, null
+      ]
+    },
+    "spider_frames_run2": {
+      "aifunc": "ai_run",
+      "distances": [16.0, 16.0, 16.0, 16.0, 16.0, 16.0],
+      "hooks": [null, null, null, null, null, null]
+    },
+    "spider_frames_attack_left": {
+      "aifunc": "ai_charge",
+      "distances": [0.0, 0.0, 0.0, 0.0, 0.0],
+      "hooks": [null, null, "spider_rocket_left", null, null]
+    },
+    "spider_frames_attack_right": {
+      "aifunc": "ai_charge",
+      "distances": [0.0, 0.0, 0.0, 0.0, 0.0],
+      "hooks": [null, null, "spider_rocket_right", null, null]
+    },
+    "spider_frames_attack_dual": {
+      "aifunc": "ai_charge",
+      "distances": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+      "hooks": [
+        null, "spider_rocket_left", null, null,
+        null, "spider_rocket_right", null, null
+      ]
+    },
+    "spider_frames_melee_primary": {
+      "aifunc": "ai_charge",
+      "distances": [0.0, 0.0, 0.0, 0.0, 0.0],
+      "hooks": [null, null, null, "spider_melee_swing", "spider_melee_hit"]
+    },
+    "spider_frames_melee_secondary": {
+      "aifunc": "ai_charge",
+      "distances": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+      "hooks": [
+        null, null, null, null,
+        "spider_melee_swing", "spider_melee_hit", "spider_melee_hit"
+      ]
+    },
+    "spider_frames_pain1": {
+      "aifunc": "ai_move",
+      "distances": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+      "hooks": [null, null, null, null, null, null]
+    },
+    "spider_frames_pain2": {
+      "aifunc": "ai_move",
+      "distances": [-16.0, -32.0, -8.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+      "hooks": [null, null, null, null, null, null, null, null]
+    },
+    "spider_frames_death1": {
+      "aifunc": "ai_move",
+      "distances": [
+        -8.0, -4.0, -2.0, 0.0, 0.0, -2.0, -6.0, -4.0, 0.0, 4.0,
+        6.0, 4.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
+      ],
+      "hooks": [
+        null, null, null, null, null, null, null, null, null, null,
+        null, null, null, null, null, null, null, null, null, null
+      ]
+    },
+    "spider_frames_death2": {
+      "aifunc": "ai_move",
+      "distances": [
+        -24.0, -22.0, -20.0, -18.0, -16.0, -16.0, -16.0, -16.0, -16.0, -4.0,
+        -12.0, -8.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
+      ],
+      "hooks": [
+        null, null, null, null, null, null, null, null, null, null,
+        null, null, null, null, null, null, null, null, null, null
+      ]
+    }
+  },
+  "rocket_offsets": {
+    "left": [30.0, -18.0, 3.0],
+    "right": [30.0, 18.0, 3.0]
+  }
+}

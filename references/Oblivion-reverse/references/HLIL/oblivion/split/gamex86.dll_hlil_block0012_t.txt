@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 12 | Name: t */
+
+10003495          bool c2_3 = is_unordered.t(unimplemented  {fcomp st0, dword [esi+0x32c]}, temp2_1)

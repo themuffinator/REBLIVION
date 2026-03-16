@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 454 | Name: char */
+
+10046fe4  char (* data_10046fe4)[0x8c] = data_1004827c {"sprites/s_bfg1.sp2 sprites/s_bfg…"}

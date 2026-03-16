@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 438 | Name: char */
+
+10046f54  char (* data_10046f54)[0x64] = data_100483dc {"weapons/hyprbu1a.wav weapons/hyp…"}

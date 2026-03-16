@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 298 | Name: char */
+
+10046994  char (* data_10046994)[0xc] = data_10048ed4 {"i_bodyarmor"}

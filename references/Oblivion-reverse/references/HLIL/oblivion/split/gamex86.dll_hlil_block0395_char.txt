@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 395 | Name: char */
+
+10046da8  char (* data_10046da8)[0x9] = data_10048774 {"ammo_dod"}

@@ -1,0 +1,10 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Kind: type */
+/* Name: block */
+
+1003e350  {
+1003e350      [0x0] =  0x1003e360
+1003e354      [0x1] =  0x1003e368
+1003e358      [0x2] =  0x1003e378
+1003e35c      [0x3] =  0x1003e38c
+1003e360  }

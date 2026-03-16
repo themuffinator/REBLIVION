@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 431 | Name: char */
+
+10046f10  char (* data_10046f10)[0x14] = data_100484a8 {"weapon_hyperblaster"}

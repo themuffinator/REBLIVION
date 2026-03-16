@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 415 | Name: char */
+
+10046e80  char (* data_10046e80)[0x16] = data_100485fc {"weapon_rocketlauncher"}

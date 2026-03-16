@@ -1,0 +1,527 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Kind: type */
+/* Name: block */
+
+1001617b      bool c_2 = unimplemented  {sbb eax, eax}
+1001617d      eax_3 = sbb.d(sbb.d(eax_1, eax_1, c_1), 0xffffffff, c_2)
+1001617d      break
+1001617d  
+10016183  if (eax_3 != 0)
+10016186      sub_10039ca4(eax)
+10016190      gi.error("Savegame from an older version.\n")
+10016190  
+100161b0  int32_t eax_5 = gi.TagMalloc(data_1006ca4c * 0x3d0, 0x2fd)
+100161c3  data_1006c2c4 = eax_5
+100161c8  data_1006c160 = eax_5
+100161cd  sub_10039b8d(&data_1006c440, 0x61c, 1, eax)
+100161f2  data_1006c844 = gi.TagMalloc(data_1006ca48 * 0xf34, 0x2fd)
+100161ff  int32_t i = 0
+100161ff  
+10016203  if (data_1006ca48 s> 0)
+10016206      void* edi_1 = nullptr
+10016206      
+10016228      do
+10016212          sub_10015fd0(eax, edi_1 + data_1006c844)
+1001621f          i += 1
+10016220          edi_1 += 0xf34
+10016228      while (i s< data_1006ca48)
+10016228  
+10016239  return sub_10039ca4(eax)
+
+1001623a                                                                                90 90 90 90 90 90                            ......
+
+10016240    char (*)[0xa] sub_10016240(int32_t* arg1, int32_t arg2)
+
+10016240  char (* eax)[0xa] = data_100498e0
+10016260  char var_3d0[0x3d0]
+10016260  __builtin_memcpy(dest: &var_3d0, src: arg2, n: 0x3d0)
+10016269  char (** esi_1)[0xa] = &data_100498e0
+10016269  
+10016270  if (eax != 0)
+10016289      int32_t i
+10016289      
+10016289      do
+10016276          char (* var_3e0_1)[0x3d0] = &var_3d0
+10016279          sub_10015c90(arg1, esi_1)
+1001627e          i = esi_1[4]
+10016281          esi_1 = &esi_1[4]
+10016289      while (i != 0)
+10016289  
+10016298  sub_10039a54(&var_3d0, 0x3d0, 1, arg1)
+1001629d  char (* i_1)[0xa] = data_100498e0
+100162a7  void* esi_2 = &data_100498e0
+100162a7  
+100162ac  while (i_1 != 0)
+100162b1      sub_10015dc0(arg1, esi_2, arg2)
+100162b6      i_1 = *(esi_2 + 0x10)
+100162b9      esi_2 += 0x10
+100162b9  
+100162cc  return i_1
+
+100162cd                                         90 90 90                                                               ...
+
+100162d0    char (*)[0xa] sub_100162d0(int32_t* arg1)
+
+100162d0  char (* eax)[0xa] = data_10049e80
+100162eb  char var_130[0x130]
+100162eb  __builtin_memcpy(dest: &var_130, src: &data_1006c2e0, n: 0x130)
+100162f4  char (** esi)[0xa] = &data_10049e80
+100162f4  
+100162fb  if (eax != 0)
+10016314      int32_t i
+10016314      
+10016314      do
+10016301          char (* var_13c_1)[0x130] = &var_130
+10016304          sub_10015c90(arg1, esi)
+10016309          i = esi[4]
+1001630c          esi = &esi[4]
+10016314      while (i != 0)
+10016314  
+10016323  sub_10039a54(&var_130, 0x130, 1, arg1)
+10016328  char (* i_1)[0xa] = data_10049e80
+10016332  void* esi_1 = &data_10049e80
+10016332  
+10016337  while (i_1 != 0)
+10016340      sub_10015dc0(arg1, esi_1, &data_1006c2e0)
+10016345      i_1 = *(esi_1 + 0x10)
+10016348      esi_1 += 0x10
+10016348  
+1001635a  return i_1
+
+1001635b                                                                                   90 90 90 90 90                             .....
+
+10016360    char (*)[0xa] sub_10016360(int32_t* arg1, void* arg2)
+
+10016374  sub_10039b8d(arg2, 0x3d0, 1, arg1)
+10016379  char (* i)[0xa] = data_100498e0
+10016383  char (** esi)[0xa] = &data_100498e0
+10016383  
+10016388  while (i != 0)
+1001638d      sub_10015e00(arg1, esi, arg2)
+10016392      i = esi[4]
+10016395      esi = &esi[4]
+10016395  
+100163a2  return i
+
+100163a3           90 90 90 90 90 90 90 90 90 90 90 90 90                                                     .............
+
+100163b0    char (*)[0xa] sub_100163b0(int32_t* arg1)
+
+100163c3  sub_10039b8d(&data_1006c2e0, 0x130, 1, arg1)
+100163c8  char (* i)[0xa] = data_10049e80
+100163d2  char (** esi)[0xa] = &data_10049e80
+100163d2  
+100163d7  while (i != 0)
+100163e0      sub_10015e00(arg1, esi, &data_1006c2e0)
+100163e5      i = esi[4]
+100163e8      esi = &esi[4]
+100163e8  
+100163f4  return i
+
+100163f5                                                                 90 90 90 90 90 90 90 90 90 90 90                       ...........
+
+10016400    int32_t __fastcall sub_10016400(int32_t (* arg1)())
+
+10016400  int32_t (* var_4)() = arg1
+10016402  PSTR arg_4
+10016402  PSTR esi = arg_4
+1001640d  int32_t* eax = sub_10039d52(esi, "wb")
+1001640d  
+10016419  if (eax == 0)
+10016421      gi.error("Couldn't open %s", esi)
+10016421  
+10016434  arg_4 = 0x3d0
+1001643c  sub_10039a54(&arg_4, 4, 1, eax)
+1001644b  var_4 = sub_100158d0
+10016453  sub_10039a54(&var_4, 4, 1, eax)
+10016459  sub_100162d0(eax)
+10016467  PSTR eax_1 = nullptr
+10016469  bool cond:0 = data_1006c168 s<= 0
+1001646b  arg_4 = nullptr
+1001646b  
+1001646f  if (not(cond:0))
+100164b6      bool cond:1_1
+100164b6      
+100164b6      do
+10016483          void* esi_3 = (&eax_1[eax_1 * 0x3c] << 4) + data_1006c2c4
+10016483          
+1001648a          if (*(esi_3 + 0x58) != 0)
+10016496              sub_10039a54(&arg_4, 4, 1, eax)
+1001649d              sub_10016240(eax, esi_3)
+100164a2              eax_1 = arg_4
+100164a2          
+100164af          eax_1 = &eax_1[1]
+100164b0          cond:1_1 = eax_1 s< data_1006c168
+100164b2          arg_4 = eax_1
+100164b6      while (cond:1_1)
+100164b6  
+100164c2  arg_4 = 0xffffffff
+100164ca  sub_10039a54(&arg_4, 4, 1, eax)
+100164db  return sub_10039ca4(eax)
+
+100164dc                                                                                      90 90 90 90                              ....
+
+100164e0    int32_t sub_100164e0(PSTR arg1)
+
+100164e5  PSTR esi = arg1
+100164f0  int32_t* eax = sub_10039d52(esi, "rb")
+100164f0  
+100164fc  if (eax == 0)
+10016504      gi.error("Couldn't open %s", esi)
+10016504  
+10016512  gi.FreeTags(0x2fe)
+1001652e  int32_t ecx_3 = data_1006ca4c * 0x3d0
+1001653d  __builtin_memset(s: __builtin_memset(s: data_1006c2c4, c: 0, n: ecx_3 u>> 2 << 2), c: 0, 
+1001653d      n: ecx_3 & 3)
+1001655c  int16_t x87control
+1001655c  data_1006c168 = __ftol(x87control, fconvert.t(*(data_1006ca60 + 0x14)) + fconvert.t(1f))
+10016561  sub_10039b8d(&arg1, 4, 1, eax)
+10016561  
+10016572  if (arg1 != 0x3d0)
+10016575      sub_10039ca4(eax)
+1001657f      gi.error("ReadLevel: mismatched edict size")
+1001657f  
+10016592  int32_t var_8
+10016592  sub_10039b8d(&var_8, 4, 1, eax)
+10016592  
+100165a3  if (var_8 != sub_100158d0)
+100165a6      sub_10039ca4(eax)
+100165b0      gi.error("ReadLevel: function pointers hav…")
+100165b0  
+100165ba  sub_100163b0(eax)
+100165ba  
+100165cc  while (true)
+100165d7      int32_t var_4
+100165d7      
+100165d7      if (sub_10039b8d(&var_4, 4, 1, eax) != 1)
+100165da          sub_10039ca4(eax)
+100165e4          gi.error("ReadLevel: failed to read entnum")
+100165e4      
+100165ed      int32_t eax_7 = var_4
+100165ed      
+100165f4      if (eax_7 == 0xffffffff)
+100165f4          break
+100165f4      
+100165fc      if (eax_7 s>= data_1006c168)
+10016601          data_1006c168 = eax_7 + 1
+10016601      
+10016619      void* esi_3 = eax_7 * 0x3d0 + data_1006c2c4
+1001661d      sub_10016360(eax, esi_3)
+10016628      *(esi_3 + 0x60) = 0
+1001662a      *(esi_3 + 0x64) = 0
+1001662d      gi.linkentity(esi_3)
+1001662d  
+10016639  sub_10039ca4(eax)
+1001663e  void* edx_2 = data_1006ca60
+10016644  void* ecx_11 = nullptr
+10016646  long double x87_r7_2 = fconvert.t(0f)
+1001664c  arg1 = nullptr
+10016653  long double temp0 = fconvert.t(*(edx_2 + 0x14))
+10016653  x87_r7_2 - temp0
+10016653  
+1001665b  if ((((x87_r7_2 < temp0 ? 1 : 0) << 8 | (is_unordered.t(x87_r7_2, temp0) ? 1 : 0) << 0xa
+1001665b          | (x87_r7_2 == temp0 ? 1 : 0) << 0xe):1.b & 1) != 0)
+100166af      void* eax_14
+100166af      
+100166af      do
+10016685          void* ecx_13 = data_1006c844 + ecx_11 * 0xf34
+10016688          *(((ecx_11 + (ecx_11 * 3 + 3) * 0x14 + 1) << 4) + data_1006c2c4 + 0x54) = ecx_13
+1001668b          *(ecx_13 + 0x2d0) = 0
+10016699          eax_14 = data_1006ca60
+1001669e          ecx_11 = &arg1[1]
+1001669f          arg1 = ecx_11
+100166a3          long double x87_r7_3 = float.t(arg1)
+100166a7          long double temp1_1 = fconvert.t(*(eax_14 + 0x14))
+100166a7          x87_r7_3 - temp1_1
+100166aa          eax_14.w = (x87_r7_3 < temp1_1 ? 1 : 0) << 8
+100166aa              | (is_unordered.t(x87_r7_3, temp1_1) ? 1 : 0) << 0xa
+100166aa              | (x87_r7_3 == temp1_1 ? 1 : 0) << 0xe
+100166af      while ((eax_14:1.b & 1) != 0)
+100166af  
+100166b1  int32_t result = data_1006c168
+100166b6  PSTR ebp_1 = nullptr
+100166ba  arg1 = nullptr
+100166ba  
+100166be  if (result s> 0)
+100166c0      while (true)
+100166d4          void* edi_4 = (&ebp_1[ebp_1 * 0x3c] << 4) + data_1006c2c4
+100166d4          
+100166db          if (*(edi_4 + 0x58) != 0)
+100166dd              void* eax_17 = *(edi_4 + 0x118)
+100166dd              
+100166e5              if (eax_17 != 0)
+100166e7                  char* esi_4 = "target_crosslevel_target"
+100166ec                  int32_t eax_19
+100166ec                  
+100166ec                  while (true)
+100166ec                      edx_2.b = *eax_17
+100166ee                      int32_t ecx_16
+100166ee                      ecx_16.b = edx_2.b
+100166f0                      char temp2_1 = *esi_4
+100166f0                      bool c_1 = edx_2.b u< temp2_1
+100166f0                      
+100166f2                      if (edx_2.b == temp2_1)
+100166f6                          if (ecx_16.b == 0)
+1001670c                              eax_19 = 0
+1001670e                              break
+1001670e                          
+100166f8                          edx_2.b = *(eax_17 + 1)
+100166fb                          ecx_16.b = edx_2.b
+100166fd                          char temp5_1 = esi_4[1]
+100166fd                          c_1 = edx_2.b u< temp5_1
+100166fd                          
+10016700                          if (edx_2.b == temp5_1)
+10016702                              eax_17 += 2
+10016705                              esi_4 = &esi_4[2]
+10016705                              
+1001670a                              if (ecx_16.b != 0)
+1001670a                                  continue
+1001670a                              
+1001670c                              eax_19 = 0
+1001670e                              break
+1001670e                      
+10016710                      bool c_2 = unimplemented  {sbb eax, eax}
+10016712                      eax_19 = sbb.d(sbb.d(eax_17, eax_17, c_1), 0xffffffff, c_2)
+10016712                      break
+10016712                  
+10016717                  if (eax_19 == 0)
+10016725                      *(edi_4 + 0x1ec) = fconvert.s(fconvert.t(data_1006c2e4)
+10016725                          + fconvert.t(*(edi_4 + 0x294)))
+1001672b                      ebp_1 = arg1
+1001672b          
+1001672f          result = data_1006c168
+10016734          ebp_1 = &ebp_1[1]
+10016737          arg1 = ebp_1
+10016737          
+1001673b          if (ebp_1 s>= result)
+1001673b              break
+1001673b  
+10016743  return result
+
+10016744              90 90 90 90 90 90 90 90 90 90 90 90                                                      ............
+
+10016750    uint32_t sub_10016750(int32_t arg1)
+
+10016750  int32_t ecx
+10016750  int32_t var_4_1 = ecx
+10016758  char* ebx = *(arg1 + 0x118)
+10016761  char* var_4 = ebx
+10016761  
+10016765  if (ebx == 0)
+1001677a      return gi.dprintf("ED_CallSpawn: NULL classname\n")
+1001677a  
+1001677b  int32_t edx = data_1006ca54
+10016781  int32_t ebp = 0
+10016785  void* edi = &data_10046928
+10016785  
+1001678a  if (edx s> 0)
+1001678c      while (true)
+1001678c          char* eax_2 = *edi
+1001678c          
+10016790          if (eax_2 != 0)
+10016792              char* esi_1 = ebx
+10016794              int32_t eax_4
+10016794              
+10016794              while (true)
+10016794                  ebx.b = *eax_2
+10016796                  ecx.b = ebx.b
+10016798                  char temp1_1 = *esi_1
+10016798                  bool c_1 = ebx.b u< temp1_1
+10016798                  
+1001679a                  if (ebx.b == temp1_1)
+1001679e                      if (ecx.b == 0)
+100167b4                          eax_4 = 0
+100167b6                          break
+100167b6                      
+100167a0                      ebx.b = eax_2[1]
+100167a3                      ecx.b = ebx.b
+100167a5                      char temp7_1 = esi_1[1]
+100167a5                      c_1 = ebx.b u< temp7_1
+100167a5                      
+100167a8                      if (ebx.b == temp7_1)
+100167aa                          eax_2 = &eax_2[2]
+100167ad                          esi_1 = &esi_1[2]
+100167ad                          
+100167b2                          if (ecx.b != 0)
+100167b2                              continue
+100167b2                          
+100167b4                          eax_4 = 0
+100167b6                          break
+100167b6                  
+100167b8                  bool c_2 = unimplemented  {sbb eax, eax}
+100167ba                  eax_4 = sbb.d(sbb.d(eax_2, eax_2, c_1), 0xffffffff, c_2)
+100167ba                  break
+100167ba              
+100167bf              if (eax_4 == 0)
+10016814                  return sub_1000cf20(arg1, edi)
+10016814              
+100167c1              ebx = var_4
+100167c1          
+100167c5          ebp += 1
+100167c6          edi += 0x48
+100167c6          
+100167cb          if (ebp s>= edx)
+100167cb              break
+100167cb  
+100167cd  char (* eax_5)[0xc] = data_1004a5c0
+100167d2  char (** edi_1)[0xc] = &data_1004a5c0
+100167d2  
+100167d9  if (eax_5 != 0)
+100167db      while (true)
+100167db          char* esi_2 = ebx
+100167dd          int32_t eax_8
+100167dd          
+100167dd          while (true)
+100167dd              edx.b = *eax_5
+100167df              ecx.b = edx.b
+100167e1              char temp0_1 = *esi_2
+100167e1              bool c_3 = edx.b u< temp0_1
+100167e1              
+100167e3              if (edx.b == temp0_1)
+100167e7                  if (ecx.b == 0)
+100167fd                      eax_8 = 0
+100167ff                      break
+100167ff                  
+100167e9                  edx.b = (*eax_5)[1]
+100167ec                  ecx.b = edx.b
+100167ee                  char temp6_1 = esi_2[1]
+100167ee                  c_3 = edx.b u< temp6_1
+100167ee                  
+100167f1                  if (edx.b == temp6_1)
+100167f3                      eax_5 = &(*eax_5)[2]
+100167f6                      esi_2 = &esi_2[2]
+100167f6                      
+100167fb                      if (ecx.b != 0)
+100167fb                          continue
+100167fb                      
+100167fd                      eax_8 = 0
+100167ff                      break
+100167ff              
+10016815              bool c_4 = unimplemented  {sbb eax, eax}
+10016817              eax_8 = sbb.d(sbb.d(eax_5, eax_5, c_3), 0xffffffff, c_4)
+10016817              break
+10016817          
+1001681c          if (eax_8 == 0)
+1001684d              return edi_1[1](arg1)
+1001684d          
+1001681e          eax_5 = edi_1[2]
+10016821          edi_1 = &edi_1[2]
+10016821          
+10016826          if (eax_5 == 0)
+10016826              break
+10016826  
+1001683c  return gi.dprintf("%s doesn't have a spawn function…", ebx)
+
+1001684e                                            90 90                                                                ..
+
+10016850    char* sub_10016850(int32_t arg1)
+
+10016857  int32_t edi = arg1
+10016859  int32_t i = 0xffffffff
+10016859  
+10016863  while (i != 0)
+10016863      bool cond:0_1 = 0 != *edi
+10016863      edi += 1
+10016863      i -= 1
+10016863      
+10016863      if (not(cond:0_1))
+10016863          break
+10016863  
+1001686c  char* result = gi.TagMalloc(not.d(i), 0x2fe)
+10016875  char* i_1 = nullptr
+10016879  char* result_1 = result
+10016879  
+1001687b  if (not.d(i) s> 0)
+100168a7      do
+1001687e          char edx_1 = i_1[arg1]
+1001687e          
+1001688b          if (edx_1 != 0x5c || i_1 s>= not.d(i) - 1)
+100168a1              *result_1 = edx_1
+1001688b          else
+1001688d              edx_1 = i_1[arg1 + 1]
+10016891              i_1 = &i_1[1]
+10016891              
+10016895              if (edx_1 != 0x6e)
+1001689c                  *result_1 = 0x5c
+10016895              else
+10016897                  *result_1 = 0xa
+10016897          
+100168a3          result_1 = &result_1[1]
+100168a4          i_1 = &i_1[1]
+100168a7      while (i_1 s< not.d(i))
+100168a7  
+100168ad  return result
+
+100168ae                                            90 90                                                                ..
+
+100168b0    char* sub_100168b0(char* arg1, char* arg2, int32_t* arg3)
+
+100168c0  char (** esi)[0xa] = &data_100498e0
+100168c0  
+100168c5  if (data_100498e0 != 0)
+100168e5      int32_t i
+100168e5      
+100168e5      do
+100168cb          if ((esi[3].b & 2) == 0 && sub_10038b20(*esi, arg1) == 0)
+100168fc              int32_t eax_1
+100168fc              eax_1.b = esi[3].b
+100168ff              int32_t* edi_1 = &data_1006c280
+100168ff              
+10016906              if ((eax_1.b & 1) == 0)
+10016908                  edi_1 = arg3
+10016908              
+1001690c              int32_t eax_2 = esi[2]
+1001690c              
+10016914              switch (eax_2)
+10016980                  case 0
+10016980                      int32_t eax_6 = sub_10039237(arg2)
+1001698b                      *(esi[1] + edi_1) = eax_6
+10016993                      return eax_6
+10016999                  case 1
+10016999                      int32_t eax_8
+10016999                      long double st0
+10016999                      st0, eax_8 = sub_10039d65(arg2)
+100169a4                      *(esi[1] + edi_1) = fconvert.s(st0)
+100169ac                      return eax_8
+10016920                  case 2
+10016920                      char* eax_3 = sub_10016850(arg2)
+1001692b                      *(esi[1] + edi_1) = eax_3
+10016933                      return eax_3
+1001693c                  case 4
+1001693c                      float var_4
+1001693c                      int32_t* var_18_4 = &var_4
+10016945                      float var_8
+10016945                      int32_t* var_1c_2 = &var_8
+10016946                      float var_c
+10016946                      int32_t* var_20 = &var_c
+1001694d                      sub_10039662(arg2, "%f %f %f")
+1001695c                      *(esi[1] + edi_1) = fconvert.s(fconvert.t(var_c))
+10016966                      *(esi[1] + edi_1 + 4) = fconvert.s(fconvert.t(var_8))
+1001696a                      int32_t eax_5 = esi[1]
+10016971                      *(eax_5 + edi_1 + 8) = fconvert.s(fconvert.t(var_4))
+1001697a                      return eax_5
+100169b2                  case 5
+100169b2                      long double st0_1 = sub_10039d65(arg2)
+100169b7                      int32_t* eax_9 = esi[1]
+100169bd                      *(eax_9 + edi_1) = 0
+100169c7                      *(esi[1] + edi_1 + 4) = fconvert.s(st0_1)
+100169ce                      *(esi[1] + edi_1 + 8) = 0
+100169db                      return eax_9
+100169db              
+100168fb              return eax_2
+100168fb          
+100168dd          i = esi[4]
+100168e0          esi = &esi[4]
+100168e5      while (i != 0)
+100168e5  
+100168ed  return gi.dprintf("%s is not a field\n", arg1)
+
+100169dc  uint32_t jump_table_100169dc[0x6] = 
+100169dc  {
+100169dc      [0x0] =  0x1001697b
+100169e0      [0x1] =  0x10016994
+100169e4      [0x2] =  0x1001691b
+100169e8      [0x3] =  0x100168f6
+100169ec      [0x4] =  0x10016934
+100169f0      [0x5] =  0x100169ad
+100169f4  }

@@ -1,0 +1,29 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Kind: type (struct) */
+/* Name: Rich_Header */
+
+10000080  {
+10000080      uint32_t e_magic__DanS = 0x9331a89b
+10000084      uint32_t e_align[0x3] = 
+10000084      {
+10000084          [0x0] =  0xc05fc9df
+10000088          [0x1] =  0xc05fc9df
+1000008c          [0x2] =  0xc05fc9df
+10000090      }
+10000090      uint32_t e_entry_id0__000c1c7b = 0xc053d5a4
+10000094      uint32_t e_entry_count0__1 = 0xc05fc9de
+10000098      uint32_t e_entry_id1__000b1fe8 = 0xc054d637
+1000009c      uint32_t e_entry_count1__1 = 0xc05fc9de
+100000a0      uint32_t e_entry_id2__000e1c83 = 0xc051d55c
+100000a4      uint32_t e_entry_count2__28 = 0xc05fc9c3
+100000a8      uint32_t e_entry_id3__00010000 = 0xc05ec9df
+100000ac      uint32_t e_entry_count3__75 = 0xc05fc994
+100000b0      uint32_t e_entry_id4__00131f62 = 0xc04cd6bd
+100000b4      uint32_t e_entry_count4__3 = 0xc05fc9dc
+100000b8      uint32_t e_entry_id5__000a1fe8 = 0xc055d637
+100000bc      uint32_t e_entry_count5__179 = 0xc05fc96c
+100000c0      uint32_t e_entry_id6__00041fe8 = 0xc05bd637
+100000c4      uint32_t e_entry_count6__1 = 0xc05fc9de
+100000c8      char e_magic[0x4] = "Rich"
+100000cc      uint32_t e_checksum = 0xc05fc9df
+100000d0  }

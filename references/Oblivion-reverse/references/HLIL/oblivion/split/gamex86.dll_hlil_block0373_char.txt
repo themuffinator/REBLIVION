@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 373 | Name: char */
+
+10046ce8  char (* data_10046ce8)[0x2b] = data_100488e4 {"models/items/ammo/grenades/mediu…"}

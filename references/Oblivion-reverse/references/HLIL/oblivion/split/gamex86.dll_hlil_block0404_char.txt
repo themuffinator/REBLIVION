@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 404 | Name: char */
+
+10046e10  char (* data_10046e10)[0x1e] = data_10048734 {"models/weapons/v_dod/tris.md2"}

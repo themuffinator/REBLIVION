@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 385 | Name: char */
+
+10046d4c  char (* data_10046d4c)[0x6] = data_1004637c {"Mines"}

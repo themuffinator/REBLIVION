@@ -1,0 +1,304 @@
+Oblivion Mission Pack Manual
+
+Sections:
+A. Minimum System Requirements
+B. The Story
+C. Installation
+D. Basics of Play
+  I. Overview
+  II. Single Player Mode
+  III. Cooperative Mode
+  IV. Deathmatch Mode
+E. New Items
+  I. Deatomiser
+  II. Laser Grenade
+  III. Plasma Pistol
+  IV. Plasma Rifle
+  V. DetPack
+  VI. Hellfury
+  VII. Donut of Destruction
+F. Enemies
+  I. Spider
+  II. Kigrax
+  III. Sentinel
+  IV. Deatomiser Soldier
+  V. Cyborg
+G. Customer Support
+  I. Postal Service
+  II. Web
+  III. E-mail
+H. Credits
+  I. Programming
+  II. Level Design
+  III. Artwork
+  IV. Models
+  V. Music
+  VI. Website / Manual
+I. Legal Stuff
+
+A. Minimum system requirements:
+
+Minimum required:
+Pentium® 133 MHz or equivalent
+16 MB System RAM
+100 MB free HD space
+4X CD-ROM Drive
+Windows® 95/98/NT 4.0
+Quake® 2 installed
+3d accelerator card recommended.
+
+Recommended:
+Pentium® 200 MHZ or better
+64 MB System RAM
+100 MB free HD space
+8X (or better) CD-ROM Drive
+4 MB 3D Video Card (or better)
+
+
+B. Story:
+
+In the time before Operation Stroggos:
+
+You are a USMC marine specialising in recon and tactial strikes. 
+
+The Strogg first landed on earth some 3 years earlier, the first indication being their many crafts pummelling through the earth's atmosphere and hitting home like flaming meteorites. They emerged from their still sizzling space craft and efficiently began to maim and kill and capture all human organic material they could find. It became clear all too quickly what their intentions were. They weren't here for minerals or precious planetary resources - they had come for human meat. The humans they captured could be sure of one thing only, they were going to be sliced to pieces still screaming, still crying, and their body parts and organs would be stockpiled in preparation for the manufacture of new cyborgs. This cruel harvest meant the annihilation of all life on earth, but the Strogg showed no emotion in their actions.
+
+Earth's military forces forgot their differences and joined together as the people of earth to fight the Strogg. The EDF, or Earth Defence Force, was initiated, and began sending the soldiers to battle. The soldiers went willing to die for their race, and die they did. After the 2nd year the casualties had surpassed both world wars put together, hundreds of millions of bodies carpetted the red fields and planes, most missing organs or limbs. They were the lucky ones. Others were rounded up and taken aboard special VTOL alien vessels, the surgeon vessels. Once aboard they were put into laser cages to await dissection. Aboard each vessel resided one surgeon, a mostly mechanical abomination of knives and blades. It would work continuously whirring into the night with its nightmarish arms of death to proliferate the screams that chilled the awaiting captives' minds to the point of madness and suicide. Earth intel at the time discovered that each of these vessels worked to its full capacity and then returned into low geosynchronous orbit above the earth to dock at the mothership, named by the humans the Space Station Behemoth. There the parts would be assembled into new cyborgs and these sent down to fight on earth, completing the hideous chain.
+
+A few hours ago:
+
+The wars against the Stroggos invasion force rage hotter and more violent than ever. The people of earth continue to wage their war to protect their homelands and families from the onslaught of the legions of Stroggos. The time has come for a final effort by humanity its goal to annihilate all strogg, purifying our planet from the evil alien presence.
+
+
+The Present:
+
+Your feet slam to the ground. You watch as the viper pilot readies to VTOL the hell out of there... you wonder if you'll be going home in one of those soon. You grip your standard issue shotgun tight - at least now that you'd been promoted you could head into battle with reasonable firepower.
+
+Without time to think a patrol of Strogg soldiers approaches your position from around the corner.  You grimace as the sound of your comrades machineguns echoes in your ears...time to move.
+
+
+C. Installation
+
+Place the Oblivion Mission Pack CD in your CD-ROM drive and follow these instructions:
+
+1. Double-click on the My Computer icon on your desktop.
+2. Double-click on the icon for your CD-ROM drive (usually drive D:).
+3. Double-click the Install.exe icon to start the installation program.
+4. Follow the on-screen prompts to complete the installation.
+
+D. Basics of Play
+
+I. Overview
+The Oblivion Mission Pack is divided into a series of complex missions, each with several goals or objectives. These goals will be made clear to you through messages from your field computer as you progress through the game.
+
+II. Single Player Mode
+In single player mode, you will be set to face the Strogg alone with only your brains, brawn, and a slew of useful weapons to protect you. When you first enter the game, your field computer will brief you as to your current mission or missions. Press 'F1' to read these missions, and then proceed towards the destination. Throughout the game, the field computer will provide you with helpful information to speed your progress. Any time it has new information, a small icon will blink in the center of the bottom of the screen.
+
+III. Cooperative Mode
+In cooperative mode, you will find yourself facing the Strogg with one or more friends there to help you along the way. When two or more of you tackle the alien menace, the game takes on a whole new level of strategy. Not all maps within the pack are cooperative compatable.
+
+IV. Deathmatch Mode
+In deathmatch mode, you are placed into a Strogg environment absent of aliens, but full of other Marines intent on your, and each others', destruction. Use your skills to hunt down the other marines, kill them, and grab their weaponry and ammunition.
+
+E. New Items
+
+I. The Deatomizer
+
+The deatomiser fires a pulse of positively charged ions carried in a plasma 
+like energy ball. Due to the magnetic charge within the ions the pulse is
+able to "home" slightly onto it's target. Once the target is hit the positive
+ions break apart the bonds between the creatures atoms literally reducing 
+the target into it's component atoms.
+
+Strength:
+This weapon is fairly powerful... It will reduce most un-protected
+enemies to atoms after one shot. Stronger enemies can be battered by 
+multiple plasma pulses to achieve the same effect. 
+
+Warnings:
+Enemies equipped with these are a very dangerous thing to let live.
+
+II. The laser mine 
+
+These are thrown by hand. Once landed they work on a proximity trigger circuit.
+If the mine detects movment within 5 metres of itself small jets on the base
+of the mine hurl it to crotch height where high intensity laser beams are emitted
+for 3 seconds toasting anything unlucky enough to get in their way. After the 
+laser charges are depleated the case then detonates to finish anything that 
+may have survived. 
+
+Strength:
+These weapons are fairly rare as marine weapon specialists stopped large-scale
+production after discovering the mines to be unstable due to the massive charge 
+contained within. As you can imagine this means that these babies pack one hell 
+of a punch. Will paste just about all foe that are caught close in it's way. 
+
+Warnings:
+Don't forget where you left them set, they have no timer at all and will 
+remain in position until triggered.
+
+Also due to the 90-degree angle between lasers, the further an enemy, the less contact
+the lasers will have, so get them close!
+
+III. The Plasma Pistol
+
+This is standard issue plasma weapon. Onboard the pistol is a small scale plasma
+processor. This processor intakes air/atmospheric gas and superheats it to 10million
+degrees. At this temperature the very subatomic particles dissociate from the component
+atoms into what is effectively a nuclear soup of particles. This is then ejected
+at high velocity, and proves most effective against organic opponents.
+
+Strength:
+Having an onboard plasma processor (guaranteed for five years) means that this weapon
+can generate its own ammunition, albeit slowly.
+
+Warnings:
+The small capacity of the pistol means that recharging is fairly slow.
+
+IV. The Plasma Rifle
+
+This is the big brother of the plasma pistol. It is basically the pistol in rifle form,
+however, the big difference is that it possesses an upgradeable onboard plasma processor.
+Its most basic form is only a little better than the pistol, but grab a few upgrades to
+the processor and its capacity and recharge rate increase to the point where it is a solid
+and dependent killing weapon.
+
+Strengths:
+Upgradeable.
+
+Warnings:
+The more basic versions do not have much of a capacity, watch that ammo!
+
+V. The DetPack
+
+This is a high explosive mix containing amongst other things Cyclonite and plasticisers,
+its closest relative being C4. Specially mixed for taking on the Strogg's hardened metal
+alloys, and stabilised with Ammonium Nitrate, this represents a very powerful and stable
+high explosive, which is remotely detonated.
+
+Strengths:
+Very Powerful, remote detonated, its stability means that it takes at least a direct 
+rocket hit to set it off by accident.
+
+Warnings:
+Stand WELL back.
+
+VI. The Hellfury
+
+Representing the latest Human technology in optics and energy concentration, the Hellfury packs a punch big enough to take out smaller enemies in a single blast, and seriously damage even much stronger opponents.
+
+VII. Donut of Destruction
+
+This weapon is top secret. Its destructive powers need to be seen to be believed. Imagine toridol shaped shockwaves of
+destruction.
+
+
+F. Enemies
+
+I. Spider
+
+Description: This is the product of cutting-edge Strogg cybernetics and a healthy dose
+of organic implants. Its four legs propel it at ample speed and its aggressiveness is
+off the scale.
+
+Defense/weapon analysis: Medium/Hard
+
+Comments: This cyborg is a relatively new addition to the Strogg elite. Equipped with
+very powerful hydraulic joints and twin rocket launchers, this beast is extremely quick 
+when it wants, even leaping at you. Its rocket fire is fairly consistent, though
+dodging is definitely not impossible. Just don't get too close or it might decide to impale
+you on its razor metal legs.
+
+II. Kigrax
+
+Description: This jet powered monster likes nothing better than gouging flesh with its
+precisely honed claws, but then again it's not averse to firing plasma blasts either.
+
+Defense/weapons analysis: Easy
+
+Comments: This metal coated fleshball is more resilient than it might look at first, and
+often gets some sly hits with its front mounted but slow loading plasma gun.
+
+III. Sentinel
+
+Description: This is a heavily armoured and relatively mobile killer, usually employed to guard areas or attack installations. Very large, very fast.
+
+Defense/Weapons analysis: Hard
+
+Comments: A swift mover, and an even swifter firer, the sentinel will bombard you with rockets and chase you down, so pack your punch hard, and quick.
+
+IV. Deatomiser soldier
+
+Description: Lightweight, fast-moving soldier armed to the teeth with a state-of-the-art deatomiser, these enemies are far more dangerous than the standard Strogg soldiers.
+
+Defense/Weapons analysis: Easy/Medium
+
+Comments: Take a standard soldier and give him more speed and a bigger gun, and you've got a deatomiser soldier. Watch out for these guys.
+
+V. Cyborg
+
+Description: Humanoid cybernetic organism with deatomisers akimbo, cyborgs can take tons of damage and keep going. Very agile and heavily armed, they make for quite an opponent.
+
+Defense/Weapons analysis: Medium/Hard
+
+Comments: Watch out - deatomiser blasts home in on you.
+
+G. Customer Support
+To get customer support for the Oblivion Mission Pack, you can contact Lethargy Software in any of two ways:
+
+I. E-mail:
+lethargy@serpent.globalnet.co.uk
+
+II. Web:
+http://www.planetquake.com/lethargy
+
+H. Credits
+I. Programming:
+Mike "Gripp" Ruete - ruetem@lafcol.lafayette.edu
+Tim "Argh" Wright - argh@planetquake.com
+
+II. Level Design:
+Dan "Infliction" Haigh - lethargy@serpent.globalnet.co.uk
+Alex "MonkeyDonut" Gingell - monkeyd@planetquake.com
+Dan "Trebz" Nolan - trebz@planetquake.com
+Sean "Spider" Soucy - ssoucy@ea.com
+
+III. Artwork:
+John "MetalSlime" Fitzgibbons - johnfitz@u.washington.edu
+Tyler "Witz" Wilson - witz@planetquake.com
+Eli "Dunan" Karney - eleanor@karney.com
+SmokyG -  http://www.opcode.org/~smoky
+
+
+IV. Models:
+Andrew "Betlog" Eglington - betlog@ozemail.com.au
+Matt Hassellman - uridian@snet.net
+Jonn "Jonny" Gorden - jonny@zerogravity.com.au
+Rorshach - rorshach@quakefiles.com 
+
+
+V. Music
+Carl "Dill" Bown - 
+
+VI. Website / Manual:
+Ryan "BabelFish" Freebern - rfreebern@corknut.org
+
+Legal Stuff:
+
+This pack has been distributed for free. No financial gains have been made by any of the Lethargy team members.
+Feel free to share this pack with others.
+
+1. Limitations. You may not reverse engineer, decompile, or disassemble any elements of Oblivion without our permission.
+
+2. Technical Support. Lethargy Software shall provide limited technical support for a period of 90 days from date of purchase, in accordance with the support documentation included with the Software.
+
+
+3. No Liability for Consequential Damages. To the maximum extent permitted by applicable law, in no event shall Lethargy Software or its suppliers be liable for any special, incidental, indirect, or consequential damages whatsoever (including, without limitation, damages for loss of business profits, business interruption, loss of business information, or any other pecuniary loss) arising out of the use of or inability to use the software product, even if Lethargy Software has been advised of the possibility of such damages. Because some states do not allow the exclusion or limitation of liability for sconsequential or incidental damages, the above limitation may not apply to you.
+
+4. Indemnification. You shall indemnify, defend, and hold Lethargy Software, its suppliers, and their respective officers, employees and agents (collectively, the "Indemnified Parties") harmless from and third party claim whatsoever (including without limitation any claim of your customer) arising from or relating to your use of the Software or from any use permitted by you. You are also responsible for compliance with applicable laws in the use of the Software, and you shall indemnify, defend, and hold the Indemnified Parties harmless from any action, claim, or expense arising from or related to any alleged or actual violation of applicable law in connection with the use of the Software by you or any use permitted by you.
+
+5. Windows is a registered trademark of Microsoft Corporation. Quake2 is a registered trademark of id Software, Inc.
+
+Maximum thanks to Id software for creating a great game.
+
+Lots of hard work has been put into this project over the months and we at Lethargy would love to hear any thoughts on Oblivion. If you have any question concering Oblivion or future Lethargy releases mail us at the e-mail address mentioned earlier in this file. If you want to complain, please just remember, you got this product for free...

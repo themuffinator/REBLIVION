@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 493 | Name: char */
+
+1004c664  char (* data_1004c664)[0x13] = data_1004c7f8 {"Check your targets"}

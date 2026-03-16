@@ -1,0 +1,643 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Kind: type */
+/* Name: block */
+
+1002f24a      bool c_2 = unimplemented  {sbb eax, eax}
+1002f24c      eax_5 = sbb.d(sbb.d(eax_3, eax_3, c_1), 0xffffffff, c_2)
+1002f24c      break
+1002f24c  
+1002f251  if (eax_5 != 0)
+1002f269      *(arg1 + 0x220) = 0x2ee
+1002f273      *(arg1 + 0x228) = 0xffffff38
+1002f251  else
+1002f253      *(arg1 + 0x220) = 0x3e8
+1002f25d      *(arg1 + 0x228) = 0xffffff1f
+1002f25d  
+1002f27d  *(arg1 + 0x190) = 0x1f4
+1002f287  char* edi_2 = "monster_tank_commander"
+1002f28c  char* eax_6 = ebp_1
+1002f28e  int32_t eax_8
+1002f28e  
+1002f28e  while (true)
+1002f28e      edx_1 = *eax_6
+1002f292      char temp5_1 = *edi_2
+1002f292      bool c_3 = edx_1 u< temp5_1
+1002f292      
+1002f294      if (edx_1 == temp5_1)
+1002f298          if (edx_1 == 0)
+1002f2ae              eax_8 = 0
+1002f2b0              break
+1002f2b0          
+1002f29a          edx_1 = eax_6[1]
+1002f29f          char temp8_1 = edi_2[1]
+1002f29f          c_3 = edx_1 u< temp8_1
+1002f29f          
+1002f2a2          if (edx_1 == temp8_1)
+1002f2a4              eax_6 = &eax_6[2]
+1002f2a7              edi_2 = &edi_2[2]
+1002f2a7              
+1002f2ac              if (edx_1 != 0)
+1002f2ac                  continue
+1002f2ac              
+1002f2ae              eax_8 = 0
+1002f2b0              break
+1002f2b0      
+1002f2b2      bool c_4 = unimplemented  {sbb eax, eax}
+1002f2b4      eax_8 = sbb.d(sbb.d(eax_6, eax_6, c_3), 0xffffffff, c_4)
+1002f2b4      break
+1002f2b4  
+1002f2b9  if (eax_8 == 0)
+1002f2bb      *(arg1 + 0x3c) = 2
+1002f2bb  
+1002f2c9  int32_t* esp
+1002f2c9  
+1002f2c9  if ((*(arg1 + 0x11c) & 8) == 0)
+1002f33a      data_10061368 = gi.soundindex("tank/tnkpain2.wav")
+1002f34a      data_10061378 = gi.soundindex("tank/tnkdeth2.wav")
+1002f35a      data_1006136c = gi.soundindex("tank/tnkidle1.wav")
+1002f36a      data_10061370 = gi.soundindex("tank/death.wav")
+1002f37a      data_1006137c = gi.soundindex("tank/step.wav")
+1002f38a      data_10061384 = gi.soundindex("tank/tnkatck4.wav")
+1002f39a      data_10061380 = gi.soundindex("tank/tnkatck5.wav")
+1002f3aa      data_10061374 = gi.soundindex("tank/sight1.wav")
+1002f3af      gi.soundindex("tank/tnkatck1.wav")
+1002f3ba      gi.soundindex("tank/tnkatk2a.wav")
+1002f3c5      gi.soundindex("tank/tnkatk2b.wav")
+1002f3d0      gi.soundindex("tank/tnkatk2c.wav")
+1002f3db      gi.soundindex("tank/tnkatk2d.wav")
+1002f3e6      gi.soundindex("tank/tnkatk2e.wav")
+1002f3f1      gi.soundindex("tank/tnkatck3.wav")
+1002f3f8      *(arg1 + 0x204) = sub_1002e9c0
+1002f402      *(arg1 + 0x208) = sub_1002f090
+1002f40c      *(arg1 + 0x368) = sub_1002e930
+1002f416      *(arg1 + 0x374) = sub_1002e940
+1002f420      *(arg1 + 0x378) = sub_1002e950
+1002f42a      *(arg1 + 0x37c) = 0
+1002f430      *(arg1 + 0x380) = sub_1002ef10
+1002f43a      *(arg1 + 0x384) = 0
+1002f440      *(arg1 + 0x388) = sub_1002e840
+1002f44a      *(arg1 + 0x36c) = sub_1002e900
+1002f454      gi.linkentity(arg1)
+1002f45d      *(arg1 + 0x358) = 0x1005dff0
+1002f467      *(arg1 + 0x364) = 0x3f800000
+1002f471      int32_t arg_24 = arg1
+1002f471      esp = &arg_24
+1002f472      sub_10012b30(arg_24)
+1002f2c9  else
+1002f2ce      int32_t edx_2 = *(arg1 + 0xb8)
+1002f2d9      int32_t edi_4 = *(arg1 + 0x3c) | 1
+1002f2dc      *(arg1 + 0xbc) = 0xc1800000
+1002f2e2      *(arg1 + 0xc0) = 0xc1800000
+1002f2e8      *(arg1 + 0xc4) = 0xc1800000
+1002f2f7      *(arg1 + 0x38) = 0xfd
+1002f2fe      *(arg1 + 0x3c) = edi_4
+1002f301      *(arg1 + 0xc8) = 0x41800000
+1002f307      *(arg1 + 0xcc) = 0x41800000
+1002f30d      *(arg1 + 0xd0) = 0
+1002f313      *(arg1 + 0xb8) = edx_2 | 2
+1002f319      *(arg1 + 0x1ec) = 0
+1002f31f      gi.linkentity(arg1)
+1002f31f      esp = &var_10
+1002f31f  
+1002f477  char* eax_17 = *(arg1 + 0x118)
+1002f480  char* edi_5 = "monster_tank_commander"
+1002f485  int32_t result
+1002f485  
+1002f485  while (true)
+1002f485      char edx_4 = *eax_17
+1002f489      char temp9_1 = *edi_5
+1002f489      bool c_5 = edx_4 u< temp9_1
+1002f489      
+1002f48b      if (edx_4 == temp9_1)
+1002f48f          if (edx_4 == 0)
+1002f4a5              result = 0
+1002f4a7              break
+1002f4a7          
+1002f491          edx_4 = eax_17[1]
+1002f496          char temp12_1 = edi_5[1]
+1002f496          c_5 = edx_4 u< temp12_1
+1002f496          
+1002f499          if (edx_4 == temp12_1)
+1002f49b              eax_17 = &eax_17[2]
+1002f49e              edi_5 = &edi_5[2]
+1002f49e              
+1002f4a3              if (edx_4 != 0)
+1002f4a3                  continue
+1002f4a3              
+1002f4a5              result = 0
+1002f4a7              break
+1002f4a7      
+1002f4a9      bool c_6 = unimplemented  {sbb eax, eax}
+1002f4ab      result = sbb.d(sbb.d(eax_17, eax_17, c_5), 0xffffffff, c_6)
+1002f4ab      break
+1002f4ab  
+1002f47d  esp[1]
+1002f4ae  esp[2]
+1002f4af  esp[3]
+1002f4af  
+1002f4b3  if (result == 0)
+1002f4b8      result.b = (*(arg1 + 0x3c)).b | 2
+1002f4ba      *(arg1 + 0x3c) = result
+1002f4ba  
+1002f4b2  esp[4]
+1002f4be  return result
+
+1002f4bf                                                                                               90                                 .
+
+1002f4c0    int32_t sub_1002f4c0(int32_t arg1, int32_t arg2)
+
+1002f4c2  gi.WriteByte(0xb)
+1002f4cd  gi.WriteString(arg2)
+1002f4e3  return gi.unicast(arg1, 1)
+
+1002f4e4              90 90 90 90 90 90 90 90 90 90 90 90                                                      ............
+
+1002f4f0    int32_t sub_1002f4f0(int32_t arg1)
+
+1002f4f5  long double x87_r7 = fconvert.t(*(data_1006c42c + 0x14))
+1002f4f8  long double temp0 = fconvert.t(0f)
+1002f4f8  x87_r7 - temp0
+1002f4fe  int32_t result
+1002f4fe  result.w = (x87_r7 < temp0 ? 1 : 0) << 8 | (is_unordered.t(x87_r7, temp0) ? 1 : 0) << 0xa
+1002f4fe      | (x87_r7 == temp0 ? 1 : 0) << 0xe
+1002f4fe  
+1002f503  if ((result:1.b & 0x40) == 0)
+1002f50f      result = sub_10038b20(&data_1006c328, "security")
+1002f50f      
+1002f519      if (result == 0)
+1002f51b          result = arg1
+1002f51f          *(result + 0x1f4) = sub_1002f540
+1002f535          *(result + 0x1ec) =
+1002f535              fconvert.s(fconvert.t(data_1006c2e4) + fconvert.t(0.10000000000000001))
+1002f535  
+1002f53b  return result
+
+1002f53c                                                                                      90 90 90 90                              ....
+
+1002f540    int32_t sub_1002f540()
+
+1002f54a  int32_t result = sub_10038b20(&data_1006c328, "security")
+1002f54a  
+1002f554  if (result == 0)
+1002f55a      void* eax = sub_1001b350()
+1002f55f      *(eax + 0x118) = "info_player_coop"
+1002f569      *(eax + 4) = 0x42f80000
+1002f570      *(eax + 8) = 0xc3240000
+1002f577      *(eax + 0xc) = 0x42a00000
+1002f57e      *(eax + 0x12c) = "jail3"
+1002f588      *(eax + 0x14) = 0x42b40000
+1002f58f      void* eax_1 = sub_1001b350()
+1002f594      *(eax_1 + 0x118) = "info_player_coop"
+1002f59e      *(eax_1 + 4) = 0x437c0000
+1002f5a5      *(eax_1 + 8) = 0xc3240000
+1002f5ac      *(eax_1 + 0xc) = 0x42a00000
+1002f5b3      *(eax_1 + 0x12c) = "jail3"
+1002f5bd      *(eax_1 + 0x14) = 0x42b40000
+1002f5c4      result = sub_1001b350()
+1002f5c9      *(result + 0x118) = "info_player_coop"
+1002f5d3      *(result + 4) = 0x439e0000
+1002f5da      *(result + 8) = 0xc3240000
+1002f5e1      *(result + 0xc) = 0x42a00000
+1002f5e8      *(result + 0x12c) = "jail3"
+1002f5f2      *(result + 0x14) = 0x42b40000
+1002f5f2  
+1002f5f9  return result
+
+1002f5fa                                                                                90 90 90 90 90 90                            ......
+
+1002f600    uint32_t sub_1002f600(int32_t arg1)
+
+1002f605  long double x87_r7 = fconvert.t(*(data_1006c118 + 0x14))
+1002f608  long double temp0 = fconvert.t(0f)
+1002f608  x87_r7 - temp0
+1002f60e  void* eax
+1002f60e  eax.w = (x87_r7 < temp0 ? 1 : 0) << 8 | (is_unordered.t(x87_r7, temp0) ? 1 : 0) << 0xa
+1002f60e      | (x87_r7 == temp0 ? 1 : 0) << 0xe
+1002f60e  
+1002f613  if ((eax:1.b & 0x40) == 0)
+1002f62e      return sub_100114a0(arg1)
+1002f62e  
+1002f622  return sub_1001b400(arg1)
+
+1002f62f                                               90                                                                 .
+
+1002f630    uint32_t sub_1002f630(int32_t arg1)
+
+1002f635  long double x87_r7 = fconvert.t(*(data_1006c42c + 0x14))
+1002f638  long double temp0 = fconvert.t(0f)
+1002f638  x87_r7 - temp0
+1002f63e  void* eax
+1002f63e  eax.w = (x87_r7 < temp0 ? 1 : 0) << 8 | (is_unordered.t(x87_r7, temp0) ? 1 : 0) << 0xa
+1002f63e      | (x87_r7 == temp0 ? 1 : 0) << 0xe
+1002f63e  
+1002f643  if ((eax:1.b & 0x40) != 0)
+1002f652      return sub_1001b400(arg1)
+1002f652  
+1002f667  int32_t result
+1002f667  
+1002f667  if (sub_10038b20(&data_1006c328, "jail2") == 0)
+1002f7a7      label_1002f7a7:
+1002f7a7      result = arg1
+1002f7ab      *(result + 0x1f4) = sub_1002f7d0
+1002f7c1      *(result + 0x1ec) =
+1002f7c1          fconvert.s(fconvert.t(data_1006c2e4) + fconvert.t(0.10000000000000001))
+1002f667  else
+1002f681      if (sub_10038b20(&data_1006c328, "jail4") == 0)
+1002f681          goto label_1002f7a7
+1002f681      
+1002f69b      if (sub_10038b20(&data_1006c328, "mine1") == 0)
+1002f69b          goto label_1002f7a7
+1002f69b      
+1002f6b5      if (sub_10038b20(&data_1006c328, "mine2") == 0)
+1002f6b5          goto label_1002f7a7
+1002f6b5      
+1002f6cf      if (sub_10038b20(&data_1006c328, "mine3") == 0)
+1002f6cf          goto label_1002f7a7
+1002f6cf      
+1002f6e9      if (sub_10038b20(&data_1006c328, "mine4") == 0)
+1002f6e9          goto label_1002f7a7
+1002f6e9      
+1002f703      if (sub_10038b20(&data_1006c328, "lab") == 0)
+1002f703          goto label_1002f7a7
+1002f703      
+1002f71d      if (sub_10038b20(&data_1006c328, "boss1") == 0)
+1002f71d          goto label_1002f7a7
+1002f71d      
+1002f737      if (sub_10038b20(&data_1006c328, "fact3") == 0)
+1002f737          goto label_1002f7a7
+1002f737      
+1002f74d      if (sub_10038b20(&data_1006c328, "biggun") == 0)
+1002f74d          goto label_1002f7a7
+1002f74d      
+1002f763      if (sub_10038b20(&data_1006c328, "space") == 0)
+1002f763          goto label_1002f7a7
+1002f763      
+1002f779      if (sub_10038b20(&data_1006c328, "command") == 0)
+1002f779          goto label_1002f7a7
+1002f779      
+1002f78f      if (sub_10038b20(&data_1006c328, "power2") == 0)
+1002f78f          goto label_1002f7a7
+1002f78f      
+1002f79b      result = sub_10038b20(&data_1006c328, "strike")
+1002f79b      
+1002f7a5      if (result == 0)
+1002f7a5          goto label_1002f7a7
+1002f7a5  
+1002f7c7  return result
+
+1002f7c8                          90 90 90 90 90 90 90 90                                                          ........
+
+1002f7d0    void* sub_1002f7d0(void* arg1)
+
+1002f7d9  void* result_1 = nullptr
+1002f7e6  void* result
+1002f7e6  
+1002f7e6  while (true)
+1002f7e6      result = sub_1001ac00(result_1, 0x118, "info_player_start")
+1002f7eb      result_1 = result
+1002f7eb      
+1002f7f2      if (result_1 == 0)
+1002f7f2          break
+1002f7f2      
+1002f7fc      if (*(result_1 + 0x12c) != 0)
+1002f809          float var_c = fconvert.s(fconvert.t(*(arg1 + 4)) - fconvert.t(*(result_1 + 4)))
+1002f813          float var_8_1 = fconvert.s(fconvert.t(*(arg1 + 8)) - fconvert.t(*(result_1 + 8)))
+1002f81d          float var_4_1 =
+1002f81d              fconvert.s(fconvert.t(*(arg1 + 0xc)) - fconvert.t(*(result_1 + 0xc)))
+1002f821          long double st0_1 = sub_100389f0(&var_c)
+1002f826          long double temp0_1 = fconvert.t(384f)
+1002f826          st0_1 - temp0_1
+1002f826          
+1002f834          if ((((st0_1 < temp0_1 ? 1 : 0) << 8
+1002f834                  | (is_unordered.t(st0_1, temp0_1) ? 1 : 0) << 0xa
+1002f834                  | (st0_1 == temp0_1 ? 1 : 0) << 0xe):1.b & 1) != 0)
+1002f836              result = *(arg1 + 0x12c)
+1002f836              
+1002f83e              if (result == 0)
+1002f85a                  *(arg1 + 0x12c) = *(result_1 + 0x12c)
+1002f83e              else
+1002f848                  result = sub_10038b20(result, *(result_1 + 0x12c))
+1002f848                  
+1002f852                  if (result != 0)
+1002f85a                      *(arg1 + 0x12c) = *(result_1 + 0x12c)
+1002f85a              
+1002f83e              break
+1002f83e  
+1002f865  return result
+
+1002f866                    90 90 90 90 90 90 90 90 90 90                                                        ..........
+
+1002f870    void* sub_1002f870(void* arg1)
+
+1002f874  void* result = *(arg1 + 0x54)
+1002f874  
+1002f879  if (result == 0)
+1002f87b      return result
+1002f87b  
+1002f88c  char* eax_1
+1002f88c  eax_1.b = *sub_10038bb0(result + 0xbc, "gender")
+1002f88c  
+1002f897  if (eax_1.b != 0x66 && eax_1.b != 0x46)
+1002f89b      return 0
+1002f89b  
+1002f8a1  return 1
+
+1002f8a2        90 90 90 90 90 90 90 90 90 90 90 90 90 90                                                    ..............
+
+1002f8b0    int32_t sub_1002f8b0(void* arg1)
+
+1002f8b4  void* eax = *(arg1 + 0x54)
+1002f8b4  
+1002f8b9  if (eax != 0)
+1002f8cb      char* eax_2
+1002f8cb      eax_2.b = *sub_10038bb0(eax + 0xbc, "gender")
+1002f8cb      
+1002f8de      if (eax_2.b != 0x66 && eax_2.b != 0x46 && eax_2.b != 0x6d && eax_2.b != 0x4d)
+1002f8e5          return 1
+1002f8e5  
+1002f8e8  return 0
+
+1002f8e9                             90 90 90 90 90 90 90                                                           .......
+
+1002f8f0    void* sub_1002f8f0(void* arg1, void* arg2)
+
+1002f8f0  void* edx_7 = data_1006c42c
+1002f8f6  long double x87_r7 = fconvert.t(*(edx_7 + 0x14))
+1002f8f9  long double temp0 = fconvert.t(0f)
+1002f8f9  x87_r7 - temp0
+1002f90f  int32_t ecx_3
+1002f90f  
+1002f90f  if ((((x87_r7 < temp0 ? 1 : 0) << 8 | (is_unordered.t(x87_r7, temp0) ? 1 : 0) << 0xa
+1002f90f          | (x87_r7 == temp0 ? 1 : 0) << 0xe):1.b & 0x40) != 0 || *(arg2 + 0x54) == 0)
+1002f925      ecx_3 = data_1006c104
+1002f90f  else
+1002f917      ecx_3 = data_1006c104 | 0x8000000
+1002f91d      data_1006c104 = ecx_3
+1002f91d  
+1002f936  long double x87_r7_1 = fconvert.t(*(data_1006c118 + 0x14))
+1002f939  long double temp1 = fconvert.t(0f)
+1002f939  x87_r7_1 - temp1
+1002f941  void* eax_2
+1002f941  eax_2.w = (x87_r7_1 < temp1 ? 1 : 0) << 8
+1002f941      | (is_unordered.t(x87_r7_1, temp1) ? 1 : 0) << 0xa
+1002f941      | (x87_r7_1 == temp1 ? 1 : 0) << 0xe
+1002f946  void* eax_21
+1002f946  
+1002f946  if ((eax_2:1.b & 0x40) == 0)
+1002f95e      label_1002f95e:
+1002f95e      int32_t ecx_4 = ecx_3 & 0xf7ffffff
+1002f96c      char* eax_3 = nullptr
+1002f96e      void* esi_1 = &data_10060c60
+1002f96e      
+1002f979      if (ecx_4 - 0x11 u<= 0x11)
+1002f97b          switch (ecx_4)
+1002f997              case 0x11
+1002f997                  eax_3 = "sank like a rock"
+1002f99e              case 0x12
+1002f99e                  eax_3 = "melted"
+1002f9a5              case 0x13
+1002f9a5                  eax_3 = "does a back flip into the lava"
+1002f990              case 0x14
+1002f990                  eax_3 = "was squished"
+1002f989              case 0x16
+1002f989                  eax_3 = "cratered"
+1002f982              case 0x17
+1002f982                  eax_3 = "suicides"
+1002f9ac              case 0x19, 0x1a
+1002f9ac                  eax_3 = "blew up"
+1002f9dd              case 0x1b, 0x1d, 0x1f
+1002f9dd                  eax_3 = "was in the wrong place"
+1002f9b3              case 0x1c
+1002f9b3                  eax_3 = "found a way out"
+1002f9c6              case 0x1e
+1002f9c6                  if (arg2 == data_1006c2c4)
+1002f9c8                      eax_3 = "saw the light"
+1002f9cf              case 0x21
+1002f9cf                  eax_3 = "got blasted"
+1002f9d6              case 0x22
+1002f9d6                  eax_3 = "got railed"
+1002f9d6      
+1002f9e6      if (arg2 == arg1)
+1002f9f2          if (ecx_4 - 7 u> 0x23)
+1002fa81              label_1002fa81:
+1002fa81              
+1002fa8b              if (sub_1002f8b0(arg1) == 0)
+1002fa9f                  eax_3 = "killed herself"
+1002fa9f                  
+1002faa4                  if (sub_1002f870(arg1) == 0)
+1002faa6                      eax_3 = "killed himself"
+1002fa8b              else
+1002fa8d                  eax_3 = "killed itself"
+1002f9f2          else
+1002f9fa              int32_t edx_1
+1002f9fa              edx_1.b = *(ecx_4 + &jump_table_1002fda4[4]:1)
+1002f9fa              
+1002fa00              switch (edx_1)
+1002fa12                  case 0
+1002fa1c                      if (sub_1002f8b0(arg1) == 0)
+1002fa33                          if (sub_1002f870(arg1) == 0)
+1002fa3c                              eax_3 = "tripped on his own grenade"
+1002fa33                          else
+1002fa35                              eax_3 = "tripped on her own grenade"
+1002fa1c                      else
+1002fa1e                          eax_3 = "tripped on its own grenade"
+1002fa44                  case 1
+1002fa4e                      if (sub_1002f8b0(arg1) == 0)
+1002fa62                          if (sub_1002f870(arg1) == 0)
+1002fa6b                              eax_3 = "blew himself up"
+1002fa62                          else
+1002fa64                              eax_3 = "blew herself up"
+1002fa4e                      else
+1002fa50                          eax_3 = "blew itself up"
+1002fa72                  case 2
+1002fa72                      eax_3 = "should have used a smaller gun"
+1002fa07                  case 3
+1002fa07                      eax_3 = "tried to put the pin back in"
+1002fa79                  case 4
+1002fa79                      eax_3 = "has a short memory"
+1002fa00                  case 5
+1002fa00                      goto label_1002fa81
+1002fa00      
+1002faad      if (eax_3 != 0)
+1002fac0          gi.bprintf(1, "%s %s.\n", *(arg1 + 0x54) + 0x2bc, eax_3)
+1002facf          long double x87_r7_3 = fconvert.t(*(data_1006c118 + 0x14))
+1002fad2          long double temp4 = fconvert.t(0f)
+1002fad2          x87_r7_3 - temp4
+1002fad8          void* eax_13
+1002fad8          eax_13.w = (x87_r7_3 < temp4 ? 1 : 0) << 8
+1002fad8              | (is_unordered.t(x87_r7_3, temp4) ? 1 : 0) << 0xa
+1002fad8              | (x87_r7_3 == temp4 ? 1 : 0) << 0xe
+1002fad8          
+1002fadd          if ((eax_13:1.b & 0x40) == 0)
+1002fadf              eax_13 = *(arg1 + 0x54)
+1002fae2              *(eax_13 + 0xda8) -= 1
+1002fae2          
+1002faea          *(arg1 + 0x25c) = 0
+1002faf6          return eax_13
+1002faf6      
+1002fafd      *(arg1 + 0x25c) = arg2
+1002fafd      
+1002fb0e      if (arg2 == 0 || *(arg2 + 0x54) == 0)
+1002fb03          goto label_1002fd2d
+1002fb03      
+1002fb1a      char* eax_16
+1002fb1a      
+1002fb1a      if (ecx_4 - 1 u> 0x29)
+1002fca7          eax_16 = "was killed by"
+1002fcac          esi_1 = " somehow"
+1002fb1a      else
+1002fb22          int32_t edx_2
+1002fb22          edx_2.b = *(ecx_4 + &jump_table_1002fde0[0x1a]:3)
+1002fb22          
+1002fb28          switch (edx_2)
+1002fb2f              case 0
+1002fb2f                  eax_16 = "was blasted by"
+1002fb39              case 1
+1002fb39                  eax_16 = "was gunned down by"
+1002fb43              case 2
+1002fb43                  eax_16 = "was blown away by"
+1002fb48                  esi_1 = "'s super shotgun"
+1002fb52              case 3
+1002fb52                  eax_16 = "was machinegunned by"
+1002fb5c              case 4
+1002fb5c                  eax_16 = "was cut in half by"
+1002fb61                  esi_1 = "'s chaingun"
+1002fb6b              case 5
+1002fb6b                  eax_16 = "was popped by"
+1002fb70                  esi_1 = "'s grenade"
+1002fb7a              case 6
+1002fb7a                  eax_16 = "was shredded by"
+1002fb7f                  esi_1 = "'s shrapnel"
+1002fb89              case 7
+1002fb89                  eax_16 = &data_1005f034
+1002fb8e                  esi_1 = "'s rocket"
+1002fb98              case 8
+1002fb98                  eax_16 = "almost dodged"
+1002fb9d                  esi_1 = "'s rocket"
+1002fba7              case 9
+1002fba7                  eax_16 = "was melted by"
+1002fbac                  esi_1 = "'s hyperblaster"
+1002fbb6              case 0xa
+1002fbb6                  eax_16 = "was railed by"
+1002fbc0              case 0xb
+1002fbc0                  eax_16 = "saw the pretty lights from"
+1002fbc5                  esi_1 = "'s BFG"
+1002fbcf              case 0xc
+1002fbcf                  eax_16 = "was disintegrated by"
+1002fbd4                  esi_1 = "'s BFG blast"
+1002fbde              case 0xd
+1002fbde                  eax_16 = "couldn't hide from"
+1002fbe3                  esi_1 = "'s BFG"
+1002fbed              case 0xe
+1002fbed                  eax_16 = "caught"
+1002fbf2                  esi_1 = "'s handgrenade"
+1002fbfc              case 0xf
+1002fbfc                  eax_16 = "didn't see"
+1002fc01                  esi_1 = "'s handgrenade"
+1002fc1a              case 0x10
+1002fc1a                  eax_16 = "tried to invade"
+1002fc1f                  esi_1 = "'s personal space"
+1002fc0b              case 0x11
+1002fc0b                  eax_16 = "feels"
+1002fc10                  esi_1 = "'s pain"
+1002fc9b              case 0x12
+1002fc9b                  eax_16 = "found that mine"
+1002fca0                  esi_1 = " had misplaced"
+1002fc2a              case 0x13
+1002fc34                  if (sub_1002f8b0(arg1) == 0)
+1002fc48                      if (sub_1002f870(arg1) == 0)
+1002fc51                          eax_16 = "had his electrons unbound by"
+1002fc48                      else
+1002fc4a                          eax_16 = "had her electrons unbound by"
+1002fc34                  else
+1002fc36                      eax_16 = "had its electrons unbound by"
+1002fc58              case 0x14
+1002fc58                  eax_16 = "was pistol-whipped by"
+1002fc5f              case 0x15
+1002fc5f                  eax_16 = "was smeared by"
+1002fc64                  esi_1 = "'s hot sticky plasma"
+1002fc6b              case 0x16
+1002fc6b                  eax_16 = "stepped on"
+1002fc70                  esi_1 = "'s dog sh... er.. detonation pac…"
+1002fc77              case 0x17
+1002fc77                  eax_16 = "was sliced and diced by"
+1002fc7c                  esi_1 = "'s obliterator"
+1002fc83              case 0x18
+1002fc83                  eax_16 = "took a bite of"
+1002fc88                  esi_1 = "'s donut"
+1002fc8f              case 0x19
+1002fc8f                  eax_16 = "caught some of"
+1002fc94                  esi_1 = "'s remote cannon lovin'"
+1002fca7              case 0x1a
+1002fca7                  eax_16 = "was killed by"
+1002fcac                  esi_1 = " somehow"
+1002fcac      
+1002fcb3      if (eax_16 == 0)
+1002fcb3          goto label_1002fd2d
+1002fcb3      
+1002fcd5      gi.bprintf(1, "%s %s %s%s\n", *(arg1 + 0x54) + 0x2bc, eax_16, 
+1002fcd5          *(arg2 + 0x54) + 0x2bc, esi_1)
+1002fce4      long double x87_r7_4 = fconvert.t(*(data_1006c118 + 0x14))
+1002fce7      long double temp5_1 = fconvert.t(0f)
+1002fce7      x87_r7_4 - temp5_1
+1002fced      eax_21.w = (x87_r7_4 < temp5_1 ? 1 : 0) << 8
+1002fced          | (is_unordered.t(x87_r7_4, temp5_1) ? 1 : 0) << 0xa
+1002fced          | (x87_r7_4 == temp5_1 ? 1 : 0) << 0xe
+1002fced      
+1002fcf2      if ((eax_21:1.b & 0x40) == 0)
+1002fcf6          if ((ecx_3 & 0x8000000) != 0)
+1002fcff              void* eax_22 = *(arg2 + 0x54)
+1002fd03              *(eax_22 + 0xda8) -= 1
+1002fd09              return eax_22
+1002fd09          
+1002fd11          void* eax_24 = *(arg2 + 0x54)
+1002fd15          *(eax_24 + 0xda8) += 1
+1002fd1b          return eax_24
+1002f946  else
+1002f948      long double x87_r7_2 = fconvert.t(*(edx_7 + 0x14))
+1002f94b      long double temp2_1 = fconvert.t(0f)
+1002f94b      x87_r7_2 - temp2_1
+1002f951      eax_2.w = (x87_r7_2 < temp2_1 ? 1 : 0) << 8
+1002f951          | (is_unordered.t(x87_r7_2, temp2_1) ? 1 : 0) << 0xa
+1002f951          | (x87_r7_2 == temp2_1 ? 1 : 0) << 0xe
+1002f951      
+1002f956      if ((eax_2:1.b & 0x40) == 0)
+1002f956          goto label_1002f95e
+1002f956      
+1002fd2d      label_1002fd2d:
+1002fd2d      gi.bprintf(1, "%s died.\n", *(arg1 + 0x54) + 0x2bc)
+1002fd3c      long double x87_r7_5 = fconvert.t(*(data_1006c118 + 0x14))
+1002fd3f      long double temp3_1 = fconvert.t(0f)
+1002fd3f      x87_r7_5 - temp3_1
+1002fd45      eax_21.w = (x87_r7_5 < temp3_1 ? 1 : 0) << 8
+1002fd45          | (is_unordered.t(x87_r7_5, temp3_1) ? 1 : 0) << 0xa
+1002fd45          | (x87_r7_5 == temp3_1 ? 1 : 0) << 0xe
+1002fd45      
+1002fd4a      if ((eax_21:1.b & 0x40) == 0)
+1002fd4c          eax_21 = *(arg1 + 0x54)
+1002fd4f          *(eax_21 + 0xda8) -= 1
+1002fd4f  
+1002fd59  return eax_21
+
+1002fd5a                                                                                8b ff                                        ..
+1002fd5c  uint32_t jump_table_1002fd5c[0x12] = 
+1002fd5c  {
+1002fd5c      [0x00] =  0x1002f997
+1002fd60      [0x01] =  0x1002f99e
+1002fd64      [0x02] =  0x1002f9a5
+1002fd68      [0x03] =  0x1002f990
+1002fd6c      [0x04] =  0x1002f9e2
+1002fd70      [0x05] =  0x1002f989
+1002fd74      [0x06] =  0x1002f982
+1002fd78      [0x07] =  0x1002f9e2
+1002fd7c      [0x08] =  0x1002f9ac
+1002fd80      [0x09] =  0x1002f9ac
+1002fd84      [0x0a] =  0x1002f9dd
+1002fd88      [0x0b] =  0x1002f9b3
+1002fd8c      [0x0c] =  0x1002f9dd
+1002fd90      [0x0d] =  0x1002f9ba
+1002fd94      [0x0e] =  0x1002f9dd
+1002fd98      [0x0f] =  0x1002f9e2
+1002fd9c      [0x10] =  0x1002f9cf
+1002fda0      [0x11] =  0x1002f9d6
+1002fda4  }

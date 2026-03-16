@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 468 | Name: char */
+
+10047058  char (* data_10047058)[0xd] = data_10046360 {"Plasma Rifle"}

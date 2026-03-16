@@ -1,0 +1,110 @@
+10001733  int32_t eax = globals.num_edicts
+100017de                  eax = globals.num_edicts
+10001951      int32_t eax_3 = globals.num_edicts
+100019e3              eax_3 = globals.num_edicts
+100031e0  int32_t result = globals.num_edicts
+1000321f          result = globals.num_edicts
+10003385  int32_t result = globals.num_edicts
+100033c9          result = globals.num_edicts
+100055f0    int32_t ClientCommand(float arg1)
+10008a93  int32_t eax_11 = globals.num_edicts
+10008adf              eax_11 = globals.num_edicts
+1000d460    int32_t ShutdownGame()
+1000d490    game_export_t* GetGameAPI(game_import_t* import)
+
+1000d4a5  __builtin_memcpy(dest: &gi, src: import, n: 0xb0)
+1000d4a8  globals.apiversion = 3
+1000d4b2  globals.Init = InitGame
+1000d4bc  globals.Shutdown = ShutdownGame
+1000d4c6  globals.SpawnEntities = SpawnEntities
+1000d4d0  globals.WriteGame = WriteGame
+1000d4da  globals.ReadGame = ReadGame
+1000d4e4  globals.WriteLevel = WriteLevel
+1000d4ee  globals.ReadLevel = ReadLevel
+1000d4f8  globals.ClientConnect = ClientConnect
+1000d502  globals.ClientBegin = ClientBegin
+1000d50c  globals.ClientUserinfoChanged = ClientUserinfoChanged
+1000d516  globals.ClientDisconnect = ClientDisconnect
+1000d520  globals.ClientCommand = ClientCommand
+1000d52a  globals.ClientThink = ClientThink
+1000d534  globals.RunFrame = G_RunFrame
+1000d53e  globals.ServerCommand = ServerCommand
+1000d548  globals.edict_size = 0x3d0
+1000d553  return &globals
+1000d940    float G_RunFrame()
+1000d983  if (globals.num_edicts s> 0)
+1000da20      while (i s< globals.num_edicts)
+10011640  int32_t eax = globals.num_edicts
+1001167f          eax = globals.num_edicts
+10013605  if (globals.num_edicts s> 1)
+100138b5          cond:2_1 = arg2 + 1 s< globals.num_edicts
+100158d0    int32_t InitGame()
+10015c3c  globals.edicts = eax_33
+10015c46  globals.max_edicts = data_1006ca4c
+10015c82  globals.num_edicts = ecx_6
+10015d63              *esi_2 = eax_14 - InitGame
+10015d66              return eax_14 - InitGame
+10015edd              *esi_2 = InitGame + eax_11
+10016020    int32_t WriteGame(PSTR arg1, int32_t arg2)
+10016100    int32_t ReadGame(PSTR arg1)
+100161c8  globals.edicts = eax_5
+10016400    int32_t __fastcall WriteLevel(int32_t (* arg1)())
+1001644b  var_4 = InitGame
+10016469  bool cond:0 = globals.num_edicts s<= 0
+100164b0          cond:1_1 = eax_1 s< globals.num_edicts
+100164e0    int32_t ReadLevel(PSTR arg1)
+1001655c  globals.num_edicts = __ftol(x87control, fconvert.t(*(data_1006ca60 + 0x14)) + fconvert.t(1f))
+100165a3  if (var_8 != InitGame)
+100165fc      if (eax_7 s>= globals.num_edicts)
+10016601          globals.num_edicts = eax_7 + 1
+100166b1  int32_t result = globals.num_edicts
+1001672f          result = globals.num_edicts
+10016afa  int32_t edi = globals.num_edicts
+10016b67              edi = globals.num_edicts
+10016c07                      edi = globals.num_edicts
+10016c60    void SpawnEntities(int32_t arg1 @ esi, int32_t arg2 @ edi, char* arg3, char* arg4)
+10017850    int32_t ServerCommand()
+10018d67  if (globals.num_edicts s> 1)
+10018e2f      while (i s< globals.num_edicts)
+1001ac1c  int32_t eax = globals.num_edicts
+1001ac65                  eax = globals.num_edicts
+1001acbe  int32_t eax = globals.num_edicts
+1001ad45          eax = globals.num_edicts
+1001b383  int32_t edx = globals.num_edicts
+1001b3e0      edx = globals.num_edicts
+1001b3ea  globals.num_edicts = edx + 1
+1001da95  int32_t result = globals.num_edicts * 0x3d0
+1001eb09  int32_t result = globals.num_edicts * 0x3d0
+10031179          x87control = ClientUserinfoChanged(arg1, var_f38_2)
+100310ff      x87control = ClientUserinfoChanged(arg1, &var_f00)
+10031610    void* ClientBegin(float arg1)
+10031760    char* ClientUserinfoChanged(void* arg1, int32_t arg2)
+10031950    int32_t ClientConnect(void* arg1, void* arg2)
+10031be5              ClientUserinfoChanged(arg1, ebx)
+10031c30    int32_t ClientDisconnect(void* arg1)
+10031d70    int32_t* ClientThink(int32_t arg1, int32_t* arg2)
+100382b2  int32_t ebp = globals.num_edicts
+1003832b                      ebp = globals.num_edicts
+1006c120  struct game_export_t globals =
+1006c120  {
+1006c120      int32_t apiversion = 0x0
+1006c124      void (*Init)(void) = nullptr
+1006c128      void (*Shutdown)(void) = nullptr
+1006c12c      void (*SpawnEntities)(char* mapname, char* entstring, char* spawnpoint) = nullptr
+1006c130      void (*WriteGame)(char* filename, int32_t autosave) = nullptr
+1006c134      void (*ReadGame)(char* filename) = nullptr
+1006c138      void (*WriteLevel)(char* filename) = nullptr
+1006c13c      void (*ReadLevel)(char* filename) = nullptr
+1006c140      int32_t (*ClientConnect)(struct edict_s* ent, char* userinfo) = nullptr
+1006c144      void (*ClientBegin)(struct edict_s* ent) = nullptr
+1006c148      void (*ClientUserinfoChanged)(struct edict_s* ent, char* userinfo) = nullptr
+1006c14c      void (*ClientDisconnect)(struct edict_s* ent) = nullptr
+1006c150      void (*ClientCommand)(struct edict_s* ent) = nullptr
+1006c154      void (*ClientThink)(struct edict_s* ent, void* cmd) = nullptr
+1006c158      void (*RunFrame)(void) = nullptr
+1006c15c      void (*ServerCommand)(void) = nullptr
+1006c160      struct edict_s* edicts = nullptr
+1006c164      int32_t edict_size = 0x0
+1006c168      int32_t num_edicts = 0x0
+1006c16c      int32_t max_edicts = 0x0
+1006c170  }

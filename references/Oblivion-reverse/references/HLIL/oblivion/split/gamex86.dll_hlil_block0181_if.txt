@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 181 | Name: if */
+
+1002ad27                          unimplemented  {call sub_1002a920}

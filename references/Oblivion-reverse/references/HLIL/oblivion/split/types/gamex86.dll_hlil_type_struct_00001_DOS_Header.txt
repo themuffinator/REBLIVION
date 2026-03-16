@@ -1,0 +1,25 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Kind: type (struct) */
+/* Name: DOS_Header */
+
+10000000  {
+10000000      char e_magic[0x2] = "MZ"
+10000002      uint16_t e_cblp = 0x90
+10000004      uint16_t e_cp = 0x3
+10000006      uint16_t e_crlc = 0x0
+10000008      uint16_t e_cparhdr = 0x4
+1000000a      uint16_t e_minalloc = 0x0
+1000000c      uint16_t e_maxalloc = 0xffff
+1000000e      uint16_t e_ss = 0x0
+10000010      uint16_t e_sp = 0xb8
+10000012      uint16_t e_csum = 0x0
+10000014      uint16_t e_ip = 0x0
+10000016      uint16_t e_cs = 0x0
+10000018      uint16_t e_lfarlc = 0x40
+1000001a      uint16_t e_ovno = 0x0
+1000001c      char e_res1[0x8] = "\x00\x00\x00\x00\x00\x00\x00", 0
+10000024      uint16_t e_oemid = 0x0
+10000026      uint16_t e_oeminfo = 0x0
+10000028      char e_res2[0x14] = "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00", 0
+1000003c      uint32_t e_lfanew = 0xe0
+10000040  }

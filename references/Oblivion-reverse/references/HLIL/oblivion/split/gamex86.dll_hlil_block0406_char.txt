@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 406 | Name: char */
+
+10046e34  char (* data_10046e34)[0x25] = data_10048700 {"sound/dod/hum.wave sound/dod/dod…"}

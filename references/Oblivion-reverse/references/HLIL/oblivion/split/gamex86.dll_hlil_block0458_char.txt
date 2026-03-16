@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 458 | Name: char */
+
+10047008  char (* data_10047008)[0x21] = data_10048220 {"models/weapons/v_deatom/tris.md2"}

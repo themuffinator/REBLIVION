@@ -1,0 +1,197 @@
+[
+  {
+    "classname": "item_armor_body",
+    "function": "sub_1000c2e0",
+    "index": 1,
+    "literal": "Body Armor",
+    "sources": [
+      "split/types/gamex86.dll_hlil_type_00007_block.txt",
+      "split/types/gamex86.dll_hlil_type_00008_block.txt"
+    ]
+  },
+  {
+    "classname": "item_armor_combat",
+    "function": "sub_1000c2e0",
+    "index": 2,
+    "literal": "Combat Armor",
+    "sources": [
+      "split/types/gamex86.dll_hlil_type_00007_block.txt",
+      "split/types/gamex86.dll_hlil_type_00008_block.txt"
+    ]
+  },
+  {
+    "classname": "item_armor_jacket",
+    "function": "sub_1000c2e0",
+    "index": 3,
+    "literal": "Jacket Armor",
+    "sources": [
+      "split/types/gamex86.dll_hlil_type_00007_block.txt",
+      "split/types/gamex86.dll_hlil_type_00008_block.txt"
+    ]
+  },
+  {
+    "classname": "item_power_screen",
+    "function": "sub_1000c560",
+    "index": 5,
+    "literal": "Power Screen",
+    "sources": [
+      "split/types/gamex86.dll_hlil_type_00008_block.txt"
+    ]
+  },
+  {
+    "classname": "item_power_shield",
+    "function": "sub_1000c560",
+    "index": 6,
+    "literal": "Power Shield",
+    "sources": [
+      "split/types/gamex86.dll_hlil_type_00007_block.txt",
+      "split/types/gamex86.dll_hlil_type_00008_block.txt"
+    ]
+  },
+  {
+    "classname": "weapon_shotgun",
+    "function": "sub_10035260",
+    "index": 9,
+    "literal": "shotgun",
+    "sources": [
+      "split/types/gamex86.dll_hlil_type_00019_block.txt"
+    ]
+  },
+  {
+    "classname": "weapon_supershotgun",
+    "function": "sub_10035260",
+    "index": 10,
+    "literal": "super shotgun",
+    "sources": [
+      "split/types/gamex86.dll_hlil_type_00019_block.txt"
+    ]
+  },
+  {
+    "classname": "weapon_machinegun",
+    "function": "sub_10035260",
+    "index": 11,
+    "literal": "machinegun",
+    "sources": [
+      "split/types/gamex86.dll_hlil_type_00019_block.txt"
+    ]
+  },
+  {
+    "classname": "weapon_chaingun",
+    "function": "sub_10035260",
+    "index": 12,
+    "literal": "chaingun",
+    "sources": [
+      "split/types/gamex86.dll_hlil_type_00019_block.txt"
+    ]
+  },
+  {
+    "classname": "ammo_grenades",
+    "function": "sub_1000bef0",
+    "index": 13,
+    "literal": "Grenades",
+    "sources": [
+      "split/types/gamex86.dll_hlil_type_00008_block.txt"
+    ]
+  },
+  {
+    "classname": "ammo_detpack",
+    "function": "sub_1000bef0",
+    "index": 15,
+    "literal": "Detonation Pack",
+    "sources": [
+      "split/types/gamex86.dll_hlil_type_00019_block.txt"
+    ]
+  },
+  {
+    "classname": "ammo_dod",
+    "function": "sub_1000bef0",
+    "index": 16,
+    "literal": "DOD",
+    "sources": [
+      "split/types/gamex86.dll_hlil_type_00019_block.txt"
+    ]
+  },
+  {
+    "classname": "weapon_hyperblaster",
+    "function": "sub_10035260",
+    "index": 21,
+    "literal": "hyperblaster",
+    "sources": [
+      "split/types/gamex86.dll_hlil_type_00019_block.txt"
+    ]
+  },
+  {
+    "classname": "weapon_railgun",
+    "function": "sub_10035260",
+    "index": 22,
+    "literal": "railgun",
+    "sources": [
+      "split/types/gamex86.dll_hlil_type_00019_block.txt"
+    ]
+  },
+  {
+    "classname": "ammo_pistolplasma",
+    "function": "sub_1000bef0",
+    "index": 28,
+    "literal": "PistolPlasma",
+    "sources": [
+      "split/types/gamex86.dll_hlil_type_00019_block.txt"
+    ]
+  },
+  {
+    "classname": "ammo_rifleplasma",
+    "function": "sub_10037c80",
+    "index": 29,
+    "literal": "Rifle Plasma",
+    "sources": [
+      "split/types/gamex86.dll_hlil_type_00007_block.txt",
+      "split/types/gamex86.dll_hlil_type_00019_block.txt"
+    ]
+  },
+  {
+    "classname": "ammo_shells",
+    "function": "sub_1000bef0",
+    "index": 30,
+    "literal": "shells",
+    "sources": [
+      "split/types/gamex86.dll_hlil_type_00019_block.txt"
+    ]
+  },
+  {
+    "classname": "ammo_bullets",
+    "function": "sub_1000bef0",
+    "index": 31,
+    "literal": "bullets",
+    "sources": [
+      "split/types/gamex86.dll_hlil_type_00019_block.txt"
+    ]
+  },
+  {
+    "classname": "ammo_cells",
+    "function": "sub_1000bef0",
+    "index": 32,
+    "literal": "cells",
+    "sources": [
+      "split/types/gamex86.dll_hlil_type_00008_block.txt",
+      "split/types/gamex86.dll_hlil_type_00019_block.txt"
+    ]
+  },
+  {
+    "classname": "ammo_rockets",
+    "function": "sub_1000bef0",
+    "index": 33,
+    "literal": "Rockets",
+    "sources": [
+      "split/types/gamex86.dll_hlil_type_00008_block.txt"
+    ]
+  },
+  {
+    "classname": "ammo_slugs",
+    "function": "sub_1000bef0",
+    "index": 34,
+    "literal": "slugs",
+    "sources": [
+      "split/types/gamex86.dll_hlil_type_00019_block.txt"
+    ]
+  }
+]

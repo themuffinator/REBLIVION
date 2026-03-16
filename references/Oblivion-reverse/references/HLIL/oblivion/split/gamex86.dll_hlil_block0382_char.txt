@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 382 | Name: char */
+
+10046d38  char (* data_10046d38)[0x1f] = data_100487ec {"models/weapons/v_mine/tris.md2"}

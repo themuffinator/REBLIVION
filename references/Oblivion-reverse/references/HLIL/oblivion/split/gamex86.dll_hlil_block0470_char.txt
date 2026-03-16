@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 470 | Name: char */
+
+10047074  char (* data_10047074)[0x3d] = data_10048118 {"sound/weapons/plasma2/fire.wav s…"}

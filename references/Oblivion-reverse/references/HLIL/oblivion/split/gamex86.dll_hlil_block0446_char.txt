@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 446 | Name: char */
+
+10046f9c  char (* data_10046f9c)[0x13] = data_1004835c {"weapons/rg_hum.wav"}

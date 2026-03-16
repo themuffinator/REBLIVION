@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 297 | Name: char */
+
+10046988  char (* data_10046988)[0x21] = data_10048ee0 {"models/items/armor/body/tris.md2"}

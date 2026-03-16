@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 421 | Name: char */
+
+10046eb4  char (* data_10046eb4)[0x8] = data_100485a0 {"Rockets"}

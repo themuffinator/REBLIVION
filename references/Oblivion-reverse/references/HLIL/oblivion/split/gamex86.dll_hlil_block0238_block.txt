@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 238 | Name: block */
+
+10036db3          unimplemented  {fsub st0, qword [&data_10044140]}

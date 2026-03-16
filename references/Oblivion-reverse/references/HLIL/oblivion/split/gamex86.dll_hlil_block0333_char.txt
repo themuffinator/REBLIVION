@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 333 | Name: char */
+
+10046b68  char (* data_10046b68)[0xf] = data_10048c50 {"weapon_blaster"}

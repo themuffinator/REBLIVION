@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 428 | Name: char */
+
+10046ef0  char (* data_10046ef0)[0x9] = data_100462f0 {"HellFury"}

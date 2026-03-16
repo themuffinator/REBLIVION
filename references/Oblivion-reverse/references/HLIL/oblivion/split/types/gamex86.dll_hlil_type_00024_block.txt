@@ -1,0 +1,10 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Kind: type */
+/* Name: block */
+
+10040298  {
+10040298      [0x0] =  0x100402a8
+1004029c      [0x1] =  0x100402b0
+100402a0      [0x2] =  0x100402bc
+100402a4      [0x3] =  0x100402d0
+100402a8  }

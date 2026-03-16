@@ -1,0 +1,13 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 276 | Name: block */
+
+1003bb3d  {
+1003bb3d      [0x0] =  0x1003b5bb
+1003bb41      [0x1] =  0x1003b491
+1003bb45      [0x2] =  0x1003b4ac
+1003bb49      [0x3] =  0x1003b4f8
+1003bb4d      [0x4] =  0x1003b52f
+1003bb51      [0x5] =  0x1003b537
+1003bb55      [0x6] =  0x1003b56c
+1003bb59      [0x7] =  0x1003b5ff
+1003bb5d  }

@@ -1,0 +1,1594 @@
+[
+  {
+    "address": "0x10046970",
+    "declaration": "char (* data_10046970)[0x10] = data_10048f18 {\"item_armor_body\"}",
+    "symbol": "data_10046970",
+    "value": "item_armor_body",
+    "category": "item_descriptor",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0295_char.txt"
+  },
+  {
+    "address": "0x10046984",
+    "declaration": "char (* data_10046984)[0x12] = data_10048f04 {\"misc/ar1_pkup.wav\"}",
+    "symbol": "data_10046984",
+    "value": "misc/ar1_pkup.wav",
+    "category": "sound_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0296_char.txt"
+  },
+  {
+    "address": "0x10046988",
+    "declaration": "char (* data_10046988)[0x21] = data_10048ee0 {\"models/items/armor/body/tris.md2\"}",
+    "symbol": "data_10046988",
+    "value": "models/items/armor/body/tris.md2",
+    "category": "model_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0297_char.txt"
+  },
+  {
+    "address": "0x10046994",
+    "declaration": "char (* data_10046994)[0xc] = data_10048ed4 {\"i_bodyarmor\"}",
+    "symbol": "data_10046994",
+    "value": "i_bodyarmor",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0298_char.txt"
+  },
+  {
+    "address": "0x10046998",
+    "declaration": "char (* data_10046998)[0xb] = data_100461c4 {\"Body Armor\"}",
+    "symbol": "data_10046998",
+    "value": "Body Armor",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0299_char.txt"
+  },
+  {
+    "address": "0x100469b8",
+    "declaration": "char (* data_100469b8)[0x12] = data_10048ec0 {\"item_armor_combat\"}",
+    "symbol": "data_100469b8",
+    "value": "item_armor_combat",
+    "category": "item_descriptor",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0300_char.txt"
+  },
+  {
+    "address": "0x100469cc",
+    "declaration": "char (* data_100469cc)[0x12] = data_10048f04 {\"misc/ar1_pkup.wav\"}",
+    "symbol": "data_100469cc",
+    "value": "misc/ar1_pkup.wav",
+    "category": "sound_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0301_char.txt"
+  },
+  {
+    "address": "0x100469d0",
+    "declaration": "char (* data_100469d0)[0x23] = data_10048e9c {\"models/items/armor/combat/tris.m…\"}",
+    "symbol": "data_100469d0",
+    "value": "models/items/armor/combat/tris.m…",
+    "category": "model_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0302_char.txt"
+  },
+  {
+    "address": "0x100469dc",
+    "declaration": "char (* data_100469dc)[0xe] = data_10048e8c {\"i_combatarmor\"}",
+    "symbol": "data_100469dc",
+    "value": "i_combatarmor",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0303_char.txt"
+  },
+  {
+    "address": "0x100469e0",
+    "declaration": "char (* data_100469e0)[0xd] = data_100461d0 {\"Combat Armor\"}",
+    "symbol": "data_100469e0",
+    "value": "Combat Armor",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0304_char.txt"
+  },
+  {
+    "address": "0x10046a00",
+    "declaration": "char (* data_10046a00)[0x12] = data_10048e78 {\"item_armor_jacket\"}",
+    "symbol": "data_10046a00",
+    "value": "item_armor_jacket",
+    "category": "item_descriptor",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0305_char.txt"
+  },
+  {
+    "address": "0x10046a14",
+    "declaration": "char (* data_10046a14)[0x12] = data_10048f04 {\"misc/ar1_pkup.wav\"}",
+    "symbol": "data_10046a14",
+    "value": "misc/ar1_pkup.wav",
+    "category": "sound_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0306_char.txt"
+  },
+  {
+    "address": "0x10046a18",
+    "declaration": "char (* data_10046a18)[0x23] = data_10048e54 {\"models/items/armor/jacket/tris.m…\"}",
+    "symbol": "data_10046a18",
+    "value": "models/items/armor/jacket/tris.m…",
+    "category": "model_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0307_char.txt"
+  },
+  {
+    "address": "0x10046a24",
+    "declaration": "char (* data_10046a24)[0xe] = data_10048e44 {\"i_jacketarmor\"}",
+    "symbol": "data_10046a24",
+    "value": "i_jacketarmor",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0308_char.txt"
+  },
+  {
+    "address": "0x10046a28",
+    "declaration": "char (* data_10046a28)[0xd] = data_100461e0 {\"Jacket Armor\"}",
+    "symbol": "data_10046a28",
+    "value": "Jacket Armor",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0309_char.txt"
+  },
+  {
+    "address": "0x10046a48",
+    "declaration": "char (* data_10046a48)[0x11] = data_10048e30 {\"item_armor_shard\"}",
+    "symbol": "data_10046a48",
+    "value": "item_armor_shard",
+    "category": "item_descriptor",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0310_char.txt"
+  },
+  {
+    "address": "0x10046a5c",
+    "declaration": "char (* data_10046a5c)[0x12] = data_10048e1c {\"misc/ar2_pkup.wav\"}",
+    "symbol": "data_10046a5c",
+    "value": "misc/ar2_pkup.wav",
+    "category": "sound_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0311_char.txt"
+  },
+  {
+    "address": "0x10046a60",
+    "declaration": "char (* data_10046a60)[0x22] = data_10048df8 {\"models/items/armor/shard/tris.md…\"}",
+    "symbol": "data_10046a60",
+    "value": "models/items/armor/shard/tris.md…",
+    "category": "model_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0312_char.txt"
+  },
+  {
+    "address": "0x10046a6c",
+    "declaration": "char (* data_10046a6c)[0xe] = data_10048e44 {\"i_jacketarmor\"}",
+    "symbol": "data_10046a6c",
+    "value": "i_jacketarmor",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0313_char.txt"
+  },
+  {
+    "address": "0x10046a70",
+    "declaration": "char (* data_10046a70)[0xc] = data_10048dec {\"Armor Shard\"}",
+    "symbol": "data_10046a70",
+    "value": "Armor Shard",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0314_char.txt"
+  },
+  {
+    "address": "0x10046a90",
+    "declaration": "char (* data_10046a90)[0x12] = data_10048dd8 {\"item_power_screen\"}",
+    "symbol": "data_10046a90",
+    "value": "item_power_screen",
+    "category": "item_descriptor",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0315_char.txt"
+  },
+  {
+    "address": "0x10046aa4",
+    "declaration": "char (* data_10046aa4)[0x12] = data_10048dc4 {\"misc/ar3_pkup.wav\"}",
+    "symbol": "data_10046aa4",
+    "value": "misc/ar3_pkup.wav",
+    "category": "sound_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0316_char.txt"
+  },
+  {
+    "address": "0x10046aa8",
+    "declaration": "char (* data_10046aa8)[0x23] = data_10048da0 {\"models/items/armor/screen/tris.m…\"}",
+    "symbol": "data_10046aa8",
+    "value": "models/items/armor/screen/tris.m…",
+    "category": "model_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0317_char.txt"
+  },
+  {
+    "address": "0x10046ab4",
+    "declaration": "char (* data_10046ab4)[0xe] = data_10048d90 {\"i_powerscreen\"}",
+    "symbol": "data_10046ab4",
+    "value": "i_powerscreen",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0318_char.txt"
+  },
+  {
+    "address": "0x10046ab8",
+    "declaration": "char (* data_10046ab8)[0xd] = data_10048d80 {\"Power Screen\"}",
+    "symbol": "data_10046ab8",
+    "value": "Power Screen",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0319_char.txt"
+  },
+  {
+    "address": "0x10046ad8",
+    "declaration": "char (* data_10046ad8)[0x12] = data_10048d6c {\"item_power_shield\"}",
+    "symbol": "data_10046ad8",
+    "value": "item_power_shield",
+    "category": "item_descriptor",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0320_char.txt"
+  },
+  {
+    "address": "0x10046aec",
+    "declaration": "char (* data_10046aec)[0x12] = data_10048dc4 {\"misc/ar3_pkup.wav\"}",
+    "symbol": "data_10046aec",
+    "value": "misc/ar3_pkup.wav",
+    "category": "sound_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0321_char.txt"
+  },
+  {
+    "address": "0x10046af0",
+    "declaration": "char (* data_10046af0)[0x23] = data_10048d48 {\"models/items/armor/shield/tris.m…\"}",
+    "symbol": "data_10046af0",
+    "value": "models/items/armor/shield/tris.m…",
+    "category": "model_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0322_char.txt"
+  },
+  {
+    "address": "0x10046afc",
+    "declaration": "char (* data_10046afc)[0xe] = data_10048d38 {\"i_powershield\"}",
+    "symbol": "data_10046afc",
+    "value": "i_powershield",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0323_char.txt"
+  },
+  {
+    "address": "0x10046b00",
+    "declaration": "char (* data_10046b00)[0xd] = data_100461b4 {\"Power Shield\"}",
+    "symbol": "data_10046b00",
+    "value": "Power Shield",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0324_char.txt"
+  },
+  {
+    "address": "0x10046b1c",
+    "declaration": "char (* data_10046b1c)[0x20] = data_10048d18 {\"misc/power2.wav misc/power1.wav\"}",
+    "symbol": "data_10046b1c",
+    "value": "misc/power2.wav misc/power1.wav",
+    "category": "sound_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0325_char.txt"
+  },
+  {
+    "address": "0x10046b20",
+    "declaration": "char (* data_10046b20)[0x15] = data_10048d00 {\"weapon_plasma_pistol\"}",
+    "symbol": "data_10046b20",
+    "value": "weapon_plasma_pistol",
+    "category": "weapon_descriptor",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0326_char.txt"
+  },
+  {
+    "address": "0x10046b34",
+    "declaration": "char (* data_10046b34)[0x10] = data_10048cf0 {\"misc/w_pkup.wav\"}",
+    "symbol": "data_10046b34",
+    "value": "misc/w_pkup.wav",
+    "category": "sound_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0327_char.txt"
+  },
+  {
+    "address": "0x10046b40",
+    "declaration": "char (* data_10046b40)[0x21] = data_10048ccc {\"models/weapons/v_pistol/tris.md2\"}",
+    "symbol": "data_10046b40",
+    "value": "models/weapons/v_pistol/tris.md2",
+    "category": "model_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0328_char.txt"
+  },
+  {
+    "address": "0x10046b44",
+    "declaration": "char (* data_10046b44)[0x9] = data_10048cc0 {\"w_pistol\"}",
+    "symbol": "data_10046b44",
+    "value": "w_pistol",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0329_char.txt"
+  },
+  {
+    "address": "0x10046b48",
+    "declaration": "char (* data_10046b48)[0xe] = data_10048cb0 {\"Plasma Pistol\"}",
+    "symbol": "data_10046b48",
+    "value": "Plasma Pistol",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0330_char.txt"
+  },
+  {
+    "address": "0x10046b54",
+    "declaration": "char (* data_10046b54)[0xd] = data_10048ca0 {\"PistolPlasma\"}",
+    "symbol": "data_10046b54",
+    "value": "PistolPlasma",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0331_char.txt"
+  },
+  {
+    "address": "0x10046b64",
+    "declaration": "char (* data_10046b64)[0x3d] = data_10048c60 {\"sound/weapons/plasma1/fire.wav s…\"}",
+    "symbol": "data_10046b64",
+    "value": "sound/weapons/plasma1/fire.wav s…",
+    "category": "resource_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0332_char.txt"
+  },
+  {
+    "address": "0x10046b68",
+    "declaration": "char (* data_10046b68)[0xf] = data_10048c50 {\"weapon_blaster\"}",
+    "symbol": "data_10046b68",
+    "value": "weapon_blaster",
+    "category": "weapon_descriptor",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0333_char.txt"
+  },
+  {
+    "address": "0x10046b7c",
+    "declaration": "char (* data_10046b7c)[0x10] = data_10048cf0 {\"misc/w_pkup.wav\"}",
+    "symbol": "data_10046b7c",
+    "value": "misc/w_pkup.wav",
+    "category": "sound_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0334_char.txt"
+  },
+  {
+    "address": "0x10046b88",
+    "declaration": "char (* data_10046b88)[0x20] = data_10048c30 {\"models/weapons/v_blast/tris.md2\"}",
+    "symbol": "data_10046b88",
+    "value": "models/weapons/v_blast/tris.md2",
+    "category": "model_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0335_char.txt"
+  },
+  {
+    "address": "0x10046b8c",
+    "declaration": "char (* data_10046b8c)[0xa] = data_10048c24 {\"w_blaster\"}",
+    "symbol": "data_10046b8c",
+    "value": "w_blaster",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0336_char.txt"
+  },
+  {
+    "address": "0x10046b90",
+    "declaration": "char (* data_10046b90)[0x8] = data_10048c1c {\"Blaster\"}",
+    "symbol": "data_10046b90",
+    "value": "Blaster",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0337_char.txt"
+  },
+  {
+    "address": "0x10046bac",
+    "declaration": "char (* data_10046bac)[0x25] = data_10048bf4 {\"weapons/blastf1a.wav misc/lasfly…\"}",
+    "symbol": "data_10046bac",
+    "value": "weapons/blastf1a.wav misc/lasfly…",
+    "category": "weapon_descriptor",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0338_char.txt"
+  },
+  {
+    "address": "0x10046bb0",
+    "declaration": "char (* data_10046bb0)[0xf] = data_10048be4 {\"weapon_shotgun\"}",
+    "symbol": "data_10046bb0",
+    "value": "weapon_shotgun",
+    "category": "weapon_descriptor",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0339_char.txt"
+  },
+  {
+    "address": "0x10046bc4",
+    "declaration": "char (* data_10046bc4)[0x10] = data_10048cf0 {\"misc/w_pkup.wav\"}",
+    "symbol": "data_10046bc4",
+    "value": "misc/w_pkup.wav",
+    "category": "sound_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0340_char.txt"
+  },
+  {
+    "address": "0x10046bc8",
+    "declaration": "char (* data_10046bc8)[0x20] = data_10048bc4 {\"models/weapons/g_shotg/tris.md2\"}",
+    "symbol": "data_10046bc8",
+    "value": "models/weapons/g_shotg/tris.md2",
+    "category": "model_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0341_char.txt"
+  },
+  {
+    "address": "0x10046bd0",
+    "declaration": "char (* data_10046bd0)[0x20] = data_10048ba4 {\"models/weapons/v_shotg/tris.md2\"}",
+    "symbol": "data_10046bd0",
+    "value": "models/weapons/v_shotg/tris.md2",
+    "category": "model_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0342_char.txt"
+  },
+  {
+    "address": "0x10046bd4",
+    "declaration": "char (* data_10046bd4)[0xa] = data_10048b98 {\"w_shotgun\"}",
+    "symbol": "data_10046bd4",
+    "value": "w_shotgun",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0343_char.txt"
+  },
+  {
+    "address": "0x10046bd8",
+    "declaration": "char (* data_10046bd8)[0x8] = data_10048b90 {\"Shotgun\"}",
+    "symbol": "data_10046bd8",
+    "value": "Shotgun",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0344_char.txt"
+  },
+  {
+    "address": "0x10046be4",
+    "declaration": "char (* data_10046be4)[0x7] = data_10048b88 {\"Shells\"}",
+    "symbol": "data_10046be4",
+    "value": "Shells",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0345_char.txt"
+  },
+  {
+    "address": "0x10046bf4",
+    "declaration": "char (* data_10046bf4)[0x2a] = data_10048b5c {\"weapons/shotgf1b.wav weapons/sho…\"}",
+    "symbol": "data_10046bf4",
+    "value": "weapons/shotgf1b.wav weapons/sho…",
+    "category": "weapon_descriptor",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0346_char.txt"
+  },
+  {
+    "address": "0x10046bf8",
+    "declaration": "char (* data_10046bf8)[0x14] = data_10048b48 {\"weapon_supershotgun\"}",
+    "symbol": "data_10046bf8",
+    "value": "weapon_supershotgun",
+    "category": "weapon_descriptor",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0347_char.txt"
+  },
+  {
+    "address": "0x10046c0c",
+    "declaration": "char (* data_10046c0c)[0x10] = data_10048cf0 {\"misc/w_pkup.wav\"}",
+    "symbol": "data_10046c0c",
+    "value": "misc/w_pkup.wav",
+    "category": "sound_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0348_char.txt"
+  },
+  {
+    "address": "0x10046c10",
+    "declaration": "char (* data_10046c10)[0x21] = data_10048b24 {\"models/weapons/g_shotg2/tris.md2\"}",
+    "symbol": "data_10046c10",
+    "value": "models/weapons/g_shotg2/tris.md2",
+    "category": "model_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0349_char.txt"
+  },
+  {
+    "address": "0x10046c18",
+    "declaration": "char (* data_10046c18)[0x21] = data_10048b00 {\"models/weapons/v_shotg2/tris.md2\"}",
+    "symbol": "data_10046c18",
+    "value": "models/weapons/v_shotg2/tris.md2",
+    "category": "model_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0350_char.txt"
+  },
+  {
+    "address": "0x10046c1c",
+    "declaration": "char (* data_10046c1c)[0xb] = data_10048af4 {\"w_sshotgun\"}",
+    "symbol": "data_10046c1c",
+    "value": "w_sshotgun",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0351_char.txt"
+  },
+  {
+    "address": "0x10046c20",
+    "declaration": "char (* data_10046c20)[0xe] = data_10048ae4 {\"Super Shotgun\"}",
+    "symbol": "data_10046c20",
+    "value": "Super Shotgun",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0352_char.txt"
+  },
+  {
+    "address": "0x10046c2c",
+    "declaration": "char (* data_10046c2c)[0x7] = data_10048b88 {\"Shells\"}",
+    "symbol": "data_10046c2c",
+    "value": "Shells",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0353_char.txt"
+  },
+  {
+    "address": "0x10046c3c",
+    "declaration": "char (* data_10046c3c)[0x15] = data_10048acc {\"weapons/sshotf1b.wav\"}",
+    "symbol": "data_10046c3c",
+    "value": "weapons/sshotf1b.wav",
+    "category": "sound_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0354_char.txt"
+  },
+  {
+    "address": "0x10046c40",
+    "declaration": "char (* data_10046c40)[0x12] = data_10048ab8 {\"weapon_machinegun\"}",
+    "symbol": "data_10046c40",
+    "value": "weapon_machinegun",
+    "category": "weapon_descriptor",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0355_char.txt"
+  },
+  {
+    "address": "0x10046c54",
+    "declaration": "char (* data_10046c54)[0x10] = data_10048cf0 {\"misc/w_pkup.wav\"}",
+    "symbol": "data_10046c54",
+    "value": "misc/w_pkup.wav",
+    "category": "sound_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0356_char.txt"
+  },
+  {
+    "address": "0x10046c58",
+    "declaration": "char (* data_10046c58)[0x20] = data_10048a98 {\"models/weapons/g_machn/tris.md2\"}",
+    "symbol": "data_10046c58",
+    "value": "models/weapons/g_machn/tris.md2",
+    "category": "model_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0357_char.txt"
+  },
+  {
+    "address": "0x10046c60",
+    "declaration": "char (* data_10046c60)[0x20] = data_10048a78 {\"models/weapons/v_machn/tris.md2\"}",
+    "symbol": "data_10046c60",
+    "value": "models/weapons/v_machn/tris.md2",
+    "category": "model_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0358_char.txt"
+  },
+  {
+    "address": "0x10046c64",
+    "declaration": "char (* data_10046c64)[0xd] = data_10048a68 {\"w_machinegun\"}",
+    "symbol": "data_10046c64",
+    "value": "w_machinegun",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0359_char.txt"
+  },
+  {
+    "address": "0x10046c68",
+    "declaration": "char (* data_10046c68)[0xb] = data_10046370 {\"Machinegun\"}",
+    "symbol": "data_10046c68",
+    "value": "Machinegun",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0360_char.txt"
+  },
+  {
+    "address": "0x10046c74",
+    "declaration": "char (* data_10046c74)[0x8] = data_10048a60 {\"Bullets\"}",
+    "symbol": "data_10046c74",
+    "value": "Bullets",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0361_char.txt"
+  },
+  {
+    "address": "0x10046c84",
+    "declaration": "char (* data_10046c84)[0x69] = data_100489f4 {\"weapons/machgf1b.wav weapons/mac…\"}",
+    "symbol": "data_10046c84",
+    "value": "weapons/machgf1b.wav weapons/mac…",
+    "category": "weapon_descriptor",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0362_char.txt"
+  },
+  {
+    "address": "0x10046c88",
+    "declaration": "char (* data_10046c88)[0x10] = data_100489e4 {\"weapon_chaingun\"}",
+    "symbol": "data_10046c88",
+    "value": "weapon_chaingun",
+    "category": "weapon_descriptor",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0363_char.txt"
+  },
+  {
+    "address": "0x10046c9c",
+    "declaration": "char (* data_10046c9c)[0x10] = data_10048cf0 {\"misc/w_pkup.wav\"}",
+    "symbol": "data_10046c9c",
+    "value": "misc/w_pkup.wav",
+    "category": "sound_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0364_char.txt"
+  },
+  {
+    "address": "0x10046ca0",
+    "declaration": "char (* data_10046ca0)[0x20] = data_100489c4 {\"models/weapons/g_chain/tris.md2\"}",
+    "symbol": "data_10046ca0",
+    "value": "models/weapons/g_chain/tris.md2",
+    "category": "model_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0365_char.txt"
+  },
+  {
+    "address": "0x10046ca8",
+    "declaration": "char (* data_10046ca8)[0x20] = data_100489a4 {\"models/weapons/v_chain/tris.md2\"}",
+    "symbol": "data_10046ca8",
+    "value": "models/weapons/v_chain/tris.md2",
+    "category": "model_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0366_char.txt"
+  },
+  {
+    "address": "0x10046cac",
+    "declaration": "char (* data_10046cac)[0xb] = data_10048998 {\"w_chaingun\"}",
+    "symbol": "data_10046cac",
+    "value": "w_chaingun",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0367_char.txt"
+  },
+  {
+    "address": "0x10046cb0",
+    "declaration": "char (* data_10046cb0)[0x9] = data_1004898c {\"Chaingun\"}",
+    "symbol": "data_10046cb0",
+    "value": "Chaingun",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0368_char.txt"
+  },
+  {
+    "address": "0x10046cbc",
+    "declaration": "char (* data_10046cbc)[0x8] = data_10048a60 {\"Bullets\"}",
+    "symbol": "data_10046cbc",
+    "value": "Bullets",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0369_char.txt"
+  },
+  {
+    "address": "0x10046ccc",
+    "declaration": "char (* data_10046ccc)[0x55] = data_10048934 {\"weapons/chngnu1a.wav weapons/chn…\"}",
+    "symbol": "data_10046ccc",
+    "value": "weapons/chngnu1a.wav weapons/chn…",
+    "category": "weapon_descriptor",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0370_char.txt"
+  },
+  {
+    "address": "0x10046cd0",
+    "declaration": "char (* data_10046cd0)[0xe] = data_10048924 {\"ammo_grenades\"}",
+    "symbol": "data_10046cd0",
+    "value": "ammo_grenades",
+    "category": "ammo_descriptor",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0371_char.txt"
+  },
+  {
+    "address": "0x10046ce4",
+    "declaration": "char (* data_10046ce4)[0x11] = data_10048910 {\"misc/am_pkup.wav\"}",
+    "symbol": "data_10046ce4",
+    "value": "misc/am_pkup.wav",
+    "category": "sound_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0372_char.txt"
+  },
+  {
+    "address": "0x10046ce8",
+    "declaration": "char (* data_10046ce8)[0x2b] = data_100488e4 {\"models/items/ammo/grenades/mediu…\"}",
+    "symbol": "data_10046ce8",
+    "value": "models/items/ammo/grenades/mediu…",
+    "category": "model_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0373_char.txt"
+  },
+  {
+    "address": "0x10046cf0",
+    "declaration": "char (* data_10046cf0)[0x21] = data_100488c0 {\"models/weapons/v_handgr/tris.md2\"}",
+    "symbol": "data_10046cf0",
+    "value": "models/weapons/v_handgr/tris.md2",
+    "category": "model_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0374_char.txt"
+  },
+  {
+    "address": "0x10046cf4",
+    "declaration": "char (* data_10046cf4)[0xb] = data_100488b4 {\"a_grenades\"}",
+    "symbol": "data_10046cf4",
+    "value": "a_grenades",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0375_char.txt"
+  },
+  {
+    "address": "0x10046cf8",
+    "declaration": "char (* data_10046cf8)[0x9] = data_10046384 {\"Grenades\"}",
+    "symbol": "data_10046cf8",
+    "value": "Grenades",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0376_char.txt"
+  },
+  {
+    "address": "0x10046d04",
+    "declaration": "char (* data_10046d04)[0x9] = data_100488a8 {\"grenades\"}",
+    "symbol": "data_10046d04",
+    "value": "grenades",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0377_char.txt"
+  },
+  {
+    "address": "0x10046d14",
+    "declaration": "char (* data_10046d14)[0x6a] = data_1004883c {\"weapons/hgrent1a.wav weapons/hgr…\"}",
+    "symbol": "data_10046d14",
+    "value": "weapons/hgrent1a.wav weapons/hgr…",
+    "category": "weapon_descriptor",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0378_char.txt"
+  },
+  {
+    "address": "0x10046d18",
+    "declaration": "char (* data_10046d18)[0xb] = data_10048830 {\"ammo_mines\"}",
+    "symbol": "data_10046d18",
+    "value": "ammo_mines",
+    "category": "ammo_descriptor",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0379_char.txt"
+  },
+  {
+    "address": "0x10046d2c",
+    "declaration": "char (* data_10046d2c)[0x11] = data_10048910 {\"misc/am_pkup.wav\"}",
+    "symbol": "data_10046d2c",
+    "value": "misc/am_pkup.wav",
+    "category": "sound_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0380_char.txt"
+  },
+  {
+    "address": "0x10046d30",
+    "declaration": "char (* data_10046d30)[0x21] = data_1004880c {\"models/items/ammo/mines/tris.md2\"}",
+    "symbol": "data_10046d30",
+    "value": "models/items/ammo/mines/tris.md2",
+    "category": "model_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0381_char.txt"
+  },
+  {
+    "address": "0x10046d38",
+    "declaration": "char (* data_10046d38)[0x1f] = data_100487ec {\"models/weapons/v_mine/tris.md2\"}",
+    "symbol": "data_10046d38",
+    "value": "models/weapons/v_mine/tris.md2",
+    "category": "model_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0382_char.txt"
+  },
+  {
+    "address": "0x10046d3c",
+    "declaration": "char (* data_10046d3c)[0x8] = data_100487e4 {\"a_mines\"}",
+    "symbol": "data_10046d3c",
+    "value": "a_mines",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0383_char.txt"
+  },
+  {
+    "address": "0x10046d40",
+    "declaration": "char (* data_10046d40)[0x6] = data_1004637c {\"Mines\"}",
+    "symbol": "data_10046d40",
+    "value": "Mines",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0384_char.txt"
+  },
+  {
+    "address": "0x10046d4c",
+    "declaration": "char (* data_10046d4c)[0x6] = data_1004637c {\"Mines\"}",
+    "symbol": "data_10046d4c",
+    "value": "Mines",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0385_char.txt"
+  },
+  {
+    "address": "0x10046d5c",
+    "declaration": "char (* data_10046d5c)[0x6a] = data_1004883c {\"weapons/hgrent1a.wav weapons/hgr…\"}",
+    "symbol": "data_10046d5c",
+    "value": "weapons/hgrent1a.wav weapons/hgr…",
+    "category": "weapon_descriptor",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0386_char.txt"
+  },
+  {
+    "address": "0x10046d60",
+    "declaration": "char (* data_10046d60)[0xd] = data_100487d4 {\"ammo_detpack\"}",
+    "symbol": "data_10046d60",
+    "value": "ammo_detpack",
+    "category": "ammo_descriptor",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0387_char.txt"
+  },
+  {
+    "address": "0x10046d74",
+    "declaration": "char (* data_10046d74)[0x11] = data_10048910 {\"misc/am_pkup.wav\"}",
+    "symbol": "data_10046d74",
+    "value": "misc/am_pkup.wav",
+    "category": "sound_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0388_char.txt"
+  },
+  {
+    "address": "0x10046d78",
+    "declaration": "char (* data_10046d78)[0x23] = data_100487b0 {\"models/items/ammo/detpack/tris.m…\"}",
+    "symbol": "data_10046d78",
+    "value": "models/items/ammo/detpack/tris.m…",
+    "category": "model_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0389_char.txt"
+  },
+  {
+    "address": "0x10046d80",
+    "declaration": "char (* data_10046d80)[0x22] = data_1004878c {\"models/weapons/v_detpack/tris.md…\"}",
+    "symbol": "data_10046d80",
+    "value": "models/weapons/v_detpack/tris.md…",
+    "category": "model_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0390_char.txt"
+  },
+  {
+    "address": "0x10046d84",
+    "declaration": "char (* data_10046d84)[0xa] = data_10048780 {\"a_detpack\"}",
+    "symbol": "data_10046d84",
+    "value": "a_detpack",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0391_char.txt"
+  },
+  {
+    "address": "0x10046d88",
+    "declaration": "char (* data_10046d88)[0x10] = data_10046320 {\"Detonation Pack\"}",
+    "symbol": "data_10046d88",
+    "value": "Detonation Pack",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0392_char.txt"
+  },
+  {
+    "address": "0x10046d94",
+    "declaration": "char (* data_10046d94)[0x10] = data_10046320 {\"Detonation Pack\"}",
+    "symbol": "data_10046d94",
+    "value": "Detonation Pack",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0393_char.txt"
+  },
+  {
+    "address": "0x10046da4",
+    "declaration": "char (* data_10046da4)[0x6a] = data_1004883c {\"weapons/hgrent1a.wav weapons/hgr…\"}",
+    "symbol": "data_10046da4",
+    "value": "weapons/hgrent1a.wav weapons/hgr…",
+    "category": "weapon_descriptor",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0394_char.txt"
+  },
+  {
+    "address": "0x10046da8",
+    "declaration": "char (* data_10046da8)[0x9] = data_10048774 {\"ammo_dod\"}",
+    "symbol": "data_10046da8",
+    "value": "ammo_dod",
+    "category": "ammo_descriptor",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0395_char.txt"
+  },
+  {
+    "address": "0x10046dbc",
+    "declaration": "char (* data_10046dbc)[0x11] = data_10048910 {\"misc/am_pkup.wav\"}",
+    "symbol": "data_10046dbc",
+    "value": "misc/am_pkup.wav",
+    "category": "sound_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0396_char.txt"
+  },
+  {
+    "address": "0x10046dc0",
+    "declaration": "char (* data_10046dc0)[0x1e] = data_10048754 {\"models/weapons/g_dod/tris.md2\"}",
+    "symbol": "data_10046dc0",
+    "value": "models/weapons/g_dod/tris.md2",
+    "category": "model_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0397_char.txt"
+  },
+  {
+    "address": "0x10046dc8",
+    "declaration": "char (* data_10046dc8)[0x1e] = data_10048734 {\"models/weapons/v_dod/tris.md2\"}",
+    "symbol": "data_10046dc8",
+    "value": "models/weapons/v_dod/tris.md2",
+    "category": "model_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0398_char.txt"
+  },
+  {
+    "address": "0x10046dcc",
+    "declaration": "char (* data_10046dcc)[0x6] = data_1004872c {\"a_dod\"}",
+    "symbol": "data_10046dcc",
+    "value": "a_dod",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0399_char.txt"
+  },
+  {
+    "address": "0x10046dec",
+    "declaration": "char (* data_10046dec)[0x25] = data_10048700 {\"sound/dod/hum.wave sound/dod/dod…\"}",
+    "symbol": "data_10046dec",
+    "value": "sound/dod/hum.wave sound/dod/dod…",
+    "category": "resource_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0400_char.txt"
+  },
+  {
+    "address": "0x10046df0",
+    "declaration": "char (* data_10046df0)[0xb] = data_100486f4 {\"weapon_dod\"}",
+    "symbol": "data_10046df0",
+    "value": "weapon_dod",
+    "category": "weapon_descriptor",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0401_char.txt"
+  },
+  {
+    "address": "0x10046e04",
+    "declaration": "char (* data_10046e04)[0x11] = data_10048910 {\"misc/am_pkup.wav\"}",
+    "symbol": "data_10046e04",
+    "value": "misc/am_pkup.wav",
+    "category": "sound_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0402_char.txt"
+  },
+  {
+    "address": "0x10046e08",
+    "declaration": "char (* data_10046e08)[0x1e] = data_10048754 {\"models/weapons/g_dod/tris.md2\"}",
+    "symbol": "data_10046e08",
+    "value": "models/weapons/g_dod/tris.md2",
+    "category": "model_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0403_char.txt"
+  },
+  {
+    "address": "0x10046e10",
+    "declaration": "char (* data_10046e10)[0x1e] = data_10048734 {\"models/weapons/v_dod/tris.md2\"}",
+    "symbol": "data_10046e10",
+    "value": "models/weapons/v_dod/tris.md2",
+    "category": "model_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0404_char.txt"
+  },
+  {
+    "address": "0x10046e14",
+    "declaration": "char (* data_10046e14)[0x6] = data_1004872c {\"a_dod\"}",
+    "symbol": "data_10046e14",
+    "value": "a_dod",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0405_char.txt"
+  },
+  {
+    "address": "0x10046e34",
+    "declaration": "char (* data_10046e34)[0x25] = data_10048700 {\"sound/dod/hum.wave sound/dod/dod…\"}",
+    "symbol": "data_10046e34",
+    "value": "sound/dod/hum.wave sound/dod/dod…",
+    "category": "resource_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0406_char.txt"
+  },
+  {
+    "address": "0x10046e38",
+    "declaration": "char (* data_10046e38)[0x17] = data_100486dc {\"weapon_grenadelauncher\"}",
+    "symbol": "data_10046e38",
+    "value": "weapon_grenadelauncher",
+    "category": "weapon_descriptor",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0407_char.txt"
+  },
+  {
+    "address": "0x10046e4c",
+    "declaration": "char (* data_10046e4c)[0x10] = data_10048cf0 {\"misc/w_pkup.wav\"}",
+    "symbol": "data_10046e4c",
+    "value": "misc/w_pkup.wav",
+    "category": "sound_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0408_char.txt"
+  },
+  {
+    "address": "0x10046e50",
+    "declaration": "char (* data_10046e50)[0x21] = data_100486b8 {\"models/weapons/g_launch/tris.md2\"}",
+    "symbol": "data_10046e50",
+    "value": "models/weapons/g_launch/tris.md2",
+    "category": "model_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0409_char.txt"
+  },
+  {
+    "address": "0x10046e58",
+    "declaration": "char (* data_10046e58)[0x21] = data_10048694 {\"models/weapons/v_launch/tris.md2\"}",
+    "symbol": "data_10046e58",
+    "value": "models/weapons/v_launch/tris.md2",
+    "category": "model_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0410_char.txt"
+  },
+  {
+    "address": "0x10046e5c",
+    "declaration": "char (* data_10046e5c)[0xc] = data_10048688 {\"w_glauncher\"}",
+    "symbol": "data_10046e5c",
+    "value": "w_glauncher",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0411_char.txt"
+  },
+  {
+    "address": "0x10046e60",
+    "declaration": "char (* data_10046e60)[0x11] = data_10048674 {\"Grenade Launcher\"}",
+    "symbol": "data_10046e60",
+    "value": "Grenade Launcher",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0412_char.txt"
+  },
+  {
+    "address": "0x10046e6c",
+    "declaration": "char (* data_10046e6c)[0x9] = data_10046384 {\"Grenades\"}",
+    "symbol": "data_10046e6c",
+    "value": "Grenades",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0413_char.txt"
+  },
+  {
+    "address": "0x10046e7c",
+    "declaration": "char (* data_10046e7c)[0x5f] = data_10048614 {\"models/objects/grenade/tris.md2 …\"}",
+    "symbol": "data_10046e7c",
+    "value": "models/objects/grenade/tris.md2 …",
+    "category": "model_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0414_char.txt"
+  },
+  {
+    "address": "0x10046e80",
+    "declaration": "char (* data_10046e80)[0x16] = data_100485fc {\"weapon_rocketlauncher\"}",
+    "symbol": "data_10046e80",
+    "value": "weapon_rocketlauncher",
+    "category": "weapon_descriptor",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0415_char.txt"
+  },
+  {
+    "address": "0x10046e94",
+    "declaration": "char (* data_10046e94)[0x10] = data_10048cf0 {\"misc/w_pkup.wav\"}",
+    "symbol": "data_10046e94",
+    "value": "misc/w_pkup.wav",
+    "category": "sound_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0416_char.txt"
+  },
+  {
+    "address": "0x10046e98",
+    "declaration": "char (* data_10046e98)[0x21] = data_100485d8 {\"models/weapons/g_rocket/tris.md2\"}",
+    "symbol": "data_10046e98",
+    "value": "models/weapons/g_rocket/tris.md2",
+    "category": "model_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0417_char.txt"
+  },
+  {
+    "address": "0x10046ea0",
+    "declaration": "char (* data_10046ea0)[0x21] = data_100485b4 {\"models/weapons/v_rocket/tris.md2\"}",
+    "symbol": "data_10046ea0",
+    "value": "models/weapons/v_rocket/tris.md2",
+    "category": "model_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0418_char.txt"
+  },
+  {
+    "address": "0x10046ea4",
+    "declaration": "char (* data_10046ea4)[0xc] = data_100485a8 {\"w_rlauncher\"}",
+    "symbol": "data_10046ea4",
+    "value": "w_rlauncher",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0419_char.txt"
+  },
+  {
+    "address": "0x10046ea8",
+    "declaration": "char (* data_10046ea8)[0x10] = data_100462fc {\"Rocket Launcher\"}",
+    "symbol": "data_10046ea8",
+    "value": "Rocket Launcher",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0420_char.txt"
+  },
+  {
+    "address": "0x10046eb4",
+    "declaration": "char (* data_10046eb4)[0x8] = data_100485a0 {\"Rockets\"}",
+    "symbol": "data_10046eb4",
+    "value": "Rockets",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0421_char.txt"
+  },
+  {
+    "address": "0x10046ec4",
+    "declaration": "char (* data_10046ec4)[0x7d] = data_10048520 {\"models/objects/rocket/tris.md2 w…\"}",
+    "symbol": "data_10046ec4",
+    "value": "models/objects/rocket/tris.md2 w…",
+    "category": "model_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0422_char.txt"
+  },
+  {
+    "address": "0x10046ec8",
+    "declaration": "char (* data_10046ec8)[0x10] = data_10048510 {\"weapon_hellfury\"}",
+    "symbol": "data_10046ec8",
+    "value": "weapon_hellfury",
+    "category": "weapon_descriptor",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0423_char.txt"
+  },
+  {
+    "address": "0x10046edc",
+    "declaration": "char (* data_10046edc)[0x10] = data_10048cf0 {\"misc/w_pkup.wav\"}",
+    "symbol": "data_10046edc",
+    "value": "misc/w_pkup.wav",
+    "category": "sound_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0424_char.txt"
+  },
+  {
+    "address": "0x10046ee0",
+    "declaration": "char (* data_10046ee0)[0x23] = data_100484ec {\"models/weapons/g_hellfury/tris.m…\"}",
+    "symbol": "data_10046ee0",
+    "value": "models/weapons/g_hellfury/tris.m…",
+    "category": "model_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0425_char.txt"
+  },
+  {
+    "address": "0x10046ee8",
+    "declaration": "char (* data_10046ee8)[0x23] = data_100484c8 {\"models/weapons/v_hellfury/tris.m…\"}",
+    "symbol": "data_10046ee8",
+    "value": "models/weapons/v_hellfury/tris.m…",
+    "category": "model_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0426_char.txt"
+  },
+  {
+    "address": "0x10046eec",
+    "declaration": "char (* data_10046eec)[0xb] = data_100484bc {\"w_hellfury\"}",
+    "symbol": "data_10046eec",
+    "value": "w_hellfury",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0427_char.txt"
+  },
+  {
+    "address": "0x10046ef0",
+    "declaration": "char (* data_10046ef0)[0x9] = data_100462f0 {\"HellFury\"}",
+    "symbol": "data_10046ef0",
+    "value": "HellFury",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0428_char.txt"
+  },
+  {
+    "address": "0x10046efc",
+    "declaration": "char (* data_10046efc)[0x8] = data_100485a0 {\"Rockets\"}",
+    "symbol": "data_10046efc",
+    "value": "Rockets",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0429_char.txt"
+  },
+  {
+    "address": "0x10046f0c",
+    "declaration": "char (* data_10046f0c)[0x7d] = data_10048520 {\"models/objects/rocket/tris.md2 w…\"}",
+    "symbol": "data_10046f0c",
+    "value": "models/objects/rocket/tris.md2 w…",
+    "category": "model_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0430_char.txt"
+  },
+  {
+    "address": "0x10046f10",
+    "declaration": "char (* data_10046f10)[0x14] = data_100484a8 {\"weapon_hyperblaster\"}",
+    "symbol": "data_10046f10",
+    "value": "weapon_hyperblaster",
+    "category": "weapon_descriptor",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0431_char.txt"
+  },
+  {
+    "address": "0x10046f24",
+    "declaration": "char (* data_10046f24)[0x10] = data_10048cf0 {\"misc/w_pkup.wav\"}",
+    "symbol": "data_10046f24",
+    "value": "misc/w_pkup.wav",
+    "category": "sound_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0432_char.txt"
+  },
+  {
+    "address": "0x10046f28",
+    "declaration": "char (* data_10046f28)[0x21] = data_10048484 {\"models/weapons/g_hyperb/tris.md2\"}",
+    "symbol": "data_10046f28",
+    "value": "models/weapons/g_hyperb/tris.md2",
+    "category": "model_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0433_char.txt"
+  },
+  {
+    "address": "0x10046f30",
+    "declaration": "char (* data_10046f30)[0x21] = data_10048460 {\"models/weapons/v_hyperb/tris.md2\"}",
+    "symbol": "data_10046f30",
+    "value": "models/weapons/v_hyperb/tris.md2",
+    "category": "model_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0434_char.txt"
+  },
+  {
+    "address": "0x10046f34",
+    "declaration": "char (* data_10046f34)[0xf] = data_10048450 {\"w_hyperblaster\"}",
+    "symbol": "data_10046f34",
+    "value": "w_hyperblaster",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0435_char.txt"
+  },
+  {
+    "address": "0x10046f38",
+    "declaration": "char (* data_10046f38)[0xd] = data_10048440 {\"HyperBlaster\"}",
+    "symbol": "data_10046f38",
+    "value": "HyperBlaster",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0436_char.txt"
+  },
+  {
+    "address": "0x10046f44",
+    "declaration": "char (* data_10046f44)[0x6] = data_1004662c {\"Cells\"}",
+    "symbol": "data_10046f44",
+    "value": "Cells",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0437_char.txt"
+  },
+  {
+    "address": "0x10046f54",
+    "declaration": "char (* data_10046f54)[0x64] = data_100483dc {\"weapons/hyprbu1a.wav weapons/hyp…\"}",
+    "symbol": "data_10046f54",
+    "value": "weapons/hyprbu1a.wav weapons/hyp…",
+    "category": "weapon_descriptor",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0438_char.txt"
+  },
+  {
+    "address": "0x10046f58",
+    "declaration": "char (* data_10046f58)[0xf] = data_100483cc {\"weapon_railgun\"}",
+    "symbol": "data_10046f58",
+    "value": "weapon_railgun",
+    "category": "weapon_descriptor",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0439_char.txt"
+  },
+  {
+    "address": "0x10046f6c",
+    "declaration": "char (* data_10046f6c)[0x10] = data_10048cf0 {\"misc/w_pkup.wav\"}",
+    "symbol": "data_10046f6c",
+    "value": "misc/w_pkup.wav",
+    "category": "sound_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0440_char.txt"
+  },
+  {
+    "address": "0x10046f70",
+    "declaration": "char (* data_10046f70)[0x1f] = data_100483ac {\"models/weapons/g_rail/tris.md2\"}",
+    "symbol": "data_10046f70",
+    "value": "models/weapons/g_rail/tris.md2",
+    "category": "model_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0441_char.txt"
+  },
+  {
+    "address": "0x10046f78",
+    "declaration": "char (* data_10046f78)[0x1f] = data_1004838c {\"models/weapons/v_rail/tris.md2\"}",
+    "symbol": "data_10046f78",
+    "value": "models/weapons/v_rail/tris.md2",
+    "category": "model_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0442_char.txt"
+  },
+  {
+    "address": "0x10046f7c",
+    "declaration": "char (* data_10046f7c)[0xa] = data_10048380 {\"w_railgun\"}",
+    "symbol": "data_10046f7c",
+    "value": "w_railgun",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0443_char.txt"
+  },
+  {
+    "address": "0x10046f80",
+    "declaration": "char (* data_10046f80)[0x8] = data_10048378 {\"Railgun\"}",
+    "symbol": "data_10046f80",
+    "value": "Railgun",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0444_char.txt"
+  },
+  {
+    "address": "0x10046f8c",
+    "declaration": "char (* data_10046f8c)[0x6] = data_10048370 {\"Slugs\"}",
+    "symbol": "data_10046f8c",
+    "value": "Slugs",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0445_char.txt"
+  },
+  {
+    "address": "0x10046f9c",
+    "declaration": "char (* data_10046f9c)[0x13] = data_1004835c {\"weapons/rg_hum.wav\"}",
+    "symbol": "data_10046f9c",
+    "value": "weapons/rg_hum.wav",
+    "category": "sound_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0446_char.txt"
+  },
+  {
+    "address": "0x10046fa0",
+    "declaration": "char (* data_10046fa0)[0xb] = data_10048350 {\"weapon_bfg\"}",
+    "symbol": "data_10046fa0",
+    "value": "weapon_bfg",
+    "category": "weapon_descriptor",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0447_char.txt"
+  },
+  {
+    "address": "0x10046fb4",
+    "declaration": "char (* data_10046fb4)[0x10] = data_10048cf0 {\"misc/w_pkup.wav\"}",
+    "symbol": "data_10046fb4",
+    "value": "misc/w_pkup.wav",
+    "category": "sound_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0448_char.txt"
+  },
+  {
+    "address": "0x10046fb8",
+    "declaration": "char (* data_10046fb8)[0x1e] = data_10048330 {\"models/weapons/g_bfg/tris.md2\"}",
+    "symbol": "data_10046fb8",
+    "value": "models/weapons/g_bfg/tris.md2",
+    "category": "model_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0449_char.txt"
+  },
+  {
+    "address": "0x10046fc0",
+    "declaration": "char (* data_10046fc0)[0x1e] = data_10048310 {\"models/weapons/v_bfg/tris.md2\"}",
+    "symbol": "data_10046fc0",
+    "value": "models/weapons/v_bfg/tris.md2",
+    "category": "model_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0450_char.txt"
+  },
+  {
+    "address": "0x10046fc4",
+    "declaration": "char (* data_10046fc4)[0x6] = data_10048308 {\"w_bfg\"}",
+    "symbol": "data_10046fc4",
+    "value": "w_bfg",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0451_char.txt"
+  },
+  {
+    "address": "0x10046fc8",
+    "declaration": "char (* data_10046fc8)[0x7] = data_10046330 {\"BFG10K\"}",
+    "symbol": "data_10046fc8",
+    "value": "BFG10K",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0452_char.txt"
+  },
+  {
+    "address": "0x10046fd4",
+    "declaration": "char (* data_10046fd4)[0x6] = data_1004662c {\"Cells\"}",
+    "symbol": "data_10046fd4",
+    "value": "Cells",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0453_char.txt"
+  },
+  {
+    "address": "0x10046fe4",
+    "declaration": "char (* data_10046fe4)[0x8c] = data_1004827c {\"sprites/s_bfg1.sp2 sprites/s_bfg…\"}",
+    "symbol": "data_10046fe4",
+    "value": "sprites/s_bfg1.sp2 sprites/s_bfg…",
+    "category": "sprite_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0454_char.txt"
+  },
+  {
+    "address": "0x10046fe8",
+    "declaration": "char (* data_10046fe8)[0x12] = data_10048268 {\"weapon_deatomizer\"}",
+    "symbol": "data_10046fe8",
+    "value": "weapon_deatomizer",
+    "category": "weapon_descriptor",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0455_char.txt"
+  },
+  {
+    "address": "0x10046ffc",
+    "declaration": "char (* data_10046ffc)[0x10] = data_10048cf0 {\"misc/w_pkup.wav\"}",
+    "symbol": "data_10046ffc",
+    "value": "misc/w_pkup.wav",
+    "category": "sound_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0456_char.txt"
+  },
+  {
+    "address": "0x10047000",
+    "declaration": "char (* data_10047000)[0x21] = data_10048244 {\"models/weapons/g_deatom/tris.md2\"}",
+    "symbol": "data_10047000",
+    "value": "models/weapons/g_deatom/tris.md2",
+    "category": "model_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0457_char.txt"
+  },
+  {
+    "address": "0x10047008",
+    "declaration": "char (* data_10047008)[0x21] = data_10048220 {\"models/weapons/v_deatom/tris.md2\"}",
+    "symbol": "data_10047008",
+    "value": "models/weapons/v_deatom/tris.md2",
+    "category": "model_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0458_char.txt"
+  },
+  {
+    "address": "0x1004700c",
+    "declaration": "char (* data_1004700c)[0x9] = data_10048214 {\"w_deatom\"}",
+    "symbol": "data_1004700c",
+    "value": "w_deatom",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0459_char.txt"
+  },
+  {
+    "address": "0x10047010",
+    "declaration": "char (* data_10047010)[0xb] = data_10046354 {\"Deatomizer\"}",
+    "symbol": "data_10047010",
+    "value": "Deatomizer",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0460_char.txt"
+  },
+  {
+    "address": "0x1004701c",
+    "declaration": "char (* data_1004701c)[0x6] = data_1004662c {\"Cells\"}",
+    "symbol": "data_1004701c",
+    "value": "Cells",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0461_char.txt"
+  },
+  {
+    "address": "0x1004702c",
+    "declaration": "char (* data_1004702c)[0x53] = data_100481c0 {\"models/objects/deatom/tris.md2 d…\"}",
+    "symbol": "data_1004702c",
+    "value": "models/objects/deatom/tris.md2 d…",
+    "category": "model_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0462_char.txt"
+  },
+  {
+    "address": "0x10047030",
+    "declaration": "char (* data_10047030)[0x14] = data_100481ac {\"weapon_plasma_rifle\"}",
+    "symbol": "data_10047030",
+    "value": "weapon_plasma_rifle",
+    "category": "weapon_descriptor",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0463_char.txt"
+  },
+  {
+    "address": "0x10047044",
+    "declaration": "char (* data_10047044)[0x10] = data_10048cf0 {\"misc/w_pkup.wav\"}",
+    "symbol": "data_10047044",
+    "value": "misc/w_pkup.wav",
+    "category": "sound_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0464_char.txt"
+  },
+  {
+    "address": "0x10047048",
+    "declaration": "char (* data_10047048)[0x21] = data_10048188 {\"models/weapons/g_plasma/tris.md2\"}",
+    "symbol": "data_10047048",
+    "value": "models/weapons/g_plasma/tris.md2",
+    "category": "model_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0465_char.txt"
+  },
+  {
+    "address": "0x10047050",
+    "declaration": "char (* data_10047050)[0x21] = data_10048164 {\"models/weapons/v_plasma/tris.md2\"}",
+    "symbol": "data_10047050",
+    "value": "models/weapons/v_plasma/tris.md2",
+    "category": "model_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0466_char.txt"
+  },
+  {
+    "address": "0x10047054",
+    "declaration": "char (* data_10047054)[0x9] = data_10048158 {\"w_plasma\"}",
+    "symbol": "data_10047054",
+    "value": "w_plasma",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0467_char.txt"
+  },
+  {
+    "address": "0x10047058",
+    "declaration": "char (* data_10047058)[0xd] = data_10046360 {\"Plasma Rifle\"}",
+    "symbol": "data_10047058",
+    "value": "Plasma Rifle",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0468_char.txt"
+  },
+  {
+    "address": "0x10047064",
+    "declaration": "char (* data_10047064)[0xd] = data_100461a4 {\"Rifle Plasma\"}",
+    "symbol": "data_10047064",
+    "value": "Rifle Plasma",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0469_char.txt"
+  },
+  {
+    "address": "0x10047074",
+    "declaration": "char (* data_10047074)[0x3d] = data_10048118 {\"sound/weapons/plasma2/fire.wav s…\"}",
+    "symbol": "data_10047074",
+    "value": "sound/weapons/plasma2/fire.wav s…",
+    "category": "resource_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0470_char.txt"
+  },
+  {
+    "address": "0x10047078",
+    "declaration": "char (* data_10047078)[0x18] = data_10048100 {\"weapon_remote_detonator\"}",
+    "symbol": "data_10047078",
+    "value": "weapon_remote_detonator",
+    "category": "weapon_descriptor",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0471_char.txt"
+  },
+  {
+    "address": "0x1004708c",
+    "declaration": "char (* data_1004708c)[0x10] = data_10048cf0 {\"misc/w_pkup.wav\"}",
+    "symbol": "data_1004708c",
+    "value": "misc/w_pkup.wav",
+    "category": "sound_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0472_char.txt"
+  },
+  {
+    "address": "0x10047098",
+    "declaration": "char (* data_10047098)[0x24] = data_100480dc {\"models/weapons/v_detonator/tris.…\"}",
+    "symbol": "data_10047098",
+    "value": "models/weapons/v_detonator/tris.…",
+    "category": "model_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0473_char.txt"
+  },
+  {
+    "address": "0x1004709c",
+    "declaration": "char (* data_1004709c)[0xa] = data_100480d0 {\"w_detpack\"}",
+    "symbol": "data_1004709c",
+    "value": "w_detpack",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0474_char.txt"
+  },
+  {
+    "address": "0x100470a0",
+    "declaration": "char (* data_100470a0)[0x11] = data_1004630c {\"Remote Detonator\"}",
+    "symbol": "data_100470a0",
+    "value": "Remote Detonator",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0475_char.txt"
+  },
+  {
+    "address": "0x100470c0",
+    "declaration": "char (* data_100470c0)[0xc] = data_100480c4 {\"weapon_rtdu\"}",
+    "symbol": "data_100470c0",
+    "value": "weapon_rtdu",
+    "category": "weapon_descriptor",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0476_char.txt"
+  },
+  {
+    "address": "0x100470d4",
+    "declaration": "char (* data_100470d4)[0x10] = data_10048cf0 {\"misc/w_pkup.wav\"}",
+    "symbol": "data_100470d4",
+    "value": "misc/w_pkup.wav",
+    "category": "sound_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0477_char.txt"
+  },
+  {
+    "address": "0x100470d8",
+    "declaration": "char (* data_100470d8)[0x1d] = data_100480a4 {\"models/objects/rtdu/rtdu.md2\"}",
+    "symbol": "data_100470d8",
+    "value": "models/objects/rtdu/rtdu.md2",
+    "category": "model_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0478_char.txt"
+  },
+  {
+    "address": "0x100470e4",
+    "declaration": "char (* data_100470e4)[0x7] = data_1004809c {\"w_rtdu\"}",
+    "symbol": "data_100470e4",
+    "value": "w_rtdu",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0479_char.txt"
+  },
+  {
+    "address": "0x100470e8",
+    "declaration": "char (* data_100470e8)[0x5] = data_10048094 {\"RTDU\"}",
+    "symbol": "data_100470e8",
+    "value": "RTDU",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0480_char.txt"
+  },
+  {
+    "address": "0x10047108",
+    "declaration": "char (* data_10047108)[0x12] = data_10048080 {\"ammo_pistolplasma\"}",
+    "symbol": "data_10047108",
+    "value": "ammo_pistolplasma",
+    "category": "ammo_descriptor",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0481_char.txt"
+  },
+  {
+    "address": "0x1004711c",
+    "declaration": "char (* data_1004711c)[0x11] = data_10048910 {\"misc/am_pkup.wav\"}",
+    "symbol": "data_1004711c",
+    "value": "misc/am_pkup.wav",
+    "category": "sound_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0482_char.txt"
+  },
+  {
+    "address": "0x1004712c",
+    "declaration": "char (* data_1004712c)[0xa] = data_10048074 {\"a_plasma1\"}",
+    "symbol": "data_1004712c",
+    "value": "a_plasma1",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0483_char.txt"
+  },
+  {
+    "address": "0x10047130",
+    "declaration": "char (* data_10047130)[0xd] = data_10048ca0 {\"PistolPlasma\"}",
+    "symbol": "data_10047130",
+    "value": "PistolPlasma",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0484_char.txt"
+  },
+  {
+    "address": "0x10047150",
+    "declaration": "char (* data_10047150)[0x11] = data_10048060 {\"ammo_rifleplasma\"}",
+    "symbol": "data_10047150",
+    "value": "ammo_rifleplasma",
+    "category": "ammo_descriptor",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0485_char.txt"
+  },
+  {
+    "address": "0x10047164",
+    "declaration": "char (* data_10047164)[0x11] = data_10048910 {\"misc/am_pkup.wav\"}",
+    "symbol": "data_10047164",
+    "value": "misc/am_pkup.wav",
+    "category": "sound_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0486_char.txt"
+  },
+  {
+    "address": "0x10047168",
+    "declaration": "char (* data_10047168)[0x21] = data_1004803c {\"models/items/plasmapack/tris.md2\"}",
+    "symbol": "data_10047168",
+    "value": "models/items/plasmapack/tris.md2",
+    "category": "model_path",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0487_char.txt"
+  },
+  {
+    "address": "0x10047174",
+    "declaration": "char (* data_10047174)[0xa] = data_10048030 {\"a_plasma2\"}",
+    "symbol": "data_10047174",
+    "value": "a_plasma2",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0488_char.txt"
+  },
+  {
+    "address": "0x10047178",
+    "declaration": "char (* data_10047178)[0xd] = data_100461a4 {\"Rifle Plasma\"}",
+    "symbol": "data_10047178",
+    "value": "Rifle Plasma",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0489_char.txt"
+  },
+  {
+    "address": "0x1004c658",
+    "declaration": "char (* data_1004c658)[0x9] = data_1004c81c {\"Watch it\"}",
+    "symbol": "data_1004c658",
+    "value": "Watch it",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0490_char.txt"
+  },
+  {
+    "address": "0x1004c65c",
+    "declaration": "char (* data_1004c65c)[0x6] = data_1004c814 {\"#$@*&\"}",
+    "symbol": "data_1004c65c",
+    "value": "#$@*&",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0491_char.txt"
+  },
+  {
+    "address": "0x1004c660",
+    "declaration": "char (* data_1004c660)[0x6] = data_1004c80c {\"Idiot\"}",
+    "symbol": "data_1004c660",
+    "value": "Idiot",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0492_char.txt"
+  },
+  {
+    "address": "0x1004c664",
+    "declaration": "char (* data_1004c664)[0x13] = data_1004c7f8 {\"Check your targets\"}",
+    "symbol": "data_1004c664",
+    "value": "Check your targets",
+    "category": "text_label",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0493_char.txt"
+  }
+]

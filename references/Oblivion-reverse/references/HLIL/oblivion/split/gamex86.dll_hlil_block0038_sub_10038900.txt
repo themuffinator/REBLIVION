@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 38 | Name: sub_10038900 */
+
+1000354e      unimplemented  {call sub_10038900}

@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 437 | Name: char */
+
+10046f44  char (* data_10046f44)[0x6] = data_1004662c {"Cells"}

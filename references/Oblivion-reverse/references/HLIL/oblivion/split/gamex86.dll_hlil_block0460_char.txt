@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 460 | Name: char */
+
+10047010  char (* data_10047010)[0xb] = data_10046354 {"Deatomizer"}

@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 462 | Name: char */
+
+1004702c  char (* data_1004702c)[0x53] = data_100481c0 {"models/objects/deatom/tris.md2 d…"}

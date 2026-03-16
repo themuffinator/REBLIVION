@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 240 | Name: block */
+
+10036dc6          unimplemented  {fmul st0, qword [&data_100443c0]}

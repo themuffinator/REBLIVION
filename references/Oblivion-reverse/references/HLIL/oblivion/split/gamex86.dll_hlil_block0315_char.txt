@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 315 | Name: char */
+
+10046a90  char (* data_10046a90)[0x12] = data_10048dd8 {"item_power_screen"}

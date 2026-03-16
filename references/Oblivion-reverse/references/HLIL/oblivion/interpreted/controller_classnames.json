@@ -1,0 +1,22 @@
+[
+  {
+    "classname": "target_actor",
+    "function": "sub_10012750",
+    "source_file": "references/HLIL/oblivion/split/types/gamex86.dll_hlil_type_00008_block.txt"
+  },
+  {
+    "classname": "target_changelevel",
+    "function": "sub_1000d610",
+    "source_file": "references/HLIL/oblivion/split/types/gamex86.dll_hlil_type_00008_block.txt"
+  },
+  {
+    "classname": "target_crosslevel_target",
+    "function": "sub_10039ca4",
+    "source_file": "references/HLIL/oblivion/split/types/gamex86.dll_hlil_type_00011_block.txt"
+  },
+  {
+    "classname": "trigger_once",
+    "function": "sub_10038b20",
+    "source_file": "references/HLIL/oblivion/split/types/gamex86.dll_hlil_type_00012_block.txt"
+  }
+]

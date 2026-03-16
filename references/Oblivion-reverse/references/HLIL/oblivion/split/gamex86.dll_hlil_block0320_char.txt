@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 320 | Name: char */
+
+10046ad8  char (* data_10046ad8)[0x12] = data_10048d6c {"item_power_shield"}

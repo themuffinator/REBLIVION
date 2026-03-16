@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 302 | Name: char */
+
+100469d0  char (* data_100469d0)[0x23] = data_10048e9c {"models/items/armor/combat/tris.m…"}

@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 345 | Name: char */
+
+10046be4  char (* data_10046be4)[0x7] = data_10048b88 {"Shells"}

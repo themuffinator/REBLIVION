@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 492 | Name: char */
+
+1004c660  char (* data_1004c660)[0x6] = data_1004c80c {"Idiot"}

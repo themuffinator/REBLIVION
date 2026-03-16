@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 402 | Name: char */
+
+10046e04  char (* data_10046e04)[0x11] = data_10048910 {"misc/am_pkup.wav"}

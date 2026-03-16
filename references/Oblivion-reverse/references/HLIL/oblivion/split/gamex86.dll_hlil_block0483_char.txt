@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 483 | Name: char */
+
+1004712c  char (* data_1004712c)[0xa] = data_10048074 {"a_plasma1"}

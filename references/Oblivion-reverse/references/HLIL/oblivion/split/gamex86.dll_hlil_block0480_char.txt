@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 480 | Name: char */
+
+100470e8  char (* data_100470e8)[0x5] = data_10048094 {"RTDU"}

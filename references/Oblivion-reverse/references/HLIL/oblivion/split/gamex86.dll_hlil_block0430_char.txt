@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 430 | Name: char */
+
+10046f0c  char (* data_10046f0c)[0x7d] = data_10048520 {"models/objects/rocket/tris.md2 w…"}

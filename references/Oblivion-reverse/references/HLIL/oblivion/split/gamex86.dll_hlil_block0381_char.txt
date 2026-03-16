@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 381 | Name: char */
+
+10046d30  char (* data_10046d30)[0x21] = data_1004880c {"models/items/ammo/mines/tris.md2"}

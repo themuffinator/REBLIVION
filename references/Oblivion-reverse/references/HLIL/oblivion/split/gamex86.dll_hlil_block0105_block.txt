@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 105 | Name: block */
+
+1001a44f      unimplemented  {fmul st0, dword [eax+0x2ac]}

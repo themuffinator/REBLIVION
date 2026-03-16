@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 259 | Name: if */
+
+1003b215      c1 = unimplemented  {fistp dword [ebp+0x8], st0}

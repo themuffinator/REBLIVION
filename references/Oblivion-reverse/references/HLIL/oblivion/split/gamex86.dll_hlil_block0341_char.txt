@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 341 | Name: char */
+
+10046bc8  char (* data_10046bc8)[0x20] = data_10048bc4 {"models/weapons/g_shotg/tris.md2"}

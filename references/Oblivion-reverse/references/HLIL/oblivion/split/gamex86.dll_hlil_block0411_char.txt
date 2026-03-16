@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 411 | Name: char */
+
+10046e5c  char (* data_10046e5c)[0xc] = data_10048688 {"w_glauncher"}

@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 412 | Name: char */
+
+10046e60  char (* data_10046e60)[0x11] = data_10048674 {"Grenade Launcher"}

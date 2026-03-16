@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 73 | Name: block */
+
+10006011                              bool c_10 = unimplemented  {sbb eax, eax}

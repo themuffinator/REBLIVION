@@ -1,0 +1,1139 @@
+[
+  {
+    "address": "0x10000000",
+    "declaration": "char e_magic[0x2] = \"MZ\"",
+    "symbol": "\"MZ\"",
+    "values": [
+      "\"MZ\"",
+      "\"\\x00\\x00\\x00\\x00\\x00\\x00\\x00\", 0",
+      "\"\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\", 0"
+    ],
+    "inferred_type": "mixed",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0001_DOS_Header.txt"
+  },
+  {
+    "address": "0x10000080",
+    "declaration": "uint32_t e_magic__DanS = 0x9331a89b",
+    "symbol": "0x9331a89b",
+    "values": [
+      "",
+      "0xc05fc9df",
+      "0xc05fc9df",
+      "0xc05fc9df",
+      "\"Rich\""
+    ],
+    "inferred_type": "mixed",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0002_Rich_Header.txt"
+  },
+  {
+    "address": "0x100000e0",
+    "declaration": "char magic[0x4] = \"PE\\x00\", 0",
+    "symbol": "0",
+    "values": [
+      "\"PE\\x00\", 0"
+    ],
+    "inferred_type": "mixed",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0003_COFF_Header.txt"
+  },
+  {
+    "address": "0x100001d8",
+    "declaration": "char name[0x8] = \".text\\x00\\x00\", 0",
+    "symbol": "0",
+    "values": [
+      "",
+      "\".text\\x00\\x00\", 0",
+      "",
+      "\".rdata\\x00\", 0",
+      "",
+      "\".data\\x00\\x00\", 0",
+      "",
+      "\".reloc\\x00\", 0"
+    ],
+    "inferred_type": "mixed",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0005_Section_Header.txt"
+  },
+  {
+    "address": "0x10003190",
+    "declaration": "[0x0] =  0x10002f8c",
+    "symbol": "0x10002f8c",
+    "values": [
+      "0x10002f8c",
+      "0x10002f8c",
+      "0x10003099",
+      "0x1000310d"
+    ],
+    "inferred_type": "uint32_t",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0008___builtin_memset.txt"
+  },
+  {
+    "address": "0x100050b0",
+    "declaration": "[0x0] =  0x10004fea",
+    "symbol": "0x10004fea",
+    "values": [
+      "0x10004fea",
+      "0x10005011",
+      "0x10005038",
+      "0x1000505f"
+    ],
+    "inferred_type": "uint32_t",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0067_block.txt"
+  },
+  {
+    "address": "0x100141f0",
+    "declaration": "[0x0] =  0x100141b2",
+    "symbol": "0x100141b2",
+    "values": [
+      "0x100141b2",
+      "0x100141bd",
+      "0x100141a7",
+      "0x100141a7",
+      "0x100141de",
+      "0x100141c8",
+      "0x100141d3",
+      "0x100141d3",
+      "0x100141d3",
+      "0x100141d3"
+    ],
+    "inferred_type": "uint32_t",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0091_gi.error.txt"
+  },
+  {
+    "address": "0x10015d8c",
+    "declaration": "[0x0] =  0x10015d88",
+    "symbol": "0x10015d88",
+    "values": [
+      "0x10015d88",
+      "0x10015d88",
+      "0x10015cbb",
+      "0x10015cbb",
+      "0x10015d88",
+      "0x10015d88",
+      "0x10015cd7",
+      "0x10015d2b",
+      "0x10015d01",
+      "0x10015d54",
+      "0x10015d67",
+      "0x10015d88"
+    ],
+    "inferred_type": "uint32_t",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0092_block.txt"
+  },
+  {
+    "address": "0x10015f08",
+    "declaration": "[0x0] =  0x10015f05",
+    "symbol": "0x10015f05",
+    "values": [
+      "0x10015f05",
+      "0x10015f05",
+      "0x10015e2c",
+      "0x10015ef7",
+      "0x10015f05",
+      "0x10015f05",
+      "0x10015e59",
+      "0x10015eab",
+      "0x10015e82",
+      "0x10015eca",
+      "0x10015ee1",
+      "0x10015f05"
+    ],
+    "inferred_type": "uint32_t",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0093_block.txt"
+  },
+  {
+    "address": "0x100169dc",
+    "declaration": "[0x0] =  0x1001697b",
+    "symbol": "0x1001697b",
+    "values": [
+      "0x1001697b",
+      "0x10016994",
+      "0x1001691b",
+      "0x100168f6",
+      "0x10016934",
+      "0x100169ad"
+    ],
+    "inferred_type": "uint32_t",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0098_gi.dprintf.txt"
+  },
+  {
+    "address": "0x10020224",
+    "declaration": "[0x0] =  0x1001ff02",
+    "symbol": "0x1001ff02",
+    "values": [
+      "0x1001ff02",
+      "0x1001ff95",
+      "0x10020009",
+      "0x1002007d",
+      "0x1002011b"
+    ],
+    "inferred_type": "uint32_t",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0121_sub_1001b400.txt"
+  },
+  {
+    "address": "0x1002e63c",
+    "declaration": "[0x0] =  0x1002e4b1",
+    "symbol": "0x1002e4b1",
+    "values": [
+      "0x1002e4b1",
+      "0x1002e50c",
+      "0x1002e526",
+      "0x1002e532",
+      "0x1002e54f",
+      "0x1002e56c",
+      "0x1002e589",
+      "0x1002e5a6",
+      "0x1002e5c3"
+    ],
+    "inferred_type": "uint32_t",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0197_block.txt"
+  },
+  {
+    "address": "0x1002fd5c",
+    "declaration": "[0x00] =  0x1002f997",
+    "symbol": "0x1002f997",
+    "values": [
+      "0x1002f997",
+      "0x1002f99e",
+      "0x1002f9a5",
+      "0x1002f990",
+      "0x1002f9e2",
+      "0x1002f989",
+      "0x1002f982",
+      "0x1002f9e2",
+      "0x1002f9ac",
+      "0x1002f9ac",
+      "0x1002f9dd",
+      "0x1002f9b3",
+      "0x1002f9dd",
+      "0x1002f9ba",
+      "0x1002f9dd",
+      "0x1002f9e2",
+      "0x1002f9cf",
+      "0x1002f9d6"
+    ],
+    "inferred_type": "uint32_t",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0201_block.txt"
+  },
+  {
+    "address": "0x1002fda4",
+    "declaration": "[0x0] =  0x1002fa11",
+    "symbol": "0x1002fa11",
+    "values": [
+      "0x1002fa11",
+      "0x1002fa43",
+      "0x1002fa72",
+      "0x1002fa07",
+      "0x1002fa79",
+      "0x1002fa80"
+    ],
+    "inferred_type": "uint32_t",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0202_block.txt"
+  },
+  {
+    "address": "0x1002fdbc",
+    "declaration": "[0x00] =  0x00",
+    "symbol": "0x00",
+    "values": [
+      "0x00",
+      "0x05",
+      "0x01",
+      "0x05",
+      "0x05",
+      "0x05",
+      "0x02",
+      "0x05",
+      "0x05",
+      "0x00",
+      "0x05",
+      "0x05",
+      "0x05",
+      "0x05",
+      "0x05",
+      "0x05",
+      "0x05",
+      "0x03",
+      "0x05",
+      "0x05",
+      "0x05",
+      "0x05",
+      "0x05",
+      "0x04",
+      "0x05",
+      "0x05",
+      "0x05",
+      "0x05",
+      "0x05",
+      "0x05",
+      "0x05",
+      "0x05",
+      "0x05",
+      "0x05",
+      "0x05",
+      "0x04"
+    ],
+    "inferred_type": "uint8_t",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0203_block.txt"
+  },
+  {
+    "address": "0x1002fde0",
+    "declaration": "[0x00] =  0x1002fb2f",
+    "symbol": "0x1002fb2f",
+    "values": [
+      "0x1002fb2f",
+      "0x1002fb39",
+      "0x1002fb43",
+      "0x1002fb52",
+      "0x1002fb5c",
+      "0x1002fb6b",
+      "0x1002fb7a",
+      "0x1002fb89",
+      "0x1002fb98",
+      "0x1002fba7",
+      "0x1002fbb6",
+      "0x1002fbc0",
+      "0x1002fbcf",
+      "0x1002fbde",
+      "0x1002fbed",
+      "0x1002fbfc",
+      "0x1002fc1a",
+      "0x1002fc0b",
+      "0x1002fc9b",
+      "0x1002fc29",
+      "0x1002fc58",
+      "0x1002fc5f",
+      "0x1002fc6b",
+      "0x1002fc77",
+      "0x1002fc83",
+      "0x1002fc8f",
+      "0x1002fca7"
+    ],
+    "inferred_type": "uint32_t",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0204_block.txt"
+  },
+  {
+    "address": "0x1002fe4c",
+    "declaration": "[0x00] =  0x00",
+    "symbol": "0x00",
+    "values": [
+      "0x00",
+      "0x01",
+      "0x02",
+      "0x03",
+      "0x04",
+      "0x05",
+      "0x06",
+      "0x07",
+      "0x08",
+      "0x09",
+      "0x0a",
+      "0x0b",
+      "0x0c",
+      "0x0d",
+      "0x0e",
+      "0x0f",
+      "0x1a",
+      "0x1a",
+      "0x1a",
+      "0x1a",
+      "0x10",
+      "0x1a",
+      "0x1a",
+      "0x11",
+      "0x1a",
+      "0x1a",
+      "0x1a",
+      "0x1a",
+      "0x1a",
+      "0x12",
+      "0x1a",
+      "0x1a",
+      "0x1a",
+      "0x1a",
+      "0x13",
+      "0x14",
+      "0x15",
+      "0x16",
+      "0x17",
+      "0x18",
+      "0x19",
+      "0x12"
+    ],
+    "inferred_type": "uint8_t",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0205_block.txt"
+  },
+  {
+    "address": "0x1003bb3d",
+    "declaration": "[0x0] =  0x1003b5bb",
+    "symbol": "0x1003b5bb",
+    "values": [
+      "0x1003b5bb",
+      "0x1003b491",
+      "0x1003b4ac",
+      "0x1003b4f8",
+      "0x1003b52f",
+      "0x1003b537",
+      "0x1003b56c",
+      "0x1003b5ff"
+    ],
+    "inferred_type": "uint32_t",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0276_block.txt"
+  },
+  {
+    "address": "0x1003e14c",
+    "declaration": "[0x0] =  0x1003e1af",
+    "symbol": "0x1003e1af",
+    "values": [
+      "0x1003e1af",
+      "0x1003e19c",
+      "0x1003e194",
+      "0x1003e18c",
+      "0x1003e184",
+      "0x1003e17c",
+      "0x1003e174",
+      "0x1003e16c"
+    ],
+    "inferred_type": "uint32_t",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0277_block.txt"
+  },
+  {
+    "address": "0x1003e1b8",
+    "declaration": "[0x0] =  0x1003e1c8",
+    "symbol": "0x1003e1c8",
+    "values": [
+      "0x1003e1c8",
+      "0x1003e1d0",
+      "0x1003e1dc",
+      "0x1003e1f0"
+    ],
+    "inferred_type": "uint32_t",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0278_block.txt"
+  },
+  {
+    "address": "0x1003e350",
+    "declaration": "[0x0] =  0x1003e360",
+    "symbol": "0x1003e360",
+    "values": [
+      "0x1003e360",
+      "0x1003e368",
+      "0x1003e378",
+      "0x1003e38c"
+    ],
+    "inferred_type": "uint32_t",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0279_block.txt"
+  },
+  {
+    "address": "0x1004022c",
+    "declaration": "[0x0] =  0x1004028f",
+    "symbol": "0x1004028f",
+    "values": [
+      "0x1004028f",
+      "0x1004027c",
+      "0x10040274",
+      "0x1004026c",
+      "0x10040264",
+      "0x1004025c",
+      "0x10040254",
+      "0x1004024c"
+    ],
+    "inferred_type": "uint32_t",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0281_block.txt"
+  },
+  {
+    "address": "0x10040298",
+    "declaration": "[0x0] =  0x100402a8",
+    "symbol": "0x100402a8",
+    "values": [
+      "0x100402a8",
+      "0x100402b0",
+      "0x100402bc",
+      "0x100402d0"
+    ],
+    "inferred_type": "uint32_t",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0282_block.txt"
+  },
+  {
+    "address": "0x10040430",
+    "declaration": "[0x0] =  0x10040440",
+    "symbol": "0x10040440",
+    "values": [
+      "0x10040440",
+      "0x10040448",
+      "0x10040458",
+      "0x1004046c"
+    ],
+    "inferred_type": "uint32_t",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0283_block.txt"
+  },
+  {
+    "address": "0x100418c6",
+    "declaration": "[0x0] =  0x1004148f",
+    "symbol": "0x1004148f",
+    "values": [
+      "0x1004148f",
+      "0x100414de",
+      "0x10041535",
+      "0x1004155f",
+      "0x100415ba",
+      "0x10041631",
+      "0x10041667",
+      "0x100416b1",
+      "0x10041690",
+      "0x10041715",
+      "0x100416ff",
+      "0x100416cb"
+    ],
+    "inferred_type": "uint32_t",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0284_block.txt"
+  },
+  {
+    "address": "0x10044b50",
+    "declaration": "uint32_t importLookupTableRva = 0x44b78",
+    "symbol": "0x44b78",
+    "values": [
+      "",
+      ""
+    ],
+    "inferred_type": "mixed",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0288_Import_Directory_Table.txt"
+  },
+  {
+    "address": "0x100450f8",
+    "declaration": "[0x0] =  0x0000d490",
+    "symbol": "0x0000d490",
+    "values": [
+      "0x0000d490"
+    ],
+    "inferred_type": "uint16_t",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0290_block.txt"
+  },
+  {
+    "address": "0x100450fc",
+    "declaration": "[0x0] =  0x0004510e",
+    "symbol": "0x0004510e",
+    "values": [
+      "0x0004510e"
+    ],
+    "inferred_type": "uint32_t",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0291_block.txt"
+  },
+  {
+    "address": "0x10045100",
+    "declaration": "[0x0] =  0x0000",
+    "symbol": "0x0000",
+    "values": [
+      "0x0000"
+    ],
+    "inferred_type": "uint8_t",
+    "source_file": "references/HLIL/oblivion/split/gamex86.dll_hlil_block0292_block.txt"
+  },
+  {
+    "address": "0x10001000",
+    "declaration": "int32_t eax_8 = data_1006c3cc",
+    "symbol": "data_1006c3cc",
+    "values": [
+      "",
+      "0x10002f8c",
+      "0x10002f8c",
+      "0x10003099",
+      "0x1000310d"
+    ],
+    "inferred_type": "mixed",
+    "source_file": "references/HLIL/oblivion/split/types/gamex86.dll_hlil_type_00006_block.txt"
+  },
+  {
+    "address": "0x1000348f",
+    "declaration": "unimplemented  {fld st0, dword [&data_1006c2e4]}",
+    "symbol": "data_1006c2e4",
+    "values": [
+      "&var_940",
+      "&var_940",
+      "",
+      "0x10004fea",
+      "0x10005011",
+      "0x10005038",
+      "0x1000505f"
+    ],
+    "inferred_type": "mixed",
+    "source_file": "references/HLIL/oblivion/split/types/gamex86.dll_hlil_type_00007_block.txt"
+  },
+  {
+    "address": "0x10005d85",
+    "declaration": "bool c_2 = unimplemented  {sbb eax, eax}",
+    "symbol": "eax}",
+    "values": [
+      "= 2)",
+      "",
+      "0x100141b2",
+      "0x100141bd",
+      "0x100141a7",
+      "0x100141a7",
+      "0x100141de",
+      "0x100141c8",
+      "0x100141d3",
+      "0x100141d3",
+      "0x100141d3",
+      "0x100141d3"
+    ],
+    "inferred_type": "mixed",
+    "source_file": "references/HLIL/oblivion/split/types/gamex86.dll_hlil_type_00008_block.txt"
+  },
+  {
+    "address": "0x10015d8c",
+    "declaration": "[0x0] =  0x10015d88",
+    "symbol": "0x10015d88",
+    "values": [
+      "0x10015d88",
+      "0x10015d88",
+      "0x10015cbb",
+      "0x10015cbb",
+      "0x10015d88",
+      "0x10015d88",
+      "0x10015cd7",
+      "0x10015d2b",
+      "0x10015d01",
+      "0x10015d54",
+      "0x10015d67",
+      "0x10015d88"
+    ],
+    "inferred_type": "uint32_t",
+    "source_file": "references/HLIL/oblivion/split/types/gamex86.dll_hlil_type_00009_block.txt"
+  },
+  {
+    "address": "0x10015f08",
+    "declaration": "[0x0] =  0x10015f05",
+    "symbol": "0x10015f05",
+    "values": [
+      "0x10015f05",
+      "0x10015f05",
+      "0x10015e2c",
+      "0x10015ef7",
+      "0x10015f05",
+      "0x10015f05",
+      "0x10015e59",
+      "0x10015eab",
+      "0x10015e82",
+      "0x10015eca",
+      "0x10015ee1",
+      "0x10015f05"
+    ],
+    "inferred_type": "uint32_t",
+    "source_file": "references/HLIL/oblivion/split/types/gamex86.dll_hlil_type_00010_block.txt"
+  },
+  {
+    "address": "0x1001617b",
+    "declaration": "bool c_2 = unimplemented  {sbb eax, eax}",
+    "symbol": "eax}",
+    "values": [
+      "data_100498e0",
+      "&data_100498e0",
+      "&var_3d0",
+      "data_100498e0",
+      "data_10049e80",
+      "&data_10049e80",
+      "&var_130",
+      "data_10049e80",
+      "data_100498e0",
+      "&data_100498e0",
+      "data_10049e80",
+      "&data_10049e80",
+      "data_1004a5c0",
+      "&data_1004a5c0",
+      "&data_100498e0",
+      "",
+      "0x1001697b",
+      "0x10016994",
+      "0x1001691b",
+      "0x100168f6",
+      "0x10016934",
+      "0x100169ad"
+    ],
+    "inferred_type": "mixed",
+    "source_file": "references/HLIL/oblivion/split/types/gamex86.dll_hlil_type_00011_block.txt"
+  },
+  {
+    "address": "0x10016bc9",
+    "declaration": "bool c_2 = unimplemented  {sbb ecx, ecx}",
+    "symbol": "ecx}",
+    "values": [
+      "*(arg2 + 0x178)",
+      "&var_20",
+      "1",
+      "\"noclass\"",
+      "0x3f800000",
+      "",
+      "0x1001ff02",
+      "0x1001ff95",
+      "0x10020009",
+      "0x1002007d",
+      "0x1002011b"
+    ],
+    "inferred_type": "mixed",
+    "source_file": "references/HLIL/oblivion/split/types/gamex86.dll_hlil_type_00012_block.txt"
+  },
+  {
+    "address": "0x1002abac",
+    "declaration": "unimplemented  {fld st0, dword [esp+0xc]}",
+    "symbol": "[esp+0xc]}",
+    "values": [
+      "",
+      "0x1002e4b1",
+      "0x1002e50c",
+      "0x1002e526",
+      "0x1002e532",
+      "0x1002e54f",
+      "0x1002e56c",
+      "0x1002e589",
+      "0x1002e5a6",
+      "0x1002e5c3"
+    ],
+    "inferred_type": "mixed",
+    "source_file": "references/HLIL/oblivion/split/types/gamex86.dll_hlil_type_00013_block.txt"
+  },
+  {
+    "address": "0x1002f24a",
+    "declaration": "bool c_2 = unimplemented  {sbb eax, eax}",
+    "symbol": "eax}",
+    "values": [
+      "",
+      "0x1002f997",
+      "0x1002f99e",
+      "0x1002f9a5",
+      "0x1002f990",
+      "0x1002f9e2",
+      "0x1002f989",
+      "0x1002f982",
+      "0x1002f9e2",
+      "0x1002f9ac",
+      "0x1002f9ac",
+      "0x1002f9dd",
+      "0x1002f9b3",
+      "0x1002f9dd",
+      "0x1002f9ba",
+      "0x1002f9dd",
+      "0x1002f9e2",
+      "0x1002f9cf",
+      "0x1002f9d6"
+    ],
+    "inferred_type": "mixed",
+    "source_file": "references/HLIL/oblivion/split/types/gamex86.dll_hlil_type_00014_block.txt"
+  },
+  {
+    "address": "0x1002fda4",
+    "declaration": "[0x0] =  0x1002fa11",
+    "symbol": "0x1002fa11",
+    "values": [
+      "0x1002fa11",
+      "0x1002fa43",
+      "0x1002fa72",
+      "0x1002fa07",
+      "0x1002fa79",
+      "0x1002fa80"
+    ],
+    "inferred_type": "uint32_t",
+    "source_file": "references/HLIL/oblivion/split/types/gamex86.dll_hlil_type_00015_block.txt"
+  },
+  {
+    "address": "0x1002fdbc",
+    "declaration": "[0x00] =  0x00",
+    "symbol": "0x00",
+    "values": [
+      "0x00",
+      "0x05",
+      "0x01",
+      "0x05",
+      "0x05",
+      "0x05",
+      "0x02",
+      "0x05",
+      "0x05",
+      "0x00",
+      "0x05",
+      "0x05",
+      "0x05",
+      "0x05",
+      "0x05",
+      "0x05",
+      "0x05",
+      "0x03",
+      "0x05",
+      "0x05",
+      "0x05",
+      "0x05",
+      "0x05",
+      "0x04",
+      "0x05",
+      "0x05",
+      "0x05",
+      "0x05",
+      "0x05",
+      "0x05",
+      "0x05",
+      "0x05",
+      "0x05",
+      "0x05",
+      "0x05",
+      "0x04"
+    ],
+    "inferred_type": "uint8_t",
+    "source_file": "references/HLIL/oblivion/split/types/gamex86.dll_hlil_type_00016_block.txt"
+  },
+  {
+    "address": "0x1002fde0",
+    "declaration": "[0x00] =  0x1002fb2f",
+    "symbol": "0x1002fb2f",
+    "values": [
+      "0x1002fb2f",
+      "0x1002fb39",
+      "0x1002fb43",
+      "0x1002fb52",
+      "0x1002fb5c",
+      "0x1002fb6b",
+      "0x1002fb7a",
+      "0x1002fb89",
+      "0x1002fb98",
+      "0x1002fba7",
+      "0x1002fbb6",
+      "0x1002fbc0",
+      "0x1002fbcf",
+      "0x1002fbde",
+      "0x1002fbed",
+      "0x1002fbfc",
+      "0x1002fc1a",
+      "0x1002fc0b",
+      "0x1002fc9b",
+      "0x1002fc29",
+      "0x1002fc58",
+      "0x1002fc5f",
+      "0x1002fc6b",
+      "0x1002fc77",
+      "0x1002fc83",
+      "0x1002fc8f",
+      "0x1002fca7"
+    ],
+    "inferred_type": "uint32_t",
+    "source_file": "references/HLIL/oblivion/split/types/gamex86.dll_hlil_type_00017_block.txt"
+  },
+  {
+    "address": "0x1002fe4c",
+    "declaration": "[0x00] =  0x00",
+    "symbol": "0x00",
+    "values": [
+      "0x00",
+      "0x01",
+      "0x02",
+      "0x03",
+      "0x04",
+      "0x05",
+      "0x06",
+      "0x07",
+      "0x08",
+      "0x09",
+      "0x0a",
+      "0x0b",
+      "0x0c",
+      "0x0d",
+      "0x0e",
+      "0x0f",
+      "0x1a",
+      "0x1a",
+      "0x1a",
+      "0x1a",
+      "0x10",
+      "0x1a",
+      "0x1a",
+      "0x11",
+      "0x1a",
+      "0x1a",
+      "0x1a",
+      "0x1a",
+      "0x1a",
+      "0x12",
+      "0x1a",
+      "0x1a",
+      "0x1a",
+      "0x1a",
+      "0x13",
+      "0x14",
+      "0x15",
+      "0x16",
+      "0x17",
+      "0x18",
+      "0x19",
+      "0x12"
+    ],
+    "inferred_type": "uint8_t",
+    "source_file": "references/HLIL/oblivion/split/types/gamex86.dll_hlil_type_00018_block.txt"
+  },
+  {
+    "address": "0x1002fef2",
+    "declaration": "bool c_2 = unimplemented  {sbb eax, eax}",
+    "symbol": "eax}",
+    "values": [
+      "*(arg1 + 0xb8)",
+      "*(arg1 + 0xbc)",
+      "*(arg1 + 0xc0)",
+      "*(arg1 + 0xc4)",
+      "*(arg1 + 0xc8)",
+      "*(arg1 + 0xcc)",
+      "*(arg1 + 0xd0)",
+      "*(arg1 + 0xd4)",
+      "*(arg1 + 0xd8)",
+      "*(arg1 + 0xdc)",
+      "*(arg1 + 0xe0)",
+      "*(arg1 + 0xe4)",
+      "*(arg1 + 0xe8)",
+      "*(arg1 + 0xec)",
+      "*(arg1 + 0xf0)",
+      "*(arg1 + 0xf4)",
+      "*(arg1 + 0xf8)",
+      "*(arg1 + 0xfc)",
+      "*(arg1 + 0x100)",
+      "*(arg1 + 0x104)",
+      "sub_10030ac0",
+      "1",
+      "fconvert.s(float.t(sx.d(*(edi_5 + 2))) * fconvert.t(0.0054931640625))",
+      "fconvert.s(float.t(sx.d(edi_5[1].w)) * fconvert.t(0.0054931640625))",
+      "fconvert.s(float.t(sx.d(*(edi_5 + 6))) * fconvert.t(0.0054931640625))",
+      "var_3c",
+      "var_38",
+      "var_34",
+      "ebx[0x37b]",
+      "eax_29",
+      "edx_11 | ecx_19",
+      "= 0)",
+      "1",
+      "fconvert.s(fconvert.t(data_1006208c) * fconvert.t(data_10062080)",
+      "&var_200",
+      "&var_200",
+      "&var_14",
+      "sub_1003bbfb(&arg_c)",
+      "ecx_7",
+      "ecx_7",
+      "",
+      "0x1003b5bb",
+      "0x1003b491",
+      "0x1003b4ac",
+      "0x1003b4f8",
+      "0x1003b52f",
+      "0x1003b537",
+      "0x1003b56c",
+      "0x1003b5ff"
+    ],
+    "inferred_type": "mixed",
+    "source_file": "references/HLIL/oblivion/split/types/gamex86.dll_hlil_type_00019_block.txt"
+  },
+  {
+    "address": "0x1003e14c",
+    "declaration": "[0x0] =  0x1003e1af",
+    "symbol": "0x1003e1af",
+    "values": [
+      "0x1003e1af",
+      "0x1003e19c",
+      "0x1003e194",
+      "0x1003e18c",
+      "0x1003e184",
+      "0x1003e17c",
+      "0x1003e174",
+      "0x1003e16c"
+    ],
+    "inferred_type": "uint32_t",
+    "source_file": "references/HLIL/oblivion/split/types/gamex86.dll_hlil_type_00020_block.txt"
+  },
+  {
+    "address": "0x1003e1b8",
+    "declaration": "[0x0] =  0x1003e1c8",
+    "symbol": "0x1003e1c8",
+    "values": [
+      "0x1003e1c8",
+      "0x1003e1d0",
+      "0x1003e1dc",
+      "0x1003e1f0"
+    ],
+    "inferred_type": "uint32_t",
+    "source_file": "references/HLIL/oblivion/split/types/gamex86.dll_hlil_type_00021_block.txt"
+  },
+  {
+    "address": "0x1003e350",
+    "declaration": "[0x0] =  0x1003e360",
+    "symbol": "0x1003e360",
+    "values": [
+      "0x1003e360",
+      "0x1003e368",
+      "0x1003e378",
+      "0x1003e38c"
+    ],
+    "inferred_type": "uint32_t",
+    "source_file": "references/HLIL/oblivion/split/types/gamex86.dll_hlil_type_00022_block.txt"
+  },
+  {
+    "address": "0x1003ede8",
+    "declaration": "bool c1 = unimplemented  {fst qword [esp], st0}",
+    "symbol": "st0}",
+    "values": [
+      "0",
+      "",
+      "0x1004028f",
+      "0x1004027c",
+      "0x10040274",
+      "0x1004026c",
+      "0x10040264",
+      "0x1004025c",
+      "0x10040254",
+      "0x1004024c"
+    ],
+    "inferred_type": "mixed",
+    "source_file": "references/HLIL/oblivion/split/types/gamex86.dll_hlil_type_00023_block.txt"
+  },
+  {
+    "address": "0x10040298",
+    "declaration": "[0x0] =  0x100402a8",
+    "symbol": "0x100402a8",
+    "values": [
+      "0x100402a8",
+      "0x100402b0",
+      "0x100402bc",
+      "0x100402d0"
+    ],
+    "inferred_type": "uint32_t",
+    "source_file": "references/HLIL/oblivion/split/types/gamex86.dll_hlil_type_00024_block.txt"
+  },
+  {
+    "address": "0x10040430",
+    "declaration": "[0x0] =  0x10040440",
+    "symbol": "0x10040440",
+    "values": [
+      "0x10040440",
+      "0x10040448",
+      "0x10040458",
+      "0x1004046c"
+    ],
+    "inferred_type": "uint32_t",
+    "source_file": "references/HLIL/oblivion/split/types/gamex86.dll_hlil_type_00025_block.txt"
+  },
+  {
+    "address": "0x100418c6",
+    "declaration": "[0x0] =  0x1004148f",
+    "symbol": "0x1004148f",
+    "values": [
+      "0x1004148f",
+      "0x100414de",
+      "0x10041535",
+      "0x1004155f",
+      "0x100415ba",
+      "0x10041631",
+      "0x10041667",
+      "0x100416b1",
+      "0x10041690",
+      "0x10041715",
+      "0x100416ff",
+      "0x100416cb"
+    ],
+    "inferred_type": "uint32_t",
+    "source_file": "references/HLIL/oblivion/split/types/gamex86.dll_hlil_type_00026_block.txt"
+  },
+  {
+    "address": "0x10044000",
+    "declaration": "HANDLE (__stdcall* const KERNEL32:GetCurrentProcess)() = GetCurrentProcess",
+    "symbol": "GetCurrentProcess",
+    "values": [
+      "\"333333\"",
+      "\"ffffff\"",
+      ""
+    ],
+    "inferred_type": "mixed",
+    "source_file": "references/HLIL/oblivion/split/types/gamex86.dll_hlil_type_00027_block.txt"
+  },
+  {
+    "address": "0x100450f8",
+    "declaration": "[0x0] =  0x0000d490",
+    "symbol": "0x0000d490",
+    "values": [
+      "0x0000d490"
+    ],
+    "inferred_type": "uint16_t",
+    "source_file": "references/HLIL/oblivion/split/types/gamex86.dll_hlil_type_00030_block.txt"
+  },
+  {
+    "address": "0x100450fc",
+    "declaration": "[0x0] =  0x0004510e",
+    "symbol": "0x0004510e",
+    "values": [
+      "0x0004510e"
+    ],
+    "inferred_type": "uint32_t",
+    "source_file": "references/HLIL/oblivion/split/types/gamex86.dll_hlil_type_00031_block.txt"
+  },
+  {
+    "address": "0x10045100",
+    "declaration": "[0x0] =  0x0000",
+    "symbol": "0x0000",
+    "values": [
+      "0x0000"
+    ],
+    "inferred_type": "uint8_t",
+    "source_file": "references/HLIL/oblivion/split/types/gamex86.dll_hlil_type_00032_block.txt"
+  },
+  {
+    "address": "0x10000000",
+    "declaration": "char e_magic[0x2] = \"MZ\"",
+    "symbol": "\"MZ\"",
+    "values": [
+      "\"MZ\"",
+      "\"\\x00\\x00\\x00\\x00\\x00\\x00\\x00\", 0",
+      "\"\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\", 0"
+    ],
+    "inferred_type": "mixed",
+    "source_file": "references/HLIL/oblivion/split/types/gamex86.dll_hlil_type_struct_00001_DOS_Header.txt"
+  },
+  {
+    "address": "0x10000080",
+    "declaration": "uint32_t e_magic__DanS = 0x9331a89b",
+    "symbol": "0x9331a89b",
+    "values": [
+      "",
+      "0xc05fc9df",
+      "0xc05fc9df",
+      "0xc05fc9df",
+      "\"Rich\""
+    ],
+    "inferred_type": "mixed",
+    "source_file": "references/HLIL/oblivion/split/types/gamex86.dll_hlil_type_struct_00002_Rich_Header.txt"
+  },
+  {
+    "address": "0x100000e0",
+    "declaration": "char magic[0x4] = \"PE\\x00\", 0",
+    "symbol": "0",
+    "values": [
+      "\"PE\\x00\", 0"
+    ],
+    "inferred_type": "mixed",
+    "source_file": "references/HLIL/oblivion/split/types/gamex86.dll_hlil_type_struct_00003_COFF_Header.txt"
+  },
+  {
+    "address": "0x100001d8",
+    "declaration": "char name[0x8] = \".text\\x00\\x00\", 0",
+    "symbol": "0",
+    "values": [
+      "",
+      "\".text\\x00\\x00\", 0",
+      "",
+      "\".rdata\\x00\", 0",
+      "",
+      "\".data\\x00\\x00\", 0",
+      "",
+      "\".reloc\\x00\", 0"
+    ],
+    "inferred_type": "mixed",
+    "source_file": "references/HLIL/oblivion/split/types/gamex86.dll_hlil_type_struct_00005_Section_Header.txt"
+  },
+  {
+    "address": "0x10044b50",
+    "declaration": "uint32_t importLookupTableRva = 0x44b78",
+    "symbol": "0x44b78",
+    "values": [
+      "",
+      ""
+    ],
+    "inferred_type": "mixed",
+    "source_file": "references/HLIL/oblivion/split/types/gamex86.dll_hlil_type_struct_00028_Import_Directory_Table.txt"
+  }
+]

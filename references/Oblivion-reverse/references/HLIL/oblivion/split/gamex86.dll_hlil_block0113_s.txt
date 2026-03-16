@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 113 | Name: s */
+
+1001a478      *(result + 0x180) = fconvert.s(unimplemented  {fstp dword [eax+0x180], st0})

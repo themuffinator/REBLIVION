@@ -1,0 +1,33 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Kind: type */
+/* Name: block */
+
+1002fde0  {
+1002fde0      [0x00] =  0x1002fb2f
+1002fde4      [0x01] =  0x1002fb39
+1002fde8      [0x02] =  0x1002fb43
+1002fdec      [0x03] =  0x1002fb52
+1002fdf0      [0x04] =  0x1002fb5c
+1002fdf4      [0x05] =  0x1002fb6b
+1002fdf8      [0x06] =  0x1002fb7a
+1002fdfc      [0x07] =  0x1002fb89
+1002fe00      [0x08] =  0x1002fb98
+1002fe04      [0x09] =  0x1002fba7
+1002fe08      [0x0a] =  0x1002fbb6
+1002fe0c      [0x0b] =  0x1002fbc0
+1002fe10      [0x0c] =  0x1002fbcf
+1002fe14      [0x0d] =  0x1002fbde
+1002fe18      [0x0e] =  0x1002fbed
+1002fe1c      [0x0f] =  0x1002fbfc
+1002fe20      [0x10] =  0x1002fc1a
+1002fe24      [0x11] =  0x1002fc0b
+1002fe28      [0x12] =  0x1002fc9b
+1002fe2c      [0x13] =  0x1002fc29
+1002fe30      [0x14] =  0x1002fc58
+1002fe34      [0x15] =  0x1002fc5f
+1002fe38      [0x16] =  0x1002fc6b
+1002fe3c      [0x17] =  0x1002fc77
+1002fe40      [0x18] =  0x1002fc83
+1002fe44      [0x19] =  0x1002fc8f
+1002fe48      [0x1a] =  0x1002fca7
+1002fe4c  }

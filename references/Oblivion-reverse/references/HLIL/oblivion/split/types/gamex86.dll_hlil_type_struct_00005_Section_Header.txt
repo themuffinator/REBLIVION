@@ -1,0 +1,58 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Kind: type (struct) */
+/* Name: Section_Header */
+
+100001d8  {
+100001d8      [0x0] = 
+100001d8      {
+100001d8          char name[0x8] = ".text\x00\x00", 0
+100001e0          uint32_t virtualSize = 0x423d6
+100001e4          uint32_t virtualAddress = 0x1000
+100001e8          uint32_t sizeOfRawData = 0x43000
+100001ec          uint32_t pointerToRawData = 0x1000
+100001f0          uint32_t pointerToRelocations = 0x0
+100001f4          uint32_t pointerToLineNumbers = 0x0
+100001f8          uint16_t numberOfRelocations = 0x0
+100001fa          uint16_t numberOfLineNumbers = 0x0
+100001fc          enum pe_section_flags characteristics = IMAGE_SCN_CNT_CODE | IMAGE_SCN_MEM_EXECUTE | IMAGE_SCN_MEM_READ
+10000200      }
+10000200      [0x1] = 
+10000200      {
+10000200          char name[0x8] = ".rdata\x00", 0
+10000208          uint32_t virtualSize = 0x1119
+1000020c          uint32_t virtualAddress = 0x44000
+10000210          uint32_t sizeOfRawData = 0x2000
+10000214          uint32_t pointerToRawData = 0x44000
+10000218          uint32_t pointerToRelocations = 0x0
+1000021c          uint32_t pointerToLineNumbers = 0x0
+10000220          uint16_t numberOfRelocations = 0x0
+10000222          uint16_t numberOfLineNumbers = 0x0
+10000224          enum pe_section_flags characteristics = IMAGE_SCN_CNT_INITIALIZED_DATA | IMAGE_SCN_MEM_READ
+10000228      }
+10000228      [0x2] = 
+10000228      {
+10000228          char name[0x8] = ".data\x00\x00", 0
+10000230          uint32_t virtualSize = 0x27e08
+10000234          uint32_t virtualAddress = 0x46000
+10000238          uint32_t sizeOfRawData = 0x1b000
+1000023c          uint32_t pointerToRawData = 0x46000
+10000240          uint32_t pointerToRelocations = 0x0
+10000244          uint32_t pointerToLineNumbers = 0x0
+10000248          uint16_t numberOfRelocations = 0x0
+1000024a          uint16_t numberOfLineNumbers = 0x0
+1000024c          enum pe_section_flags characteristics = IMAGE_SCN_CNT_INITIALIZED_DATA | IMAGE_SCN_MEM_READ | IMAGE_SCN_MEM_WRITE
+10000250      }
+10000250      [0x3] = 
+10000250      {
+10000250          char name[0x8] = ".reloc\x00", 0
+10000258          uint32_t virtualSize = 0x8a60
+1000025c          uint32_t virtualAddress = 0x6e000
+10000260          uint32_t sizeOfRawData = 0x9000
+10000264          uint32_t pointerToRawData = 0x61000
+10000268          uint32_t pointerToRelocations = 0x0
+1000026c          uint32_t pointerToLineNumbers = 0x0
+10000270          uint16_t numberOfRelocations = 0x0
+10000272          uint16_t numberOfLineNumbers = 0x0
+10000274          enum pe_section_flags characteristics = IMAGE_SCN_CNT_INITIALIZED_DATA | IMAGE_SCN_MEM_DISCARDABLE | IMAGE_SCN_MEM_READ
+10000278      }
+10000278  }

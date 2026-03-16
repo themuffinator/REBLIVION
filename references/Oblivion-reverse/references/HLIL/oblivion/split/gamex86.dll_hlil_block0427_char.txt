@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 427 | Name: char */
+
+10046eec  char (* data_10046eec)[0xb] = data_100484bc {"w_hellfury"}

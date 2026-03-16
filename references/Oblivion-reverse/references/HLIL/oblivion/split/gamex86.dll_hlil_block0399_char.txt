@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 399 | Name: char */
+
+10046dcc  char (* data_10046dcc)[0x6] = data_1004872c {"a_dod"}

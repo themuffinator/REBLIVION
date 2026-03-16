@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 394 | Name: char */
+
+10046da4  char (* data_10046da4)[0x6a] = data_1004883c {"weapons/hgrent1a.wav weapons/hgr…"}

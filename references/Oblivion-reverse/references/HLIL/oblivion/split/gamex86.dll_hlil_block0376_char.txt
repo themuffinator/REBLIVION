@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 376 | Name: char */
+
+10046cf8  char (* data_10046cf8)[0x9] = data_10046384 {"Grenades"}

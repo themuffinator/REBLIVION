@@ -1,0 +1,7518 @@
+{
+  "default_mismatches": {
+    "func_areaportal": {
+      "offset_0x254": [
+        [
+          {
+            "offset": 596,
+            "value": 0
+          }
+        ],
+        null
+      ]
+    },
+    "func_button": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 3
+          }
+        ],
+        null
+      ],
+      "offset_0x148": [
+        [
+          {
+            "offset": 328,
+            "value": 1109393408
+          }
+        ],
+        null
+      ],
+      "offset_0x240": [
+        [
+          {
+            "offset": 576,
+            "value": 1
+          }
+        ],
+        null
+      ],
+      "offset_0x290": [
+        [
+          {
+            "offset": 656,
+            "value": 1077936128
+          }
+        ],
+        null
+      ],
+      "offset_0x330": [
+        [
+          {
+            "offset": 816,
+            "value": 1
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 3
+          }
+        ],
+        null
+      ]
+    },
+    "func_clock": {
+      "offset_0x254": [
+        [
+          {
+            "offset": 596,
+            "value": 3600
+          }
+        ],
+        null
+      ]
+    },
+    "func_conveyor": {
+      "offset_0x148": [
+        [
+          {
+            "offset": 328,
+            "value": 1120403456
+          },
+          {
+            "offset": 328,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 3
+          }
+        ],
+        null
+      ]
+    },
+    "func_door_rotating": {
+      "offset_0x10": [
+        [
+          {
+            "offset": 16,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 2
+          }
+        ],
+        null
+      ],
+      "offset_0x14": [
+        [
+          {
+            "offset": 20,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x148": [
+        [
+          {
+            "offset": 328,
+            "value": 1120403456
+          }
+        ],
+        null
+      ],
+      "offset_0x154": [
+        [
+          {
+            "offset": 340,
+            "value": 0
+          },
+          {
+            "offset": 340,
+            "value": 1065353216
+          }
+        ],
+        null
+      ],
+      "offset_0x158": [
+        [
+          {
+            "offset": 344,
+            "value": 0
+          },
+          {
+            "offset": 344,
+            "value": 1065353216
+          }
+        ],
+        null
+      ],
+      "offset_0x15c": [
+        [
+          {
+            "offset": 348,
+            "value": 0
+          },
+          {
+            "offset": 348,
+            "value": 1065353216
+          }
+        ],
+        null
+      ],
+      "offset_0x18": [
+        [
+          {
+            "offset": 24,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x240": [
+        [
+          {
+            "offset": 576,
+            "value": 1
+          }
+        ],
+        null
+      ],
+      "offset_0x244": [
+        [
+          {
+            "offset": 580,
+            "value": 2
+          }
+        ],
+        null
+      ],
+      "offset_0x290": [
+        [
+          {
+            "offset": 656,
+            "value": 1077936128
+          }
+        ],
+        null
+      ],
+      "offset_0x330": [
+        [
+          {
+            "offset": 816,
+            "value": 1
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 3
+          }
+        ],
+        null
+      ]
+    },
+    "func_door_secret": {
+      "offset_0x10": [
+        [
+          {
+            "offset": 16,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 2
+          }
+        ],
+        null
+      ],
+      "offset_0x14": [
+        [
+          {
+            "offset": 20,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x18": [
+        [
+          {
+            "offset": 24,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x220": [
+        [
+          {
+            "offset": 544,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x240": [
+        [
+          {
+            "offset": 576,
+            "value": 1
+          },
+          {
+            "offset": 576,
+            "value": 1
+          }
+        ],
+        null
+      ],
+      "offset_0x244": [
+        [
+          {
+            "offset": 580,
+            "value": 2
+          }
+        ],
+        null
+      ],
+      "offset_0x290": [
+        [
+          {
+            "offset": 656,
+            "value": 1084227584
+          }
+        ],
+        null
+      ],
+      "offset_0x31c": [
+        [
+          {
+            "offset": 796,
+            "value": 1112014848
+          }
+        ],
+        null
+      ],
+      "offset_0x320": [
+        [
+          {
+            "offset": 800,
+            "value": 1112014848
+          }
+        ],
+        null
+      ],
+      "offset_0x324": [
+        [
+          {
+            "offset": 804,
+            "value": 1112014848
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 3
+          }
+        ],
+        null
+      ]
+    },
+    "func_explosive": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 2
+          }
+        ],
+        null
+      ],
+      "offset_0x220": [
+        [
+          {
+            "offset": 544,
+            "value": 100
+          }
+        ],
+        null
+      ],
+      "offset_0x240": [
+        [
+          {
+            "offset": 576,
+            "value": 1
+          }
+        ],
+        null
+      ],
+      "offset_0x254": [
+        [
+          {
+            "offset": 596,
+            "value": 1
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 3
+          },
+          {
+            "offset": 248,
+            "value": 0
+          }
+        ],
+        null
+      ]
+    },
+    "func_killbox": {
+      "offset_0xb8": [
+        [
+          {
+            "offset": 184,
+            "value": 1
+          }
+        ],
+        null
+      ]
+    },
+    "func_object": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 2
+          },
+          {
+            "offset": 260,
+            "value": 2
+          }
+        ],
+        null
+      ],
+      "offset_0x244": [
+        [
+          {
+            "offset": 580,
+            "value": 100
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 0
+          },
+          {
+            "offset": 248,
+            "value": 3
+          }
+        ],
+        null
+      ],
+      "offset_0xfc": [
+        [
+          {
+            "offset": 252,
+            "value": 33685507
+          }
+        ],
+        null
+      ]
+    },
+    "func_plat": {
+      "offset_0x10": [
+        [
+          {
+            "offset": 16,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 2
+          }
+        ],
+        null
+      ],
+      "offset_0x14": [
+        [
+          {
+            "offset": 20,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x148": [
+        [
+          {
+            "offset": 328,
+            "value": 1101004800
+          }
+        ],
+        null
+      ],
+      "offset_0x14c": [
+        [
+          {
+            "offset": 332,
+            "value": 1084227584
+          }
+        ],
+        null
+      ],
+      "offset_0x150": [
+        [
+          {
+            "offset": 336,
+            "value": 1084227584
+          }
+        ],
+        null
+      ],
+      "offset_0x18": [
+        [
+          {
+            "offset": 24,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x244": [
+        [
+          {
+            "offset": 580,
+            "value": 2
+          }
+        ],
+        null
+      ],
+      "offset_0x330": [
+        [
+          {
+            "offset": 816,
+            "value": 1
+          },
+          {
+            "offset": 816,
+            "value": 2
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 3
+          }
+        ],
+        null
+      ]
+    },
+    "func_rotate_train": {
+      "offset_0x10": [
+        [
+          {
+            "offset": 16,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 2
+          }
+        ],
+        null
+      ],
+      "offset_0x14": [
+        [
+          {
+            "offset": 20,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x148": [
+        [
+          {
+            "offset": 328,
+            "value": 1120403456
+          }
+        ],
+        null
+      ],
+      "offset_0x18": [
+        [
+          {
+            "offset": 24,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x1f4": [
+        [
+          {
+            "offset": 500,
+            "value": 268522848
+          }
+        ],
+        null
+      ],
+      "offset_0x1f8": [
+        [
+          {
+            "offset": 504,
+            "value": 268521616
+          }
+        ],
+        null
+      ],
+      "offset_0x200": [
+        [
+          {
+            "offset": 512,
+            "value": 268523248
+          }
+        ],
+        null
+      ],
+      "offset_0x244": [
+        [
+          {
+            "offset": 580,
+            "value": 0
+          },
+          {
+            "offset": 580,
+            "value": 100
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 3
+          }
+        ],
+        null
+      ]
+    },
+    "func_timer": {
+      "offset_0x290": [
+        [
+          {
+            "offset": 656,
+            "value": 1065353216
+          }
+        ],
+        null
+      ],
+      "offset_0xb8": [
+        [
+          {
+            "offset": 184,
+            "value": 1
+          }
+        ],
+        null
+      ]
+    },
+    "func_train": {
+      "offset_0x10": [
+        [
+          {
+            "offset": 16,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 2
+          }
+        ],
+        null
+      ],
+      "offset_0x14": [
+        [
+          {
+            "offset": 20,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x148": [
+        [
+          {
+            "offset": 328,
+            "value": 1120403456
+          }
+        ],
+        null
+      ],
+      "offset_0x18": [
+        [
+          {
+            "offset": 24,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x190": [
+        [
+          {
+            "offset": 400,
+            "value": 75
+          }
+        ],
+        null
+      ],
+      "offset_0x220": [
+        [
+          {
+            "offset": 544,
+            "value": 100
+          }
+        ],
+        null
+      ],
+      "offset_0x240": [
+        [
+          {
+            "offset": 576,
+            "value": 1
+          }
+        ],
+        null
+      ],
+      "offset_0x244": [
+        [
+          {
+            "offset": 580,
+            "value": 0
+          },
+          {
+            "offset": 580,
+            "value": 20
+          }
+        ],
+        null
+      ],
+      "offset_0x254": [
+        [
+          {
+            "offset": 596,
+            "value": 10
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 3
+          }
+        ],
+        null
+      ]
+    },
+    "func_wall": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 2
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 3
+          },
+          {
+            "offset": 248,
+            "value": 3
+          },
+          {
+            "offset": 248,
+            "value": 0
+          }
+        ],
+        null
+      ]
+    },
+    "grenade": {
+      "offset_0x58": [
+        [
+          {
+            "offset": 88,
+            "value": 0
+          }
+        ],
+        null
+      ]
+    },
+    "info_teleport_dest": {
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 0
+          }
+        ],
+        null
+      ]
+    },
+    "item_health": {
+      "offset_0x254": [
+        [
+          {
+            "offset": 596,
+            "value": 10
+          }
+        ],
+        null
+      ]
+    },
+    "item_health_large": {
+      "offset_0x254": [
+        [
+          {
+            "offset": 596,
+            "value": 25
+          }
+        ],
+        null
+      ]
+    },
+    "item_health_mega": {
+      "offset_0x254": [
+        [
+          {
+            "offset": 596,
+            "value": 100
+          }
+        ],
+        null
+      ],
+      "offset_0x2c8": [
+        [
+          {
+            "offset": 712,
+            "value": 3
+          }
+        ],
+        null
+      ]
+    },
+    "item_health_small": {
+      "offset_0x254": [
+        [
+          {
+            "offset": 596,
+            "value": 2
+          }
+        ],
+        null
+      ],
+      "offset_0x2c8": [
+        [
+          {
+            "offset": 712,
+            "value": 1
+          }
+        ],
+        null
+      ]
+    },
+    "light_mine1": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 2
+          }
+        ],
+        null
+      ]
+    },
+    "light_mine2": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 2
+          }
+        ],
+        null
+      ]
+    },
+    "misc_actor": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 5
+          }
+        ],
+        null
+      ],
+      "offset_0x190": [
+        [
+          {
+            "offset": 400,
+            "value": 200
+          }
+        ],
+        null
+      ],
+      "offset_0x1ec": [
+        [
+          {
+            "offset": 492,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x220": [
+        [
+          {
+            "offset": 544,
+            "value": 100
+          },
+          {
+            "offset": 544,
+            "value": 4294967295
+          }
+        ],
+        null
+      ],
+      "offset_0x22c": [
+        [
+          {
+            "offset": 556,
+            "value": 2
+          }
+        ],
+        null
+      ],
+      "offset_0x28": [
+        [
+          {
+            "offset": 40,
+            "value": 255
+          }
+        ],
+        null
+      ],
+      "offset_0x2c": [
+        [
+          {
+            "offset": 44,
+            "value": 255
+          }
+        ],
+        null
+      ],
+      "offset_0x358": [
+        [
+          {
+            "offset": 856,
+            "value": 268747608
+          }
+        ],
+        null
+      ],
+      "offset_0x364": [
+        [
+          {
+            "offset": 868,
+            "value": 1065353216
+          }
+        ],
+        null
+      ],
+      "offset_0x38": [
+        [
+          {
+            "offset": 56,
+            "value": 183
+          },
+          {
+            "offset": 56,
+            "value": 189
+          },
+          {
+            "offset": 56,
+            "value": 197
+          }
+        ],
+        null
+      ],
+      "offset_0x384": [
+        [
+          {
+            "offset": 900,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x388": [
+        [
+          {
+            "offset": 904,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 2
+          }
+        ],
+        null
+      ]
+    },
+    "misc_banner": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 0
+          }
+        ],
+        null
+      ]
+    },
+    "misc_bigviper": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 2
+          }
+        ],
+        null
+      ]
+    },
+    "misc_blackhole": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x44": [
+        [
+          {
+            "offset": 68,
+            "value": 32
+          }
+        ],
+        null
+      ],
+      "offset_0xbc": [
+        [
+          {
+            "offset": 188,
+            "value": 3263168512
+          }
+        ],
+        null
+      ],
+      "offset_0xc0": [
+        [
+          {
+            "offset": 192,
+            "value": 3263168512
+          }
+        ],
+        null
+      ],
+      "offset_0xc4": [
+        [
+          {
+            "offset": 196,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0xc8": [
+        [
+          {
+            "offset": 200,
+            "value": 1115684864
+          }
+        ],
+        null
+      ],
+      "offset_0xcc": [
+        [
+          {
+            "offset": 204,
+            "value": 1115684864
+          }
+        ],
+        null
+      ],
+      "offset_0xd0": [
+        [
+          {
+            "offset": 208,
+            "value": 1090519040
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 0
+          }
+        ],
+        null
+      ]
+    },
+    "misc_camera": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 8
+          }
+        ],
+        null
+      ],
+      "offset_0x290": [
+        [
+          {
+            "offset": 656,
+            "value": 1077936128
+          }
+        ],
+        null
+      ],
+      "offset_0xb8": [
+        [
+          {
+            "offset": 184,
+            "value": 1
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 0
+          }
+        ],
+        null
+      ]
+    },
+    "misc_camera_target": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 8
+          }
+        ],
+        null
+      ],
+      "offset_0x1e0": [
+        [
+          {
+            "offset": 480,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x254": [
+        [
+          {
+            "offset": 596,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0xb8": [
+        [
+          {
+            "offset": 184,
+            "value": 1
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 0
+          }
+        ],
+        null
+      ]
+    },
+    "misc_deadsoldier": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x22c": [
+        [
+          {
+            "offset": 556,
+            "value": 2
+          }
+        ],
+        null
+      ],
+      "offset_0x240": [
+        [
+          {
+            "offset": 576,
+            "value": 1
+          }
+        ],
+        null
+      ],
+      "offset_0x38": [
+        [
+          {
+            "offset": 56,
+            "value": 1
+          },
+          {
+            "offset": 56,
+            "value": 2
+          },
+          {
+            "offset": 56,
+            "value": 3
+          },
+          {
+            "offset": 56,
+            "value": 4
+          },
+          {
+            "offset": 56,
+            "value": 0
+          },
+          {
+            "offset": 56,
+            "value": 5
+          }
+        ],
+        null
+      ],
+      "offset_0xbc": [
+        [
+          {
+            "offset": 188,
+            "value": 3246391296
+          }
+        ],
+        null
+      ],
+      "offset_0xc0": [
+        [
+          {
+            "offset": 192,
+            "value": 3246391296
+          }
+        ],
+        null
+      ],
+      "offset_0xc4": [
+        [
+          {
+            "offset": 196,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0xc8": [
+        [
+          {
+            "offset": 200,
+            "value": 1098907648
+          }
+        ],
+        null
+      ],
+      "offset_0xcc": [
+        [
+          {
+            "offset": 204,
+            "value": 1098907648
+          }
+        ],
+        null
+      ],
+      "offset_0xd0": [
+        [
+          {
+            "offset": 208,
+            "value": 1098907648
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 2
+          }
+        ],
+        null
+      ]
+    },
+    "misc_easterchick": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x38": [
+        [
+          {
+            "offset": 56,
+            "value": 208
+          }
+        ],
+        null
+      ],
+      "offset_0xbc": [
+        [
+          {
+            "offset": 188,
+            "value": 3254779904
+          }
+        ],
+        null
+      ],
+      "offset_0xc0": [
+        [
+          {
+            "offset": 192,
+            "value": 3254779904
+          }
+        ],
+        null
+      ],
+      "offset_0xc4": [
+        [
+          {
+            "offset": 196,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0xc8": [
+        [
+          {
+            "offset": 200,
+            "value": 1107296256
+          }
+        ],
+        null
+      ],
+      "offset_0xcc": [
+        [
+          {
+            "offset": 204,
+            "value": 1107296256
+          }
+        ],
+        null
+      ],
+      "offset_0xd0": [
+        [
+          {
+            "offset": 208,
+            "value": 1107296256
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 2
+          }
+        ],
+        null
+      ]
+    },
+    "misc_easterchick2": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x38": [
+        [
+          {
+            "offset": 56,
+            "value": 248
+          }
+        ],
+        null
+      ],
+      "offset_0xbc": [
+        [
+          {
+            "offset": 188,
+            "value": 3254779904
+          }
+        ],
+        null
+      ],
+      "offset_0xc0": [
+        [
+          {
+            "offset": 192,
+            "value": 3254779904
+          }
+        ],
+        null
+      ],
+      "offset_0xc4": [
+        [
+          {
+            "offset": 196,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0xc8": [
+        [
+          {
+            "offset": 200,
+            "value": 1107296256
+          }
+        ],
+        null
+      ],
+      "offset_0xcc": [
+        [
+          {
+            "offset": 204,
+            "value": 1107296256
+          }
+        ],
+        null
+      ],
+      "offset_0xd0": [
+        [
+          {
+            "offset": 208,
+            "value": 1107296256
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 2
+          }
+        ],
+        null
+      ]
+    },
+    "misc_eastertank": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x38": [
+        [
+          {
+            "offset": 56,
+            "value": 254
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 2
+          }
+        ],
+        null
+      ]
+    },
+    "misc_explobox": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 5
+          }
+        ],
+        null
+      ],
+      "offset_0x190": [
+        [
+          {
+            "offset": 400,
+            "value": 400
+          }
+        ],
+        null
+      ],
+      "offset_0x220": [
+        [
+          {
+            "offset": 544,
+            "value": 10
+          }
+        ],
+        null
+      ],
+      "offset_0x240": [
+        [
+          {
+            "offset": 576,
+            "value": 1
+          }
+        ],
+        null
+      ],
+      "offset_0x244": [
+        [
+          {
+            "offset": 580,
+            "value": 150
+          }
+        ],
+        null
+      ],
+      "offset_0x35c": [
+        [
+          {
+            "offset": 860,
+            "value": 1024
+          }
+        ],
+        null
+      ],
+      "offset_0xbc": [
+        [
+          {
+            "offset": 188,
+            "value": 3246391296
+          }
+        ],
+        null
+      ],
+      "offset_0xc0": [
+        [
+          {
+            "offset": 192,
+            "value": 3246391296
+          }
+        ],
+        null
+      ],
+      "offset_0xc4": [
+        [
+          {
+            "offset": 196,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0xc8": [
+        [
+          {
+            "offset": 200,
+            "value": 1098907648
+          }
+        ],
+        null
+      ],
+      "offset_0xcc": [
+        [
+          {
+            "offset": 204,
+            "value": 1098907648
+          }
+        ],
+        null
+      ],
+      "offset_0xd0": [
+        [
+          {
+            "offset": 208,
+            "value": 1109393408
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 2
+          }
+        ],
+        null
+      ]
+    },
+    "misc_gib_arm": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 7
+          }
+        ],
+        null
+      ],
+      "offset_0x22c": [
+        [
+          {
+            "offset": 556,
+            "value": 2
+          }
+        ],
+        null
+      ],
+      "offset_0x240": [
+        [
+          {
+            "offset": 576,
+            "value": 1
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 0
+          }
+        ],
+        null
+      ]
+    },
+    "misc_gib_head": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 7
+          }
+        ],
+        null
+      ],
+      "offset_0x22c": [
+        [
+          {
+            "offset": 556,
+            "value": 2
+          }
+        ],
+        null
+      ],
+      "offset_0x240": [
+        [
+          {
+            "offset": 576,
+            "value": 1
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 0
+          }
+        ],
+        null
+      ]
+    },
+    "misc_gib_leg": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 7
+          }
+        ],
+        null
+      ],
+      "offset_0x22c": [
+        [
+          {
+            "offset": 556,
+            "value": 2
+          }
+        ],
+        null
+      ],
+      "offset_0x240": [
+        [
+          {
+            "offset": 576,
+            "value": 1
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 0
+          }
+        ],
+        null
+      ]
+    },
+    "misc_insane": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 5
+          }
+        ],
+        null
+      ],
+      "offset_0x190": [
+        [
+          {
+            "offset": 400,
+            "value": 300
+          }
+        ],
+        null
+      ],
+      "offset_0x204": [
+        [
+          {
+            "offset": 516,
+            "value": 268601216
+          }
+        ],
+        null
+      ],
+      "offset_0x208": [
+        [
+          {
+            "offset": 520,
+            "value": 268601920
+          }
+        ],
+        null
+      ],
+      "offset_0x220": [
+        [
+          {
+            "offset": 544,
+            "value": 100
+          }
+        ],
+        null
+      ],
+      "offset_0x228": [
+        [
+          {
+            "offset": 552,
+            "value": -50
+          }
+        ],
+        null
+      ],
+      "offset_0x358": [
+        [
+          {
+            "offset": 856,
+            "value": 268793680
+          }
+        ],
+        null
+      ],
+      "offset_0x364": [
+        [
+          {
+            "offset": 868,
+            "value": 1065353216
+          }
+        ],
+        null
+      ],
+      "offset_0x368": [
+        [
+          {
+            "offset": 872,
+            "value": 268601664
+          }
+        ],
+        null
+      ],
+      "offset_0x374": [
+        [
+          {
+            "offset": 884,
+            "value": 268600960
+          }
+        ],
+        null
+      ],
+      "offset_0x378": [
+        [
+          {
+            "offset": 888,
+            "value": 268601088
+          }
+        ],
+        null
+      ],
+      "offset_0x37c": [
+        [
+          {
+            "offset": 892,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x380": [
+        [
+          {
+            "offset": 896,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x384": [
+        [
+          {
+            "offset": 900,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x388": [
+        [
+          {
+            "offset": 904,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0xbc": [
+        [
+          {
+            "offset": 188,
+            "value": -1048576000
+          },
+          {
+            "offset": 188,
+            "value": -1048576000
+          }
+        ],
+        null
+      ],
+      "offset_0xc0": [
+        [
+          {
+            "offset": 192,
+            "value": -1048576000
+          },
+          {
+            "offset": 192,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0xc4": [
+        [
+          {
+            "offset": 196,
+            "value": -1044381696
+          },
+          {
+            "offset": 196,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0xc8": [
+        [
+          {
+            "offset": 200,
+            "value": 1098907648
+          },
+          {
+            "offset": 200,
+            "value": 1098907648
+          }
+        ],
+        null
+      ],
+      "offset_0xcc": [
+        [
+          {
+            "offset": 204,
+            "value": 1098907648
+          },
+          {
+            "offset": 204,
+            "value": 1090519040
+          }
+        ],
+        null
+      ],
+      "offset_0xd0": [
+        [
+          {
+            "offset": 208,
+            "value": 1107296256
+          },
+          {
+            "offset": 208,
+            "value": 1107296256
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 2
+          }
+        ],
+        null
+      ]
+    },
+    "misc_satellite_dish": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0xbc": [
+        [
+          {
+            "offset": 188,
+            "value": 3263168512
+          }
+        ],
+        null
+      ],
+      "offset_0xc0": [
+        [
+          {
+            "offset": 192,
+            "value": 3263168512
+          }
+        ],
+        null
+      ],
+      "offset_0xc4": [
+        [
+          {
+            "offset": 196,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0xc8": [
+        [
+          {
+            "offset": 200,
+            "value": 1115684864
+          }
+        ],
+        null
+      ],
+      "offset_0xcc": [
+        [
+          {
+            "offset": 204,
+            "value": 1115684864
+          }
+        ],
+        null
+      ],
+      "offset_0xd0": [
+        [
+          {
+            "offset": 208,
+            "value": 1124073472
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 2
+          }
+        ],
+        null
+      ]
+    },
+    "misc_screenfader": {
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 0
+          }
+        ],
+        null
+      ]
+    },
+    "misc_strogg_ship": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 2
+          }
+        ],
+        null
+      ],
+      "offset_0x148": [
+        [
+          {
+            "offset": 328,
+            "value": 1133903872
+          }
+        ],
+        null
+      ],
+      "offset_0xbc": [
+        [
+          {
+            "offset": 188,
+            "value": 3246391296
+          }
+        ],
+        null
+      ],
+      "offset_0xc0": [
+        [
+          {
+            "offset": 192,
+            "value": 3246391296
+          }
+        ],
+        null
+      ],
+      "offset_0xc4": [
+        [
+          {
+            "offset": 196,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0xc8": [
+        [
+          {
+            "offset": 200,
+            "value": 1098907648
+          }
+        ],
+        null
+      ],
+      "offset_0xcc": [
+        [
+          {
+            "offset": 204,
+            "value": 1098907648
+          }
+        ],
+        null
+      ],
+      "offset_0xd0": [
+        [
+          {
+            "offset": 208,
+            "value": 1107296256
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 0
+          }
+        ],
+        null
+      ]
+    },
+    "misc_teleporter": {
+      "offset_0x3c": [
+        [
+          {
+            "offset": 60,
+            "value": 1
+          }
+        ],
+        null
+      ],
+      "offset_0x40": [
+        [
+          {
+            "offset": 64,
+            "value": 131072
+          }
+        ],
+        null
+      ],
+      "offset_0xbc": [
+        [
+          {
+            "offset": 188,
+            "value": 3238002688
+          }
+        ],
+        null
+      ],
+      "offset_0xc0": [
+        [
+          {
+            "offset": 192,
+            "value": 3238002688
+          }
+        ],
+        null
+      ],
+      "offset_0xc4": [
+        [
+          {
+            "offset": 196,
+            "value": 1090519040
+          }
+        ],
+        null
+      ],
+      "offset_0xc8": [
+        [
+          {
+            "offset": 200,
+            "value": 1090519040
+          }
+        ],
+        null
+      ],
+      "offset_0xcc": [
+        [
+          {
+            "offset": 204,
+            "value": 1090519040
+          }
+        ],
+        null
+      ],
+      "offset_0xd0": [
+        [
+          {
+            "offset": 208,
+            "value": 1103101952
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 2
+          },
+          {
+            "offset": 248,
+            "value": 1
+          }
+        ],
+        null
+      ]
+    },
+    "misc_teleporter_dest": {
+      "offset_0x3c": [
+        [
+          {
+            "offset": 60,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 2
+          }
+        ],
+        null
+      ]
+    },
+    "misc_viper": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 2
+          }
+        ],
+        null
+      ],
+      "offset_0x148": [
+        [
+          {
+            "offset": 328,
+            "value": 1133903872
+          }
+        ],
+        null
+      ],
+      "offset_0xbc": [
+        [
+          {
+            "offset": 188,
+            "value": 3246391296
+          }
+        ],
+        null
+      ],
+      "offset_0xc0": [
+        [
+          {
+            "offset": 192,
+            "value": 3246391296
+          }
+        ],
+        null
+      ],
+      "offset_0xc4": [
+        [
+          {
+            "offset": 196,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0xc8": [
+        [
+          {
+            "offset": 200,
+            "value": 1098907648
+          }
+        ],
+        null
+      ],
+      "offset_0xcc": [
+        [
+          {
+            "offset": 204,
+            "value": 1098907648
+          }
+        ],
+        null
+      ],
+      "offset_0xd0": [
+        [
+          {
+            "offset": 208,
+            "value": 1107296256
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 0
+          }
+        ],
+        null
+      ]
+    },
+    "misc_viper_bomb": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x244": [
+        [
+          {
+            "offset": 580,
+            "value": 1000
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 0
+          }
+        ],
+        null
+      ]
+    },
+    "monster_badass": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 5
+          }
+        ],
+        null
+      ],
+      "offset_0x190": [
+        [
+          {
+            "offset": 400,
+            "value": 1000
+          }
+        ],
+        null
+      ],
+      "offset_0x1e4": [
+        [
+          {
+            "offset": 484,
+            "value": 1103626240
+          }
+        ],
+        null
+      ],
+      "offset_0x1ec": [
+        [
+          {
+            "offset": 492,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x220": [
+        [
+          {
+            "offset": 544,
+            "value": 1500
+          },
+          {
+            "offset": 544,
+            "value": -1
+          }
+        ],
+        null
+      ],
+      "offset_0x228": [
+        [
+          {
+            "offset": 552,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x22c": [
+        [
+          {
+            "offset": 556,
+            "value": 2
+          }
+        ],
+        null
+      ],
+      "offset_0xbc": [
+        [
+          {
+            "offset": 188,
+            "value": -1034944512
+          },
+          {
+            "offset": 188,
+            "value": -1040711680
+          }
+        ],
+        null
+      ],
+      "offset_0xc0": [
+        [
+          {
+            "offset": 192,
+            "value": -1038090240
+          },
+          {
+            "offset": 192,
+            "value": -1028653056
+          }
+        ],
+        null
+      ],
+      "offset_0xc4": [
+        [
+          {
+            "offset": 196,
+            "value": -1031798784
+          },
+          {
+            "offset": 196,
+            "value": -1031798784
+          }
+        ],
+        null
+      ],
+      "offset_0xc8": [
+        [
+          {
+            "offset": 200,
+            "value": 1108869120
+          },
+          {
+            "offset": 200,
+            "value": 1108869120
+          }
+        ],
+        null
+      ],
+      "offset_0xcc": [
+        [
+          {
+            "offset": 204,
+            "value": 1109393408
+          },
+          {
+            "offset": 204,
+            "value": 1101529088
+          }
+        ],
+        null
+      ],
+      "offset_0xd0": [
+        [
+          {
+            "offset": 208,
+            "value": 1107296256
+          },
+          {
+            "offset": 208,
+            "value": -1051721728
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 2
+          }
+        ],
+        null
+      ]
+    },
+    "monster_berserk": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 5
+          }
+        ],
+        null
+      ],
+      "offset_0x190": [
+        [
+          {
+            "offset": 400,
+            "value": 250
+          }
+        ],
+        null
+      ],
+      "offset_0x1ec": [
+        [
+          {
+            "offset": 492,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x220": [
+        [
+          {
+            "offset": 544,
+            "value": 240
+          },
+          {
+            "offset": 544,
+            "value": -1
+          }
+        ],
+        null
+      ],
+      "offset_0x228": [
+        [
+          {
+            "offset": 552,
+            "value": -60
+          }
+        ],
+        null
+      ],
+      "offset_0x22c": [
+        [
+          {
+            "offset": 556,
+            "value": 2
+          }
+        ],
+        null
+      ],
+      "offset_0x364": [
+        [
+          {
+            "offset": 868,
+            "value": 1065353216
+          }
+        ],
+        null
+      ],
+      "offset_0x38": [
+        [
+          {
+            "offset": 56,
+            "value": 185
+          },
+          {
+            "offset": 56,
+            "value": 211
+          },
+          {
+            "offset": 56,
+            "value": 235
+          },
+          {
+            "offset": 56,
+            "value": 243
+          }
+        ],
+        null
+      ],
+      "offset_0xbc": [
+        [
+          {
+            "offset": 188,
+            "value": -1048576000
+          },
+          {
+            "offset": 188,
+            "value": -1048576000
+          }
+        ],
+        null
+      ],
+      "offset_0xc0": [
+        [
+          {
+            "offset": 192,
+            "value": -1048576000
+          },
+          {
+            "offset": 192,
+            "value": -1048576000
+          }
+        ],
+        null
+      ],
+      "offset_0xc4": [
+        [
+          {
+            "offset": 196,
+            "value": -1044381696
+          },
+          {
+            "offset": 196,
+            "value": -1044381696
+          }
+        ],
+        null
+      ],
+      "offset_0xc8": [
+        [
+          {
+            "offset": 200,
+            "value": 1098907648
+          },
+          {
+            "offset": 200,
+            "value": 1098907648
+          }
+        ],
+        null
+      ],
+      "offset_0xcc": [
+        [
+          {
+            "offset": 204,
+            "value": 1098907648
+          },
+          {
+            "offset": 204,
+            "value": 1098907648
+          }
+        ],
+        null
+      ],
+      "offset_0xd0": [
+        [
+          {
+            "offset": 208,
+            "value": 1107296256
+          },
+          {
+            "offset": 208,
+            "value": -1056964608
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 2
+          }
+        ],
+        null
+      ]
+    },
+    "monster_boss2": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 5
+          }
+        ],
+        null
+      ],
+      "offset_0x190": [
+        [
+          {
+            "offset": 400,
+            "value": 1000
+          }
+        ],
+        null
+      ],
+      "offset_0x204": [
+        [
+          {
+            "offset": 516,
+            "value": 268571392
+          }
+        ],
+        null
+      ],
+      "offset_0x208": [
+        [
+          {
+            "offset": 520,
+            "value": 268571664
+          }
+        ],
+        null
+      ],
+      "offset_0x220": [
+        [
+          {
+            "offset": 544,
+            "value": 2000
+          }
+        ],
+        null
+      ],
+      "offset_0x228": [
+        [
+          {
+            "offset": 552,
+            "value": -200
+          }
+        ],
+        null
+      ],
+      "offset_0x358": [
+        [
+          {
+            "offset": 856,
+            "value": 268752896
+          }
+        ],
+        null
+      ],
+      "offset_0x364": [
+        [
+          {
+            "offset": 868,
+            "value": 1065353216
+          }
+        ],
+        null
+      ],
+      "offset_0x368": [
+        [
+          {
+            "offset": 872,
+            "value": 268571040
+          }
+        ],
+        null
+      ],
+      "offset_0x370": [
+        [
+          {
+            "offset": 880,
+            "value": 268569968
+          }
+        ],
+        null
+      ],
+      "offset_0x374": [
+        [
+          {
+            "offset": 884,
+            "value": 268571104
+          }
+        ],
+        null
+      ],
+      "offset_0x378": [
+        [
+          {
+            "offset": 888,
+            "value": 268571056
+          }
+        ],
+        null
+      ],
+      "offset_0x380": [
+        [
+          {
+            "offset": 896,
+            "value": 268571120
+          }
+        ],
+        null
+      ],
+      "offset_0x38c": [
+        [
+          {
+            "offset": 908,
+            "value": 268571744
+          }
+        ],
+        null
+      ],
+      "offset_0xbc": [
+        [
+          {
+            "offset": 188,
+            "value": -1033895936
+          }
+        ],
+        null
+      ],
+      "offset_0xc0": [
+        [
+          {
+            "offset": 192,
+            "value": -1033895936
+          }
+        ],
+        null
+      ],
+      "offset_0xc4": [
+        [
+          {
+            "offset": 196,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0xc8": [
+        [
+          {
+            "offset": 200,
+            "value": 1113587712
+          }
+        ],
+        null
+      ],
+      "offset_0xcc": [
+        [
+          {
+            "offset": 204,
+            "value": 1113587712
+          }
+        ],
+        null
+      ],
+      "offset_0xd0": [
+        [
+          {
+            "offset": 208,
+            "value": 1117782016
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 2
+          }
+        ],
+        null
+      ]
+    },
+    "monster_boss3_stand": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 5
+          }
+        ],
+        null
+      ],
+      "offset_0x10c": [
+        [
+          {
+            "offset": 268,
+            "value": 268755452
+          }
+        ],
+        null
+      ],
+      "offset_0x1f4": [
+        [
+          {
+            "offset": 500,
+            "value": 268572768
+          }
+        ],
+        null
+      ],
+      "offset_0x200": [
+        [
+          {
+            "offset": 512,
+            "value": 268572704
+          }
+        ],
+        null
+      ],
+      "offset_0x38": [
+        [
+          {
+            "offset": 56,
+            "value": 414
+          }
+        ],
+        null
+      ],
+      "offset_0xbc": [
+        [
+          {
+            "offset": 188,
+            "value": -1040187392
+          }
+        ],
+        null
+      ],
+      "offset_0xc0": [
+        [
+          {
+            "offset": 192,
+            "value": -1040187392
+          }
+        ],
+        null
+      ],
+      "offset_0xc4": [
+        [
+          {
+            "offset": 196,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0xc8": [
+        [
+          {
+            "offset": 200,
+            "value": 1107296256
+          }
+        ],
+        null
+      ],
+      "offset_0xcc": [
+        [
+          {
+            "offset": 204,
+            "value": 1107296256
+          }
+        ],
+        null
+      ],
+      "offset_0xd0": [
+        [
+          {
+            "offset": 208,
+            "value": 1119092736
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 2
+          }
+        ],
+        null
+      ]
+    },
+    "monster_brain": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 5
+          }
+        ],
+        null
+      ],
+      "offset_0x190": [
+        [
+          {
+            "offset": 400,
+            "value": 400
+          }
+        ],
+        null
+      ],
+      "offset_0x1ec": [
+        [
+          {
+            "offset": 492,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x220": [
+        [
+          {
+            "offset": 544,
+            "value": 300
+          }
+        ],
+        null
+      ],
+      "offset_0x228": [
+        [
+          {
+            "offset": 552,
+            "value": -150
+          }
+        ],
+        null
+      ],
+      "offset_0x38": [
+        [
+          {
+            "offset": 56,
+            "value": 128
+          },
+          {
+            "offset": 56,
+            "value": 140
+          },
+          {
+            "offset": 56,
+            "value": 145
+          }
+        ],
+        null
+      ],
+      "offset_0xbc": [
+        [
+          {
+            "offset": 188,
+            "value": -1048576000
+          },
+          {
+            "offset": 188,
+            "value": -1048576000
+          }
+        ],
+        null
+      ],
+      "offset_0xc0": [
+        [
+          {
+            "offset": 192,
+            "value": -1048576000
+          },
+          {
+            "offset": 192,
+            "value": -1048576000
+          }
+        ],
+        null
+      ],
+      "offset_0xc4": [
+        [
+          {
+            "offset": 196,
+            "value": -1044381696
+          },
+          {
+            "offset": 196,
+            "value": -1044381696
+          }
+        ],
+        null
+      ],
+      "offset_0xc8": [
+        [
+          {
+            "offset": 200,
+            "value": 1098907648
+          },
+          {
+            "offset": 200,
+            "value": 1098907648
+          }
+        ],
+        null
+      ],
+      "offset_0xcc": [
+        [
+          {
+            "offset": 204,
+            "value": 1098907648
+          },
+          {
+            "offset": 204,
+            "value": 1098907648
+          }
+        ],
+        null
+      ],
+      "offset_0xd0": [
+        [
+          {
+            "offset": 208,
+            "value": 1107296256
+          },
+          {
+            "offset": 208,
+            "value": -1056964608
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 2
+          }
+        ],
+        null
+      ]
+    },
+    "monster_chick": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 5
+          }
+        ],
+        null
+      ],
+      "offset_0x190": [
+        [
+          {
+            "offset": 400,
+            "value": 200
+          }
+        ],
+        null
+      ],
+      "offset_0x1ec": [
+        [
+          {
+            "offset": 492,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x220": [
+        [
+          {
+            "offset": 544,
+            "value": 175
+          }
+        ],
+        null
+      ],
+      "offset_0x228": [
+        [
+          {
+            "offset": 552,
+            "value": -70
+          }
+        ],
+        null
+      ],
+      "offset_0x38": [
+        [
+          {
+            "offset": 56,
+            "value": 59
+          },
+          {
+            "offset": 56,
+            "value": 82
+          }
+        ],
+        null
+      ],
+      "offset_0xbc": [
+        [
+          {
+            "offset": 188,
+            "value": -1048576000
+          },
+          {
+            "offset": 188,
+            "value": -1048576000
+          }
+        ],
+        null
+      ],
+      "offset_0xc0": [
+        [
+          {
+            "offset": 192,
+            "value": -1048576000
+          },
+          {
+            "offset": 192,
+            "value": -1048576000
+          }
+        ],
+        null
+      ],
+      "offset_0xc4": [
+        [
+          {
+            "offset": 196,
+            "value": 0
+          },
+          {
+            "offset": 196,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0xc8": [
+        [
+          {
+            "offset": 200,
+            "value": 1098907648
+          },
+          {
+            "offset": 200,
+            "value": 1098907648
+          }
+        ],
+        null
+      ],
+      "offset_0xcc": [
+        [
+          {
+            "offset": 204,
+            "value": 1098907648
+          },
+          {
+            "offset": 204,
+            "value": 1098907648
+          }
+        ],
+        null
+      ],
+      "offset_0xd0": [
+        [
+          {
+            "offset": 208,
+            "value": 1113587712
+          },
+          {
+            "offset": 208,
+            "value": 1098907648
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 2
+          }
+        ],
+        null
+      ]
+    },
+    "monster_commander_body": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x108": [
+        [
+          {
+            "offset": 264,
+            "value": 16
+          }
+        ],
+        null
+      ],
+      "offset_0x240": [
+        [
+          {
+            "offset": 576,
+            "value": 1
+          }
+        ],
+        null
+      ],
+      "offset_0xbc": [
+        [
+          {
+            "offset": 188,
+            "value": 3254779904
+          }
+        ],
+        null
+      ],
+      "offset_0xc0": [
+        [
+          {
+            "offset": 192,
+            "value": 3254779904
+          }
+        ],
+        null
+      ],
+      "offset_0xc4": [
+        [
+          {
+            "offset": 196,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0xc8": [
+        [
+          {
+            "offset": 200,
+            "value": 1107296256
+          }
+        ],
+        null
+      ],
+      "offset_0xcc": [
+        [
+          {
+            "offset": 204,
+            "value": 1107296256
+          }
+        ],
+        null
+      ],
+      "offset_0xd0": [
+        [
+          {
+            "offset": 208,
+            "value": 1111490560
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 2
+          }
+        ],
+        null
+      ]
+    },
+    "monster_cyborg": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 5
+          }
+        ],
+        null
+      ],
+      "offset_0x190": [
+        [
+          {
+            "offset": 400,
+            "value": 300
+          }
+        ],
+        null
+      ],
+      "offset_0x204": [
+        [
+          {
+            "offset": 516,
+            "value": 268584608
+          }
+        ],
+        null
+      ],
+      "offset_0x208": [
+        [
+          {
+            "offset": 520,
+            "value": 268587184
+          }
+        ],
+        null
+      ],
+      "offset_0x220": [
+        [
+          {
+            "offset": 544,
+            "value": 300
+          }
+        ],
+        null
+      ],
+      "offset_0x228": [
+        [
+          {
+            "offset": 552,
+            "value": -120
+          }
+        ],
+        null
+      ],
+      "offset_0x358": [
+        [
+          {
+            "offset": 856,
+            "value": 268768576
+          }
+        ],
+        null
+      ],
+      "offset_0x364": [
+        [
+          {
+            "offset": 868,
+            "value": 1065353216
+          }
+        ],
+        null
+      ],
+      "offset_0x368": [
+        [
+          {
+            "offset": 872,
+            "value": 268584400
+          }
+        ],
+        null
+      ],
+      "offset_0x36c": [
+        [
+          {
+            "offset": 876,
+            "value": 268584416
+          }
+        ],
+        null
+      ],
+      "offset_0x370": [
+        [
+          {
+            "offset": 880,
+            "value": 268584352
+          }
+        ],
+        null
+      ],
+      "offset_0x374": [
+        [
+          {
+            "offset": 884,
+            "value": 268584464
+          }
+        ],
+        null
+      ],
+      "offset_0x378": [
+        [
+          {
+            "offset": 888,
+            "value": 268584480
+          }
+        ],
+        null
+      ],
+      "offset_0x37c": [
+        [
+          {
+            "offset": 892,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x380": [
+        [
+          {
+            "offset": 896,
+            "value": 268586496
+          }
+        ],
+        null
+      ],
+      "offset_0x384": [
+        [
+          {
+            "offset": 900,
+            "value": 268586608
+          }
+        ],
+        null
+      ],
+      "offset_0x388": [
+        [
+          {
+            "offset": 904,
+            "value": 268584304
+          }
+        ],
+        null
+      ],
+      "offset_0x38c": [
+        [
+          {
+            "offset": 908,
+            "value": 268586992
+          }
+        ],
+        null
+      ],
+      "offset_0xbc": [
+        [
+          {
+            "offset": 188,
+            "value": -1048576000
+          }
+        ],
+        null
+      ],
+      "offset_0xc0": [
+        [
+          {
+            "offset": 192,
+            "value": -1048576000
+          }
+        ],
+        null
+      ],
+      "offset_0xc4": [
+        [
+          {
+            "offset": 196,
+            "value": -1038614528
+          }
+        ],
+        null
+      ],
+      "offset_0xc8": [
+        [
+          {
+            "offset": 200,
+            "value": 1098907648
+          }
+        ],
+        null
+      ],
+      "offset_0xcc": [
+        [
+          {
+            "offset": 204,
+            "value": 1098907648
+          }
+        ],
+        null
+      ],
+      "offset_0xd0": [
+        [
+          {
+            "offset": 208,
+            "value": 1104674816
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 2
+          }
+        ],
+        null
+      ]
+    },
+    "monster_flipper": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 5
+          }
+        ],
+        null
+      ],
+      "offset_0x190": [
+        [
+          {
+            "offset": 400,
+            "value": 100
+          }
+        ],
+        null
+      ],
+      "offset_0x204": [
+        [
+          {
+            "offset": 516,
+            "value": 268588256
+          }
+        ],
+        null
+      ],
+      "offset_0x208": [
+        [
+          {
+            "offset": 520,
+            "value": 268588496
+          }
+        ],
+        null
+      ],
+      "offset_0x220": [
+        [
+          {
+            "offset": 544,
+            "value": 50
+          }
+        ],
+        null
+      ],
+      "offset_0x228": [
+        [
+          {
+            "offset": 552,
+            "value": -30
+          }
+        ],
+        null
+      ],
+      "offset_0x358": [
+        [
+          {
+            "offset": 856,
+            "value": 268772272
+          }
+        ],
+        null
+      ],
+      "offset_0x364": [
+        [
+          {
+            "offset": 868,
+            "value": 1065353216
+          }
+        ],
+        null
+      ],
+      "offset_0x368": [
+        [
+          {
+            "offset": 872,
+            "value": 268588048
+          }
+        ],
+        null
+      ],
+      "offset_0x374": [
+        [
+          {
+            "offset": 884,
+            "value": 268588096
+          }
+        ],
+        null
+      ],
+      "offset_0x378": [
+        [
+          {
+            "offset": 888,
+            "value": 268588112
+          }
+        ],
+        null
+      ],
+      "offset_0x384": [
+        [
+          {
+            "offset": 900,
+            "value": 268588240
+          }
+        ],
+        null
+      ],
+      "offset_0x388": [
+        [
+          {
+            "offset": 904,
+            "value": 268588448
+          }
+        ],
+        null
+      ],
+      "offset_0xbc": [
+        [
+          {
+            "offset": 188,
+            "value": -1048576000
+          }
+        ],
+        null
+      ],
+      "offset_0xc0": [
+        [
+          {
+            "offset": 192,
+            "value": -1048576000
+          }
+        ],
+        null
+      ],
+      "offset_0xc4": [
+        [
+          {
+            "offset": 196,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0xc8": [
+        [
+          {
+            "offset": 200,
+            "value": 1098907648
+          }
+        ],
+        null
+      ],
+      "offset_0xcc": [
+        [
+          {
+            "offset": 204,
+            "value": 1098907648
+          }
+        ],
+        null
+      ],
+      "offset_0xd0": [
+        [
+          {
+            "offset": 208,
+            "value": 1107296256
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 2
+          }
+        ],
+        null
+      ]
+    },
+    "monster_floater": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 5
+          }
+        ],
+        null
+      ],
+      "offset_0x190": [
+        [
+          {
+            "offset": 400,
+            "value": 300
+          }
+        ],
+        null
+      ],
+      "offset_0x204": [
+        [
+          {
+            "offset": 516,
+            "value": 268590048
+          }
+        ],
+        null
+      ],
+      "offset_0x208": [
+        [
+          {
+            "offset": 520,
+            "value": 268590224
+          }
+        ],
+        null
+      ],
+      "offset_0x220": [
+        [
+          {
+            "offset": 544,
+            "value": 200
+          }
+        ],
+        null
+      ],
+      "offset_0x228": [
+        [
+          {
+            "offset": 552,
+            "value": -80
+          }
+        ],
+        null
+      ],
+      "offset_0x358": [
+        [
+          {
+            "offset": 856,
+            "value": 268775024
+          },
+          {
+            "offset": 856,
+            "value": 268775664
+          }
+        ],
+        null
+      ],
+      "offset_0x364": [
+        [
+          {
+            "offset": 868,
+            "value": 1065353216
+          }
+        ],
+        null
+      ],
+      "offset_0x368": [
+        [
+          {
+            "offset": 872,
+            "value": 268589440
+          }
+        ],
+        null
+      ],
+      "offset_0x36c": [
+        [
+          {
+            "offset": 876,
+            "value": 268589200
+          }
+        ],
+        null
+      ],
+      "offset_0x374": [
+        [
+          {
+            "offset": 884,
+            "value": 268589568
+          }
+        ],
+        null
+      ],
+      "offset_0x378": [
+        [
+          {
+            "offset": 888,
+            "value": 268589520
+          }
+        ],
+        null
+      ],
+      "offset_0x380": [
+        [
+          {
+            "offset": 896,
+            "value": 268589952
+          }
+        ],
+        null
+      ],
+      "offset_0x384": [
+        [
+          {
+            "offset": 900,
+            "value": 268589968
+          }
+        ],
+        null
+      ],
+      "offset_0x388": [
+        [
+          {
+            "offset": 904,
+            "value": 268589152
+          }
+        ],
+        null
+      ],
+      "offset_0xbc": [
+        [
+          {
+            "offset": 188,
+            "value": -1044381696
+          }
+        ],
+        null
+      ],
+      "offset_0xc0": [
+        [
+          {
+            "offset": 192,
+            "value": -1044381696
+          }
+        ],
+        null
+      ],
+      "offset_0xc4": [
+        [
+          {
+            "offset": 196,
+            "value": -1044381696
+          }
+        ],
+        null
+      ],
+      "offset_0xc8": [
+        [
+          {
+            "offset": 200,
+            "value": 1103101952
+          }
+        ],
+        null
+      ],
+      "offset_0xcc": [
+        [
+          {
+            "offset": 204,
+            "value": 1103101952
+          }
+        ],
+        null
+      ],
+      "offset_0xd0": [
+        [
+          {
+            "offset": 208,
+            "value": 1107296256
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 2
+          }
+        ],
+        null
+      ]
+    },
+    "monster_flyer": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 5
+          }
+        ],
+        null
+      ],
+      "offset_0x128": [
+        [
+          {
+            "offset": 296,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x190": [
+        [
+          {
+            "offset": 400,
+            "value": 50
+          }
+        ],
+        null
+      ],
+      "offset_0x204": [
+        [
+          {
+            "offset": 516,
+            "value": 268591664
+          }
+        ],
+        null
+      ],
+      "offset_0x208": [
+        [
+          {
+            "offset": 520,
+            "value": 268591904
+          }
+        ],
+        null
+      ],
+      "offset_0x220": [
+        [
+          {
+            "offset": 544,
+            "value": 50
+          }
+        ],
+        null
+      ],
+      "offset_0x358": [
+        [
+          {
+            "offset": 856,
+            "value": 268779624
+          }
+        ],
+        null
+      ],
+      "offset_0x364": [
+        [
+          {
+            "offset": 868,
+            "value": 1065353216
+          }
+        ],
+        null
+      ],
+      "offset_0x368": [
+        [
+          {
+            "offset": 872,
+            "value": 268590992
+          }
+        ],
+        null
+      ],
+      "offset_0x36c": [
+        [
+          {
+            "offset": 876,
+            "value": 268590832
+          }
+        ],
+        null
+      ],
+      "offset_0x374": [
+        [
+          {
+            "offset": 884,
+            "value": 268590976
+          }
+        ],
+        null
+      ],
+      "offset_0x378": [
+        [
+          {
+            "offset": 888,
+            "value": 268590928
+          }
+        ],
+        null
+      ],
+      "offset_0x380": [
+        [
+          {
+            "offset": 896,
+            "value": 268591456
+          }
+        ],
+        null
+      ],
+      "offset_0x384": [
+        [
+          {
+            "offset": 900,
+            "value": 268591552
+          }
+        ],
+        null
+      ],
+      "offset_0x388": [
+        [
+          {
+            "offset": 904,
+            "value": 268590784
+          }
+        ],
+        null
+      ],
+      "offset_0xbc": [
+        [
+          {
+            "offset": 188,
+            "value": -1048576000
+          }
+        ],
+        null
+      ],
+      "offset_0xc0": [
+        [
+          {
+            "offset": 192,
+            "value": -1048576000
+          }
+        ],
+        null
+      ],
+      "offset_0xc4": [
+        [
+          {
+            "offset": 196,
+            "value": -1044381696
+          }
+        ],
+        null
+      ],
+      "offset_0xc8": [
+        [
+          {
+            "offset": 200,
+            "value": 1098907648
+          }
+        ],
+        null
+      ],
+      "offset_0xcc": [
+        [
+          {
+            "offset": 204,
+            "value": 1098907648
+          }
+        ],
+        null
+      ],
+      "offset_0xd0": [
+        [
+          {
+            "offset": 208,
+            "value": 1107296256
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 2
+          }
+        ],
+        null
+      ]
+    },
+    "monster_gladiator": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 5
+          }
+        ],
+        null
+      ],
+      "offset_0x190": [
+        [
+          {
+            "offset": 400,
+            "value": 400
+          }
+        ],
+        null
+      ],
+      "offset_0x1ec": [
+        [
+          {
+            "offset": 492,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x220": [
+        [
+          {
+            "offset": 544,
+            "value": 400
+          }
+        ],
+        null
+      ],
+      "offset_0x228": [
+        [
+          {
+            "offset": 552,
+            "value": -175
+          }
+        ],
+        null
+      ],
+      "offset_0x38": [
+        [
+          {
+            "offset": 56,
+            "value": 82
+          }
+        ],
+        null
+      ],
+      "offset_0xbc": [
+        [
+          {
+            "offset": 188,
+            "value": -1040187392
+          },
+          {
+            "offset": 188,
+            "value": -1048576000
+          }
+        ],
+        null
+      ],
+      "offset_0xc0": [
+        [
+          {
+            "offset": 192,
+            "value": -1040187392
+          },
+          {
+            "offset": 192,
+            "value": -1048576000
+          }
+        ],
+        null
+      ],
+      "offset_0xc4": [
+        [
+          {
+            "offset": 196,
+            "value": -1044381696
+          },
+          {
+            "offset": 196,
+            "value": -1044381696
+          }
+        ],
+        null
+      ],
+      "offset_0xc8": [
+        [
+          {
+            "offset": 200,
+            "value": 1107296256
+          },
+          {
+            "offset": 200,
+            "value": 1098907648
+          }
+        ],
+        null
+      ],
+      "offset_0xcc": [
+        [
+          {
+            "offset": 204,
+            "value": 1107296256
+          },
+          {
+            "offset": 204,
+            "value": 1098907648
+          }
+        ],
+        null
+      ],
+      "offset_0xd0": [
+        [
+          {
+            "offset": 208,
+            "value": 1115684864
+          },
+          {
+            "offset": 208,
+            "value": -1056964608
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 2
+          }
+        ],
+        null
+      ]
+    },
+    "monster_gunner": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 5
+          }
+        ],
+        null
+      ],
+      "offset_0x190": [
+        [
+          {
+            "offset": 400,
+            "value": 200
+          }
+        ],
+        null
+      ],
+      "offset_0x1ec": [
+        [
+          {
+            "offset": 492,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x220": [
+        [
+          {
+            "offset": 544,
+            "value": 175
+          }
+        ],
+        null
+      ],
+      "offset_0x228": [
+        [
+          {
+            "offset": 552,
+            "value": -70
+          }
+        ],
+        null
+      ],
+      "offset_0x38": [
+        [
+          {
+            "offset": 56,
+            "value": 200
+          }
+        ],
+        null
+      ],
+      "offset_0xbc": [
+        [
+          {
+            "offset": 188,
+            "value": -1048576000
+          },
+          {
+            "offset": 188,
+            "value": -1048576000
+          }
+        ],
+        null
+      ],
+      "offset_0xc0": [
+        [
+          {
+            "offset": 192,
+            "value": -1048576000
+          },
+          {
+            "offset": 192,
+            "value": -1048576000
+          }
+        ],
+        null
+      ],
+      "offset_0xc4": [
+        [
+          {
+            "offset": 196,
+            "value": -1044381696
+          },
+          {
+            "offset": 196,
+            "value": -1044381696
+          }
+        ],
+        null
+      ],
+      "offset_0xc8": [
+        [
+          {
+            "offset": 200,
+            "value": 1098907648
+          },
+          {
+            "offset": 200,
+            "value": 1098907648
+          }
+        ],
+        null
+      ],
+      "offset_0xcc": [
+        [
+          {
+            "offset": 204,
+            "value": 1098907648
+          },
+          {
+            "offset": 204,
+            "value": 1098907648
+          }
+        ],
+        null
+      ],
+      "offset_0xd0": [
+        [
+          {
+            "offset": 208,
+            "value": 1107296256
+          },
+          {
+            "offset": 208,
+            "value": -1056964608
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 2
+          }
+        ],
+        null
+      ]
+    },
+    "monster_hover": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 5
+          }
+        ],
+        null
+      ],
+      "offset_0x190": [
+        [
+          {
+            "offset": 400,
+            "value": 150
+          }
+        ],
+        null
+      ],
+      "offset_0x204": [
+        [
+          {
+            "offset": 516,
+            "value": 268597040
+          }
+        ],
+        null
+      ],
+      "offset_0x208": [
+        [
+          {
+            "offset": 520,
+            "value": 268597488
+          }
+        ],
+        null
+      ],
+      "offset_0x220": [
+        [
+          {
+            "offset": 544,
+            "value": 240
+          }
+        ],
+        null
+      ],
+      "offset_0x228": [
+        [
+          {
+            "offset": 552,
+            "value": -100
+          }
+        ],
+        null
+      ],
+      "offset_0x358": [
+        [
+          {
+            "offset": 856,
+            "value": 268787224
+          }
+        ],
+        null
+      ],
+      "offset_0x364": [
+        [
+          {
+            "offset": 868,
+            "value": 1065353216
+          }
+        ],
+        null
+      ],
+      "offset_0x368": [
+        [
+          {
+            "offset": 872,
+            "value": 268596928
+          }
+        ],
+        null
+      ],
+      "offset_0x370": [
+        [
+          {
+            "offset": 880,
+            "value": 268596544
+          }
+        ],
+        null
+      ],
+      "offset_0x374": [
+        [
+          {
+            "offset": 884,
+            "value": 268596992
+          }
+        ],
+        null
+      ],
+      "offset_0x378": [
+        [
+          {
+            "offset": 888,
+            "value": 268596944
+          }
+        ],
+        null
+      ],
+      "offset_0x380": [
+        [
+          {
+            "offset": 896,
+            "value": 268597008
+          }
+        ],
+        null
+      ],
+      "offset_0x388": [
+        [
+          {
+            "offset": 904,
+            "value": 268596496
+          }
+        ],
+        null
+      ],
+      "offset_0xbc": [
+        [
+          {
+            "offset": 188,
+            "value": -1044381696
+          }
+        ],
+        null
+      ],
+      "offset_0xc0": [
+        [
+          {
+            "offset": 192,
+            "value": -1044381696
+          }
+        ],
+        null
+      ],
+      "offset_0xc4": [
+        [
+          {
+            "offset": 196,
+            "value": -1044381696
+          }
+        ],
+        null
+      ],
+      "offset_0xc8": [
+        [
+          {
+            "offset": 200,
+            "value": 1103101952
+          }
+        ],
+        null
+      ],
+      "offset_0xcc": [
+        [
+          {
+            "offset": 204,
+            "value": 1103101952
+          }
+        ],
+        null
+      ],
+      "offset_0xd0": [
+        [
+          {
+            "offset": 208,
+            "value": 1107296256
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 2
+          }
+        ],
+        null
+      ]
+    },
+    "monster_infantry": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 5
+          }
+        ],
+        null
+      ],
+      "offset_0x190": [
+        [
+          {
+            "offset": 400,
+            "value": 200
+          }
+        ],
+        null
+      ],
+      "offset_0x220": [
+        [
+          {
+            "offset": 544,
+            "value": 100
+          }
+        ],
+        null
+      ],
+      "offset_0x228": [
+        [
+          {
+            "offset": 552,
+            "value": -40
+          }
+        ],
+        null
+      ],
+      "offset_0x38": [
+        [
+          {
+            "offset": 56,
+            "value": 144
+          },
+          {
+            "offset": 56,
+            "value": 169
+          },
+          {
+            "offset": 56,
+            "value": 178
+          }
+        ],
+        null
+      ],
+      "offset_0xbc": [
+        [
+          {
+            "offset": 188,
+            "value": -1048576000
+          },
+          {
+            "offset": 188,
+            "value": -1048576000
+          }
+        ],
+        null
+      ],
+      "offset_0xc0": [
+        [
+          {
+            "offset": 192,
+            "value": -1048576000
+          },
+          {
+            "offset": 192,
+            "value": -1048576000
+          }
+        ],
+        null
+      ],
+      "offset_0xc4": [
+        [
+          {
+            "offset": 196,
+            "value": -1044381696
+          },
+          {
+            "offset": 196,
+            "value": -1044381696
+          }
+        ],
+        null
+      ],
+      "offset_0xc8": [
+        [
+          {
+            "offset": 200,
+            "value": 1098907648
+          },
+          {
+            "offset": 200,
+            "value": 1098907648
+          }
+        ],
+        null
+      ],
+      "offset_0xcc": [
+        [
+          {
+            "offset": 204,
+            "value": 1098907648
+          },
+          {
+            "offset": 204,
+            "value": 1098907648
+          }
+        ],
+        null
+      ],
+      "offset_0xd0": [
+        [
+          {
+            "offset": 208,
+            "value": 1107296256
+          },
+          {
+            "offset": 208,
+            "value": -1056964608
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 2
+          }
+        ],
+        null
+      ]
+    },
+    "monster_jorg": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 5
+          }
+        ],
+        null
+      ],
+      "offset_0x190": [
+        [
+          {
+            "offset": 400,
+            "value": 1000
+          }
+        ],
+        null
+      ],
+      "offset_0x204": [
+        [
+          {
+            "offset": 516,
+            "value": 268573536
+          }
+        ],
+        null
+      ],
+      "offset_0x208": [
+        [
+          {
+            "offset": 520,
+            "value": 268574880
+          }
+        ],
+        null
+      ],
+      "offset_0x220": [
+        [
+          {
+            "offset": 544,
+            "value": 3000
+          }
+        ],
+        null
+      ],
+      "offset_0x228": [
+        [
+          {
+            "offset": 552,
+            "value": -2000
+          }
+        ],
+        null
+      ],
+      "offset_0x358": [
+        [
+          {
+            "offset": 856,
+            "value": 268756112
+          }
+        ],
+        null
+      ],
+      "offset_0x364": [
+        [
+          {
+            "offset": 868,
+            "value": 1065353216
+          }
+        ],
+        null
+      ],
+      "offset_0x368": [
+        [
+          {
+            "offset": 872,
+            "value": 268573344
+          }
+        ],
+        null
+      ],
+      "offset_0x370": [
+        [
+          {
+            "offset": 880,
+            "value": 268573040
+          }
+        ],
+        null
+      ],
+      "offset_0x374": [
+        [
+          {
+            "offset": 884,
+            "value": 268573360
+          }
+        ],
+        null
+      ],
+      "offset_0x378": [
+        [
+          {
+            "offset": 888,
+            "value": 268573376
+          }
+        ],
+        null
+      ],
+      "offset_0x37c": [
+        [
+          {
+            "offset": 892,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x380": [
+        [
+          {
+            "offset": 896,
+            "value": 268574688
+          }
+        ],
+        null
+      ],
+      "offset_0x384": [
+        [
+          {
+            "offset": 900,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x388": [
+        [
+          {
+            "offset": 904,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x38c": [
+        [
+          {
+            "offset": 908,
+            "value": 268577872
+          }
+        ],
+        null
+      ],
+      "offset_0xbc": [
+        [
+          {
+            "offset": 188,
+            "value": -1029701632
+          }
+        ],
+        null
+      ],
+      "offset_0xc0": [
+        [
+          {
+            "offset": 192,
+            "value": -1029701632
+          }
+        ],
+        null
+      ],
+      "offset_0xc4": [
+        [
+          {
+            "offset": 196,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0xc8": [
+        [
+          {
+            "offset": 200,
+            "value": 1117782016
+          }
+        ],
+        null
+      ],
+      "offset_0xcc": [
+        [
+          {
+            "offset": 204,
+            "value": 1117782016
+          }
+        ],
+        null
+      ],
+      "offset_0xd0": [
+        [
+          {
+            "offset": 208,
+            "value": 1124859904
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 2
+          }
+        ],
+        null
+      ]
+    },
+    "monster_kigrax": {
+      "offset_0x1e4": [
+        [
+          {
+            "offset": 484,
+            "value": 1101004800
+          }
+        ],
+        null
+      ],
+      "offset_0x23c": [
+        [
+          {
+            "offset": 572,
+            "value": 1119092736
+          }
+        ],
+        null
+      ],
+      "offset_0xbc": [
+        [
+          {
+            "offset": 188,
+            "value": 3248488448
+          }
+        ],
+        null
+      ],
+      "offset_0xc0": [
+        [
+          {
+            "offset": 192,
+            "value": 3248488448
+          }
+        ],
+        null
+      ],
+      "offset_0xc4": [
+        [
+          {
+            "offset": 196,
+            "value": 3254779904
+          }
+        ],
+        null
+      ],
+      "offset_0xc8": [
+        [
+          {
+            "offset": 200,
+            "value": 1101004800
+          }
+        ],
+        null
+      ],
+      "offset_0xcc": [
+        [
+          {
+            "offset": 204,
+            "value": 1101004800
+          }
+        ],
+        null
+      ],
+      "offset_0xd0": [
+        [
+          {
+            "offset": 208,
+            "value": 1094713344
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 5
+          }
+        ],
+        null
+      ]
+    },
+    "monster_makron": {
+      "offset_0x12c": [
+        [
+          {
+            "offset": 300,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x140": [
+        [
+          {
+            "offset": 320,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x2c4": [
+        [
+          {
+            "offset": 708,
+            "value": 128
+          }
+        ],
+        null
+      ],
+      "offset_0x390": [
+        [
+          {
+            "offset": 912,
+            "value": 0
+          }
+        ],
+        null
+      ]
+    },
+    "monster_medic": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 5
+          }
+        ],
+        null
+      ],
+      "offset_0x190": [
+        [
+          {
+            "offset": 400,
+            "value": 400
+          }
+        ],
+        null
+      ],
+      "offset_0x204": [
+        [
+          {
+            "offset": 516,
+            "value": 268605216
+          }
+        ],
+        null
+      ],
+      "offset_0x208": [
+        [
+          {
+            "offset": 520,
+            "value": 268605664
+          }
+        ],
+        null
+      ],
+      "offset_0x220": [
+        [
+          {
+            "offset": 544,
+            "value": 300
+          }
+        ],
+        null
+      ],
+      "offset_0x228": [
+        [
+          {
+            "offset": 552,
+            "value": -130
+          }
+        ],
+        null
+      ],
+      "offset_0x358": [
+        [
+          {
+            "offset": 856,
+            "value": 268801528
+          }
+        ],
+        null
+      ],
+      "offset_0x364": [
+        [
+          {
+            "offset": 868,
+            "value": 1065353216
+          }
+        ],
+        null
+      ],
+      "offset_0x368": [
+        [
+          {
+            "offset": 872,
+            "value": 268605072
+          }
+        ],
+        null
+      ],
+      "offset_0x36c": [
+        [
+          {
+            "offset": 876,
+            "value": 268604816
+          }
+        ],
+        null
+      ],
+      "offset_0x370": [
+        [
+          {
+            "offset": 880,
+            "value": 268604912
+          }
+        ],
+        null
+      ],
+      "offset_0x374": [
+        [
+          {
+            "offset": 884,
+            "value": 268605088
+          }
+        ],
+        null
+      ],
+      "offset_0x378": [
+        [
+          {
+            "offset": 888,
+            "value": 268605104
+          }
+        ],
+        null
+      ],
+      "offset_0x37c": [
+        [
+          {
+            "offset": 892,
+            "value": 268605936
+          }
+        ],
+        null
+      ],
+      "offset_0x380": [
+        [
+          {
+            "offset": 896,
+            "value": 268607088
+          }
+        ],
+        null
+      ],
+      "offset_0x384": [
+        [
+          {
+            "offset": 900,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x388": [
+        [
+          {
+            "offset": 904,
+            "value": 268605024
+          }
+        ],
+        null
+      ],
+      "offset_0x38c": [
+        [
+          {
+            "offset": 908,
+            "value": 268607136
+          }
+        ],
+        null
+      ],
+      "offset_0xbc": [
+        [
+          {
+            "offset": 188,
+            "value": -1044381696
+          }
+        ],
+        null
+      ],
+      "offset_0xc0": [
+        [
+          {
+            "offset": 192,
+            "value": -1044381696
+          }
+        ],
+        null
+      ],
+      "offset_0xc4": [
+        [
+          {
+            "offset": 196,
+            "value": -1044381696
+          }
+        ],
+        null
+      ],
+      "offset_0xc8": [
+        [
+          {
+            "offset": 200,
+            "value": 1103101952
+          }
+        ],
+        null
+      ],
+      "offset_0xcc": [
+        [
+          {
+            "offset": 204,
+            "value": 1103101952
+          }
+        ],
+        null
+      ],
+      "offset_0xd0": [
+        [
+          {
+            "offset": 208,
+            "value": 1107296256
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 2
+          }
+        ],
+        null
+      ]
+    },
+    "monster_mutant": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 5
+          }
+        ],
+        null
+      ],
+      "offset_0x190": [
+        [
+          {
+            "offset": 400,
+            "value": 300
+          }
+        ],
+        null
+      ],
+      "offset_0x220": [
+        [
+          {
+            "offset": 544,
+            "value": 300
+          }
+        ],
+        null
+      ],
+      "offset_0x228": [
+        [
+          {
+            "offset": 552,
+            "value": 4294967176
+          }
+        ],
+        null
+      ],
+      "offset_0x364": [
+        [
+          {
+            "offset": 868,
+            "value": 1065353216
+          }
+        ],
+        null
+      ],
+      "offset_0x37c": [
+        [
+          {
+            "offset": 892,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 2
+          }
+        ],
+        null
+      ]
+    },
+    "monster_parasite": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 5
+          }
+        ],
+        null
+      ],
+      "offset_0x190": [
+        [
+          {
+            "offset": 400,
+            "value": 250
+          }
+        ],
+        null
+      ],
+      "offset_0x220": [
+        [
+          {
+            "offset": 544,
+            "value": 175
+          }
+        ],
+        null
+      ],
+      "offset_0x228": [
+        [
+          {
+            "offset": 552,
+            "value": 4294967246
+          }
+        ],
+        null
+      ],
+      "offset_0x364": [
+        [
+          {
+            "offset": 868,
+            "value": 1065353216
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 2
+          }
+        ],
+        null
+      ]
+    },
+    "monster_soldier": {
+      "offset_0x220": [
+        [
+          {
+            "offset": 544,
+            "value": 30
+          }
+        ],
+        null
+      ],
+      "offset_0x228": [
+        [
+          {
+            "offset": 552,
+            "value": 4294967266
+          }
+        ],
+        null
+      ]
+    },
+    "monster_soldier_deatom": {
+      "offset_0x220": [
+        [
+          {
+            "offset": 544,
+            "value": 40
+          }
+        ],
+        null
+      ],
+      "offset_0x228": [
+        [
+          {
+            "offset": 552,
+            "value": 4294967266
+          }
+        ],
+        null
+      ]
+    },
+    "monster_soldier_light": {
+      "offset_0x220": [
+        [
+          {
+            "offset": 544,
+            "value": 20
+          }
+        ],
+        null
+      ],
+      "offset_0x228": [
+        [
+          {
+            "offset": 552,
+            "value": 4294967266
+          }
+        ],
+        null
+      ],
+      "offset_0x3c": [
+        [
+          {
+            "offset": 60,
+            "value": 0
+          }
+        ],
+        null
+      ]
+    },
+    "monster_soldier_ss": {
+      "offset_0x220": [
+        [
+          {
+            "offset": 544,
+            "value": 40
+          }
+        ],
+        null
+      ],
+      "offset_0x228": [
+        [
+          {
+            "offset": 552,
+            "value": 4294967266
+          }
+        ],
+        null
+      ]
+    },
+    "monster_spider": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 5
+          },
+          {
+            "offset": 260,
+            "value": 7
+          }
+        ],
+        null
+      ],
+      "offset_0x190": [
+        [
+          {
+            "offset": 400,
+            "value": 400
+          }
+        ],
+        null
+      ],
+      "offset_0x1ec": [
+        [
+          {
+            "offset": 492,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x220": [
+        [
+          {
+            "offset": 544,
+            "value": 400
+          },
+          {
+            "offset": 544,
+            "value": 4294967295
+          }
+        ],
+        null
+      ],
+      "offset_0x228": [
+        [
+          {
+            "offset": 552,
+            "value": 4294967121
+          }
+        ],
+        null
+      ],
+      "offset_0x358": [
+        [
+          {
+            "offset": 856,
+            "value": 268814848
+          }
+        ],
+        null
+      ],
+      "offset_0x364": [
+        [
+          {
+            "offset": 868,
+            "value": 1065353216
+          }
+        ],
+        null
+      ],
+      "offset_0x37c": [
+        [
+          {
+            "offset": 892,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0xbc": [
+        [
+          {
+            "offset": 188,
+            "value": 3254779904
+          }
+        ],
+        null
+      ],
+      "offset_0xc0": [
+        [
+          {
+            "offset": 192,
+            "value": 3254779904
+          }
+        ],
+        null
+      ],
+      "offset_0xc4": [
+        [
+          {
+            "offset": 196,
+            "value": 3253731328
+          }
+        ],
+        null
+      ],
+      "offset_0xc8": [
+        [
+          {
+            "offset": 200,
+            "value": 1107296256
+          }
+        ],
+        null
+      ],
+      "offset_0xcc": [
+        [
+          {
+            "offset": 204,
+            "value": 1107296256
+          }
+        ],
+        null
+      ],
+      "offset_0xd0": [
+        [
+          {
+            "offset": 208,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 2
+          }
+        ],
+        null
+      ]
+    },
+    "monster_supertank": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 5
+          }
+        ],
+        null
+      ],
+      "offset_0x190": [
+        [
+          {
+            "offset": 400,
+            "value": 800
+          }
+        ],
+        null
+      ],
+      "offset_0x204": [
+        [
+          {
+            "offset": 516,
+            "value": 268624016
+          }
+        ],
+        null
+      ],
+      "offset_0x208": [
+        [
+          {
+            "offset": 520,
+            "value": 268625504
+          }
+        ],
+        null
+      ],
+      "offset_0x220": [
+        [
+          {
+            "offset": 544,
+            "value": 1500
+          }
+        ],
+        null
+      ],
+      "offset_0x228": [
+        [
+          {
+            "offset": 552,
+            "value": -500
+          }
+        ],
+        null
+      ],
+      "offset_0x358": [
+        [
+          {
+            "offset": 856,
+            "value": 268817184
+          }
+        ],
+        null
+      ],
+      "offset_0x364": [
+        [
+          {
+            "offset": 868,
+            "value": 1065353216
+          }
+        ],
+        null
+      ],
+      "offset_0x368": [
+        [
+          {
+            "offset": 872,
+            "value": 268623840
+          }
+        ],
+        null
+      ],
+      "offset_0x370": [
+        [
+          {
+            "offset": 880,
+            "value": 268623728
+          }
+        ],
+        null
+      ],
+      "offset_0x374": [
+        [
+          {
+            "offset": 884,
+            "value": 268623856
+          }
+        ],
+        null
+      ],
+      "offset_0x378": [
+        [
+          {
+            "offset": 888,
+            "value": 268623872
+          }
+        ],
+        null
+      ],
+      "offset_0x37c": [
+        [
+          {
+            "offset": 892,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x380": [
+        [
+          {
+            "offset": 896,
+            "value": 268624816
+          }
+        ],
+        null
+      ],
+      "offset_0x384": [
+        [
+          {
+            "offset": 900,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x388": [
+        [
+          {
+            "offset": 904,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0xbc": [
+        [
+          {
+            "offset": 188,
+            "value": -1031798784
+          }
+        ],
+        null
+      ],
+      "offset_0xc0": [
+        [
+          {
+            "offset": 192,
+            "value": -1031798784
+          }
+        ],
+        null
+      ],
+      "offset_0xc4": [
+        [
+          {
+            "offset": 196,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0xc8": [
+        [
+          {
+            "offset": 200,
+            "value": 1115684864
+          }
+        ],
+        null
+      ],
+      "offset_0xcc": [
+        [
+          {
+            "offset": 204,
+            "value": 1115684864
+          }
+        ],
+        null
+      ],
+      "offset_0xd0": [
+        [
+          {
+            "offset": 208,
+            "value": 1121976320
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 2
+          }
+        ],
+        null
+      ]
+    },
+    "monster_tank": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 5
+          }
+        ],
+        null
+      ],
+      "offset_0x190": [
+        [
+          {
+            "offset": 400,
+            "value": 500
+          }
+        ],
+        null
+      ],
+      "offset_0x1ec": [
+        [
+          {
+            "offset": 492,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x204": [
+        [
+          {
+            "offset": 516,
+            "value": 268626368
+          }
+        ],
+        null
+      ],
+      "offset_0x208": [
+        [
+          {
+            "offset": 520,
+            "value": 268628112
+          }
+        ],
+        null
+      ],
+      "offset_0x220": [
+        [
+          {
+            "offset": 544,
+            "value": 1000
+          },
+          {
+            "offset": 544,
+            "value": 750
+          }
+        ],
+        null
+      ],
+      "offset_0x228": [
+        [
+          {
+            "offset": 552,
+            "value": -225
+          },
+          {
+            "offset": 552,
+            "value": -200
+          }
+        ],
+        null
+      ],
+      "offset_0x358": [
+        [
+          {
+            "offset": 856,
+            "value": 268820464
+          }
+        ],
+        null
+      ],
+      "offset_0x364": [
+        [
+          {
+            "offset": 868,
+            "value": 1065353216
+          }
+        ],
+        null
+      ],
+      "offset_0x368": [
+        [
+          {
+            "offset": 872,
+            "value": 268626224
+          }
+        ],
+        null
+      ],
+      "offset_0x36c": [
+        [
+          {
+            "offset": 876,
+            "value": 268626176
+          }
+        ],
+        null
+      ],
+      "offset_0x374": [
+        [
+          {
+            "offset": 884,
+            "value": 268626240
+          }
+        ],
+        null
+      ],
+      "offset_0x378": [
+        [
+          {
+            "offset": 888,
+            "value": 268626256
+          }
+        ],
+        null
+      ],
+      "offset_0x37c": [
+        [
+          {
+            "offset": 892,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x38": [
+        [
+          {
+            "offset": 56,
+            "value": 253
+          }
+        ],
+        null
+      ],
+      "offset_0x380": [
+        [
+          {
+            "offset": 896,
+            "value": 268627728
+          }
+        ],
+        null
+      ],
+      "offset_0x384": [
+        [
+          {
+            "offset": 900,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x388": [
+        [
+          {
+            "offset": 904,
+            "value": 268625984
+          }
+        ],
+        null
+      ],
+      "offset_0x3c": [
+        [
+          {
+            "offset": 60,
+            "value": 2
+          }
+        ],
+        null
+      ],
+      "offset_0xbc": [
+        [
+          {
+            "offset": 188,
+            "value": -1040187392
+          },
+          {
+            "offset": 188,
+            "value": -1048576000
+          }
+        ],
+        null
+      ],
+      "offset_0xc0": [
+        [
+          {
+            "offset": 192,
+            "value": -1040187392
+          },
+          {
+            "offset": 192,
+            "value": -1048576000
+          }
+        ],
+        null
+      ],
+      "offset_0xc4": [
+        [
+          {
+            "offset": 196,
+            "value": -1048576000
+          },
+          {
+            "offset": 196,
+            "value": -1048576000
+          }
+        ],
+        null
+      ],
+      "offset_0xc8": [
+        [
+          {
+            "offset": 200,
+            "value": 1107296256
+          },
+          {
+            "offset": 200,
+            "value": 1098907648
+          }
+        ],
+        null
+      ],
+      "offset_0xcc": [
+        [
+          {
+            "offset": 204,
+            "value": 1107296256
+          },
+          {
+            "offset": 204,
+            "value": 1098907648
+          }
+        ],
+        null
+      ],
+      "offset_0xd0": [
+        [
+          {
+            "offset": 208,
+            "value": 1116733440
+          },
+          {
+            "offset": 208,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 2
+          }
+        ],
+        null
+      ]
+    },
+    "monster_tank_commander": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 5
+          }
+        ],
+        null
+      ],
+      "offset_0x190": [
+        [
+          {
+            "offset": 400,
+            "value": 500
+          }
+        ],
+        null
+      ],
+      "offset_0x1ec": [
+        [
+          {
+            "offset": 492,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x204": [
+        [
+          {
+            "offset": 516,
+            "value": 268626368
+          }
+        ],
+        null
+      ],
+      "offset_0x208": [
+        [
+          {
+            "offset": 520,
+            "value": 268628112
+          }
+        ],
+        null
+      ],
+      "offset_0x220": [
+        [
+          {
+            "offset": 544,
+            "value": 1000
+          },
+          {
+            "offset": 544,
+            "value": 750
+          }
+        ],
+        null
+      ],
+      "offset_0x228": [
+        [
+          {
+            "offset": 552,
+            "value": -225
+          },
+          {
+            "offset": 552,
+            "value": -200
+          }
+        ],
+        null
+      ],
+      "offset_0x358": [
+        [
+          {
+            "offset": 856,
+            "value": 268820464
+          }
+        ],
+        null
+      ],
+      "offset_0x364": [
+        [
+          {
+            "offset": 868,
+            "value": 1065353216
+          }
+        ],
+        null
+      ],
+      "offset_0x368": [
+        [
+          {
+            "offset": 872,
+            "value": 268626224
+          }
+        ],
+        null
+      ],
+      "offset_0x36c": [
+        [
+          {
+            "offset": 876,
+            "value": 268626176
+          }
+        ],
+        null
+      ],
+      "offset_0x374": [
+        [
+          {
+            "offset": 884,
+            "value": 268626240
+          }
+        ],
+        null
+      ],
+      "offset_0x378": [
+        [
+          {
+            "offset": 888,
+            "value": 268626256
+          }
+        ],
+        null
+      ],
+      "offset_0x37c": [
+        [
+          {
+            "offset": 892,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x38": [
+        [
+          {
+            "offset": 56,
+            "value": 253
+          }
+        ],
+        null
+      ],
+      "offset_0x380": [
+        [
+          {
+            "offset": 896,
+            "value": 268627728
+          }
+        ],
+        null
+      ],
+      "offset_0x384": [
+        [
+          {
+            "offset": 900,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x388": [
+        [
+          {
+            "offset": 904,
+            "value": 268625984
+          }
+        ],
+        null
+      ],
+      "offset_0x3c": [
+        [
+          {
+            "offset": 60,
+            "value": 2
+          }
+        ],
+        null
+      ],
+      "offset_0xbc": [
+        [
+          {
+            "offset": 188,
+            "value": -1040187392
+          },
+          {
+            "offset": 188,
+            "value": -1048576000
+          }
+        ],
+        null
+      ],
+      "offset_0xc0": [
+        [
+          {
+            "offset": 192,
+            "value": -1040187392
+          },
+          {
+            "offset": 192,
+            "value": -1048576000
+          }
+        ],
+        null
+      ],
+      "offset_0xc4": [
+        [
+          {
+            "offset": 196,
+            "value": -1048576000
+          },
+          {
+            "offset": 196,
+            "value": -1048576000
+          }
+        ],
+        null
+      ],
+      "offset_0xc8": [
+        [
+          {
+            "offset": 200,
+            "value": 1107296256
+          },
+          {
+            "offset": 200,
+            "value": 1098907648
+          }
+        ],
+        null
+      ],
+      "offset_0xcc": [
+        [
+          {
+            "offset": 204,
+            "value": 1107296256
+          },
+          {
+            "offset": 204,
+            "value": 1098907648
+          }
+        ],
+        null
+      ],
+      "offset_0xd0": [
+        [
+          {
+            "offset": 208,
+            "value": 1116733440
+          },
+          {
+            "offset": 208,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 2
+          }
+        ],
+        null
+      ]
+    },
+    "path_corner": {
+      "offset_0x148": [
+        [
+          {
+            "offset": 328,
+            "value": 1120403456
+          }
+        ],
+        null
+      ],
+      "offset_0x1ac": [
+        [
+          {
+            "offset": 428,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x1b0": [
+        [
+          {
+            "offset": 432,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x1b4": [
+        [
+          {
+            "offset": 436,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x298": [
+        [
+          {
+            "offset": 664,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0xbc": [
+        [
+          {
+            "offset": 188,
+            "value": 3238002688
+          }
+        ],
+        null
+      ],
+      "offset_0xc0": [
+        [
+          {
+            "offset": 192,
+            "value": 3238002688
+          }
+        ],
+        null
+      ],
+      "offset_0xc4": [
+        [
+          {
+            "offset": 196,
+            "value": 3238002688
+          }
+        ],
+        null
+      ],
+      "offset_0xc8": [
+        [
+          {
+            "offset": 200,
+            "value": 1090519040
+          }
+        ],
+        null
+      ],
+      "offset_0xcc": [
+        [
+          {
+            "offset": 204,
+            "value": 1090519040
+          }
+        ],
+        null
+      ],
+      "offset_0xd0": [
+        [
+          {
+            "offset": 208,
+            "value": 1090519040
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 1
+          }
+        ],
+        null
+      ]
+    },
+    "point_combat": {
+      "offset_0xb8": [
+        [
+          {
+            "offset": 184,
+            "value": 1
+          }
+        ],
+        null
+      ],
+      "offset_0xbc": [
+        [
+          {
+            "offset": 188,
+            "value": 3238002688
+          }
+        ],
+        null
+      ],
+      "offset_0xc0": [
+        [
+          {
+            "offset": 192,
+            "value": 3238002688
+          }
+        ],
+        null
+      ],
+      "offset_0xc4": [
+        [
+          {
+            "offset": 196,
+            "value": 3246391296
+          }
+        ],
+        null
+      ],
+      "offset_0xc8": [
+        [
+          {
+            "offset": 200,
+            "value": 1090519040
+          }
+        ],
+        null
+      ],
+      "offset_0xcc": [
+        [
+          {
+            "offset": 204,
+            "value": 1090519040
+          }
+        ],
+        null
+      ],
+      "offset_0xd0": [
+        [
+          {
+            "offset": 208,
+            "value": 1098907648
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 1
+          }
+        ],
+        null
+      ]
+    },
+    "target_actor": {
+      "offset_0x14": [
+        [
+          {
+            "offset": 20,
+            "value": 1135869952
+          }
+        ],
+        null
+      ],
+      "offset_0x148": [
+        [
+          {
+            "offset": 328,
+            "value": 1128792064
+          }
+        ],
+        null
+      ],
+      "offset_0xb8": [
+        [
+          {
+            "offset": 184,
+            "value": 1
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 1
+          }
+        ],
+        null
+      ]
+    },
+    "target_blaster": {
+      "offset_0x148": [
+        [
+          {
+            "offset": 328,
+            "value": 1148846080
+          }
+        ],
+        null
+      ],
+      "offset_0x244": [
+        [
+          {
+            "offset": 580,
+            "value": 15
+          }
+        ],
+        null
+      ],
+      "offset_0xb8": [
+        [
+          {
+            "offset": 184,
+            "value": 1
+          }
+        ],
+        null
+      ]
+    },
+    "target_changelevel": {
+      "offset_0xb8": [
+        [
+          {
+            "offset": 184,
+            "value": 1
+          }
+        ],
+        null
+      ]
+    },
+    "target_character": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 2
+          }
+        ],
+        null
+      ],
+      "offset_0x38": [
+        [
+          {
+            "offset": 56,
+            "value": 12
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 3
+          }
+        ],
+        null
+      ]
+    },
+    "target_crosslevel_target": {
+      "offset_0x294": [
+        [
+          {
+            "offset": 660,
+            "value": 1065353216
+          }
+        ],
+        null
+      ],
+      "offset_0xb8": [
+        [
+          {
+            "offset": 184,
+            "value": 1
+          }
+        ],
+        null
+      ]
+    },
+    "target_crosslevel_trigger": {
+      "offset_0xb8": [
+        [
+          {
+            "offset": 184,
+            "value": 1
+          }
+        ],
+        null
+      ]
+    },
+    "target_earthquake": {
+      "offset_0x148": [
+        [
+          {
+            "offset": 328,
+            "value": 1128792064
+          }
+        ],
+        null
+      ],
+      "offset_0x254": [
+        [
+          {
+            "offset": 596,
+            "value": 5
+          }
+        ],
+        null
+      ]
+    },
+    "target_explosion": {
+      "offset_0xb8": [
+        [
+          {
+            "offset": 184,
+            "value": 1
+          }
+        ],
+        null
+      ]
+    },
+    "target_goal": {
+      "offset_0xb8": [
+        [
+          {
+            "offset": 184,
+            "value": 1
+          }
+        ],
+        null
+      ]
+    },
+    "target_railgun": {
+      "offset_0x244": [
+        [
+          {
+            "offset": 580,
+            "value": 150
+          }
+        ],
+        null
+      ],
+      "offset_0xb8": [
+        [
+          {
+            "offset": 184,
+            "value": 1
+          }
+        ],
+        null
+      ]
+    },
+    "target_rocket": {
+      "offset_0x148": [
+        [
+          {
+            "offset": 328,
+            "value": 1143111680
+          }
+        ],
+        null
+      ],
+      "offset_0x244": [
+        [
+          {
+            "offset": 580,
+            "value": 100
+          }
+        ],
+        null
+      ],
+      "offset_0x254": [
+        [
+          {
+            "offset": 596,
+            "value": 120
+          }
+        ],
+        null
+      ],
+      "offset_0x294": [
+        [
+          {
+            "offset": 660,
+            "value": 1123024896
+          }
+        ],
+        null
+      ],
+      "offset_0xb8": [
+        [
+          {
+            "offset": 184,
+            "value": 1
+          }
+        ],
+        null
+      ]
+    },
+    "target_secret": {
+      "offset_0xb8": [
+        [
+          {
+            "offset": 184,
+            "value": 1
+          }
+        ],
+        null
+      ]
+    },
+    "target_spawner": {
+      "offset_0xb8": [
+        [
+          {
+            "offset": 184,
+            "value": 1
+          }
+        ],
+        null
+      ]
+    },
+    "target_speaker": {
+      "offset_0x288": [
+        [
+          {
+            "offset": 648,
+            "value": 1065353216
+          }
+        ],
+        null
+      ],
+      "offset_0x28c": [
+        [
+          {
+            "offset": 652,
+            "value": 1065353216
+          },
+          {
+            "offset": 652,
+            "value": 0
+          }
+        ],
+        null
+      ]
+    },
+    "target_splash": {
+      "offset_0x254": [
+        [
+          {
+            "offset": 596,
+            "value": 32
+          }
+        ],
+        null
+      ],
+      "offset_0xb8": [
+        [
+          {
+            "offset": 184,
+            "value": 1
+          }
+        ],
+        null
+      ]
+    },
+    "trigger_always": {
+      "offset_0x294": [
+        [
+          {
+            "offset": 660,
+            "value": 1045220557
+          }
+        ],
+        null
+      ]
+    },
+    "trigger_counter": {
+      "offset_0x254": [
+        [
+          {
+            "offset": 596,
+            "value": 2
+          }
+        ],
+        null
+      ],
+      "offset_0x290": [
+        [
+          {
+            "offset": 656,
+            "value": 3212836864
+          }
+        ],
+        null
+      ]
+    },
+    "trigger_hurt": {
+      "offset_0x244": [
+        [
+          {
+            "offset": 580,
+            "value": 5
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 1
+          },
+          {
+            "offset": 248,
+            "value": 0
+          }
+        ],
+        null
+      ]
+    },
+    "trigger_misc_camera": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 1
+          },
+          {
+            "offset": 248,
+            "value": 0
+          }
+        ],
+        null
+      ]
+    },
+    "trigger_monsterjump": {
+      "offset_0x14": [
+        [
+          {
+            "offset": 20,
+            "value": 1135869952
+          }
+        ],
+        null
+      ],
+      "offset_0x148": [
+        [
+          {
+            "offset": 328,
+            "value": 1128792064
+          }
+        ],
+        null
+      ]
+    },
+    "trigger_multiple": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x290": [
+        [
+          {
+            "offset": 656,
+            "value": 1045220557
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 1
+          },
+          {
+            "offset": 248,
+            "value": 0
+          }
+        ],
+        null
+      ]
+    },
+    "trigger_once": {
+      "offset_0x290": [
+        [
+          {
+            "offset": 656,
+            "value": 3212836864
+          }
+        ],
+        null
+      ]
+    },
+    "trigger_push": {
+      "offset_0x148": [
+        [
+          {
+            "offset": 328,
+            "value": 1148846080
+          }
+        ],
+        null
+      ]
+    },
+    "trigger_teleport": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x1fc": [
+        [
+          {
+            "offset": 508,
+            "value": 0
+          },
+          {
+            "offset": 508,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x290": [
+        [
+          {
+            "offset": 656,
+            "value": 1045220557
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 1
+          }
+        ],
+        null
+      ]
+    },
+    "turret_base": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 2
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 3
+          }
+        ],
+        null
+      ]
+    },
+    "turret_breach": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 2
+          }
+        ],
+        null
+      ],
+      "offset_0x148": [
+        [
+          {
+            "offset": 328,
+            "value": 1112014848
+          }
+        ],
+        null
+      ],
+      "offset_0x244": [
+        [
+          {
+            "offset": 580,
+            "value": 10
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 3
+          }
+        ],
+        null
+      ]
+    },
+    "turret_driver": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 2
+          }
+        ],
+        null
+      ],
+      "offset_0x190": [
+        [
+          {
+            "offset": 400,
+            "value": 200
+          }
+        ],
+        null
+      ],
+      "offset_0x220": [
+        [
+          {
+            "offset": 544,
+            "value": 100
+          }
+        ],
+        null
+      ],
+      "offset_0x228": [
+        [
+          {
+            "offset": 552,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x23c": [
+        [
+          {
+            "offset": 572,
+            "value": 24
+          }
+        ],
+        null
+      ],
+      "offset_0x240": [
+        [
+          {
+            "offset": 576,
+            "value": 2
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 2
+          }
+        ],
+        null
+      ],
+      "offset_0xfc": [
+        [
+          {
+            "offset": 252,
+            "value": 33685507
+          }
+        ],
+        null
+      ]
+    },
+    "viewthing": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 0
+          }
+        ],
+        null
+      ],
+      "offset_0x44": [
+        [
+          {
+            "offset": 68,
+            "value": 64
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 2
+          }
+        ],
+        null
+      ]
+    },
+    "worldspawn": {
+      "offset_0x104": [
+        [
+          {
+            "offset": 260,
+            "value": 2
+          }
+        ],
+        null
+      ],
+      "offset_0x28": [
+        [
+          {
+            "offset": 40,
+            "value": 1
+          }
+        ],
+        null
+      ],
+      "offset_0x58": [
+        [
+          {
+            "offset": 88,
+            "value": 1
+          }
+        ],
+        null
+      ],
+      "offset_0xf8": [
+        [
+          {
+            "offset": 248,
+            "value": 3
+          }
+        ],
+        null
+      ]
+    }
+  },
+  "hlil_missing_blocks": [],
+  "missing_in_hlil": [],
+  "missing_in_repo": [],
+  "spawnflag_mismatches": {
+    "func_water": {
+      "sets": [
+        [
+          32
+        ],
+        []
+      ]
+    },
+    "monster_berserk": {
+      "checks": [
+        [
+          8
+        ],
+        []
+      ]
+    },
+    "monster_brain": {
+      "checks": [
+        [
+          8
+        ],
+        []
+      ]
+    },
+    "monster_chick": {
+      "checks": [
+        [
+          8
+        ],
+        []
+      ]
+    },
+    "monster_gladiator": {
+      "checks": [
+        [
+          8
+        ],
+        []
+      ]
+    },
+    "monster_gunner": {
+      "checks": [
+        [
+          8
+        ],
+        []
+      ]
+    },
+    "monster_infantry": {
+      "checks": [
+        [
+          8
+        ],
+        []
+      ]
+    },
+    "monster_tank": {
+      "checks": [
+        [
+          8
+        ],
+        []
+      ]
+    },
+    "monster_tank_commander": {
+      "checks": [
+        [
+          8
+        ],
+        []
+      ]
+    }
+  }
+}

@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 26 | Name: block */
+
+10003514      unimplemented  {fld st0, dword [esp+0x20]}

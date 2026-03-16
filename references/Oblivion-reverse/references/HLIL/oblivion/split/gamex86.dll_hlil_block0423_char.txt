@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 423 | Name: char */
+
+10046ec8  char (* data_10046ec8)[0x10] = data_10048510 {"weapon_hellfury"}

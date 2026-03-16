@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 347 | Name: char */
+
+10046bf8  char (* data_10046bf8)[0x14] = data_10048b48 {"weapon_supershotgun"}

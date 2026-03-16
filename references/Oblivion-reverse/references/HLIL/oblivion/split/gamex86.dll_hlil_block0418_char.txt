@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 418 | Name: char */
+
+10046ea0  char (* data_10046ea0)[0x21] = data_100485b4 {"models/weapons/v_rocket/tris.md2"}

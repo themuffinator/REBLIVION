@@ -1,0 +1,27 @@
+/* Manual pseudo-HLIL stub for rotate train spawn extracted from binary */
+10015750  void sub_10015750(int32_t arg1)
+10015750  {
+10015750      *(arg1 + 0x104) = 2
+10015768      if ((*(arg1 + 0x11c) & 4) != 0)
+1001577f          *(arg1 + 0x244) = 0
+10015787      else if (*(arg1 + 0x244) == 0)
+1001578f          *(arg1 + 0x244) = 0x64
+1001576a      *(arg1 + 0x18) = 0
+1001576d      *(arg1 + 0x14) = 0
+10015770      *(arg1 + 0x10) = 0
+10015773      *(arg1 + 0x1f8) = 0x10015090
+1001579f      *(arg1 + 0xf8) = 3
+100157e0      *(arg1 + 0x148) = 0x42c80000
+10015803      if (*(arg1 + 0x1a8) != 0)
+10015822          sub_10039662(*(arg1 + 0x1a8), &data_10046688, arg1 + 0x1d0)
+10015830      if (*(arg1 + 0x19c) != 0)
+10015854          sub_10039662(*(arg1 + 0x19c), &data_10046688, arg1 + 0x1ac)
+10015863      *(arg1 + 0x320) = *(arg1 + 0x148)
+1001586a      *(arg1 + 0x200) = 0x100156f0
+10015874      gi.linkentity(arg1)
+10015887      if (*(arg1 + 0x128) != 0)
+10015893          *(arg1 + 0x1f4) = 0x10015560
+1001589d          *(arg1 + 0x1ec) = data_1006c2e4 + 0x3f800000
+1001589d          return
+100158a6      gi.dprintf("func_rotate_train without a target at %s\n", sub_1001b070(arg1 + 0xd4))
+100158b8  }

@@ -1,0 +1,116 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Kind: type (struct) */
+/* Name: PE32_Optional_Header */
+
+100000f8  {
+100000f8      enum pe_magic magic = PE_32BIT
+100000fa      uint8_t majorLinkerVersion = 0x6
+100000fb      uint8_t minorLinkerVersion = 0x0
+100000fc      uint32_t sizeOfCode = 0x43000
+10000100      uint32_t sizeOfInitializedData = 0x33000
+10000104      uint32_t sizeOfUninitializedData = 0x0
+10000108      uint32_t addressOfEntryPoint = 0x3a2b9
+1000010c      uint32_t baseOfCode = 0x1000
+10000110      uint32_t baseOfData = 0x44000
+10000114      uint32_t imageBase = 0x10000000
+10000118      uint32_t sectionAlignment = 0x1000
+1000011c      uint32_t fileAlignment = 0x1000
+10000120      uint16_t majorOperatingSystemVersion = 0x4
+10000122      uint16_t minorOperatingSystemVersion = 0x0
+10000124      uint16_t majorImageVersion = 0x0
+10000126      uint16_t minorImageVersion = 0x0
+10000128      uint16_t majorSubsystemVersion = 0x4
+1000012a      uint16_t minorSubsystemVersion = 0x0
+1000012c      uint32_t win32VersionValue = 0x0
+10000130      uint32_t sizeOfImage = 0x77000
+10000134      uint32_t sizeOfHeaders = 0x1000
+10000138      uint32_t checkSum = 0x0
+1000013c      enum pe_subsystem subsystem = IMAGE_SUBSYSTEM_WINDOWS_GUI
+1000013e      enum pe_dll_characteristics dllCharacteristics = 0
+10000140      uint32_t sizeOfStackReserve = 0x100000
+10000144      uint32_t sizeOfStackCommit = 0x1000
+10000148      uint32_t sizeOfHeapReserve = 0x100000
+1000014c      uint32_t sizeOfHeapCommit = 0x1000
+10000150      uint32_t loaderFlags = 0x0
+10000154      uint32_t numberOfRvaAndSizes = 0x10
+10000158      struct PE_Data_Directory_Entry exportTableEntry = 
+10000158      {
+10000158          uint32_t virtualAddress = 0x450d0
+1000015c          uint32_t size = 0x49
+10000160      }
+10000160      struct PE_Data_Directory_Entry importTableEntry = 
+10000160      {
+10000160          uint32_t virtualAddress = 0x44b50
+10000164          uint32_t size = 0x28
+10000168      }
+10000168      struct PE_Data_Directory_Entry resourceTableEntry = 
+10000168      {
+10000168          uint32_t virtualAddress = 0x0
+1000016c          uint32_t size = 0x0
+10000170      }
+10000170      struct PE_Data_Directory_Entry exceptionTableEntry = 
+10000170      {
+10000170          uint32_t virtualAddress = 0x0
+10000174          uint32_t size = 0x0
+10000178      }
+10000178      struct PE_Data_Directory_Entry certificateTableEntry = 
+10000178      {
+10000178          uint32_t virtualAddress = 0x0
+1000017c          uint32_t size = 0x0
+10000180      }
+10000180      struct PE_Data_Directory_Entry baseRelocationTableEntry = 
+10000180      {
+10000180          uint32_t virtualAddress = 0x6e000
+10000184          uint32_t size = 0x821c
+10000188      }
+10000188      struct PE_Data_Directory_Entry debugEntry = 
+10000188      {
+10000188          uint32_t virtualAddress = 0x0
+1000018c          uint32_t size = 0x0
+10000190      }
+10000190      struct PE_Data_Directory_Entry architectureEntry = 
+10000190      {
+10000190          uint32_t virtualAddress = 0x0
+10000194          uint32_t size = 0x0
+10000198      }
+10000198      struct PE_Data_Directory_Entry globalPtrEntry = 
+10000198      {
+10000198          uint32_t virtualAddress = 0x0
+1000019c          uint32_t size = 0x0
+100001a0      }
+100001a0      struct PE_Data_Directory_Entry tlsTableEntry = 
+100001a0      {
+100001a0          uint32_t virtualAddress = 0x0
+100001a4          uint32_t size = 0x0
+100001a8      }
+100001a8      struct PE_Data_Directory_Entry loadConfigTableEntry = 
+100001a8      {
+100001a8          uint32_t virtualAddress = 0x0
+100001ac          uint32_t size = 0x0
+100001b0      }
+100001b0      struct PE_Data_Directory_Entry boundImportEntry = 
+100001b0      {
+100001b0          uint32_t virtualAddress = 0x0
+100001b4          uint32_t size = 0x0
+100001b8      }
+100001b8      struct PE_Data_Directory_Entry iatEntry = 
+100001b8      {
+100001b8          uint32_t virtualAddress = 0x44000
+100001bc          uint32_t size = 0xfc
+100001c0      }
+100001c0      struct PE_Data_Directory_Entry delayImportDescriptorEntry = 
+100001c0      {
+100001c0          uint32_t virtualAddress = 0x0
+100001c4          uint32_t size = 0x0
+100001c8      }
+100001c8      struct PE_Data_Directory_Entry clrRuntimeHeaderEntry = 
+100001c8      {
+100001c8          uint32_t virtualAddress = 0x0
+100001cc          uint32_t size = 0x0
+100001d0      }
+100001d0      struct PE_Data_Directory_Entry reservedEntry = 
+100001d0      {
+100001d0          uint32_t virtualAddress = 0x0
+100001d4          uint32_t size = 0x0
+100001d8      }
+100001d8  }

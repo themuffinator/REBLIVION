@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 459 | Name: char */
+
+1004700c  char (* data_1004700c)[0x9] = data_10048214 {"w_deatom"}

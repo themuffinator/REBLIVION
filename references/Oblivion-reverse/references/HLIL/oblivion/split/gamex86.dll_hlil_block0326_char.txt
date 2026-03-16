@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 326 | Name: char */
+
+10046b20  char (* data_10046b20)[0x15] = data_10048d00 {"weapon_plasma_pistol"}

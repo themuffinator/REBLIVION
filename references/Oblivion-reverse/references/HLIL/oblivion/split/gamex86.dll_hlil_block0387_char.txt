@@ -1,0 +1,4 @@
+/* Extracted from: gamex86.dll_hlil.txt */
+/* Block: 387 | Name: char */
+
+10046d60  char (* data_10046d60)[0xd] = data_100487d4 {"ammo_detpack"}
