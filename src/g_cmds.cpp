@@ -608,6 +608,24 @@ Cmd_Use_f
 Use an inventory item
 ==================
 */
+static void Cmd_Use_TogglePair(edict_t *ent, const char **requested_name, const char *alternate_name)
+{
+	if (!ent || !ent->client || !requested_name || !*requested_name || !alternate_name || !*alternate_name)
+		return;
+
+	if (ent->client->pers.weapon &&
+		ent->client->pers.weapon->use_name &&
+		!Q_strcasecmp(*requested_name, ent->client->pers.weapon->use_name))
+	{
+		*requested_name = alternate_name;
+		return;
+	}
+
+	gitem_t *item = FindItem(*requested_name);
+	if (item && !ent->client->pers.inventory[item->id])
+		*requested_name = alternate_name;
+}
+
 void Cmd_Use_f(edict_t *ent)
 {
 	item_id_t index;
@@ -626,6 +644,27 @@ void Cmd_Use_f(edict_t *ent)
 	}
 	else
 	{
+		if (!Q_strcasecmp(s, "Grenades"))
+			Cmd_Use_TogglePair(ent, &s, "Mines");
+		else if (!Q_strcasecmp(s, "Mines"))
+			Cmd_Use_TogglePair(ent, &s, "Grenades");
+		else if (!Q_strcasecmp(s, "Machinegun"))
+			Cmd_Use_TogglePair(ent, &s, "Plasma Rifle");
+		else if (!Q_strcasecmp(s, "Plasma Rifle"))
+			Cmd_Use_TogglePair(ent, &s, "Machinegun");
+		else if (!Q_strcasecmp(s, "Deatomizer"))
+			Cmd_Use_TogglePair(ent, &s, "HyperBlaster");
+		else if (!Q_strcasecmp(s, "HyperBlaster"))
+			Cmd_Use_TogglePair(ent, &s, "Deatomizer");
+		else if (!Q_strcasecmp(s, "Obliterator"))
+			Cmd_Use_TogglePair(ent, &s, "BFG10K");
+		else if (!Q_strcasecmp(s, "BFG10K"))
+			Cmd_Use_TogglePair(ent, &s, "Obliterator");
+		else if (!Q_strcasecmp(s, "Detonation Pack"))
+			Cmd_Use_TogglePair(ent, &s, "Remote Detonator");
+		else if (!Q_strcasecmp(s, "Rocket Launcher"))
+			Cmd_Use_TogglePair(ent, &s, "HellFury");
+
 		it = FindItem(s);
 	}
 

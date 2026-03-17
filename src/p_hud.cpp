@@ -749,12 +749,13 @@ void G_SetStats(edict_t *ent)
 	//
 	uint32_t weaponbits = 0;
 
-	for (invIndex = IT_WEAPON_GRAPPLE; invIndex <= IT_WEAPON_DISRUPTOR; invIndex++)
+	for (invIndex = static_cast<unsigned int>(IT_NULL + 1); invIndex < IT_TOTAL; ++invIndex)
 	{
-		if (ent->client->pers.inventory[invIndex])
-		{
-			weaponbits |= 1 << GetItemByIndex((item_id_t) invIndex)->weapon_wheel_index;
-		}
+		gitem_t *weapon = GetItemByIndex((item_id_t) invIndex);
+		if (!weapon || !(weapon->flags & IF_WEAPON) || !ent->client->pers.inventory[invIndex] || weapon->weapon_wheel_index < 0)
+			continue;
+
+		weaponbits |= 1u << weapon->weapon_wheel_index;
 	}
 
 	ent->client->ps.stats[STAT_WEAPONS_OWNED_1] = (weaponbits & 0xFFFF);
@@ -786,6 +787,9 @@ void G_SetStats(edict_t *ent)
 	for (unsigned int ammoIndex = AMMO_BULLETS; ammoIndex < AMMO_MAX; ++ammoIndex)
 	{
 		gitem_t *ammo = GetItemByAmmo((ammo_t) ammoIndex);
+		if (!ammo || ammo->ammo_wheel_index < 0)
+			continue;
+
 		uint16_t val = G_CheckInfiniteAmmo(ammo) ? AMMO_VALUE_INFINITE : clamp(ent->client->pers.inventory[ammo->id], 0, AMMO_VALUE_INFINITE - 1);
 		G_SetAmmoStat((uint16_t *) &ent->client->ps.stats[STAT_AMMO_INFO_START], ammo->ammo_wheel_index, val);
 	}
@@ -829,6 +833,9 @@ void G_SetStats(edict_t *ent)
 	for (unsigned int powerupIndex = POWERUP_SCREEN; powerupIndex < POWERUP_MAX; ++powerupIndex)
 	{
 		gitem_t *powerup = GetItemByPowerup((powerup_t) powerupIndex);
+		if (!powerup || powerup->powerup_wheel_index < 0)
+			continue;
+
 		uint16_t val;
 
 		switch (powerup->id)
@@ -846,6 +853,14 @@ void G_SetStats(edict_t *ent)
 			if (!ent->client->pers.inventory[powerup->id])
 				val = 0;
 			else if (ent->flags & FL_FLASHLIGHT)
+				val = 2;
+			else
+				val = 1;
+			break;
+		case IT_ITEM_RTDU:
+			if (!ent->client->pers.inventory[powerup->id])
+				val = 0;
+			else if (ent->client->remote_view_active && ent->client->rtdu_turret && ent->client->remote_view_entity == ent->client->rtdu_turret)
 				val = 2;
 			else
 				val = 1;

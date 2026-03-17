@@ -535,15 +535,15 @@ constexpr float STOP_EPSILON = 0.1f;
 template<>
 struct fmt::formatter<vec3_t> : fmt::formatter<float>
 {
-    template<typename FormatContext>
-    auto format(const vec3_t &p, FormatContext &ctx) -> decltype(ctx.out())
-    {
+	template<typename FormatContext>
+	auto format(const vec3_t &p, FormatContext &ctx) const -> decltype(ctx.out())
+	{
 		auto out = fmt::formatter<float>::format(p.x, ctx);
-        out = fmt::format_to(out, " ");
+		out = fmt::format_to(out, " ");
 		ctx.advance_to(out);
 		out = fmt::formatter<float>::format(p.y, ctx);
-        out = fmt::format_to(out, " ");
+		out = fmt::format_to(out, " ");
 		ctx.advance_to(out);
 		return fmt::formatter<float>::format(p.z, ctx);
-    }
+	}
 };

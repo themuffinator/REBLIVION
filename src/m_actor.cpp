@@ -3,7 +3,6 @@
 // g_actor.c
 
 #include "g_local.h"
-#include "m_actor.h"
 #include "m_flash.h"
 
 constexpr const char *actor_names[] = {
@@ -15,6 +14,48 @@ constexpr const char *actor_names[] = {
 	"Rambear",
 	"Titus",
 	"Bitterman"
+};
+
+static const char *Actor_FallbackName(edict_t *self)
+{
+	if (!self || self < g_edicts)
+		return actor_names[0];
+
+	return actor_names[(self - g_edicts) % q_countof(actor_names)];
+}
+
+constexpr gtime_t ACTOR_IDLE_PAUSE = gtime_t::from_sec(100000000.0);
+constexpr float MODEL_SCALE = 1.0f;
+constexpr int32_t ACTOR_PLAYER_SKIN_SLOT = MAX_CLIENTS - 4;
+constexpr const char *ACTOR_PLAYER_SKIN = "actor\\male/grunt";
+constexpr const char *ACTOR_PLAYER_WEAPON_MODEL = "players/male/w_machinegun.md2";
+
+enum
+{
+	ACTOR_FRAME_STAND_FIRST = 0,
+	ACTOR_FRAME_STAND_LAST = 39,
+	ACTOR_FRAME_WALK_FIRST = 40,
+	ACTOR_FRAME_WALK_LAST = 45,
+	ACTOR_FRAME_RUN_FIRST = 40,
+	ACTOR_FRAME_RUN_LAST = 45,
+	ACTOR_FRAME_ATTACK_FIRST = 46,
+	ACTOR_FRAME_ATTACK_LAST = 53,
+	ACTOR_FRAME_PAIN1_FIRST = 54,
+	ACTOR_FRAME_PAIN1_LAST = 57,
+	ACTOR_FRAME_PAIN2_FIRST = 58,
+	ACTOR_FRAME_PAIN2_LAST = 61,
+	ACTOR_FRAME_PAIN3_FIRST = 62,
+	ACTOR_FRAME_PAIN3_LAST = 65,
+	ACTOR_FRAME_FLIPOFF_FIRST = 72,
+	ACTOR_FRAME_FLIPOFF_LAST = 83,
+	ACTOR_FRAME_TAUNT_FIRST = 95,
+	ACTOR_FRAME_TAUNT_LAST = 95,
+	ACTOR_FRAME_DEATH1_FIRST = 178,
+	ACTOR_FRAME_DEATH1_LAST = 183,
+	ACTOR_FRAME_DEATH2_FIRST = 184,
+	ACTOR_FRAME_DEATH2_LAST = 189,
+	ACTOR_FRAME_DEATH3_FIRST = 190,
+	ACTOR_FRAME_DEATH3_LAST = 197
 };
 
 mframe_t actor_frames_stand[] = {
@@ -62,7 +103,7 @@ mframe_t actor_frames_stand[] = {
 	{ ai_stand },
 	{ ai_stand }
 };
-MMOVE_T(actor_move_stand) = { FRAME_stand101, FRAME_stand140, actor_frames_stand, nullptr };
+MMOVE_T(actor_move_stand) = { ACTOR_FRAME_STAND_FIRST, ACTOR_FRAME_STAND_LAST, actor_frames_stand, nullptr };
 
 MONSTERINFO_STAND(actor_stand) (edict_t *self) -> void
 {
@@ -74,16 +115,14 @@ MONSTERINFO_STAND(actor_stand) (edict_t *self) -> void
 }
 
 mframe_t actor_frames_walk[] = {
-	{ ai_walk },
-	{ ai_walk, 6 },
-	{ ai_walk, 10 },
-	{ ai_walk, 3 },
-	{ ai_walk, 2 },
-	{ ai_walk, 7 },
-	{ ai_walk, 10 },
-	{ ai_walk, 1 }
+	{ ai_walk, 8 },
+	{ ai_walk, 30 },
+	{ ai_walk, 30 },
+	{ ai_walk, 16 },
+	{ ai_walk, 40 },
+	{ ai_walk, 30 }
 };
-MMOVE_T(actor_move_walk) = { FRAME_walk01, FRAME_walk08, actor_frames_walk, nullptr };
+MMOVE_T(actor_move_walk) = { ACTOR_FRAME_WALK_FIRST, ACTOR_FRAME_WALK_LAST, actor_frames_walk, nullptr };
 
 MONSTERINFO_WALK(actor_walk) (edict_t *self) -> void
 {
@@ -91,55 +130,57 @@ MONSTERINFO_WALK(actor_walk) (edict_t *self) -> void
 }
 
 mframe_t actor_frames_run[] = {
-	{ ai_run, 4 },
-	{ ai_run, 15 },
-	{ ai_run, 15 },
 	{ ai_run, 8 },
-	{ ai_run, 20 },
-	{ ai_run, 15 }
+	{ ai_run, 30 },
+	{ ai_run, 30 },
+	{ ai_run, 16 },
+	{ ai_run, 40 },
+	{ ai_run, 30 }
 };
-MMOVE_T(actor_move_run) = { FRAME_run02, FRAME_run07, actor_frames_run, nullptr };
+MMOVE_T(actor_move_run) = { ACTOR_FRAME_RUN_FIRST, ACTOR_FRAME_RUN_LAST, actor_frames_run, nullptr };
 
 MONSTERINFO_RUN(actor_run) (edict_t *self) -> void
 {
-	if ((level.time < self->pain_debounce_time) && (!self->enemy))
+	if ((level.time < self->pain_debounce_time) || self->enemy)
 	{
-		if (self->movetarget)
-			actor_walk(self);
-		else
-			actor_stand(self);
+		if (!(self->monsterinfo.aiflags & AI_STAND_GROUND))
+		{
+			M_SetAnimation(self, &actor_move_run);
+			return;
+		}
+	}
+	else if (self->movetarget)
+	{
+		actor_walk(self);
 		return;
 	}
 
-	if (self->monsterinfo.aiflags & AI_STAND_GROUND)
-	{
-		actor_stand(self);
-		return;
-	}
-
-	M_SetAnimation(self, &actor_move_run);
+	actor_stand(self);
 }
 
 mframe_t actor_frames_pain1[] = {
 	{ ai_move, -5 },
 	{ ai_move, 4 },
+	{ ai_move, 1 },
 	{ ai_move, 1 }
 };
-MMOVE_T(actor_move_pain1) = { FRAME_pain101, FRAME_pain103, actor_frames_pain1, actor_run };
+MMOVE_T(actor_move_pain1) = { ACTOR_FRAME_PAIN1_FIRST, ACTOR_FRAME_PAIN1_LAST, actor_frames_pain1, actor_run };
 
 mframe_t actor_frames_pain2[] = {
 	{ ai_move, -4 },
+	{ ai_move },
 	{ ai_move, 4 },
 	{ ai_move }
 };
-MMOVE_T(actor_move_pain2) = { FRAME_pain201, FRAME_pain203, actor_frames_pain2, actor_run };
+MMOVE_T(actor_move_pain2) = { ACTOR_FRAME_PAIN2_FIRST, ACTOR_FRAME_PAIN2_LAST, actor_frames_pain2, actor_run };
 
 mframe_t actor_frames_pain3[] = {
+	{ ai_move, -1 },
 	{ ai_move, -1 },
 	{ ai_move, 1 },
 	{ ai_move, 0 }
 };
-MMOVE_T(actor_move_pain3) = { FRAME_pain301, FRAME_pain303, actor_frames_pain3, actor_run };
+MMOVE_T(actor_move_pain3) = { ACTOR_FRAME_PAIN3_FIRST, ACTOR_FRAME_PAIN3_LAST, actor_frames_pain3, actor_run };
 
 mframe_t actor_frames_flipoff[] = {
 	{ ai_turn },
@@ -153,38 +194,19 @@ mframe_t actor_frames_flipoff[] = {
 	{ ai_turn },
 	{ ai_turn },
 	{ ai_turn },
-	{ ai_turn },
-	{ ai_turn },
 	{ ai_turn }
 };
-MMOVE_T(actor_move_flipoff) = { FRAME_flip01, FRAME_flip14, actor_frames_flipoff, actor_run };
+MMOVE_T(actor_move_flipoff) = { ACTOR_FRAME_FLIPOFF_FIRST, ACTOR_FRAME_FLIPOFF_LAST, actor_frames_flipoff, actor_run };
 
 mframe_t actor_frames_taunt[] = {
-	{ ai_turn },
-	{ ai_turn },
-	{ ai_turn },
-	{ ai_turn },
-	{ ai_turn },
-	{ ai_turn },
-	{ ai_turn },
-	{ ai_turn },
-	{ ai_turn },
-	{ ai_turn },
-	{ ai_turn },
-	{ ai_turn },
-	{ ai_turn },
-	{ ai_turn },
-	{ ai_turn },
-	{ ai_turn },
 	{ ai_turn }
 };
-MMOVE_T(actor_move_taunt) = { FRAME_taunt01, FRAME_taunt17, actor_frames_taunt, actor_run };
+MMOVE_T(actor_move_taunt) = { ACTOR_FRAME_TAUNT_FIRST, ACTOR_FRAME_TAUNT_LAST, actor_frames_taunt, actor_run };
 
 const char *messages[] = {
 	"Watch it",
 	"#$@*&",
-	"Idiot",
-	"Check your targets"
+	"Idiot"
 };
 
 PAIN(actor_pain) (edict_t *self, edict_t *other, float kick, int damage, const mod_t &mod) -> void
@@ -208,8 +230,8 @@ PAIN(actor_pain) (edict_t *self, edict_t *other, float kick, int damage, const m
 			M_SetAnimation(self, &actor_move_flipoff);
 		else
 			M_SetAnimation(self, &actor_move_taunt);
-		name = actor_names[(self - g_edicts) % q_countof(actor_names)];
-		gi.LocClient_Print(other, PRINT_CHAT, "{}: {}!\n", name, random_element(messages));
+		name = Actor_FallbackName(self);
+		gi.Client_Print(other, PRINT_CHAT, G_Fmt("{}: {}!\n", name, random_element(messages)).data());
 		return;
 	}
 
@@ -220,14 +242,6 @@ PAIN(actor_pain) (edict_t *self, edict_t *other, float kick, int damage, const m
 		M_SetAnimation(self, &actor_move_pain2);
 	else
 		M_SetAnimation(self, &actor_move_pain3);
-}
-
-MONSTERINFO_SETSKIN(actor_setskin) (edict_t *self) -> void
-{
-	if (self->health < (self->max_health / 2))
-		self->s.skinnum = 1;
-	else
-		self->s.skinnum = 0;
 }
 
 void actorMachineGun(edict_t *self)
@@ -259,6 +273,27 @@ void actorMachineGun(edict_t *self)
 	monster_fire_bullet(self, start, forward, 3, 4, DEFAULT_BULLET_HSPREAD, DEFAULT_BULLET_VSPREAD, MZ2_ACTOR_MACHINEGUN_1);
 }
 
+static void Actor_SetupRenderModel(edict_t *self)
+{
+	// The retail 0xff player-model path assumes vanilla skinnum semantics. In rerelease,
+	// route actors through a dedicated fake player-skin configstring instead.
+	self->s.modelindex = MODELINDEX_PLAYER;
+	self->s.modelindex2 = gi.modelindex(ACTOR_PLAYER_WEAPON_MODEL);
+	self->s.skinnum = ACTOR_PLAYER_SKIN_SLOT;
+	gi.configstring(CS_PLAYERSKINS + ACTOR_PLAYER_SKIN_SLOT, ACTOR_PLAYER_SKIN);
+}
+
+static void Actor_EnterIdlePath(edict_t *self)
+{
+	self->monsterinfo.aiflags |= AI_ACTOR_PATH_IDLE;
+	self->monsterinfo.aiflags &= ~AI_ACTOR_FOLLOW;
+}
+
+static void Actor_LeaveIdlePath(edict_t *self)
+{
+	self->monsterinfo.aiflags &= ~(AI_ACTOR_PATH_IDLE | AI_ACTOR_FOLLOW);
+}
+
 void actor_dead(edict_t *self)
 {
 	self->mins = { -16, -16, -24 };
@@ -273,32 +308,42 @@ mframe_t actor_frames_death1[] = {
 	{ ai_move },
 	{ ai_move },
 	{ ai_move, -13 },
+	{ ai_move, 1 },
 	{ ai_move, 14 },
-	{ ai_move, 3 },
-	{ ai_move, -2 },
 	{ ai_move, 1 }
 };
-MMOVE_T(actor_move_death1) = { FRAME_death101, FRAME_death107, actor_frames_death1, actor_dead };
+MMOVE_T(actor_move_death1) = { ACTOR_FRAME_DEATH1_FIRST, ACTOR_FRAME_DEATH1_LAST, actor_frames_death1, actor_dead };
 
 mframe_t actor_frames_death2[] = {
 	{ ai_move },
-	{ ai_move, 7 },
 	{ ai_move, -6 },
 	{ ai_move, -5 },
 	{ ai_move, 1 },
-	{ ai_move },
-	{ ai_move, -1 },
-	{ ai_move, -2 },
-	{ ai_move, -1 },
-	{ ai_move, -9 },
-	{ ai_move, -13 },
-	{ ai_move, -13 },
+	{ ai_move, 1 },
 	{ ai_move }
 };
-MMOVE_T(actor_move_death2) = { FRAME_death201, FRAME_death213, actor_frames_death2, actor_dead };
+MMOVE_T(actor_move_death2) = { ACTOR_FRAME_DEATH2_FIRST, ACTOR_FRAME_DEATH2_LAST, actor_frames_death2, actor_dead };
+
+mframe_t actor_frames_death3[] = {
+	{ ai_move },
+	{ ai_move, -6 },
+	{ ai_move, -5 },
+	{ ai_move, 1 },
+	{ ai_move, 1 },
+	{ ai_move, 1 },
+	{ ai_move, 1 },
+	{ ai_move }
+};
+MMOVE_T(actor_move_death3) = { ACTOR_FRAME_DEATH3_FIRST, ACTOR_FRAME_DEATH3_LAST, actor_frames_death3, actor_dead };
 
 DIE(actor_die) (edict_t *self, edict_t *inflictor, edict_t *attacker, int damage, const vec3_t &point, const mod_t &mod) -> void
 {
+	if (mod.id == MOD_DISINTEGRATOR)
+	{
+		BecomeExplosion1(self);
+		return;
+	}
+
 	// check for gib
 	if (self->health <= -80)
 	{
@@ -319,18 +364,22 @@ DIE(actor_die) (edict_t *self, edict_t *inflictor, edict_t *attacker, int damage
 	//	gi.sound (self, CHAN_VOICE, actor.sound_die, 1, ATTN_NORM, 0);
 	self->deadflag = true;
 	self->takedamage = true;
+	self->s.modelindex2 = 0;
 
-	if (brandom())
+	int n = irandom(3);
+	if (n == 0)
 		M_SetAnimation(self, &actor_move_death1);
-	else
+	else if (n == 1)
 		M_SetAnimation(self, &actor_move_death2);
+	else
+		M_SetAnimation(self, &actor_move_death3);
 }
 
 void actor_fire(edict_t *self)
 {
 	actorMachineGun(self);
 
-	if (level.time >= self->monsterinfo.fire_wait)
+	if (level.time >= self->monsterinfo.pausetime)
 		self->monsterinfo.aiflags &= ~AI_HOLD_FRAME;
 	else
 		self->monsterinfo.aiflags |= AI_HOLD_FRAME;
@@ -339,42 +388,68 @@ void actor_fire(edict_t *self)
 mframe_t actor_frames_attack[] = {
 	{ ai_charge, -2, actor_fire },
 	{ ai_charge, -2 },
+	{ ai_charge },
+	{ ai_charge },
+	{ ai_charge },
+	{ ai_charge },
 	{ ai_charge, 3 },
 	{ ai_charge, 2 }
 };
-MMOVE_T(actor_move_attack) = { FRAME_attak01, FRAME_attak04, actor_frames_attack, actor_run };
+MMOVE_T(actor_move_attack) = { ACTOR_FRAME_ATTACK_FIRST, ACTOR_FRAME_ATTACK_LAST, actor_frames_attack, actor_stand };
 
 MONSTERINFO_ATTACK(actor_attack) (edict_t *self) -> void
 {
 	M_SetAnimation(self, &actor_move_attack);
-	self->monsterinfo.fire_wait = level.time + random_time(1_sec, 2.6_sec);
+	self->monsterinfo.pausetime = level.time + gtime_t::from_ms(100 * (10 + irandom(16)));
 }
 
 USE(actor_use) (edict_t *self, edict_t *other, edict_t *activator) -> void
 {
 	vec3_t v;
 
+	if (!self->target || !*self->target)
+	{
+		self->target = nullptr;
+		Actor_EnterIdlePath(self);
+		self->monsterinfo.pausetime = ACTOR_IDLE_PAUSE;
+		self->monsterinfo.stand(self);
+		return;
+	}
+
 	self->goalentity = self->movetarget = G_PickTarget(self->target);
 	if ((!self->movetarget) || (strcmp(self->movetarget->classname, "target_actor") != 0))
 	{
-		gi.Com_PrintFmt("{}: bad target {}\n", *self, self->target);
 		self->target = nullptr;
-		self->monsterinfo.pausetime = HOLD_FOREVER;
+		Actor_EnterIdlePath(self);
+		self->monsterinfo.pausetime = ACTOR_IDLE_PAUSE;
 		self->monsterinfo.stand(self);
 		return;
 	}
 
 	v = self->goalentity->s.origin - self->s.origin;
 	self->ideal_yaw = self->s.angles[YAW] = vectoyaw(v);
+	Actor_LeaveIdlePath(self);
 	self->monsterinfo.walk(self);
 	self->target = nullptr;
 }
 
-/*QUAKED misc_actor (1 .5 0) (-16 -16 -24) (16 16 32)
+constexpr spawnflags_t SPAWNFLAG_ACTOR_CORPSE = SPAWNFLAG_MONSTER_CORPSE;
+constexpr spawnflags_t SPAWNFLAG_ACTOR_START_ON = 32_spawnflag;
+constexpr spawnflags_t SPAWNFLAG_ACTOR_WIMPY = 64_spawnflag;
+
+/*QUAKED misc_actor (1 .5 0) (-16 -16 -24) (16 16 32) Ambush Trigger_Spawn Sight Corpse x START_ON WIMPY
+START_ON		actor immediately begins its scripted path
+WIMPY		clear the good-guy pathing behavior used by retail Oblivion actors
  */
 
 void SP_misc_actor(edict_t *self)
 {
+	static const int corpse_frames[] = {
+		ACTOR_FRAME_DEATH1_LAST,
+		ACTOR_FRAME_DEATH2_LAST,
+		ACTOR_FRAME_DEATH3_LAST
+	};
+
 	if ( !M_AllowSpawn( self ) ) {
 		G_FreeEdict(self);
 		return;
@@ -382,21 +457,14 @@ void SP_misc_actor(edict_t *self)
 
 	if (!self->targetname)
 	{
-		gi.Com_PrintFmt("{}: no targetname\n", *self);
-		G_FreeEdict(self);
-		return;
-	}
-
-	if (!self->target)
-	{
-		gi.Com_PrintFmt("{}: no target\n", *self);
-		G_FreeEdict(self);
-		return;
+		self->targetname = "Yo Mama";
+		self->spawnflags |= SPAWNFLAG_ACTOR_START_ON;
 	}
 
 	self->movetype = MOVETYPE_STEP;
 	self->solid = SOLID_BBOX;
-	self->s.modelindex = gi.modelindex("players/male/tris.md2");
+	self->model = "players/male/tris.md2";
+	Actor_SetupRenderModel(self);
 	self->mins = { -16, -16, -24 };
 	self->maxs = { 16, 16, 32 };
 
@@ -404,8 +472,23 @@ void SP_misc_actor(edict_t *self)
 		self->health = 100;
 	self->mass = 200;
 
+	if (self->spawnflags.has(SPAWNFLAG_ACTOR_CORPSE))
+	{
+		self->s.frame = corpse_frames[irandom(q_countof(corpse_frames))];
+		self->health = -1;
+		self->deadflag = true;
+		self->takedamage = true;
+		self->mins = { -16, -16, -24 };
+		self->maxs = { 16, 16, -8 };
+		self->svflags |= SVF_DEADMONSTER;
+		self->nextthink = 0_ms;
+		gi.linkentity(self);
+		return;
+	}
+
 	self->pain = actor_pain;
 	self->die = actor_die;
+	self->use = actor_use;
 
 	self->monsterinfo.stand = actor_stand;
 	self->monsterinfo.walk = actor_walk;
@@ -413,7 +496,13 @@ void SP_misc_actor(edict_t *self)
 	self->monsterinfo.attack = actor_attack;
 	self->monsterinfo.melee = nullptr;
 	self->monsterinfo.sight = nullptr;
-	self->monsterinfo.setskin = actor_setskin;
+	self->monsterinfo.setskin = nullptr;
+
+	if (!self->target)
+		Actor_EnterIdlePath(self);
+
+	if (!self->spawnflags.has(SPAWNFLAG_ACTOR_WIMPY))
+		self->monsterinfo.aiflags |= AI_ACTOR_FRIENDLY;
 
 	self->monsterinfo.aiflags |= AI_GOOD_GUY;
 
@@ -424,8 +513,11 @@ void SP_misc_actor(edict_t *self)
 
 	walkmonster_start(self);
 
-	// actors always start in a dormant state, they *must* be used to get going
+	// walkmonster_start rewires use to monster_use; scripted actors keep actor_use.
 	self->use = actor_use;
+
+	if (self->spawnflags.has(SPAWNFLAG_ACTOR_START_ON))
+		self->use(self, world, world);
 }
 
 /*QUAKED target_actor (.5 .3 0) (-8 -8 -8) (8 8 8) JUMP SHOOT ATTACK x HOLD BRUTAL
@@ -468,9 +560,9 @@ TOUCH(target_actor_touch) (edict_t *self, edict_t *other, const trace_t &tr, boo
 		for (uint32_t n = 1; n <= game.maxclients; n++)
 		{
 			ent = &g_edicts[n];
-			if (!ent->inuse)
+			if (!ent->inuse || !ent->client)
 				continue;
-			gi.LocClient_Print(ent, PRINT_CHAT, "{}: {}\n", actor_names[(other - g_edicts) % q_countof(actor_names)], self->message);
+			gi.Client_Print(ent, PRINT_CHAT, G_Fmt("{}: {}\n", Actor_FallbackName(other), self->message).data());
 		}
 	}
 
@@ -487,18 +579,18 @@ TOUCH(target_actor_touch) (edict_t *self, edict_t *other, const trace_t &tr, boo
 		}
 	}
 
-	if (self->spawnflags.has(SPAWNFLAG_TARGET_ACTOR_SHOOT)) // shoot
-	{
-	}
-	else if (self->spawnflags.has(SPAWNFLAG_TARGET_ACTOR_ATTACK)) // attack
+	if (self->spawnflags.has(SPAWNFLAG_TARGET_ACTOR_SHOOT) || self->spawnflags.has(SPAWNFLAG_TARGET_ACTOR_ATTACK))
 	{
 		other->enemy = G_PickTarget(self->pathtarget);
 		if (other->enemy)
 		{
 			other->goalentity = other->enemy;
+			if (self->spawnflags.has(SPAWNFLAG_TARGET_ACTOR_SHOOT))
+				other->monsterinfo.aiflags |= AI_ACTOR_SHOOT_ONCE;
 			if (self->spawnflags.has(SPAWNFLAG_TARGET_ACTOR_BRUTAL))
 				other->monsterinfo.aiflags |= AI_BRUTAL;
-			if (self->spawnflags.has(SPAWNFLAG_TARGET_ACTOR_HOLD))
+
+			if (self->spawnflags.has(SPAWNFLAG_TARGET_ACTOR_HOLD) || self->spawnflags.has(SPAWNFLAG_TARGET_ACTOR_SHOOT))
 			{
 				other->monsterinfo.aiflags |= AI_STAND_GROUND;
 				actor_stand(other);
@@ -510,7 +602,7 @@ TOUCH(target_actor_touch) (edict_t *self, edict_t *other, const trace_t &tr, boo
 		}
 	}
 
-	if (!self->spawnflags.has((SPAWNFLAG_TARGET_ACTOR_ATTACK | SPAWNFLAG_TARGET_ACTOR_SHOOT)) && (self->pathtarget))
+	if (self->pathtarget)
 	{
 		const char *savetarget;
 
@@ -527,13 +619,21 @@ TOUCH(target_actor_touch) (edict_t *self, edict_t *other, const trace_t &tr, boo
 
 	if (!other->movetarget && !other->enemy)
 	{
-		other->monsterinfo.pausetime = HOLD_FOREVER;
+		other->monsterinfo.pausetime = level.time + ACTOR_IDLE_PAUSE;
 		other->monsterinfo.stand(other);
+		Actor_EnterIdlePath(other);
+		return;
 	}
-	else if (other->movetarget == other->goalentity)
+
+	if (other->movetarget)
 	{
-		v = other->movetarget->s.origin - other->s.origin;
-		other->ideal_yaw = vectoyaw(v);
+		Actor_LeaveIdlePath(other);
+
+		if (other->movetarget == other->goalentity)
+		{
+			v = other->movetarget->s.origin - other->s.origin;
+			other->ideal_yaw = vectoyaw(v);
+		}
 	}
 }
 

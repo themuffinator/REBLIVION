@@ -17,6 +17,192 @@ constexpr float MAX_SIDESTEP = 8.0f;
 
 //============================================================================
 
+static void Actor_EngageEnemy(edict_t *self)
+{
+    vec3_t dir;
+
+    if (!self || !self->enemy)
+        return;
+
+    self->goalentity = self->enemy;
+
+    if (self->monsterinfo.aiflags & AI_STAND_GROUND)
+        self->monsterinfo.stand(self);
+    else
+        self->monsterinfo.run(self);
+
+    dir = self->enemy->s.origin - self->s.origin;
+    self->ideal_yaw = vectoyaw(dir);
+
+    if (!(self->monsterinfo.aiflags & AI_STAND_GROUND))
+        self->monsterinfo.attack_finished = level.time + random_time(1_sec);
+}
+
+static bool Actor_FindEnemyTarget(edict_t *self)
+{
+    edict_t *best = nullptr;
+    float best_dist = std::numeric_limits<float>::max();
+
+    if (!self)
+        return false;
+
+    for (uint32_t i = 0; i < globals.num_edicts; i++)
+    {
+        edict_t *ent = &g_edicts[i];
+
+        if (!ent->inuse)
+            continue;
+        if (!(ent->svflags & SVF_MONSTER) || (ent->svflags & SVF_DEADMONSTER))
+            continue;
+        if (ent->deadflag || ent->health <= 0)
+            continue;
+        if (ent->monsterinfo.aiflags & AI_GOOD_GUY)
+            continue;
+        if (!visible(self, ent))
+            continue;
+
+        float dist = (ent->s.origin - self->s.origin).length();
+        if (dist < best_dist)
+        {
+            best_dist = dist;
+            best = ent;
+        }
+    }
+
+    if (!best)
+        return false;
+
+    self->monsterinfo.aiflags &= ~AI_ACTOR_FOLLOW;
+    self->enemy = best;
+    Actor_EngageEnemy(self);
+    M_ChangeYaw(self);
+    return true;
+}
+
+static bool Actor_IsPlayerFollowTarget(edict_t *ent)
+{
+    edict_t *follow = nullptr;
+
+    if (!ent || !ent->inuse)
+        return false;
+
+    if (ent->client)
+        return true;
+
+    if (!(ent->monsterinfo.aiflags & AI_ACTOR_FOLLOW))
+        return false;
+
+    follow = ent->goalentity;
+    for (int depth = 0; depth < 10; depth++)
+    {
+        if (!follow || !follow->inuse)
+            return false;
+        if (follow->client)
+            return true;
+        if (!(follow->monsterinfo.aiflags & AI_ACTOR_FOLLOW) || follow == ent)
+            return false;
+        follow = follow->goalentity;
+    }
+
+    return false;
+}
+
+static bool Actor_FindFollowTarget(edict_t *self)
+{
+    edict_t *candidate = nullptr;
+    float best_dist = std::numeric_limits<float>::max();
+
+    if (!self)
+        return false;
+
+    if ((self->monsterinfo.aiflags & AI_ACTOR_FOLLOW) &&
+        self->goalentity && Actor_IsPlayerFollowTarget(self->goalentity))
+    {
+        candidate = self->goalentity;
+    }
+
+    if (!candidate)
+    {
+        for (uint32_t i = 0; i < globals.num_edicts; i++)
+        {
+            edict_t *ent = &g_edicts[i];
+
+            if (ent == self || !ent->inuse)
+                continue;
+            if (!ent->client && !(ent->monsterinfo.aiflags & AI_GOOD_GUY))
+                continue;
+            if (!visible(self, ent))
+                continue;
+            if (!Actor_IsPlayerFollowTarget(ent))
+                continue;
+
+            float dist = (ent->s.origin - self->s.origin).length();
+            if (dist < best_dist)
+            {
+                best_dist = dist;
+                candidate = ent;
+            }
+        }
+    }
+
+    if (!candidate)
+        return false;
+
+    vec3_t dir = candidate->s.origin - self->s.origin;
+    self->ideal_yaw = vectoyaw(dir);
+    M_ChangeYaw(self);
+    self->goalentity = candidate;
+    self->movetarget = candidate;
+    self->monsterinfo.aiflags |= AI_ACTOR_FOLLOW;
+
+    if (dir.length() >= 100.0f)
+        self->monsterinfo.walk(self);
+    else
+        self->monsterinfo.stand(self);
+
+    return true;
+}
+
+static void ai_stand_tail(edict_t *self)
+{
+    vec3_t v;
+
+    if (self->enemy)
+    {
+        v = self->enemy->s.origin - self->s.origin;
+        self->ideal_yaw = vectoyaw(v);
+        M_ChangeYaw(self);
+        ai_checkattack(self, 0);
+        return;
+    }
+
+    if (FindTarget(self))
+        return;
+
+    if (self->monsterinfo.aiflags & (AI_STAND_GROUND | AI_TEMP_STAND_GROUND))
+        return;
+
+    if (self->monsterinfo.pausetime && (level.time > self->monsterinfo.pausetime))
+    {
+        self->monsterinfo.walk(self);
+        return;
+    }
+
+    if (!(self->spawnflags & SPAWNFLAG_MONSTER_AMBUSH) && self->monsterinfo.idle &&
+        (level.time > self->monsterinfo.idle_time))
+    {
+        if (self->monsterinfo.idle_time)
+        {
+            self->monsterinfo.idle(self);
+            self->monsterinfo.idle_time = level.time + random_time(15_sec, 30_sec);
+        }
+        else
+        {
+            self->monsterinfo.idle_time = level.time + random_time(15_sec);
+        }
+    }
+}
+
 /*
 =================
 AI_GetSightClient
@@ -89,6 +275,13 @@ void ai_stand(edict_t *self, float dist)
 
     if (dist || (self->monsterinfo.aiflags & AI_ALTERNATE_FLY))
         M_walkmove(self, self->s.angles[YAW], dist);
+
+    if ((self->monsterinfo.aiflags & AI_GOOD_GUY) &&
+        (self->monsterinfo.aiflags & (AI_ACTOR_PATH_IDLE | AI_ACTOR_FOLLOW)))
+    {
+        ai_stand_tail(self);
+        return;
+    }
 
     if (self->monsterinfo.aiflags & AI_STAND_GROUND)
     {
@@ -203,6 +396,14 @@ The monster is walking it's beat
 void ai_walk(edict_t *self, float dist)
 {
     edict_t *temp_goal = nullptr;
+
+    if ((self->monsterinfo.aiflags & AI_GOOD_GUY) &&
+        (self->monsterinfo.aiflags & AI_ACTOR_PATH_IDLE))
+    {
+        M_MoveToGoal(self, dist);
+        FindTarget(self);
+        return;
+    }
 
     if (!self->goalentity && (self->monsterinfo.aiflags & AI_GOOD_GUY))
     {
@@ -523,7 +724,7 @@ void FoundTarget(edict_t *self)
 
     if (!self->combattarget)
     {
-        HuntTarget(self);
+        Actor_EngageEnemy(self);
         return;
     }
 
@@ -531,7 +732,7 @@ void FoundTarget(edict_t *self)
     if (!self->movetarget)
     {
         self->goalentity = self->movetarget = self->enemy;
-        HuntTarget(self);
+        Actor_EngageEnemy(self);
         gi.Com_PrintFmt("{}: combattarget {} not found\n", *self, self->combattarget);
         return;
     }
@@ -662,6 +863,14 @@ bool FindTarget(edict_t *self)
 
     if (self->monsterinfo.aiflags & AI_GOOD_GUY)
     {
+        if (self->monsterinfo.aiflags & AI_ACTOR_PATH_IDLE)
+        {
+            if ((self->monsterinfo.aiflags & AI_ACTOR_FRIENDLY) && Actor_FindEnemyTarget(self))
+                return true;
+
+            return Actor_FindFollowTarget(self);
+        }
+
         if (self->goalentity && self->goalentity->inuse && self->goalentity->classname)
         {
             if (strcmp(self->goalentity->classname, "target_actor") == 0)

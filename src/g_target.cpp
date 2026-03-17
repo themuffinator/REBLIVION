@@ -2,6 +2,10 @@
 // Licensed under the GNU General Public License 2.0.
 #include "g_local.h"
 
+void InitTrigger(edict_t *self);
+void multi_wait(edict_t *self);
+void trigger_enable(edict_t *self, edict_t *other, edict_t *activator);
+
 /*QUAKED target_temp_entity (1 0 0) (-8 -8 -8) (8 8 8)
 Fire an origin based temp entity event to the clients.
 "style"		type byte
@@ -438,7 +442,7 @@ USE(use_target_changelevel) (edict_t *self, edict_t *other, edict_t *activator) 
 		activator->client->landmark_name = nullptr;
 		activator->client->landmark_rel_pos = vec3_origin;
 
-		self->target_ent = G_PickTarget(self->target);
+		self->target_ent = (self->target && *self->target) ? G_PickTarget(self->target) : nullptr;
 		if (self->target_ent && activator && activator->client)
 		{
 			activator->client->landmark_name = G_CopyString(self->target_ent->targetname, TAG_GAME);
@@ -580,6 +584,29 @@ void SP_target_spawner(edict_t *self)
 
 //==========================================================
 
+/*QUAKED target_railgun (1 0 0) (-8 -8 -8) (8 8 8)
+Fires a railgun trace in the set direction when triggered.
+*/
+USE(use_target_railgun) (edict_t *self, edict_t *other, edict_t *activator) -> void
+{
+	fire_rail(self, self->s.origin, self->movedir, self->dmg, 0);
+	gi.sound(self, CHAN_VOICE, self->noise_index, 1, ATTN_NORM, 0);
+}
+
+void SP_target_railgun(edict_t *self)
+{
+	self->use = use_target_railgun;
+	G_SetMovedir(self->s.angles, self->movedir);
+	self->noise_index = gi.soundindex("weapons/railgf1a.wav");
+
+	if (!self->dmg)
+		self->dmg = 150;
+
+	self->svflags = SVF_NOCLIENT;
+}
+
+//==========================================================
+
 /*QUAKED target_blaster (1 0 0) (-8 -8 -8) (8 8 8) NOTRAIL NOEFFECTS
 Fires a blaster bolt in the set direction when triggered.
 
@@ -615,6 +642,35 @@ void SP_target_blaster(edict_t *self)
 		self->dmg = 15;
 	if (!self->speed)
 		self->speed = 1000;
+
+	self->svflags = SVF_NOCLIENT;
+}
+
+//==========================================================
+
+/*QUAKED target_rocket (1 0 0) (-8 -8 -8) (8 8 8)
+Fires a rocket in the set direction when triggered.
+*/
+USE(use_target_rocket) (edict_t *self, edict_t *other, edict_t *activator) -> void
+{
+	fire_rocket(self, self->s.origin, self->movedir, self->dmg, (int) self->speed, self->dmg_radius, self->count);
+	gi.sound(self, CHAN_VOICE, self->noise_index, 1, ATTN_NORM, 0);
+}
+
+void SP_target_rocket(edict_t *self)
+{
+	self->use = use_target_rocket;
+	G_SetMovedir(self->s.angles, self->movedir);
+	self->noise_index = gi.soundindex("weapons/rocklf1a.wav");
+
+	if (!self->dmg)
+		self->dmg = 100;
+	if (!self->speed)
+		self->speed = 500;
+	if (!self->dmg_radius)
+		self->dmg_radius = 120;
+	if (!self->count)
+		self->count = 120;
 
 	self->svflags = SVF_NOCLIENT;
 }
@@ -668,13 +724,6 @@ When triggered, fires a laser.  You can either set a target or a direction.
 
 WINDOWSTOP - stops at CONTENTS_WINDOW
 */
-
-//======
-// PGM
-constexpr spawnflags_t SPAWNFLAG_LASER_STOPWINDOW = 0x0080_spawnflag;
-// PGM
-//======
-
 
 struct laser_pierce_t : pierce_args_t
 {

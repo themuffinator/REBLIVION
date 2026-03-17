@@ -612,6 +612,22 @@ constexpr vec3_t monster_flash_offset[] = {
 	{ 32.7f + 1.f, 9.9f, 15.0f },
 	{ 34.5f + 1.f, 11.0f, 15.0f },
 
+	// [Oblivion]
+	// MZ2_KIGRAX_PLASMA
+	{ 16.0f, 0.0f, -16.0f },
+	// MZ2_SPIDER_ROCKET_LEFT
+	{ 30.0f, -18.0f, 3.0f },
+	// MZ2_SPIDER_ROCKET_RIGHT
+	{ 30.0f, 18.0f, 3.0f },
+	// MZ2_CYBORG_DEATOM_LEFT
+	{ 15.0f, -12.0f, 12.0f },
+	// MZ2_CYBORG_DEATOM_RIGHT
+	{ 15.0f, 12.0f, 12.0f },
+	// MZ2_BADASS_ROCKET_LEFT
+	{ 18.0f, -40.0f, 0.0f },
+	// MZ2_BADASS_ROCKET_RIGHT
+	{ 18.0f, 40.0f, 0.0f },
+
 	// end of table
 	{ 0.0f, 0.0f, 0.0f }
 };

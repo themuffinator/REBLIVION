@@ -2,6 +2,24 @@
 // Licensed under the GNU General Public License 2.0.
 #include "g_local.h"
 
+void target_laser_start(edict_t *self);
+
+static void check_dodge(edict_t *self, const vec3_t &start, const vec3_t &dir, int speed)
+{
+	if (skill->value == 0 && frandom() > 0.25f)
+		return;
+
+	vec3_t end = start + (dir * 8192.0f);
+	trace_t tr = gi.traceline(start, end, self, MASK_SHOT);
+
+	if (!tr.ent || !(tr.ent->svflags & SVF_MONSTER) || tr.ent->health <= 0 ||
+		!tr.ent->monsterinfo.dodge || !infront(tr.ent, self))
+		return;
+
+	gtime_t eta = gtime_t::from_sec(max(0.0f, ((tr.endpos - start).length() - tr.ent->maxs[0]) / speed));
+	tr.ent->monsterinfo.dodge(tr.ent, self, eta, &tr, false);
+}
+
 /*
 =================
 fire_hit
@@ -379,6 +397,47 @@ TOUCH(blaster_touch) (edict_t *self, edict_t *other, const trace_t &tr, bool oth
 	G_FreeEdict(self);
 }
 
+TOUCH(plasma_bolt_touch) (edict_t *self, edict_t *other, const trace_t &tr, bool other_touching_self) -> void
+{
+	constexpr spawnflags_t SPAWNFLAG_PLASMA_RIFLE = 1_spawnflag;
+
+	if (other == self->owner)
+		return;
+
+	if (tr.surface && (tr.surface->flags & SURF_SKY))
+	{
+		G_FreeEdict(self);
+		return;
+	}
+
+	if (self->owner && self->owner->client)
+		PlayerNoise(self->owner, self->s.origin, PNOISE_IMPACT);
+
+	const bool rifle_mode = !!(self->spawnflags & SPAWNFLAG_PLASMA_RIFLE);
+
+	gi.sound(self, CHAN_VOICE, gi.soundindex(rifle_mode ? "plasma2/hit.wav" : "plasma1/hit.wav"), 1.0f, ATTN_NORM, 0.0f);
+
+	if (other->takedamage)
+	{
+		vec3_t dir = self->velocity;
+		if (!dir.normalize())
+			dir = {};
+
+		T_Damage(other, self, self->owner, dir, self->s.origin, tr.plane.normal, self->dmg, 1, DAMAGE_ENERGY,
+			mod_t{ rifle_mode ? MOD_PLASMA_RIFLE : MOD_PLASMA_PISTOL });
+	}
+	else
+	{
+		gi.WriteByte(svc_temp_entity);
+		gi.WriteByte(TE_BLASTER2);
+		gi.WritePosition(self->s.origin);
+		gi.WriteDir(tr.plane.normal);
+		gi.multicast(self->s.origin, MULTICAST_PHS, false);
+	}
+
+	G_FreeEdict(self);
+}
+
 void fire_blaster(edict_t *self, const vec3_t &start, const vec3_t &dir, int damage, int speed, effects_t effect, mod_t mod)
 {
 	edict_t *bolt;
@@ -413,6 +472,53 @@ void fire_blaster(edict_t *self, const vec3_t &start, const vec3_t &dir, int dam
 	if (tr.fraction < 1.0f)
 	{
 		bolt->s.origin = tr.endpos + (tr.plane.normal * 1.f);
+		bolt->touch(bolt, tr.ent, tr, false);
+	}
+}
+
+void fire_plasma_bolt(edict_t *self, const vec3_t &start, const vec3_t &dir, int damage, int speed, int plasma_type)
+{
+	constexpr spawnflags_t SPAWNFLAG_PLASMA_RIFLE = 1_spawnflag;
+
+	edict_t *bolt = G_Spawn();
+	trace_t	 tr;
+	vec3_t	 forward = dir;
+
+	forward.normalize();
+
+	bolt->svflags = SVF_PROJECTILE;
+	bolt->s.origin = start;
+	bolt->s.old_origin = start;
+	bolt->s.angles = vectoangles(forward);
+	bolt->velocity = forward * speed;
+	bolt->movetype = MOVETYPE_FLYMISSILE;
+	bolt->clipmask = MASK_PROJECTILE;
+
+	if (self->client && !G_ShouldPlayersCollide(true))
+		bolt->clipmask &= ~CONTENTS_PLAYER;
+
+	bolt->flags |= FL_DODGE;
+	bolt->solid = SOLID_BBOX;
+	bolt->s.effects = EF_TRACKER | EF_COLOR_SHELL | EF_BLASTER;
+	bolt->s.renderfx |= RF_WEAPONMODEL | RF_FULLBRIGHT | RF_DEPTHHACK;
+	bolt->s.modelindex = gi.modelindex(plasma_type ? "models/objects/plasma/tris.md2" : "models/objects/pistolplasma/tris.md2");
+	bolt->s.sound = gi.soundindex("misc/lasfly.wav");
+	bolt->owner = self;
+	bolt->touch = plasma_bolt_touch;
+	bolt->nextthink = level.time + 4_sec;
+	bolt->think = G_FreeEdict;
+	bolt->dmg = damage;
+	bolt->classname = "bolt";
+
+	if (plasma_type)
+		bolt->spawnflags = SPAWNFLAG_PLASMA_RIFLE;
+
+	gi.linkentity(bolt);
+
+	tr = gi.traceline(self->s.origin, bolt->s.origin, bolt, bolt->clipmask);
+	if (tr.fraction < 1.0f)
+	{
+		bolt->s.origin = tr.endpos - (forward * 10.f);
 		bolt->touch(bolt, tr.ent, tr, false);
 	}
 }
@@ -651,6 +757,8 @@ fire_rocket
 TOUCH(rocket_touch) (edict_t *ent, edict_t *other, const trace_t &tr, bool other_touching_self) -> void
 {
 	vec3_t origin;
+	mod_t direct_mod = ent->style ? static_cast<mod_id_t>(ent->style) : MOD_ROCKET;
+	mod_t splash_mod = ent->count ? static_cast<mod_id_t>(ent->count) : MOD_R_SPLASH;
 
 	if (other == ent->owner)
 		return;
@@ -669,7 +777,7 @@ TOUCH(rocket_touch) (edict_t *ent, edict_t *other, const trace_t &tr, bool other
 
 	if (other->takedamage)
 	{
-		T_Damage(other, ent, ent->owner, ent->velocity, ent->s.origin, tr.plane.normal, ent->dmg, 0, DAMAGE_NONE, MOD_ROCKET);
+		T_Damage(other, ent, ent->owner, ent->velocity, ent->s.origin, tr.plane.normal, ent->dmg, 0, DAMAGE_NONE, direct_mod);
 	}
 	else
 	{
@@ -685,7 +793,7 @@ TOUCH(rocket_touch) (edict_t *ent, edict_t *other, const trace_t &tr, bool other
 		}
 	}
 
-	T_RadiusDamage(ent, ent->owner, (float) ent->radius_dmg, other, ent->dmg_radius, DAMAGE_NONE, MOD_R_SPLASH);
+	T_RadiusDamage(ent, ent->owner, (float) ent->radius_dmg, other, ent->dmg_radius, DAMAGE_NONE, splash_mod);
 
 	gi.WriteByte(svc_temp_entity);
 	if (ent->waterlevel)
@@ -729,6 +837,64 @@ edict_t *fire_rocket(edict_t *self, const vec3_t &start, const vec3_t &dir, int 
 	gi.linkentity(rocket);
 
 	return rocket;
+}
+
+THINK(obliterator_projectile_think) (edict_t *self) -> void
+{
+	self->movedir = self->move_origin;
+	self->movedir += self->pos1 * crandom();
+	self->movedir += self->pos2 * crandom();
+	self->velocity = self->movedir * self->speed;
+	self->s.angles = vectoangles(self->movedir);
+	self->nextthink = level.time + 200_ms;
+
+	if ((level.time - self->timestamp) > 5_sec)
+		self->think = G_FreeEdict;
+}
+
+void fire_obliterator_projectile(edict_t *self, const vec3_t &start, const vec3_t &dir, int damage, int speed, float damage_radius, int splash_damage)
+{
+	edict_t *rocket = G_Spawn();
+	vec3_t right, up;
+
+	rocket->s.origin = start;
+	rocket->s.old_origin = start;
+	rocket->move_origin = dir;
+	rocket->s.angles = vectoangles(dir);
+	AngleVectors(rocket->s.angles, nullptr, &right, &up);
+	rocket->movedir = dir;
+	rocket->pos1 = right * 0.1f;
+	rocket->pos2 = up * 0.1f;
+	rocket->speed = (float) speed;
+	rocket->velocity = rocket->movedir * rocket->speed;
+	rocket->movetype = MOVETYPE_FLYMISSILE;
+	rocket->svflags |= SVF_PROJECTILE;
+	rocket->flags |= FL_DODGE;
+	rocket->clipmask = MASK_PROJECTILE;
+	if (self->client && !G_ShouldPlayersCollide(true))
+		rocket->clipmask &= ~CONTENTS_PLAYER;
+	rocket->solid = SOLID_BBOX;
+	rocket->mins = {};
+	rocket->maxs = {};
+	rocket->s.effects |= EF_ROCKET;
+	rocket->s.modelindex = gi.modelindex("models/objects/rocket/tris.md2");
+	rocket->owner = self;
+	rocket->touch = rocket_touch;
+	rocket->dmg = damage;
+	rocket->radius_dmg = splash_damage;
+	rocket->dmg_radius = damage_radius;
+	rocket->style = MOD_OBLITERATOR;
+	rocket->count = MOD_OBLITERATOR;
+	rocket->s.sound = gi.soundindex("weapons/rockfly.wav");
+	rocket->classname = "rocket";
+	rocket->timestamp = level.time;
+	rocket->think = obliterator_projectile_think;
+	rocket->nextthink = level.time + 200_ms;
+
+	if (self->client)
+		check_dodge(self, rocket->s.origin, dir, speed);
+
+	gi.linkentity(rocket);
 }
 
 using search_callback_t = decltype(game_import_t::inPVS);
@@ -1214,4 +1380,506 @@ void fire_disintegrator(edict_t *self, const vec3_t &start, const vec3_t &forwar
 	bfg->s.sound = gi.soundindex("weapons/bfg__l1a.wav");
 
 	gi.linkentity(bfg);
+}
+
+DIE(detpack_die) (edict_t *self, edict_t *inflictor, edict_t *attacker, int damage, const vec3_t &point, const mod_t &mod) -> void
+{
+	if (damage < 70)
+	{
+		self->health = 70;
+		return;
+	}
+
+	self->think = detpack_detonate;
+	self->nextthink = level.time + 200_ms;
+}
+
+static void detpack_enforce_limit(edict_t *charge)
+{
+	edict_t *oldest = charge;
+	int count = 0;
+
+	if (!charge || !charge->owner)
+		return;
+
+	for (uint32_t i = 1; i < globals.num_edicts; i++)
+	{
+		edict_t *ent = &g_edicts[i];
+
+		if (!ent->inuse || !ent->classname || Q_strcasecmp(ent->classname, "detpack") || ent->owner != charge->owner)
+			continue;
+
+		count++;
+
+		if (ent != charge && (oldest == charge || ent->timestamp < oldest->timestamp))
+			oldest = ent;
+	}
+
+	if (count > 5 && oldest)
+		detpack_detonate(oldest);
+}
+
+void detpack_detonate(edict_t *self)
+{
+	vec3_t origin;
+
+	self->takedamage = false;
+	self->die = nullptr;
+
+	if (self->owner && self->owner->client)
+		PlayerNoise(self->owner, self->s.origin, PNOISE_IMPACT);
+
+	T_RadiusDamage(self, self->owner ? self->owner : self, (float) self->dmg, nullptr, self->dmg_radius, DAMAGE_NONE, MOD_DETPACK);
+
+	origin = self->s.origin - (self->velocity * 0.02f);
+
+	gi.WriteByte(svc_temp_entity);
+	if (self->waterlevel)
+	{
+		if (self->groundentity)
+			gi.WriteByte(TE_GRENADE_EXPLOSION_WATER);
+		else
+			gi.WriteByte(TE_ROCKET_EXPLOSION_WATER);
+	}
+	else
+	{
+		if (self->groundentity)
+			gi.WriteByte(TE_GRENADE_EXPLOSION);
+		else
+			gi.WriteByte(TE_ROCKET_EXPLOSION);
+	}
+	gi.WritePosition(origin);
+	gi.multicast(self->s.origin, MULTICAST_PHS, false);
+
+	G_FreeEdict(self);
+}
+
+TOUCH(detpack_touch) (edict_t *self, edict_t *other, const trace_t &tr, bool other_touching_self) -> void
+{
+	if (other == self->owner || self->groundentity)
+		return;
+
+	if (tr.surface && (tr.surface->flags & SURF_SKY))
+	{
+		G_FreeEdict(self);
+		return;
+	}
+
+	if (other == world)
+	{
+		self->movetype = MOVETYPE_NONE;
+		self->velocity = vec3_origin;
+		self->avelocity = vec3_origin;
+		if (tr.plane.normal)
+			self->s.angles = vectoangles(tr.plane.normal);
+		gi.linkentity(self);
+	}
+}
+
+edict_t *fire_detpack(edict_t *self, const vec3_t &start, const vec3_t &aimdir, int damage, float damage_radius, float speed, float timer)
+{
+	edict_t *charge = G_Spawn();
+	vec3_t angles;
+	vec3_t forward, right, up;
+
+	angles = vectoangles(aimdir);
+	AngleVectors(angles, forward, right, up);
+
+	charge->s.origin = start;
+	charge->s.old_origin = start;
+	charge->velocity = aimdir * speed;
+	charge->velocity += up * (20.0f + crandom() * 10.0f);
+	charge->velocity += right * (crandom() * 10.0f);
+	charge->s.angles = vectoangles(-aimdir);
+	charge->s.angles[ROLL] = -40.0f;
+	charge->movetype = MOVETYPE_TOSS;
+	charge->clipmask = MASK_PROJECTILE;
+	if (self->client && !G_ShouldPlayersCollide(true))
+		charge->clipmask &= ~CONTENTS_PLAYER;
+	charge->solid = SOLID_BBOX;
+	charge->flags |= FL_NO_KNOCKBACK;
+	charge->avelocity[0] = -180.0f;
+	charge->s.modelindex = gi.modelindex("models/objects/detpack/tris.md2");
+	charge->owner = self;
+	charge->touch = detpack_touch;
+	if (timer > 0.0f)
+	{
+		charge->think = detpack_detonate;
+		charge->nextthink = level.time + gtime_t::from_sec(timer);
+	}
+	charge->dmg = damage;
+	charge->dmg_radius = damage_radius;
+	charge->classname = "detpack";
+	charge->takedamage = true;
+	charge->health = 70;
+	charge->die = detpack_die;
+	charge->timestamp = level.time;
+
+	gi.linkentity(charge);
+	detpack_enforce_limit(charge);
+	return charge;
+}
+
+void SP_grenade(edict_t *self)
+{
+	gitem_t *item = FindItemByClassname("ammo_grenades");
+
+	if (!item)
+	{
+		G_FreeEdict(self);
+		return;
+	}
+
+	SpawnItem(self, item);
+}
+
+void SP_detpack(edict_t *self)
+{
+	vec3_t forward;
+
+	if (self->speed <= 0.0f)
+		self->speed = 400.0f;
+	if (!self->dmg)
+		self->dmg = 240;
+	if (self->dmg_radius <= 0.0f)
+		self->dmg_radius = 200.0f;
+
+	AngleVectors(self->s.angles, forward, nullptr, nullptr);
+	fire_detpack(world, self->s.origin, forward, self->dmg, self->dmg_radius, self->speed, 0.0f);
+	G_FreeEdict(self);
+}
+
+REMOTE_VIEW_CMD(dod_client_reset) (edict_t *self, usercmd_t *ucmd) -> void
+{
+	(void) self;
+
+	if (!ucmd)
+		return;
+
+	ucmd->forwardmove = 0;
+	ucmd->sidemove = 0;
+	ucmd->buttons &= ~(BUTTON_JUMP | BUTTON_CROUCH);
+}
+
+THINK(dod_pulse_think) (edict_t *self) -> void
+{
+	edict_t *attacker = self->owner ? self->owner : self;
+
+	if (self->s.frame < 10)
+	{
+		self->s.frame++;
+		self->dmg += 25;
+		self->dmg_radius += 32.0f;
+		T_RadiusDamage(self, attacker, (float) self->dmg, self->owner, self->dmg_radius, DAMAGE_NONE, MOD_DONUT);
+		self->nextthink = level.time + 100_ms;
+		return;
+	}
+
+	self->think = G_FreeEdict;
+	self->nextthink = level.time + 100_ms;
+
+	if (self->owner && self->owner->client)
+		self->owner->client->remote_view_cmd_hook = nullptr;
+}
+
+void fire_dod(edict_t *self, const vec3_t &start, const vec3_t &dir)
+{
+	edict_t *dod;
+
+	(void) dir;
+
+	dod = G_Spawn();
+	dod->s.origin = start;
+	dod->s.old_origin = start;
+	dod->mins = { -16.f, -16.f, -16.f };
+	dod->maxs = { 16.f, 16.f, 16.f };
+	dod->s.angles = {};
+	dod->velocity = {};
+	dod->avelocity = {};
+	dod->avelocity[YAW] = 90.0f;
+	dod->movetype = MOVETYPE_FLY;
+	dod->solid = SOLID_BBOX;
+	dod->takedamage = false;
+	dod->s.modelindex = gi.modelindex("models/objects/dod/tris.md2");
+	dod->s.frame = 0;
+	dod->s.renderfx = RF_FULLBRIGHT;
+	dod->owner = self;
+	dod->nextthink = level.time + 100_ms;
+	dod->think = dod_pulse_think;
+	dod->dmg = 50;
+	dod->dmg_radius = 64.0f;
+	dod->classname = "dod";
+
+	gi.sound(self, CHAN_WEAPON, gi.soundindex("dod/DoD.wav"), 1, ATTN_NORM, 0);
+	gi.linkentity(dod);
+
+	if (self->client)
+		self->client->remote_view_cmd_hook = dod_client_reset;
+}
+
+constexpr int MAX_ACTIVE_MINES = 5;
+
+void proximity_mine_explode(edict_t *self);
+void proximity_mine_think(edict_t *self);
+void proximity_mine_laser_start(edict_t *self);
+void proximity_mine_laser_think(edict_t *self);
+
+static void mine_enforce_limit(edict_t *mine)
+{
+	edict_t *oldest = mine;
+	int count = 0;
+
+	if (!mine || !mine->owner)
+		return;
+
+	for (uint32_t i = 1; i < globals.num_edicts; i++)
+	{
+		edict_t *ent = &g_edicts[i];
+
+		if (!ent->inuse || !ent->classname || Q_strcasecmp(ent->classname, "mine") || ent->owner != mine->owner)
+			continue;
+
+		count++;
+		if (ent->timestamp <= oldest->timestamp)
+			oldest = ent;
+	}
+
+	if (count > MAX_ACTIVE_MINES)
+		proximity_mine_explode(oldest);
+}
+
+static void proximity_mine_free_lasers(edict_t *self)
+{
+	edict_t *beam = self->chain;
+
+	while (beam)
+	{
+		edict_t *next = beam->chain;
+		G_FreeEdict(beam);
+		beam = next;
+	}
+
+	self->chain = nullptr;
+}
+
+THINK(proximity_mine_explode) (edict_t *self) -> void
+{
+	proximity_mine_free_lasers(self);
+	self->velocity = vec3_origin;
+	self->s.sound = 0;
+	self->takedamage = false;
+	self->die = nullptr;
+
+	T_RadiusDamage(self, self->owner ? self->owner : self, (float) self->dmg, nullptr, self->dmg_radius, DAMAGE_NONE, MOD_MINE_SPLASH);
+
+	gi.WriteByte(svc_temp_entity);
+	if (self->waterlevel)
+	{
+		if (self->groundentity)
+			gi.WriteByte(TE_GRENADE_EXPLOSION_WATER);
+		else
+			gi.WriteByte(TE_ROCKET_EXPLOSION_WATER);
+	}
+	else
+	{
+		if (self->groundentity)
+			gi.WriteByte(TE_GRENADE_EXPLOSION);
+		else
+			gi.WriteByte(TE_ROCKET_EXPLOSION);
+	}
+	gi.WritePosition(self->s.origin);
+	gi.multicast(self->s.origin, MULTICAST_PHS, false);
+
+	G_FreeEdict(self);
+}
+
+DIE(proximity_mine_die) (edict_t *self, edict_t *inflictor, edict_t *attacker, int damage, const vec3_t &point, const mod_t &mod) -> void
+{
+	(void) inflictor;
+	(void) attacker;
+	(void) damage;
+	(void) point;
+	(void) mod;
+
+	if (self->think == proximity_mine_think)
+	{
+		self->think = proximity_mine_explode;
+		self->nextthink = level.time + 200_ms;
+	}
+}
+
+THINK(proximity_mine_laser_start) (edict_t *self) -> void
+{
+	self->movetype = MOVETYPE_FLY;
+	self->avelocity = vec3_origin;
+	self->s.angles = vec3_origin;
+	self->movedir = { 0.f, 0.f, 1.f };
+	self->velocity = self->movedir * 30.f;
+	self->count = 0;
+	self->think = proximity_mine_laser_think;
+	self->nextthink = level.time + 1_sec;
+	self->s.sound = gi.soundindex("weapons/hgrenc1b.wav");
+}
+
+THINK(proximity_mine_laser_think) (edict_t *self) -> void
+{
+	edict_t *source;
+
+	if (self->count < 30)
+	{
+		if (!self->count)
+		{
+			self->solid = SOLID_NOT;
+			self->velocity = vec3_origin;
+			self->avelocity = { 0.f, 74.f, 0.f };
+			gi.linkentity(self);
+
+			source = self;
+			for (int i = 0; i < 4; i++)
+			{
+				edict_t *child = G_Spawn();
+				child->owner = self->owner;
+				child->activator = self->owner;
+				child->flags |= FL_TRAP_LASER_FIELD;
+				child->spawnflags = SPAWNFLAG_LASER_ON | SPAWNFLAG_LASER_BLUE | SPAWNFLAG_LASER_STOPWINDOW;
+				AngleVectors(source->s.angles, nullptr, child->movedir, nullptr);
+				child->movedir.normalize();
+				child->s.angles = vectoangles(child->movedir);
+				child->s.origin = self->s.origin;
+				child->dmg = 40;
+				child->classname = "mine laser";
+				source->chain = child;
+				target_laser_start(child);
+				source = child;
+			}
+		}
+
+		source = self;
+		for (edict_t *beam = self->chain; beam; beam = beam->chain)
+		{
+			AngleVectors(source->s.angles, nullptr, beam->movedir, nullptr);
+			beam->movedir.normalize();
+			beam->s.angles = vectoangles(beam->movedir);
+			beam->spawnflags |= SPAWNFLAG_LASER_ZAP;
+			source = beam;
+		}
+
+		self->count++;
+		self->nextthink = level.time + 100_ms;
+		return;
+	}
+
+	proximity_mine_free_lasers(self);
+	self->think = proximity_mine_explode;
+	self->nextthink = level.time + 100_ms;
+}
+
+THINK(proximity_mine_think) (edict_t *self) -> void
+{
+	edict_t *ent = nullptr;
+
+	while ((ent = findradius(ent, self->s.origin, 100.0f)) != nullptr)
+	{
+		self->nextthink = level.time + 100_ms;
+
+		if (!ent->takedamage || (!(ent->svflags & SVF_MONSTER) && !ent->client))
+			continue;
+
+		self->think = proximity_mine_laser_start;
+		return;
+	}
+
+	self->nextthink = level.time + 100_ms;
+}
+
+TOUCH(proximity_mine_touch) (edict_t *self, edict_t *other, const trace_t &tr, bool other_touching_self) -> void
+{
+	(void) other_touching_self;
+
+	if (tr.surface && (tr.surface->flags & SURF_SKY))
+	{
+		G_FreeEdict(self);
+		return;
+	}
+
+	gi.sound(self, CHAN_VOICE, gi.soundindex("weapons/hgrenb1a.wav"), 1, ATTN_NORM, 0);
+	self->nextthink = level.time + 100_ms;
+
+	if (other->takedamage && ((other->svflags & SVF_MONSTER) || other->client))
+	{
+		self->think = proximity_mine_explode;
+		self->velocity = vec3_origin;
+		self->avelocity = vec3_origin;
+	}
+}
+
+edict_t *fire_proximity_mine(edict_t *self, const vec3_t &start, const vec3_t &aimdir, int speed)
+{
+	edict_t *mine = G_Spawn();
+	vec3_t angles;
+	vec3_t forward, right, up;
+
+	angles = vectoangles(aimdir);
+	AngleVectors(angles, forward, right, up);
+
+	mine->s.origin = start;
+	mine->s.old_origin = start;
+	mine->s.angles = angles;
+	mine->velocity = aimdir * speed;
+	mine->velocity += up * (200.0f + crandom() * 20.0f);
+	mine->velocity += right * (crandom() * 20.0f);
+	mine->avelocity = { 300.f, 300.f, 300.f };
+	mine->movetype = MOVETYPE_TOSS;
+	mine->clipmask = MASK_SHOT;
+	if (self->client && !G_ShouldPlayersCollide(true))
+		mine->clipmask &= ~CONTENTS_PLAYER;
+	mine->solid = SOLID_BBOX;
+	mine->mins = { -2, -2, -2 };
+	mine->maxs = { 2, 2, 2 };
+	mine->s.effects |= EF_GRENADE;
+	mine->s.modelindex = gi.modelindex("models/objects/mine/tris.md2");
+	mine->owner = self;
+	mine->touch = proximity_mine_touch;
+	mine->think = proximity_mine_think;
+	mine->nextthink = level.time + 100_ms;
+	mine->classname = "mine";
+	mine->takedamage = true;
+	mine->die = proximity_mine_die;
+	mine->health = 10;
+	mine->max_health = 10;
+	mine->dmg = 150;
+	mine->radius_dmg = 100;
+	mine->dmg_radius = 180.0f;
+	mine->timestamp = level.time;
+
+	gi.sound(self, CHAN_WEAPON, gi.soundindex("weapons/hgrent1a.wav"), 1, ATTN_NORM, 0);
+	gi.linkentity(mine);
+
+	mine_enforce_limit(mine);
+	return mine;
+}
+
+void SP_mine(edict_t *self)
+{
+	vec3_t forward;
+
+	if (self->speed <= 0.0f)
+		self->speed = 600.0f;
+	if (!self->dmg)
+		self->dmg = 150;
+	if (!self->radius_dmg)
+		self->radius_dmg = 100;
+	if (self->dmg_radius <= 0.0f)
+		self->dmg_radius = 180.0f;
+
+	AngleVectors(self->s.angles, forward, nullptr, nullptr);
+
+	if (edict_t *mine = fire_proximity_mine(world, self->s.origin, forward, (int) self->speed))
+	{
+		mine->dmg = self->dmg;
+		mine->radius_dmg = self->radius_dmg;
+		mine->dmg_radius = self->dmg_radius;
+	}
+
+	G_FreeEdict(self);
 }

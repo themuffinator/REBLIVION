@@ -510,6 +510,7 @@ enum save_data_tag_t
 
 	SAVE_FUNC_MOVEINFO_ENDFUNC,
 	SAVE_FUNC_MOVEINFO_BLOCKED,
+	SAVE_FUNC_REMOTE_VIEW_CMD,
 
 	SAVE_FUNC_PRETHINK,
 	SAVE_FUNC_THINK,
@@ -696,7 +697,11 @@ enum monster_ai_flags_t : uint64_t
 	AI_FORGET_ENEMY = bit_v<35>,			// forget the current enemy
 	AI_DOUBLE_TROUBLE = bit_v<36>, // JORG only
 	AI_REACHED_HOLD_COMBAT = bit_v<37>,
-	AI_THIRD_EYE = bit_v<38>
+	AI_THIRD_EYE = bit_v<38>,
+	AI_ACTOR_SHOOT_ONCE = bit_v<39>,
+	AI_ACTOR_FRIENDLY = bit_v<40>,
+	AI_ACTOR_PATH_IDLE = bit_v<41>,
+	AI_ACTOR_FOLLOW = bit_v<42>
 };
 MAKE_ENUM_BITFLAGS(monster_ai_flags_t);
 
@@ -957,6 +962,8 @@ enum item_id_t : int32_t {
 	
 	IT_ITEM_FLASHLIGHT,
 	IT_ITEM_COMPASS,
+	IT_AMMO_DOD,
+	IT_ITEM_RTDU,
 
 	IT_TOTAL
 };
@@ -1075,7 +1082,14 @@ enum mod_id_t : uint8_t
 	// ROGUE
 	//========
 	MOD_GRAPPLE,
-	MOD_BLUEBLASTER
+	MOD_BLUEBLASTER,
+	MOD_OBLITERATOR,
+	MOD_DONUT,
+	MOD_REMOTE_CANNON,
+	MOD_PLASMA_PISTOL,
+	MOD_PLASMA_RIFLE,
+	MOD_MINE_SPLASH,
+	MOD_DETPACK
 };
 
 struct mod_t
@@ -1343,6 +1357,11 @@ DEFINE_DATA_FUNC(moveinfo_endfunc, MOVEINFO_ENDFUNC, void, edict_t *self);
 DEFINE_DATA_FUNC(moveinfo_blocked, MOVEINFO_BLOCKED, void, edict_t *self, edict_t *other);
 #define MOVEINFO_BLOCKED(n) \
 	SAVE_DATA_FUNC(n, MOVEINFO_BLOCKED, void, edict_t *self, edict_t *other)
+
+using remote_view_cmd_func_t = void(edict_t *ent, usercmd_t *ucmd);
+DEFINE_DATA_FUNC(remote_view_cmd, REMOTE_VIEW_CMD, void, edict_t *ent, usercmd_t *ucmd);
+#define REMOTE_VIEW_CMD(n) \
+	SAVE_DATA_FUNC(n, REMOTE_VIEW_CMD, void, edict_t *ent, usercmd_t *ucmd)
 
 // a struct that can store type-safe allocations
 // of a fixed amount of data. it self-destructs when
@@ -2018,6 +2037,8 @@ void	  InitItems();
 void	  SetItemNames();
 gitem_t	*FindItem(const char *pickup_name);
 gitem_t	*FindItemByClassname(const char *classname);
+int32_t	  G_WeaponAmmoRequired(const gitem_t *item);
+int32_t   G_WeaponPriority(const gitem_t *item);
 edict_t	*Drop_Item(edict_t *ent, gitem_t *item);
 void	  SetRespawn(edict_t *ent, gtime_t delay, bool hide_self = true);
 void	  ChangeWeapon(edict_t *ent);
@@ -2101,6 +2122,7 @@ constexpr spawnflags_t SPAWNFLAG_LASER_BLUE = 0x0008_spawnflag;
 constexpr spawnflags_t SPAWNFLAG_LASER_YELLOW = 0x0010_spawnflag;
 constexpr spawnflags_t SPAWNFLAG_LASER_ORANGE = 0x0020_spawnflag;
 constexpr spawnflags_t SPAWNFLAG_LASER_FAT = 0x0040_spawnflag;
+constexpr spawnflags_t SPAWNFLAG_LASER_STOPWINDOW = 0x0080_spawnflag;
 constexpr spawnflags_t SPAWNFLAG_LASER_ZAP = 0x80000000_spawnflag;
 constexpr spawnflags_t SPAWNFLAG_LASER_LIGHTNING = 0x10000_spawnflag;
 
@@ -2189,6 +2211,10 @@ void monster_fire_railgun(edict_t *self, const vec3_t &start, const vec3_t &aimd
 						  monster_muzzleflash_id_t flashtype);
 void monster_fire_bfg(edict_t *self, const vec3_t &start, const vec3_t &aimdir, int damage, int speed, int kick,
 					  float damage_radius, monster_muzzleflash_id_t flashtype);
+void fire_deatom(edict_t *self, const vec3_t &start, const vec3_t &dir, int damage, int speed);
+void fire_dod(edict_t *self, const vec3_t &start, const vec3_t &dir);
+void monster_fire_deatom(edict_t *self, const vec3_t &start, const vec3_t &dir, int damage, int speed,
+						 monster_muzzleflash_id_t flashtype);
 bool M_CheckClearShot(edict_t *self, const vec3_t &offset);
 bool M_CheckClearShot(edict_t *self, const vec3_t &offset, vec3_t &start);
 vec3_t M_ProjectFlashSource(edict_t *self, const vec3_t &offset, const vec3_t &forward, const vec3_t &right);
@@ -2207,6 +2233,10 @@ bool M_CheckAttack(edict_t *self);
 void M_CheckGround(edict_t *ent, contents_t mask);
 void monster_use(edict_t *self, edict_t *other, edict_t *activator);
 void M_ProcessPain(edict_t *e);
+void G_DeatomizerTeleportEffect(const vec3_t &origin);
+void G_DeatomizeEntity(edict_t *self, entity_event_t event);
+void G_ScreenFade_Reset();
+void G_ScreenFade_AddBlend(edict_t *ent);
 bool M_ShouldReactToPain(edict_t *self, const mod_t &mod);
 void M_SetAnimation(edict_t *self, const save_mmove_t &move, bool instant = true);
 bool M_AllowSpawn( edict_t * self );
@@ -2249,6 +2279,7 @@ int32_t M_SlotsLeft(edict_t *self);
 // shared with monsters
 constexpr spawnflags_t SPAWNFLAG_MONSTER_AMBUSH = 1_spawnflag;
 constexpr spawnflags_t SPAWNFLAG_MONSTER_TRIGGER_SPAWN = 2_spawnflag;
+constexpr spawnflags_t SPAWNFLAG_MONSTER_CORPSE = 8_spawnflag;
 constexpr spawnflags_t SPAWNFLAG_MONSTER_DEAD = 16_spawnflag_bit;
 constexpr spawnflags_t SPAWNFLAG_MONSTER_SUPER_STEP = 17_spawnflag_bit;
 constexpr spawnflags_t SPAWNFLAG_MONSTER_NO_DROP = 18_spawnflag_bit;
@@ -2320,6 +2351,8 @@ void fire_shotgun(edict_t *self, const vec3_t &start, const vec3_t &aimdir, int 
 void blaster_touch(edict_t *self, edict_t *other, const trace_t &tr, bool other_touching_self);
 void fire_blaster(edict_t *self, const vec3_t &start, const vec3_t &aimdir, int damage, int speed, effects_t effect,
 				  mod_t mod);
+void plasma_bolt_touch(edict_t *self, edict_t *other, const trace_t &tr, bool other_touching_self);
+void fire_plasma_bolt(edict_t *self, const vec3_t &start, const vec3_t &dir, int damage, int speed, int plasma_type);
 void Grenade_Explode(edict_t *ent);
 void fire_grenade(edict_t *self, const vec3_t &start, const vec3_t &aimdir, int damage, int speed, gtime_t timer,
 				  float damage_radius, float right_adjust, float up_adjust, bool monster);
@@ -2341,6 +2374,9 @@ void fire_plasma(edict_t *self, const vec3_t &start, const vec3_t &dir, int dama
 void fire_trap(edict_t *self, const vec3_t &start, const vec3_t &aimdir, int speed);
 // RAFAEL
 void fire_disintegrator(edict_t *self, const vec3_t &start, const vec3_t &dir, int speed);
+void fire_obliterator_projectile(edict_t *self, const vec3_t &start, const vec3_t &dir, int damage, int speed, float damage_radius, int splash_damage);
+void detpack_detonate(edict_t *self);
+edict_t *fire_detpack(edict_t *self, const vec3_t &start, const vec3_t &aimdir, int damage, float damage_radius, float speed, float timer);
 vec3_t P_CurrentKickAngles(edict_t *ent);
 vec3_t P_CurrentKickOrigin(edict_t *ent);
 void P_AddWeaponKick(edict_t *ent, const vec3_t &origin, const vec3_t &angles);
@@ -2432,6 +2468,12 @@ bool SV_FilterPacket(const char *from);
 // p_view.c
 //
 void ClientEndServerFrame(edict_t *ent);
+void Camera_ClientPreFrame(edict_t *ent);
+void Camera_ClientPostFrame(edict_t *ent);
+void RemoteView_Begin(edict_t *ent, edict_t *viewent);
+void RemoteView_End(edict_t *ent);
+void RemoteView_AttachController(edict_t *ent, edict_t *viewent, remote_view_cmd_func_t *cmd_hook);
+void RemoteView_DetachController(edict_t *ent, edict_t *viewent);
 void G_LagCompensate(edict_t *from_player, const vec3_t &start, const vec3_t &dir);
 void G_UnLagCompensate();
 
@@ -2455,6 +2497,7 @@ void P_ProjectSource(edict_t *ent, const vec3_t &angles, vec3_t distance, vec3_t
 void NoAmmoWeaponChange(edict_t *ent, bool sound);
 void G_RemoveAmmo(edict_t *ent);
 void G_RemoveAmmo(edict_t *ent, int32_t quantity);
+void Oblivion_UpdateWeaponRegen(edict_t *ent);
 void Weapon_Generic(edict_t *ent, int FRAME_ACTIVATE_LAST, int FRAME_FIRE_LAST, int FRAME_IDLE_LAST,
 					int FRAME_DEACTIVATE_LAST, const int *pause_frames, const int *fire_frames,
 					void (*fire)(edict_t *ent));
@@ -2529,6 +2572,7 @@ void GetChaseTarget(edict_t *ent);
 //
 void fire_flechette(edict_t *self, const vec3_t &start, const vec3_t &dir, int damage, int speed, int kick);
 void fire_prox(edict_t *self, const vec3_t &start, const vec3_t &aimdir, int damage, int speed);
+edict_t *fire_proximity_mine(edict_t *self, const vec3_t &start, const vec3_t &aimdir, int speed);
 void fire_nuke(edict_t *self, const vec3_t &start, const vec3_t &aimdir, int speed);
 bool fire_player_melee(edict_t *self, const vec3_t &start, const vec3_t &aim, int reach, int damage, int kick, mod_t mod);
 void fire_tesla(edict_t *self, const vec3_t &start, const vec3_t &aimdir, int damage, int speed);
@@ -2744,6 +2788,7 @@ struct client_persistant_t
 
 	// ammo capacities
 	std::array<int16_t, AMMO_MAX> max_ammo;
+	int32_t plasma_rifle_regen_divisor;
 
 	gitem_t *weapon;
 	gitem_t *lastweapon;
@@ -2840,6 +2885,17 @@ struct gclient_t
 	button_t oldbuttons;
 	button_t latched_buttons;
 	usercmd_t cmd; // last CMD send
+	edict_t *remote_view_aux_entity = nullptr;
+	bool remote_view_aux_flag = false;
+	bool remote_view_active = false;
+	save_remote_view_cmd_t remote_view_cmd_hook;
+	edict_t *remote_view_body = nullptr;
+	edict_t *remote_view_entity = nullptr;
+	edict_t *rtdu_turret = nullptr;
+	int32_t remote_view_state_1 = 0;
+	int32_t remote_view_state_2 = 0;
+	float remote_view_timer = 0.f;
+	int32_t remote_view_saved_gunindex = 0;
 
 	// weapon cannot fire until this time is up
 	gtime_t weapon_fire_finished;
@@ -2850,6 +2906,7 @@ struct gclient_t
 	// automatically when we have a chance
 	bool weapon_fire_buffered;
 	bool weapon_thunk;
+	bool weapon_switching;
 
 	gitem_t *newweapon;
 
@@ -2909,6 +2966,8 @@ struct gclient_t
 
 	bool	grenade_blew_up;
 	gtime_t grenade_time, grenade_finished_time;
+	gtime_t plasma_pistol_next_regen;
+	gtime_t plasma_rifle_next_regen;
 	// RAFAEL
 	gtime_t quadfire_time;
 	// RAFAEL
@@ -3153,6 +3212,15 @@ struct edict_t
 	float wait;
 	float delay; // before firing targets
 	float random;
+	float duration;
+	vec3_t rotate;
+	vec3_t rotate_speed;
+	float camera_path_speed;
+	float camera_path_remaining;
+	float camera_path_tail_speed;
+	gtime_t camera_path_time;
+	int32_t camera_path_state;
+	vec3_t camera_path_dir;
 
 	gtime_t teleport_time;
 
@@ -3539,13 +3607,15 @@ struct fmt::formatter<edict_t>
 		return ctx.begin();
 	}
 
-    template<typename FormatContext>
-    auto format(const edict_t &p, FormatContext &ctx) -> decltype(ctx.out())
-    {
+	template<typename FormatContext>
+	auto format(const edict_t &p, FormatContext &ctx) const -> decltype(ctx.out())
+	{
+		const char *classname = p.classname ? p.classname : "<null classname>";
+
 		if (p.linked)
-			return fmt::format_to(ctx.out(), FMT_STRING("{} @ {}"), p.classname, (p.absmax + p.absmin) * 0.5f);
-		return fmt::format_to(ctx.out(), FMT_STRING("{} @ {}"), p.classname, p.s.origin);
-    }
+			return fmt::format_to(ctx.out(), FMT_STRING("{} @ {}"), classname, (p.absmax + p.absmin) * 0.5f);
+		return fmt::format_to(ctx.out(), FMT_STRING("{} @ {}"), classname, p.s.origin);
+	}
 };
 
 // POI tags used by this mod

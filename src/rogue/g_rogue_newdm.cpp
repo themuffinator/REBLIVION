@@ -106,7 +106,8 @@ inline item_id_t FindSubstituteItem(edict_t *ent)
 			continue;
 
 		if (g_no_mines->integer &&
-			(i == IT_AMMO_PROX || i == IT_AMMO_TESLA || i == IT_AMMO_TRAP || i == IT_WEAPON_PROXLAUNCHER))
+			(i == IT_AMMO_PROX || i == IT_AMMO_TESLA || i == IT_AMMO_TRAP ||
+				(i == IT_WEAPON_PROXLAUNCHER && Q_strcasecmp(GetItemByIndex(i)->classname, "weapon_hellfury"))))
 			continue;
 
 		itflags = GetSubstituteItemFlags(i);

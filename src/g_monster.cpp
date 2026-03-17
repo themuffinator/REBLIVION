@@ -3,6 +3,12 @@
 #include "g_local.h"
 #include "bots/bot_includes.h"
 
+void SP_monster_tank(edict_t *self);
+void SP_monster_badass(edict_t *self);
+void SP_monster_soldier(edict_t *self);
+void SP_monster_mutant(edict_t *self);
+void SP_monster_gladiator(edict_t *self);
+
 //
 // monster weapons
 //
@@ -80,6 +86,161 @@ void monster_fire_bfg(edict_t *self, const vec3_t &start, const vec3_t &aimdir, 
 					  float damage_radius, monster_muzzleflash_id_t flashtype)
 {
 	fire_bfg(self, start, aimdir, damage, speed, damage_radius);
+	monster_muzzleflash(self, start, flashtype);
+}
+
+THINK(deatom_think) (edict_t *self) -> void
+{
+	self->s.frame = (self->s.frame + 2) % 15;
+
+	edict_t *target = self->enemy;
+	if (!target || !target->inuse || !target->client)
+	{
+		self->enemy = nullptr;
+		self->think = G_FreeEdict;
+		self->nextthink = level.time + 60_sec;
+		return;
+	}
+
+	vec3_t target_dir = target->s.origin;
+	target_dir[2] += target->viewheight;
+	target_dir -= self->s.origin;
+	target_dir.normalize();
+
+	float dot = target_dir.dot(self->movedir);
+	if (dot <= 0.85f)
+	{
+		self->nextthink = level.time + 60_sec;
+		return;
+	}
+
+	vec3_t perp = target_dir - (self->movedir * dot);
+	float scale = deathmatch->integer ? 0.5f : 0.25f;
+	vec3_t new_dir = self->movedir + (perp * scale);
+	new_dir.normalize();
+
+	self->movedir = new_dir;
+	self->s.angles = vectoangles(new_dir);
+	self->velocity = new_dir * self->speed;
+	self->nextthink = level.time + 10_hz;
+}
+
+TOUCH(deatom_touch) (edict_t *self, edict_t *other, const trace_t &tr, bool other_touching_self) -> void
+{
+	if (other == self->owner)
+		return;
+
+	if (tr.surface && (tr.surface->flags & SURF_SKY))
+	{
+		G_FreeEdict(self);
+		return;
+	}
+
+	if (self->owner && self->owner->client)
+		PlayerNoise(self->owner, self->s.origin, PNOISE_IMPACT);
+
+	gi.sound(self, CHAN_VOICE, gi.soundindex("deatom/dimpact.wav"), 1, ATTN_NORM, 0);
+
+	if (other->takedamage)
+	{
+		vec3_t normal = tr.plane.normal ? tr.plane.normal : vec3_origin;
+		T_Damage(other, self, self->owner, self->velocity, self->s.origin, normal, self->dmg, 1, DAMAGE_ENERGY, MOD_DISINTEGRATOR);
+	}
+	else if (other == world)
+	{
+		gi.WriteByte(svc_temp_entity);
+		gi.WriteByte(TE_BLUEHYPERBLASTER);
+		gi.WritePosition(self->s.origin);
+		gi.WriteDir(tr.plane.normal ? tr.plane.normal : vec3_origin);
+		gi.multicast(self->s.origin, MULTICAST_PVS, false);
+	}
+
+	G_FreeEdict(self);
+}
+
+void fire_deatom(edict_t *self, const vec3_t &start, const vec3_t &dir, int damage, int speed)
+{
+	edict_t *deatom = G_Spawn();
+	trace_t	 tr;
+	vec3_t	 forward = dir;
+
+	forward.normalize();
+
+	deatom->s.origin = start;
+	deatom->s.old_origin = start;
+	deatom->movedir = forward;
+	deatom->s.angles = vectoangles(forward);
+	deatom->velocity = forward * speed;
+	deatom->speed = (float) speed;
+	deatom->svflags |= SVF_PROJECTILE;
+	deatom->movetype = MOVETYPE_FLYMISSILE;
+	deatom->clipmask = MASK_PROJECTILE;
+	deatom->solid = SOLID_BBOX;
+	deatom->mins = vec3_origin;
+	deatom->maxs = vec3_origin;
+	deatom->s.effects = EF_HALF_DAMAGE | EF_FLAG2;
+	deatom->s.renderfx = RF_SHELL_BLUE | RF_FULLBRIGHT;
+	deatom->s.modelindex = gi.modelindex("models/objects/deatom/tris.md2");
+	deatom->s.sound = gi.soundindex("deatom/dfly.wav");
+	deatom->s.frame = 0;
+	deatom->avelocity[2] = 480.f;
+
+	deatom->touch = deatom_touch;
+	deatom->owner = self;
+	deatom->dmg = damage;
+	deatom->classname = "deatom_bolt";
+
+	edict_t *best_ent = nullptr;
+	float best_dot = 0.85f;
+	float best_dist = 9999999.f;
+
+	for (edict_t *ent = nullptr; (ent = findradius(ent, deatom->s.origin, 1024.f)) != nullptr;)
+	{
+		if (ent == self || ent == deatom || !ent->inuse || !ent->takedamage || ent->health <= 0)
+			continue;
+
+		if (!visible(deatom, ent))
+			continue;
+
+		vec3_t dir_to_ent = ent->s.origin - deatom->s.origin;
+		float dist = dir_to_ent.normalize();
+		float dot = forward.dot(dir_to_ent);
+
+		if (best_dot > 0.99f && dot > 0.99f && dist < best_dist)
+		{
+			best_dot = dot;
+			best_dist = dist;
+			best_ent = ent;
+			continue;
+		}
+
+		if (dot > best_dot)
+		{
+			best_dot = dot;
+			best_ent = ent;
+		}
+	}
+
+	deatom->enemy = best_ent;
+	deatom->think = deatom_think;
+	deatom->nextthink = level.time + 10_hz;
+	gi.linkentity(deatom);
+
+	tr = gi.traceline(self->s.origin, deatom->s.origin, deatom, deatom->clipmask);
+	if (tr.fraction < 1.0f)
+	{
+		deatom->s.origin -= forward * 10.f;
+		if (tr.ent == self)
+			G_FreeEdict(deatom);
+		else
+			deatom->touch(deatom, tr.ent, tr, false);
+	}
+}
+
+void monster_fire_deatom(edict_t *self, const vec3_t &start, const vec3_t &dir, int damage, int speed,
+						 monster_muzzleflash_id_t flashtype)
+{
+	fire_deatom(self, start, dir, damage, speed);
 	monster_muzzleflash(self, start, flashtype);
 }
 
@@ -489,6 +650,31 @@ void M_SetAnimation(edict_t *self, const save_mmove_t &move, bool instant)
 	self->monsterinfo.next_move = move;
 }
 
+static const mmove_t *M_ResolveActiveMove(edict_t *self)
+{
+	const mmove_t *move = self->monsterinfo.active_move.pointer();
+	if (move || !self->monsterinfo.next_move.pointer())
+		return move;
+
+	// Corpse/dead spawns still expect the old currentmove behavior, where a
+	// death move chosen outside monster_think becomes immediately visible.
+	M_SetAnimation(self, self->monsterinfo.next_move, true);
+	return self->monsterinfo.active_move.pointer();
+}
+
+static bool monster_has_valid_trigger_target(edict_t *self)
+{
+	if (!self->targetname)
+		return false;
+
+	return G_FindByString<&edict_t::target>(nullptr, self->targetname) != nullptr ||
+		G_FindByString<&edict_t::pathtarget>(nullptr, self->targetname) != nullptr ||
+		G_FindByString<&edict_t::deathtarget>(nullptr, self->targetname) != nullptr ||
+		G_FindByString<&edict_t::itemtarget>(nullptr, self->targetname) != nullptr ||
+		G_FindByString<&edict_t::healthtarget>(nullptr, self->targetname) != nullptr ||
+		G_FindByString<&edict_t::combattarget>(nullptr, self->targetname) != nullptr;
+}
+
 void M_MoveFrame(edict_t *self)
 {
 	const mmove_t *move = self->monsterinfo.active_move.pointer();
@@ -646,6 +832,40 @@ void G_MonsterKilled(edict_t *self)
 	}
 }
 
+static void M_DeatomizeMonster(edict_t *self)
+{
+	G_DeatomizeEntity(self, EV_OTHER_TELEPORT);
+
+	if (self->beam)
+	{
+		G_FreeEdict(self->beam);
+		self->beam = nullptr;
+	}
+
+	if (self->beam2)
+	{
+		G_FreeEdict(self->beam2);
+		self->beam2 = nullptr;
+	}
+
+	self->deadflag = true;
+	self->svflags |= SVF_DEADMONSTER;
+	self->think = nullptr;
+	self->nextthink = 0_ms;
+	self->touch = nullptr;
+	self->use = nullptr;
+	self->pain = nullptr;
+	self->die = nullptr;
+	self->enemy = nullptr;
+	self->goalentity = nullptr;
+	self->movetarget = nullptr;
+	self->groundentity = nullptr;
+	self->monsterinfo.damage_blood = 0;
+	self->fly_sound_debounce_time = 0_ms;
+	self->monsterinfo.aiflags &= ~AI_STUNK;
+	gi.linkentity(self);
+}
+
 void M_ProcessPain(edict_t *e)
 {
 	if (!e->monsterinfo.damage_blood)
@@ -698,6 +918,21 @@ void M_ProcessPain(edict_t *e)
 			monster_death_use(e);
 		}
 
+		if (e->monsterinfo.damage_mod.id == MOD_DISINTEGRATOR)
+		{
+			// Deatomizer kills must not fall through to per-monster corpse/gib logic.
+			if (e->monsterinfo.aiflags & AI_SPAWNED_MEDIC_C)
+			{
+				if (e->monsterinfo.commander && e->monsterinfo.commander->inuse && !strcmp(e->monsterinfo.commander->classname, "monster_medic_commander"))
+					e->monsterinfo.commander->monsterinfo.monster_used -= e->monsterinfo.monster_slots;
+
+				e->monsterinfo.commander = nullptr;
+			}
+
+			M_DeatomizeMonster(e);
+			return;
+		}
+
 		e->die(e, e->monsterinfo.damage_inflictor, e->monsterinfo.damage_attacker, e->monsterinfo.damage_blood, e->monsterinfo.damage_from, e->monsterinfo.damage_mod);
 		
 		// [Paril-KEX] medic commander only gets his slots back after the monster is gibbed, since we can revive them
@@ -712,7 +947,8 @@ void M_ProcessPain(edict_t *e)
 			}
 		}
 
-		if (e->inuse && e->health > e->gib_health && e->s.frame == e->monsterinfo.active_move->lastframe)
+		const mmove_t *move = M_ResolveActiveMove(e);
+		if (e->inuse && e->health > e->gib_health && move && e->s.frame == move->lastframe)
 		{
 			e->s.frame -= irandom(1, 3);
 
@@ -772,7 +1008,7 @@ THINK(monster_dead_think) (edict_t *self) -> void
 
 	if (!self->monsterinfo.damage_blood)
 	{
-		if (self->s.frame != self->monsterinfo.active_move->lastframe)
+		if (const mmove_t *move = M_ResolveActiveMove(self); move && self->s.frame != move->lastframe)
 			self->s.frame++;
 	}
 
@@ -1080,6 +1316,20 @@ THINK(monster_triggered_spawn) (edict_t *self) -> void
 	}
 }
 
+static void SP_OblivionMonsterFallback(edict_t *self, const char *legacy_name, void (*fallback)(edict_t *self), const char *fallback_name)
+{
+	gi.Com_PrintFmt("{}: using temporary fallback {} for {}\n", *self, fallback_name, legacy_name);
+	self->classname = legacy_name;
+	fallback(self);
+	self->classname = legacy_name;
+}
+
+void SP_monster_sentinel(edict_t *self)
+{
+	self->classname = "monster_badass";
+	SP_monster_badass(self);
+}
+
 USE(monster_triggered_spawn_use) (edict_t *self, edict_t *other, edict_t *activator) -> void
 {
 	// we have a one frame delay here so we don't telefrag the guy who activated us
@@ -1129,13 +1379,7 @@ void monster_triggered_start(edict_t *self)
 		self->nextthink = level.time + 1_ms;
 	}
 
-	if (!self->targetname ||
-		(G_FindByString<&edict_t::target>(nullptr, self->targetname) == nullptr &&
-		 G_FindByString<&edict_t::pathtarget>(nullptr, self->targetname) == nullptr &&
-		 G_FindByString<&edict_t::deathtarget>(nullptr, self->targetname) == nullptr &&
-		 G_FindByString<&edict_t::itemtarget>(nullptr, self->targetname) == nullptr &&
-		 G_FindByString<&edict_t::healthtarget>(nullptr, self->targetname) == nullptr &&
-		 G_FindByString<&edict_t::combattarget>(nullptr, self->targetname) == nullptr))
+	if (!monster_has_valid_trigger_target(self))
 	{
 		gi.Com_PrintFmt("{}: is trigger spawned, but has no targetname or no entity to spawn it\n", *self);
 	}
@@ -1221,6 +1465,53 @@ void G_Monster_CheckCoopHealthScaling()
 //============================================================================
 constexpr spawnflags_t SPAWNFLAG_MONSTER_FUBAR = 4_spawnflag;
 
+static bool Monster_SpawnCorpse(edict_t *self)
+{
+	if (!self)
+		return false;
+
+	if (!self->spawnflags.has(SPAWNFLAG_MONSTER_CORPSE))
+		return false;
+
+	self->think = nullptr;
+	self->nextthink = 0_ms;
+	self->svflags |= SVF_DEADMONSTER;
+	self->takedamage = true;
+	self->max_health = self->health;
+	self->velocity = vec3_origin;
+
+	if (self->item)
+	{
+		Drop_Item(self, self->item);
+		self->item = nullptr;
+	}
+
+	if (self->die)
+	{
+		self->health = 0;
+		self->die(self, self, self, 0, vec3_origin, MOD_UNKNOWN);
+
+		if (!self->inuse)
+			return true;
+
+		if (const mmove_t *move = M_ResolveActiveMove(self))
+		{
+			self->s.frame = move->lastframe;
+
+			if (move->endfunc)
+				move->endfunc(self);
+		}
+	}
+
+	if (self->inuse)
+	{
+		self->deadflag = true;
+		gi.linkentity(self);
+	}
+
+	return true;
+}
+
 bool monster_start(edict_t *self)
 {
 	if ( !M_AllowSpawn( self ) ) {
@@ -1241,12 +1532,14 @@ bool monster_start(edict_t *self)
 		self->spawnflags |= SPAWNFLAG_MONSTER_AMBUSH;
 	}
 
+	const bool corpse_spawn = self->spawnflags.has(SPAWNFLAG_MONSTER_CORPSE);
+
 	// [Paril-KEX] simplify other checks
 	if (self->monsterinfo.aiflags & AI_GOOD_GUY)
 		self->monsterinfo.aiflags |= AI_DO_NOT_COUNT;
 
 	// ROGUE
-	if (!(self->monsterinfo.aiflags & AI_DO_NOT_COUNT) && !self->spawnflags.has(SPAWNFLAG_MONSTER_DEAD))
+	if (!(self->monsterinfo.aiflags & AI_DO_NOT_COUNT) && !self->spawnflags.has(SPAWNFLAG_MONSTER_DEAD) && !corpse_spawn)
 	{
 		if (g_debug_monster_kills->integer)
 			level.monsters_registered[level.total_monsters] = self;
@@ -1298,6 +1591,12 @@ bool monster_start(edict_t *self)
 		self->item = FindItemByClassname(st.item);
 		if (!self->item)
 			gi.Com_PrintFmt("{}: bad item: {}\n", *self, st.item);
+	}
+
+	if (corpse_spawn)
+	{
+		Monster_SpawnCorpse(self);
+		return false;
 	}
 
 	// randomize what frame they start on
@@ -1477,7 +1776,8 @@ void monster_start_go(edict_t *self)
 			if (!spawn_dead)
 				self->monsterinfo.stand(self);
 		}
-		else if (strcmp(self->movetarget->classname, "path_corner") == 0)
+		else if (strcmp(self->movetarget->classname, "path_corner") == 0 ||
+			strcmp(self->movetarget->classname, "target_actor") == 0)
 		{
 			v = self->goalentity->s.origin - self->s.origin;
 			self->ideal_yaw = self->s.angles[YAW] = vectoyaw(v);
@@ -1518,17 +1818,19 @@ void monster_start_go(edict_t *self)
 
 		self->monsterinfo.aiflags |= AI_SPAWNED_DEAD;
 
-		auto move = self->monsterinfo.active_move.pointer();
-
-		for (size_t i = move->firstframe; i < move->lastframe; i++)
+		const mmove_t *move = M_ResolveActiveMove(self);
+		if (move)
 		{
-			self->s.frame = i;
+			for (size_t i = move->firstframe; i < move->lastframe; i++)
+			{
+				self->s.frame = i;
 
-			if (move->frame[i - move->firstframe].thinkfunc)
-				move->frame[i - move->firstframe].thinkfunc(self);
+				if (move->frame[i - move->firstframe].thinkfunc)
+					move->frame[i - move->firstframe].thinkfunc(self);
 
-			if (!self->inuse)
-				return;
+				if (!self->inuse)
+					return;
+			}
 		}
 
 		if (move->endfunc)
@@ -1560,10 +1862,13 @@ THINK(walkmonster_start_go) (edict_t *self) -> void
 	if (!self->yaw_speed)
 		self->yaw_speed = 20;
 
-	if (self->spawnflags.has(SPAWNFLAG_MONSTER_TRIGGER_SPAWN))
+	if (self->spawnflags.has(SPAWNFLAG_MONSTER_TRIGGER_SPAWN) && monster_has_valid_trigger_target(self))
 		monster_triggered_start(self);
 	else
+	{
+		self->spawnflags &= ~SPAWNFLAG_MONSTER_TRIGGER_SPAWN;
 		monster_start_go(self);
+	}
 }
 
 void walkmonster_start(edict_t *self)
@@ -1577,10 +1882,13 @@ THINK(flymonster_start_go) (edict_t *self) -> void
 	if (!self->yaw_speed)
 		self->yaw_speed = 30;
 
-	if (self->spawnflags.has(SPAWNFLAG_MONSTER_TRIGGER_SPAWN))
+	if (self->spawnflags.has(SPAWNFLAG_MONSTER_TRIGGER_SPAWN) && monster_has_valid_trigger_target(self))
 		monster_triggered_start(self);
 	else
+	{
+		self->spawnflags &= ~SPAWNFLAG_MONSTER_TRIGGER_SPAWN;
 		monster_start_go(self);
+	}
 }
 
 void flymonster_start(edict_t *self)
@@ -1595,10 +1903,13 @@ THINK(swimmonster_start_go) (edict_t *self) -> void
 	if (!self->yaw_speed)
 		self->yaw_speed = 30;
 
-	if (self->spawnflags.has(SPAWNFLAG_MONSTER_TRIGGER_SPAWN))
+	if (self->spawnflags.has(SPAWNFLAG_MONSTER_TRIGGER_SPAWN) && monster_has_valid_trigger_target(self))
 		monster_triggered_start(self);
 	else
+	{
+		self->spawnflags &= ~SPAWNFLAG_MONSTER_TRIGGER_SPAWN;
 		monster_start_go(self);
+	}
 }
 
 void swimmonster_start(edict_t *self)

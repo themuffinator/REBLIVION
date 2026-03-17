@@ -787,6 +787,10 @@ constexpr spawnflags_t SPAWNFLAG_ROTATING_STOP = 32_spawnflag;
 constexpr spawnflags_t SPAWNFLAG_ROTATING_ANIMATED = 64_spawnflag;
 constexpr spawnflags_t SPAWNFLAG_ROTATING_ANIMATED_FAST = 128_spawnflag;
 constexpr spawnflags_t SPAWNFLAG_ROTATING_ACCEL = 0x00010000_spawnflag;
+constexpr spawnflags_t SPAWNFLAG_ROTATING_OBLIVION_TOUCH_PAIN = 2_spawnflag;
+constexpr spawnflags_t SPAWNFLAG_ROTATING_OBLIVION_LOOP = 4_spawnflag;
+constexpr spawnflags_t SPAWNFLAG_ROTATING_OBLIVION_ANIMATED = 8_spawnflag;
+constexpr spawnflags_t SPAWNFLAG_ROTATING_OBLIVION_ANIMATED_FAST = 16_spawnflag;
 
 /*QUAKED func_rotating (0 .5 .8) ? START_ON REVERSE X_AXIS Y_AXIS TOUCH_PAIN STOP ANIMATED ANIMATED_FAST NOT_EASY NOT_MEDIUM NOT_HARD NOT_DM NOT_COOP RESERVED1 COOP_ONLY RESERVED2 ACCEL
 You need to have an origin brush as part of this entity.
@@ -798,11 +802,76 @@ func_rotating will use it's targets when it stops and starts.
 "speed" determines how fast it moves; default value is 100.
 "dmg"	damage to inflict when blocked (2 default)
 "accel" if specified, is how much the rotation speed will increase per .1sec.
+"rotate" / "rotate_vec" sets an Oblivion-style target angle delta.
+"speeds" sets an Oblivion-style x y z angular velocity.
+"duration" is the travel time for an Oblivion-style "rotate" move.
+"wait" delays the next LOOP repetition for an Oblivion-style "rotate" move.
 
 REVERSE will cause the it to rotate in the opposite direction.
 STOP mean it will stop moving instead of pushing entities
 ACCEL means it will accelerate to it's final speed and decelerate when shutting down.
 */
+
+static bool rotating_is_oblivion_mode(const edict_t *self)
+{
+	return self && (self->rotate != vec3_origin || self->rotate_speed != vec3_origin || self->duration != 0.f);
+}
+
+static bool rotating_is_partial_move(const edict_t *self)
+{
+	return self && self->style == 1;
+}
+
+static bool rotating_has_accel(const edict_t *self)
+{
+	if (!self)
+		return false;
+
+	if (rotating_is_oblivion_mode(self))
+		return self->accel > 0.f;
+
+	return self->spawnflags.has(SPAWNFLAG_ROTATING_ACCEL);
+}
+
+static bool rotating_touch_pain_enabled(const edict_t *self)
+{
+	if (!self)
+		return false;
+
+	if (rotating_is_oblivion_mode(self))
+		return self->spawnflags.has(SPAWNFLAG_ROTATING_OBLIVION_TOUCH_PAIN);
+
+	return self->spawnflags.has(SPAWNFLAG_ROTATING_TOUCH_PAIN);
+}
+
+static bool rotating_loop_enabled(const edict_t *self)
+{
+	return self && rotating_is_oblivion_mode(self) && self->spawnflags.has(SPAWNFLAG_ROTATING_OBLIVION_LOOP);
+}
+
+static bool rotating_animated_enabled(const edict_t *self)
+{
+	if (!self)
+		return false;
+
+	if (rotating_is_oblivion_mode(self))
+		return self->spawnflags.has(SPAWNFLAG_ROTATING_OBLIVION_ANIMATED);
+
+	return self->spawnflags.has(SPAWNFLAG_ROTATING_ANIMATED);
+}
+
+static bool rotating_animated_fast_enabled(const edict_t *self)
+{
+	if (!self)
+		return false;
+
+	if (rotating_is_oblivion_mode(self))
+		return self->spawnflags.has(SPAWNFLAG_ROTATING_OBLIVION_ANIMATED_FAST);
+
+	return self->spawnflags.has(SPAWNFLAG_ROTATING_ANIMATED_FAST);
+}
+
+void rotating_done(edict_t *self);
 
 //============
 // PGM
@@ -814,7 +883,9 @@ THINK(rotating_accel) (edict_t *self) -> void
 	if (current_speed >= (self->speed - self->accel)) // done
 	{
 		self->avelocity = self->movedir * self->speed;
-		G_UseTargets(self, self);
+		if (!rotating_is_oblivion_mode(self))
+			G_UseTargets(self, self);
+		self->think = nullptr;
 	}
 	else
 	{
@@ -847,13 +918,38 @@ THINK(rotating_decel) (edict_t *self) -> void
 // PGM
 //============
 
+THINK(rotating_loop_wait) (edict_t *self) -> void
+{
+	self->s.angles = self->moveinfo.start_angles;
+	self->moveinfo.state = STATE_UP;
+	gi.linkentity(self);
+	AngleMove_Calc(self, rotating_done);
+}
+
+THINK(rotating_done) (edict_t *self) -> void
+{
+	self->moveinfo.state = (self->moveinfo.state == STATE_UP) ? STATE_TOP : STATE_BOTTOM;
+	G_UseTargets(self, self);
+
+	if (rotating_loop_enabled(self) && self->moveinfo.state == STATE_TOP)
+	{
+		self->think = rotating_loop_wait;
+		self->nextthink = level.time + gtime_t::from_sec(self->wait);
+	}
+}
+
 MOVEINFO_BLOCKED(rotating_blocked) (edict_t *self, edict_t *other) -> void
 {
 	if (!self->dmg)
 		return;
-	if (level.time < self->touch_debounce_time)
-		return;
-	self->touch_debounce_time = level.time + 10_hz;
+
+	if (!rotating_is_oblivion_mode(self))
+	{
+		if (level.time < self->touch_debounce_time)
+			return;
+		self->touch_debounce_time = level.time + 10_hz;
+	}
+
 	T_Damage(other, self, self, vec3_origin, other->s.origin, vec3_origin, self->dmg, 1, DAMAGE_NONE, MOD_CRUSH);
 }
 
@@ -865,11 +961,27 @@ TOUCH(rotating_touch) (edict_t *self, edict_t *other, const trace_t &tr, bool ot
 
 USE(rotating_use) (edict_t *self, edict_t *other, edict_t *activator) -> void
 {
+	if (rotating_is_partial_move(self))
+	{
+		if (self->moveinfo.state == STATE_BOTTOM)
+		{
+			self->moveinfo.state = STATE_UP;
+			AngleMove_Calc(self, rotating_done);
+		}
+		else if (self->moveinfo.state == STATE_TOP)
+		{
+			self->moveinfo.state = STATE_DOWN;
+			AngleMove_Calc(self, rotating_done);
+		}
+
+		return;
+	}
+
 	if (self->avelocity)
 	{
 		self->s.sound = 0;
-		// PGM
-		if (self->spawnflags.has(SPAWNFLAG_ROTATING_ACCEL)) // Decelerate
+
+		if (rotating_has_accel(self))
 			rotating_decel(self);
 		else
 		{
@@ -877,29 +989,40 @@ USE(rotating_use) (edict_t *self, edict_t *other, edict_t *activator) -> void
 			G_UseTargets(self, self);
 			self->touch = nullptr;
 		}
-		// PGM
 	}
 	else
 	{
 		self->s.sound = self->moveinfo.sound_middle;
-		// PGM
-		if (self->spawnflags.has(SPAWNFLAG_ROTATING_ACCEL)) // accelerate
-			rotating_accel(self);
+
+		if (rotating_has_accel(self))
+		{
+			if (rotating_is_oblivion_mode(self))
+			{
+				self->think = rotating_accel;
+				self->nextthink = level.time + FRAME_TIME_S;
+				self->avelocity = self->movedir * self->accel;
+			}
+			else
+			{
+				rotating_accel(self);
+			}
+		}
 		else
 		{
 			self->avelocity = self->movedir * self->speed;
 			G_UseTargets(self, self);
 		}
-		if (self->spawnflags.has(SPAWNFLAG_ROTATING_TOUCH_PAIN))
+		if (rotating_touch_pain_enabled(self))
 			self->touch = rotating_touch;
-		// PGM
 	}
 }
 
 void SP_func_rotating(edict_t *ent)
 {
+	const bool oblivion_mode = rotating_is_oblivion_mode(ent);
+
 	ent->solid = SOLID_BSP;
-	if (ent->spawnflags.has(SPAWNFLAG_ROTATING_STOP))
+	if (!oblivion_mode && ent->spawnflags.has(SPAWNFLAG_ROTATING_STOP))
 		ent->movetype = MOVETYPE_STOP;
 	else
 		ent->movetype = MOVETYPE_PUSH;
@@ -925,23 +1048,66 @@ void SP_func_rotating(edict_t *ent)
 		}
 	}
 
-	// set the axis of rotation
-	ent->movedir = {};
-	if (ent->spawnflags.has(SPAWNFLAG_ROTATING_X_AXIS))
-		ent->movedir[2] = 1.0;
-	else if (ent->spawnflags.has(SPAWNFLAG_ROTATING_Y_AXIS))
-		ent->movedir[0] = 1.0;
-	else // Z_AXIS
-		ent->movedir[1] = 1.0;
-
-	// check for reverse rotation
-	if (ent->spawnflags.has(SPAWNFLAG_ROTATING_REVERSE))
-		ent->movedir = -ent->movedir;
-
 	if (!ent->speed)
 		ent->speed = 100;
-	if (!st.was_key_specified("dmg"))
+
+	if (oblivion_mode)
+	{
+		if (!ent->dmg)
+			ent->dmg = 2;
+	}
+	else if (!st.was_key_specified("dmg"))
 		ent->dmg = 2;
+
+	if (oblivion_mode)
+	{
+		if (ent->rotate_speed != vec3_origin)
+		{
+			ent->movedir = ent->rotate_speed;
+			ent->speed = ent->movedir.normalize();
+		}
+		else if (ent->rotate != vec3_origin)
+		{
+			float dist;
+
+			ent->style = 1;
+			ent->moveinfo.start_angles = ent->s.angles;
+			ent->moveinfo.end_angles = ent->s.angles + ent->rotate;
+			ent->moveinfo.state = STATE_BOTTOM;
+			ent->moveinfo.endfunc = rotating_done;
+
+			dist = ent->rotate.length();
+			ent->moveinfo.speed = ent->duration > 0 ? dist / ent->duration : ent->speed;
+
+			if (!st.was_key_specified("accel"))
+				ent->accel = ent->moveinfo.speed;
+			if (!st.was_key_specified("decel"))
+				ent->decel = ent->moveinfo.speed;
+		}
+		else
+		{
+			ent->movedir = {};
+			ent->movedir[1] = 1.0;
+		}
+
+		if (ent->accel > 0.f && ent->decel <= 0.f)
+			ent->decel = ent->accel;
+	}
+	else
+	{
+		// set the axis of rotation
+		ent->movedir = {};
+		if (ent->spawnflags.has(SPAWNFLAG_ROTATING_X_AXIS))
+			ent->movedir[2] = 1.0;
+		else if (ent->spawnflags.has(SPAWNFLAG_ROTATING_Y_AXIS))
+			ent->movedir[0] = 1.0;
+		else // Z_AXIS
+			ent->movedir[1] = 1.0;
+
+		// check for reverse rotation
+		if (ent->spawnflags.has(SPAWNFLAG_ROTATING_REVERSE))
+			ent->movedir = -ent->movedir;
+	}
 
 	ent->use = rotating_use;
 	if (ent->dmg)
@@ -950,13 +1116,12 @@ void SP_func_rotating(edict_t *ent)
 	if (ent->spawnflags.has(SPAWNFLAG_ROTATING_START_ON))
 		ent->use(ent, nullptr, nullptr);
 
-	if (ent->spawnflags.has(SPAWNFLAG_ROTATING_ANIMATED))
+	if (rotating_animated_enabled(ent))
 		ent->s.effects |= EF_ANIM_ALL;
-	if (ent->spawnflags.has(SPAWNFLAG_ROTATING_ANIMATED_FAST))
+	if (rotating_animated_fast_enabled(ent))
 		ent->s.effects |= EF_ANIM_ALLFAST;
 
-	// PGM
-	if (ent->spawnflags.has(SPAWNFLAG_ROTATING_ACCEL)) // Accelerate / Decelerate
+	if (!oblivion_mode && ent->spawnflags.has(SPAWNFLAG_ROTATING_ACCEL))
 	{
 		if (!ent->accel)
 			ent->accel = 1;
@@ -968,7 +1133,6 @@ void SP_func_rotating(edict_t *ent)
 		else if (ent->decel > ent->speed)
 			ent->decel = ent->speed;
 	}
-	// PGM
 
 	gi.setmodel(ent, ent->model);
 	gi.linkentity(ent);

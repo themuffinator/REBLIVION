@@ -629,6 +629,8 @@ void SV_CalcBlend(edict_t *ent)
 			G_AddBlend(0.4f, 1, 0.4f, 0.04f, ent->client->ps.screen_blend);
 	}
 
+	G_ScreenFade_AddBlend(ent);
+
 	// PGM
 	if (ent->client->nuke_time > level.time)
 	{
@@ -1352,6 +1354,8 @@ void ClientEndServerFrame(edict_t *ent)
 	current_player = ent;
 	current_client = ent->client;
 
+	Camera_ClientPreFrame(ent);
+
 	// check fog changes
 	P_ForceFogTransition(ent, false);
 
@@ -1456,11 +1460,14 @@ void ClientEndServerFrame(edict_t *ent)
 	// apply all the damage taken this frame
 	P_DamageFeedback(ent);
 
-	// determine the view offsets
-	SV_CalcViewOffset(ent);
+	if (!ent->client->remote_view_active)
+	{
+		// determine the view offsets
+		SV_CalcViewOffset(ent);
 
-	// determine the gun offsets
-	SV_CalcGunOffset(ent);
+		// determine the gun offsets
+		SV_CalcGunOffset(ent);
+	}
 
 	// determine the full screen color blend
 	// must be after viewoffset, so eye contents can be
@@ -1484,6 +1491,8 @@ void ClientEndServerFrame(edict_t *ent)
 	G_SetClientSound(ent);
 
 	G_SetClientFrame(ent);
+
+	Camera_ClientPostFrame(ent);
 
 	ent->client->oldvelocity = ent->velocity;
 	ent->client->oldviewangles = ent->client->ps.viewangles;

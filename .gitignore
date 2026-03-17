@@ -26,7 +26,44 @@
 *.a
 *.lib
 
+# Linker / debug artifacts
+*.exp
+*.idb
+*.ilk
+*.iobj
+*.ipdb
+*.pdb
+
 # Executables
 *.exe
 *.out
 *.app
+
+# Visual Studio / MSBuild
+/.vs/
+/.vscode/*
+!/.vscode/tasks.json
+!/.vscode/extensions.json
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.VC.db
+*.VC.opendb
+*.tlog
+*.lastbuildstate
+*.recipe
+*.FileListAbsolute.txt
+/src/x64/
+/x64/
+
+# Local staging / dependencies
+/.install/
+/dist/
+/vcpkg_installed/
+
+# Python tooling
+/.venv/
+__pycache__/
+*.pyc
+*.pyo

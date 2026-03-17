@@ -25,8 +25,8 @@ static cached_soundindex sound_sight;
 static cached_soundindex sound_windup;
 static cached_soundindex sound_strike;
 
-constexpr spawnflags_t SPAWNFLAG_TANK_COMMANDER_GUARDIAN = 8_spawnflag;
-constexpr spawnflags_t SPAWNFLAG_TANK_COMMANDER_HEAT_SEEKING = 16_spawnflag;
+constexpr spawnflags_t SPAWNFLAG_TANK_COMMANDER_GUARDIAN = 32_spawnflag;
+constexpr spawnflags_t SPAWNFLAG_TANK_COMMANDER_HEAT_SEEKING = 64_spawnflag;
 
 //
 // misc
@@ -1019,10 +1019,10 @@ MONSTERINFO_BLOCKED(tank_blocked) (edict_t *self, float dist) -> bool
 // monster_tank
 //
 
-/*QUAKED monster_tank (1 .5 0) (-32 -32 -16) (32 32 72) Ambush Trigger_Spawn Sight
+/*QUAKED monster_tank (1 .5 0) (-32 -32 -16) (32 32 72) Ambush Trigger_Spawn Sight Corpse
 model="models/monsters/tank/tris.md2"
 */
-/*QUAKED monster_tank_commander (1 .5 0) (-32 -32 -16) (32 32 72) Ambush Trigger_Spawn Sight Guardian HeatSeeking
+/*QUAKED monster_tank_commander (1 .5 0) (-32 -32 -16) (32 32 72) Ambush Trigger_Spawn Sight Corpse Guardian HeatSeeking
  */
 void SP_monster_tank(edict_t *self)
 {
@@ -1064,6 +1064,7 @@ void SP_monster_tank(edict_t *self)
 		self->health = 1000 * st.health_multiplier;
 		self->gib_health = -225;
 		self->count = 1;
+		self->s.skinnum = 2;
 		sound_pain2.assign("tank/pain.wav");
 	}
 	else
@@ -1089,6 +1090,16 @@ void SP_monster_tank(edict_t *self)
 
 	self->mass = 500;
 
+	if (self->spawnflags.has(SPAWNFLAG_MONSTER_CORPSE))
+	{
+		self->health = -1;
+		self->deadflag = true;
+		self->takedamage = true;
+		self->s.frame = FRAME_death132;
+		tank_dead(self);
+		return;
+	}
+
 	self->pain = tank_pain;
 	self->die = tank_die;
 	self->monsterinfo.stand = tank_stand;
@@ -1112,8 +1123,6 @@ void SP_monster_tank(edict_t *self)
 	self->monsterinfo.aiflags |= AI_IGNORE_SHOTS;
 	self->monsterinfo.blindfire = true;
 	// pmm
-	if (strcmp(self->classname, "monster_tank_commander") == 0)
-		self->s.skinnum = 2;
 }
 
 void Use_Boss3(edict_t *ent, edict_t *other, edict_t *activator);

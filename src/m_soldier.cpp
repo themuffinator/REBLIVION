@@ -475,6 +475,16 @@ MONSTERINFO_SETSKIN(soldier_setskin) (edict_t *self) -> void
 // ATTACK
 //
 
+static bool soldier_uses_deatomizer(edict_t *self)
+{
+	return self->style == 0 && self->s.skinnum >= 6;
+}
+
+static bool soldier_can_run_and_shoot(edict_t *self)
+{
+	return self->count <= 3 || soldier_uses_deatomizer(self);
+}
+
 constexpr monster_muzzleflash_id_t blaster_flash[] = { MZ2_SOLDIER_BLASTER_1, MZ2_SOLDIER_BLASTER_2, MZ2_SOLDIER_BLASTER_3, MZ2_SOLDIER_BLASTER_4, MZ2_SOLDIER_BLASTER_5, MZ2_SOLDIER_BLASTER_6, MZ2_SOLDIER_BLASTER_7, MZ2_SOLDIER_BLASTER_8, MZ2_SOLDIER_BLASTER_9 };
 constexpr monster_muzzleflash_id_t shotgun_flash[] = { MZ2_SOLDIER_SHOTGUN_1, MZ2_SOLDIER_SHOTGUN_2, MZ2_SOLDIER_SHOTGUN_3, MZ2_SOLDIER_SHOTGUN_4, MZ2_SOLDIER_SHOTGUN_5, MZ2_SOLDIER_SHOTGUN_6, MZ2_SOLDIER_SHOTGUN_7, MZ2_SOLDIER_SHOTGUN_8, MZ2_SOLDIER_SHOTGUN_9 };
 constexpr monster_muzzleflash_id_t machinegun_flash[] = { MZ2_SOLDIER_MACHINEGUN_1, MZ2_SOLDIER_MACHINEGUN_2, MZ2_SOLDIER_MACHINEGUN_3, MZ2_SOLDIER_MACHINEGUN_4, MZ2_SOLDIER_MACHINEGUN_5, MZ2_SOLDIER_MACHINEGUN_6, MZ2_SOLDIER_MACHINEGUN_7, MZ2_SOLDIER_MACHINEGUN_8, MZ2_SOLDIER_MACHINEGUN_9 };
@@ -492,9 +502,9 @@ void soldier_fire_vanilla(edict_t *self, int flash_number, bool angle_limited)
 	float					 angle;
 	vec3_t					 aim_good;
 
-	if (self->count < 2)
+	if (self->s.skinnum < 2)
 		flash_index = blaster_flash[flash_number];
-	else if (self->count < 4)
+	else if (self->s.skinnum < 4)
 		flash_index = shotgun_flash[flash_number];
 	else
 		flash_index = machinegun_flash[flash_number];
@@ -557,15 +567,19 @@ void soldier_fire_vanilla(edict_t *self, int flash_number, bool angle_limited)
 		aim.normalize();
 	}
 
-	if (self->count <= 1)
+	if (self->s.skinnum <= 1)
 	{
 		monster_fire_blaster(self, start, aim, 5, 600, flash_index, EF_BLASTER);
 	}
-	else if (self->count <= 3)
+	else if (self->s.skinnum <= 3)
 	{
 		monster_fire_shotgun(self, start, aim, 2, 1, 1500, 750, 9, flash_index);
 		// [Paril-KEX] indicates to soldier that he must cock
 		self->dmg = 1;
+	}
+	else if (soldier_uses_deatomizer(self))
+	{
+		monster_fire_deatom(self, start, aim, 50, 600, flash_index);
 	}
 	else
 	{
@@ -1172,7 +1186,7 @@ MONSTERINFO_ATTACK(soldier_attack) (edict_t *self) -> void
 
 	if ((!(self->monsterinfo.aiflags & (AI_BLOCKED | AI_STAND_GROUND))) &&
 		(r < 0.25f &&
-		(self->count <= 3)) &&
+		soldier_can_run_and_shoot(self)) &&
 		(range_to(self, self->enemy) >= (RANGE_NEAR * 0.5f)))
 	{
 		M_SetAnimation(self, &soldier_move_attack6);
@@ -1239,7 +1253,7 @@ MONSTERINFO_SIGHT(soldier_sight) (edict_t *self, edict_t *other) -> void
 			// RAFAEL + legacy bug fix
 			// don't use run+shoot for machinegun/laser because
 			// the animation is a bit weird
-			if (self->count < 4)
+			if (soldier_can_run_and_shoot(self))
 				M_SetAnimation(self, &soldier_move_attack6);
 			else if (M_CheckClearShot(self, monster_flash_offset[MZ2_SOLDIER_MACHINEGUN_4]))
 				// RAFAEL
@@ -1741,7 +1755,7 @@ MONSTERINFO_SIDESTEP(soldier_sidestep) (edict_t *self) -> bool
 		self->monsterinfo.active_move == &soldier_move_pain4)
 		return false;
 
-	if (self->count <= 3)
+	if (soldier_can_run_and_shoot(self))
 	{
 		if (self->monsterinfo.active_move != &soldier_move_attack6)
 		{
@@ -1893,8 +1907,8 @@ void SP_monster_soldier_vanilla(edict_t *self)
 	SP_monster_soldier_x(self);
 }
 
-/*QUAKED monster_soldier_light (1 .5 0) (-16 -16 -24) (16 16 32) Ambush Trigger_Spawn Sight
- */
+/*QUAKED monster_soldier_light (1 .5 0) (-16 -16 -24) (16 16 32) Ambush Trigger_Spawn Sight Corpse
+*/
 void SP_monster_soldier_light(edict_t *self)
 {
 	if ( !M_AllowSpawn( self ) ) {
@@ -1919,8 +1933,8 @@ void SP_monster_soldier_light(edict_t *self)
 	self->monsterinfo.blindfire = true;
 }
 
-/*QUAKED monster_soldier (1 .5 0) (-16 -16 -24) (16 16 32) Ambush Trigger_Spawn Sight
- */
+/*QUAKED monster_soldier (1 .5 0) (-16 -16 -24) (16 16 32) Ambush Trigger_Spawn Sight Corpse
+*/
 void SP_monster_soldier(edict_t *self)
 {
 	if( !M_AllowSpawn( self ) ) {
@@ -1940,8 +1954,8 @@ void SP_monster_soldier(edict_t *self)
 	self->gib_health = -30;
 }
 
-/*QUAKED monster_soldier_ss (1 .5 0) (-16 -16 -24) (16 16 32) Ambush Trigger_Spawn Sight
- */
+/*QUAKED monster_soldier_ss (1 .5 0) (-16 -16 -24) (16 16 32) Ambush Trigger_Spawn Sight Corpse
+*/
 void SP_monster_soldier_ss(edict_t *self)
 {
 	if ( !M_AllowSpawn( self ) ) {
@@ -1957,6 +1971,29 @@ void SP_monster_soldier_ss(edict_t *self)
 
 	self->s.skinnum = 4;
 	self->count = self->s.skinnum;
+	self->health = self->max_health = 40 * st.health_multiplier;
+	self->gib_health = -30;
+}
+
+/*QUAKED monster_soldier_deatom (1 .5 0) (-16 -16 -24) (16 16 32) Ambush Trigger_Spawn Sight Corpse
+*/
+void SP_monster_soldier_deatom(edict_t *self)
+{
+	if ( !M_AllowSpawn( self ) ) {
+		G_FreeEdict( self );
+		return;
+	}
+
+	SP_monster_soldier_x(self);
+	self->s.modelindex = gi.modelindex("models/monsters/soldier_deatom/tris.md2");
+	self->classname = "monster_soldier_ss";
+
+	sound_pain_ss.assign("soldier/solpain3.wav");
+	sound_death_ss.assign("soldier/soldeth3.wav");
+	gi.soundindex("soldier/solatck3.wav");
+
+	self->s.skinnum = 6;
+	self->count = 4;
 	self->health = self->max_health = 40 * st.health_multiplier;
 	self->gib_health = -30;
 }

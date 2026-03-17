@@ -249,9 +249,15 @@ void Item_UpdateState( edict_t * item ) {
 	}
 
 	const item_id_t itemID = item->item->id;
-	if ( itemID == IT_FLAG1 || itemID == IT_FLAG2 ) {
+	if ( itemID == IT_FLAG1 || itemID == IT_FLAG2 || ( item->classname != nullptr && Q_strcasecmp( item->classname, "trigger_key" ) == 0 ) ) {
 		item->sv.ent_flags |= SVFL_IS_OBJECTIVE;
 		// TODO: figure out if the objective is dropped/carried/home...
+	}
+
+	// A used trigger_key relay stays in the world but should no longer be
+	// considered a live bot objective or pickup target.
+	if ( item->classname != nullptr && Q_strcasecmp( item->classname, "trigger_key" ) == 0 && !item->use ) {
+		item->sv.ent_flags |= SVFL_IS_HIDDEN;
 	}
 
 	// always need to update these for items, since random item spawning

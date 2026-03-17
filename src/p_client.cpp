@@ -94,6 +94,30 @@ bool P_UseCoopInstancedItems()
 	return g_coop_instanced_items->integer || g_coop_squad_respawn->integer;
 }
 
+enum class obituary_gender_t
+{
+	neutral,
+	female,
+	male
+};
+
+static obituary_gender_t ClientObituaryGender(edict_t *ent)
+{
+	if (!ent || !ent->client)
+		return obituary_gender_t::neutral;
+
+	char skin[MAX_QPATH];
+	if (!gi.Info_ValueForKey(ent->client->pers.userinfo, "skin", skin, sizeof(skin)))
+		return obituary_gender_t::neutral;
+
+	if (!Q_strncasecmp(skin, "female/", 7))
+		return obituary_gender_t::female;
+	if (!Q_strncasecmp(skin, "male/", 5))
+		return obituary_gender_t::male;
+
+	return obituary_gender_t::neutral;
+}
+
 //=======================================================================
 
 void ClientObituary(edict_t *self, edict_t *inflictor, edict_t *attacker, mod_t mod)
@@ -131,7 +155,8 @@ void ClientObituary(edict_t *self, edict_t *inflictor, edict_t *attacker, mod_t 
 		base = "$g_mod_generic_exit";
 		break;
 	case MOD_TARGET_LASER:
-		base = "$g_mod_generic_laser";
+		if (attacker == world)
+			base = "$g_mod_generic_laser";
 		break;
 	case MOD_TARGET_BLASTER:
 		base = "$g_mod_generic_blaster";
@@ -261,6 +286,10 @@ void ClientObituary(edict_t *self, edict_t *inflictor, edict_t *attacker, mod_t 
 		case MOD_TELEFRAG_SPAWN:
 			base = "$g_mod_kill_telefrag";
 			break;
+		case MOD_TARGET_LASER:
+			if (inflictor && inflictor->classname && !strcmp(inflictor->classname, "mine laser"))
+				base = "{} found that mine {} had misplaced.\n";
+			break;
 		// RAFAEL 14-APR-98
 		case MOD_RIPPER:
 			base = "$g_mod_kill_ripper";
@@ -278,7 +307,18 @@ void ClientObituary(edict_t *self, edict_t *inflictor, edict_t *attacker, mod_t 
 			base = "$g_mod_kill_chainfist";
 			break;
 		case MOD_DISINTEGRATOR:
-			base = "$g_mod_kill_disintegrator";
+			switch (ClientObituaryGender(self))
+			{
+			case obituary_gender_t::female:
+				base = "{} had her electrons unbound by {}.\n";
+				break;
+			case obituary_gender_t::male:
+				base = "{} had his electrons unbound by {}.\n";
+				break;
+			default:
+				base = "{} had their electrons unbound by {}.\n";
+				break;
+			}
 			break;
 		case MOD_ETF_RIFLE:
 			base = "$g_mod_kill_etf_rifle";
@@ -321,6 +361,24 @@ void ClientObituary(edict_t *self, edict_t *inflictor, edict_t *attacker, mod_t 
 			// ZOID
 		case MOD_GRAPPLE:
 			base = "$g_mod_kill_grapple";
+			break;
+		case MOD_PLASMA_PISTOL:
+			base = "{} was burned down by {}'s plasma pistol.\n";
+			break;
+		case MOD_PLASMA_RIFLE:
+			base = "{} was vaporized by {}'s plasma rifle.\n";
+			break;
+		case MOD_DETPACK:
+			base = "{} stepped on {}'s dog sh... er.. detonation pack.\n";
+			break;
+		case MOD_OBLITERATOR:
+			base = "{} was sliced and diced by {}'s obliterator.\n";
+			break;
+		case MOD_DONUT:
+			base = "{} took a bite of {}'s donut.\n";
+			break;
+		case MOD_REMOTE_CANNON:
+			base = "{} caught some of {}'s remote cannon lovin'.\n";
 			break;
 			// ZOID
 		default:
@@ -526,6 +584,40 @@ void LookAtKiller(edict_t *self, edict_t *inflictor, edict_t *attacker)
 		self->client->killer_yaw = 0;
 }
 
+void G_DeatomizerTeleportEffect(const vec3_t &origin)
+{
+	gi.WriteByte(svc_temp_entity);
+	gi.WriteByte(TE_TELEPORT_EFFECT);
+	gi.WritePosition(origin);
+	gi.multicast(origin, MULTICAST_PVS, false);
+}
+
+void G_DeatomizeEntity(edict_t *self, entity_event_t event)
+{
+	G_DeatomizerTeleportEffect(self->s.origin);
+
+	self->velocity = {};
+	self->avelocity = {};
+	self->mins = {};
+	self->maxs = {};
+	self->solid = SOLID_NOT;
+	self->takedamage = false;
+	self->movetype = MOVETYPE_NOCLIP;
+	self->s.modelindex = 0;
+	self->s.modelindex2 = 0;
+	self->s.modelindex3 = 0;
+	self->s.modelindex4 = 0;
+	self->s.sound = 0;
+	self->s.event = event;
+
+	if (self->client)
+	{
+		self->client->weapon_sound = 0;
+		self->client->anim_priority = ANIM_DEATH;
+		self->client->anim_end = 0;
+	}
+}
+
 /*
 ==================
 player_die
@@ -647,6 +739,15 @@ DIE(player_die) (edict_t *self, edict_t *inflictor, edict_t *attacker, int damag
 
 	// ROGUE
 	//==============
+
+	if (mod.id == MOD_DISINTEGRATOR)
+	{
+		self->flags &= ~FL_NOGIB;
+		G_DeatomizeEntity(self, EV_PLAYER_TELEPORT);
+		self->deadflag = true;
+		gi.linkentity(self);
+		return;
+	}
 
 	if (self->health < -40)
 	{
@@ -812,6 +913,19 @@ void InitClientPersistant(edict_t *ent, gclient_t *client)
 
 	memset(&client->pers, 0, sizeof(client->pers));
 	ClientUserinfoChanged(ent, userinfo);
+	client->plasma_pistol_next_regen = 0_ms;
+	client->plasma_rifle_next_regen = 0_ms;
+	client->remote_view_aux_entity = nullptr;
+	client->remote_view_aux_flag = false;
+	client->remote_view_active = false;
+	client->remote_view_cmd_hook = nullptr;
+	client->remote_view_body = nullptr;
+	client->remote_view_entity = nullptr;
+	client->rtdu_turret = nullptr;
+	client->remote_view_state_1 = 0;
+	client->remote_view_state_2 = 0;
+	client->remote_view_timer = 0.f;
+	client->remote_view_saved_gunindex = 0;
 
 	client->pers.health = 100;
 	client->pers.max_health = 100;
@@ -836,6 +950,7 @@ void InitClientPersistant(edict_t *ent, gclient_t *client)
 				client->pers.inventory = player->client->pers.inventory;
 				client->pers.max_ammo = player->client->pers.max_ammo;
 				client->pers.power_cubes = player->client->pers.power_cubes;
+				client->pers.plasma_rifle_regen_divisor = player->client->pers.plasma_rifle_regen_divisor;
 				taken_loadout = true;
 				break;
 			}
@@ -848,18 +963,23 @@ void InitClientPersistant(edict_t *ent, gclient_t *client)
 			client->pers.max_ammo[AMMO_BULLETS] = 200;
 			client->pers.max_ammo[AMMO_SHELLS] = 100;
 			client->pers.max_ammo[AMMO_CELLS] = 200;
+			client->pers.max_ammo[AMMO_PROX] = 25;
+			client->pers.max_ammo[AMMO_DOD] = 2;
+			client->pers.plasma_rifle_regen_divisor = 0;
 
 			// RAFAEL
-			client->pers.max_ammo[AMMO_TRAP] = 5;
+			client->pers.max_ammo[AMMO_TRAP] = 10;
 			// RAFAEL
 			// ROGUE
-			client->pers.max_ammo[AMMO_FLECHETTES] = 200;
 			client->pers.max_ammo[AMMO_DISRUPTOR] = 12;
 			client->pers.max_ammo[AMMO_TESLA] = 5;
 			// ROGUE
 
 			if (!deathmatch->integer || !g_instagib->integer)
-				client->pers.inventory[IT_WEAPON_BLASTER] = 1;
+			{
+				client->pers.inventory[IT_WEAPON_ETF_RIFLE] = 1;
+				client->pers.inventory[IT_AMMO_FLECHETTES] = 50;
+			}
 
 			// [Kex]
 			// start items!
@@ -1530,6 +1650,13 @@ void InitBodyQue()
 
 DIE(body_die) (edict_t *self, edict_t *inflictor, edict_t *attacker, int damage, const vec3_t &point, const mod_t &mod) -> void
 {
+	if (mod.id == MOD_DISINTEGRATOR)
+	{
+		G_DeatomizeEntity(self, EV_OTHER_TELEPORT);
+		gi.linkentity(self);
+		return;
+	}
+
 	if (self->s.modelindex == MODELINDEX_PLAYER &&
 		self->health < self->gib_health)
 	{
@@ -1965,6 +2092,8 @@ inline void PutClientOnSpawnPoint(edict_t *ent, const vec3_t &spawn_origin, cons
 
 	client->ps.viewangles = ent->s.angles;
 	client->v_angle = ent->s.angles;
+	client->remote_view_aux_entity = nullptr;
+	client->remote_view_aux_flag = false;
 
 	AngleVectors(client->v_angle, client->v_forward, nullptr, nullptr);
 }
@@ -3154,6 +3283,9 @@ void ClientThink(edict_t *ent, usercmd_t *ucmd)
 	level.current_entity = ent;
 	client = ent->client;
 
+	if (client->remote_view_cmd_hook)
+		client->remote_view_cmd_hook(ent, ucmd);
+
 	// [Paril-KEX] pass buttons through even if we are in intermission or
 	// chasing.
 	client->oldbuttons = client->buttons;
@@ -3224,6 +3356,8 @@ void ClientThink(edict_t *ent, usercmd_t *ucmd)
 			else
 				client->ps.pmove.pm_type = PM_NOCLIP;
 		}
+		else if (client->remote_view_active)
+			client->ps.pmove.pm_type = PM_FREEZE;
 		else if (ent->s.modelindex != MODELINDEX_PLAYER)
 			client->ps.pmove.pm_type = PM_GIB;
 		else if (ent->deadflag)
@@ -3406,6 +3540,8 @@ void ClientThink(edict_t *ent, usercmd_t *ucmd)
 			}
 		}
 	}
+
+	Oblivion_UpdateWeaponRegen(ent);
 
 	if (client->resp.spectator)
 	{

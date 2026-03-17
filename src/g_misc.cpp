@@ -4,6 +4,229 @@
 
 #include "g_local.h"
 
+constexpr int32_t SCREENFADER_STATE_IDLE = 0;
+constexpr int32_t SCREENFADER_STATE_PENDING = 1;
+constexpr int32_t SCREENFADER_STATE_ACTIVE = 2;
+constexpr int32_t SCREENFADER_STATE_HOLD = 3;
+
+constexpr spawnflags_t SPAWNFLAG_SCREENFADER_START_ON = 1_spawnflag;
+
+static edict_t *screenfader_active_list = nullptr;
+
+static void ScreenFader_AddActive(edict_t *ent)
+{
+	for (edict_t **link = &screenfader_active_list; *link; link = &(*link)->chain)
+	{
+		if (*link == ent)
+			return;
+	}
+
+	ent->chain = screenfader_active_list;
+	screenfader_active_list = ent;
+}
+
+static void ScreenFader_RemoveActive(edict_t *ent)
+{
+	for (edict_t **link = &screenfader_active_list; *link; link = &(*link)->chain)
+	{
+		if (*link == ent)
+		{
+			*link = ent->chain;
+			ent->chain = nullptr;
+			return;
+		}
+	}
+}
+
+static float ScreenFader_Clamp01(float value)
+{
+	return clamp(value, 0.0f, 1.0f);
+}
+
+static bool ScreenFader_ParseColor(const char *string, vec3_t &rgb, float &alpha)
+{
+	float r, g, b, a;
+
+	if (!string || !*string)
+		return false;
+
+	if (sscanf_s(string, "%f %f %f %f", &r, &g, &b, &a) != 4)
+		return false;
+
+	rgb[0] = ScreenFader_Clamp01(r);
+	rgb[1] = ScreenFader_Clamp01(g);
+	rgb[2] = ScreenFader_Clamp01(b);
+	alpha = ScreenFader_Clamp01(a);
+	return true;
+}
+
+static float ScreenFader_Lerp(float start, float end, float frac)
+{
+	return start + ((end - start) * frac);
+}
+
+static void ScreenFader_Finish(edict_t *self);
+
+THINK(ScreenFader_ClearHold) (edict_t *self) -> void
+{
+	ScreenFader_RemoveActive(self);
+	self->count = SCREENFADER_STATE_IDLE;
+	self->think = nullptr;
+	self->nextthink = 0_ms;
+}
+
+THINK(ScreenFader_Update) (edict_t *self) -> void
+{
+	if (self->count != SCREENFADER_STATE_ACTIVE)
+		return;
+
+	if ((level.time - self->timestamp) >= gtime_t::from_sec(self->wait))
+	{
+		ScreenFader_Finish(self);
+		return;
+	}
+
+	self->nextthink = level.time + FRAME_TIME_S;
+}
+
+static void ScreenFader_Begin(edict_t *self)
+{
+	ScreenFader_RemoveActive(self);
+
+	if (self->wait <= 0.0f)
+		self->wait = FRAME_TIME_S.seconds();
+
+	self->timestamp = level.time;
+	self->count = SCREENFADER_STATE_ACTIVE;
+	self->think = ScreenFader_Update;
+	self->nextthink = level.time + FRAME_TIME_S;
+	ScreenFader_AddActive(self);
+}
+
+static void ScreenFader_Finish(edict_t *self)
+{
+	const float hold = max(self->random, 0.0f);
+
+	self->count = hold > 0.0f ? SCREENFADER_STATE_HOLD : SCREENFADER_STATE_IDLE;
+
+	if (hold > 0.0f)
+	{
+		self->think = ScreenFader_ClearHold;
+		self->nextthink = level.time + gtime_t::from_sec(hold);
+	}
+	else
+	{
+		ScreenFader_RemoveActive(self);
+		self->think = nullptr;
+		self->nextthink = 0_ms;
+	}
+
+	if (self->activator)
+		G_UseTargets(self, self->activator);
+	self->activator = nullptr;
+}
+
+USE(misc_screenfader_use) (edict_t *self, edict_t *other, edict_t *activator) -> void
+{
+	self->activator = activator ? activator : self;
+
+	if (self->delay > 0.0f)
+	{
+		self->count = SCREENFADER_STATE_PENDING;
+		self->think = ScreenFader_Begin;
+		self->nextthink = level.time + gtime_t::from_sec(self->delay);
+	}
+	else
+		ScreenFader_Begin(self);
+}
+
+void G_ScreenFade_Reset()
+{
+	screenfader_active_list = nullptr;
+}
+
+void G_ScreenFade_AddBlend(edict_t *ent)
+{
+	if (!ent->client)
+		return;
+
+	for (edict_t *fader = screenfader_active_list; fader; fader = fader->chain)
+	{
+		float frac;
+		float alpha;
+		vec3_t color;
+
+		if (!fader->inuse)
+			continue;
+
+		if (fader->count == SCREENFADER_STATE_ACTIVE)
+		{
+			const float duration = max(fader->wait, FRAME_TIME_S.seconds());
+			frac = clamp(((level.time - fader->timestamp).seconds() / duration), 0.0f, 1.0f);
+		}
+		else if (fader->count == SCREENFADER_STATE_HOLD)
+			frac = 1.0f;
+		else
+			continue;
+
+		color[0] = ScreenFader_Lerp(fader->move_origin[0], fader->move_angles[0], frac);
+		color[1] = ScreenFader_Lerp(fader->move_origin[1], fader->move_angles[1], frac);
+		color[2] = ScreenFader_Lerp(fader->move_origin[2], fader->move_angles[2], frac);
+		alpha = ScreenFader_Lerp(fader->speed, fader->accel, frac);
+
+		if (alpha > 0.0f)
+			G_AddBlend(color[0], color[1], color[2], alpha, ent->client->ps.screen_blend);
+	}
+}
+
+/*QUAKED misc_screenfader (0 0 1) (-8 -8 -8) (8 8 8) START_ON
+Fades the screen from the pathtarget/message color to the deathtarget color over time.
+*/
+void SP_misc_screenfader(edict_t *self)
+{
+	vec3_t start_rgb, end_rgb;
+	float start_alpha, end_alpha;
+	const char *start_string = self->pathtarget ? self->pathtarget : self->message;
+	const char *end_string = self->deathtarget;
+
+	if (!ScreenFader_ParseColor(start_string, start_rgb, start_alpha))
+	{
+		gi.Com_Print("misc_screenfader missing valid start color\n");
+		G_FreeEdict(self);
+		return;
+	}
+
+	if (!ScreenFader_ParseColor(end_string, end_rgb, end_alpha))
+	{
+		gi.Com_Print("misc_screenfader missing valid end color\n");
+		G_FreeEdict(self);
+		return;
+	}
+
+	self->move_origin = start_rgb;
+	self->move_angles = end_rgb;
+	self->speed = start_alpha;
+	self->accel = end_alpha;
+
+	if (self->count > 0)
+		self->wait = (float) self->count;
+	if (self->wait <= 0.0f)
+		self->wait = 1.0f;
+	self->random = max(self->random, 0.0f);
+
+	self->movetype = MOVETYPE_NONE;
+	self->solid = SOLID_NOT;
+	self->svflags |= SVF_NOCLIENT;
+	self->chain = nullptr;
+	self->count = SCREENFADER_STATE_IDLE;
+	self->use = misc_screenfader_use;
+
+	gi.linkentity(self);
+
+	if (self->spawnflags.has(SPAWNFLAG_SCREENFADER_START_ON))
+		misc_screenfader_use(self, self, self);
+}
+
 /*QUAKED func_group (0 0 0) ?
 Used to group brushes together just for editor convenience.
 */
@@ -291,17 +514,33 @@ void BecomeExplosion2(edict_t *self)
 Target: next path corner
 Pathtarget: gets used when an entity that has
 	this path_corner targeted touches it
+wait: pause before advancing to the next corner
+Oblivion func_rotate_train keys:
+	"duration" overrides the next leg travel time
+	"rotate" takes x y z angle deltas for the next leg
+	"speeds" takes x y z angular speeds for the next leg
 */
 
 TOUCH(path_corner_touch) (edict_t *self, edict_t *other, const trace_t &tr, bool other_touching_self) -> void
 {
 	vec3_t	 v;
 	edict_t *next;
+	const bool has_stand = !!other->monsterinfo.stand;
 
 	if (other->movetarget != self)
 		return;
 
 	if (other->enemy)
+		return;
+
+	// Oblivion camera controllers run their own path-corner state machine in
+	// g_camera.cpp. Letting them fall through the monster path logic here
+	// advances movetarget early and can end up calling a null stand callback.
+	if (other->classname &&
+		(!Q_strcasecmp(other->classname, "misc_camera") ||
+		 !Q_strcasecmp(other->classname, "misc_camera_target") ||
+		 !Q_strcasecmp(other->classname, "misc_deatomizer_control") ||
+		 !Q_strcasecmp(other->classname, "misc_deatomizer_target")))
 		return;
 
 	if (self->pathtarget)
@@ -337,8 +576,16 @@ TOUCH(path_corner_touch) (edict_t *self, edict_t *other, const trace_t &tr, bool
 
 	if (self->wait)
 	{
-		other->monsterinfo.pausetime = level.time + gtime_t::from_sec(self->wait);
-		other->monsterinfo.stand(other);
+		if (has_stand)
+		{
+			other->monsterinfo.pausetime = level.time + gtime_t::from_sec(self->wait);
+			other->monsterinfo.stand(other);
+		}
+		else
+		{
+			other->velocity = vec3_origin;
+			other->avelocity = vec3_origin;
+		}
 		return;
 	}
 
@@ -351,8 +598,16 @@ TOUCH(path_corner_touch) (edict_t *self, edict_t *other, const trace_t &tr, bool
 			return;
 		}
 
-		other->monsterinfo.pausetime = HOLD_FOREVER;
-		other->monsterinfo.stand(other);
+		if (has_stand)
+		{
+			other->monsterinfo.pausetime = HOLD_FOREVER;
+			other->monsterinfo.stand(other);
+		}
+		else
+		{
+			other->velocity = vec3_origin;
+			other->avelocity = vec3_origin;
+		}
 	}
 	else
 	{
@@ -388,6 +643,11 @@ TOUCH(point_combat_touch) (edict_t *self, edict_t *other, const trace_t &tr, boo
 	edict_t *activator;
 
 	if (other->movetarget != self)
+		return;
+
+	// point_combat is a monster-only touch path. Non-monster scripted movers can
+	// legitimately share path entities in Oblivion maps, so ignore them here.
+	if (!other->monsterinfo.stand)
 		return;
 
 	if (self->target)
@@ -477,6 +737,27 @@ void SP_info_notnull(edict_t *self)
 {
 	self->absmin = self->s.origin;
 	self->absmax = self->s.origin;
+}
+
+/*QUAKED info_teleport_dest (1 0 0) (-64 -64 -96) (32 32 64)
+Point trigger_teleports at these. The entity is invisible, non-solid, and
+stores the teleport exit position and facing.
+*/
+void SP_info_teleport_dest(edict_t *self)
+{
+	if (self->classname && !Q_strcasecmp(self->classname, "info_teleporter_dest"))
+		self->classname = "info_teleport_dest";
+
+	self->velocity = vec3_origin;
+	self->avelocity = vec3_origin;
+	self->move_origin = self->s.origin;
+	self->move_angles = self->s.angles;
+	self->movetype = MOVETYPE_NONE;
+	self->solid = SOLID_NOT;
+	self->svflags |= SVF_NOCLIENT;
+	self->mins = { -64, -64, -96 };
+	self->maxs = { 32, 32, 64 };
+	gi.linkentity(self);
 }
 
 /*QUAKED light (0 1 0) (-8 -8 -8) (8 8 8) START_OFF ALLOW_IN_DM

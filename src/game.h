@@ -995,6 +995,15 @@ enum monster_muzzleflash_id_t : uint16_t
     MZ2_MEDIC_HYPERBLASTER2_11,
     MZ2_MEDIC_HYPERBLASTER2_12,
 
+    // [Oblivion]
+    MZ2_KIGRAX_PLASMA,
+    MZ2_SPIDER_ROCKET_LEFT,
+    MZ2_SPIDER_ROCKET_RIGHT,
+    MZ2_CYBORG_DEATOM_LEFT,
+    MZ2_CYBORG_DEATOM_RIGHT,
+    MZ2_BADASS_ROCKET_LEFT,
+    MZ2_BADASS_ROCKET_RIGHT,
+
     // only used for compile time checks
     MZ2_LAST
 };

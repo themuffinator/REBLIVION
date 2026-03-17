@@ -265,6 +265,8 @@ bool Pickup_Weapon(edict_t *ent, edict_t *other)
 			// RAFAEL: Don't get infinite ammo with trap
 			if (G_CheckInfiniteAmmo(ammo))
 				Add_Ammo(other, ammo, 1000);
+			else if (!Q_strcasecmp(ent->classname, "weapon_hellfury"))
+				Add_Ammo(other, ammo, 16);
 			else
 				Add_Ammo(other, ammo, ammo->quantity);
 		}
@@ -315,6 +317,9 @@ current
 */
 void ChangeWeapon(edict_t *ent)
 {
+	if (ent->client->weapon_switching)
+		return;
+
 	// [Paril-KEX]
 	if (ent->health > 0 && !g_instant_weapon_switch->integer && ((ent->client->latched_buttons | ent->client->buttons) & BUTTON_HOLSTER))
 		return;
@@ -322,8 +327,10 @@ void ChangeWeapon(edict_t *ent)
 	if (ent->client->grenade_time)
 	{
 		// force a weapon think to drop the held grenade
+		ent->client->weapon_switching = true;
 		ent->client->weapon_sound = 0;
 		Weapon_RunThink(ent);
+		ent->client->weapon_switching = false;
 		ent->client->grenade_time = 0_ms;
 	}
 
@@ -391,41 +398,40 @@ void NoAmmoWeaponChange(edict_t *ent, bool sound)
 		}
 	}
 
-	constexpr item_id_t no_ammo_order[] = {
-		IT_WEAPON_DISRUPTOR,
-		IT_WEAPON_RAILGUN,
-		IT_WEAPON_PLASMABEAM,
-		IT_WEAPON_IONRIPPER,
-		IT_WEAPON_HYPERBLASTER,
-		IT_WEAPON_ETF_RIFLE,
-		IT_WEAPON_CHAINGUN,
-		IT_WEAPON_MACHINEGUN,
-		IT_WEAPON_SSHOTGUN,
-		IT_WEAPON_SHOTGUN,
-		IT_WEAPON_PHALANX,
-		IT_WEAPON_RLAUNCHER,
-		IT_WEAPON_GLAUNCHER,
-		IT_WEAPON_PROXLAUNCHER,
-		IT_WEAPON_CHAINFIST,
-		IT_WEAPON_BLASTER
-	};
+	if (ent->client->pers.weapon && ent->client->pers.weapon->id == IT_WEAPON_PHALANX)
+		return;
 
-	for (size_t i = 0; i < q_countof(no_ammo_order); i++)
+	gitem_t *best = nullptr;
+	int32_t best_priority = INT32_MAX;
+
+	for (item_id_t id = static_cast<item_id_t>(IT_NULL + 1); id < IT_TOTAL; id = static_cast<item_id_t>(id + 1))
 	{
-		gitem_t *item = GetItemByIndex(no_ammo_order[i]);
+		gitem_t *item = GetItemByIndex(id);
+		int ammo_required = G_WeaponAmmoRequired(item);
+		int32_t priority = G_WeaponPriority(item);
 
-		if (!item)
-			gi.Com_ErrorFmt("Invalid no ammo weapon switch weapon {}\n", (int32_t) no_ammo_order[i]);
-
+		if (!item || priority == INT32_MAX)
+			continue;
 		if (!ent->client->pers.inventory[item->id])
 			continue;
-
-		if (item->ammo && ent->client->pers.inventory[item->ammo] < item->quantity)
+		if (item->ammo && ent->client->pers.inventory[item->ammo] < ammo_required)
+			continue;
+		if (priority >= best_priority)
 			continue;
 
-		ent->client->newweapon = item;
+		best = item;
+		best_priority = priority;
+	}
+
+	if (best)
+	{
+		ent->client->newweapon = best;
 		return;
 	}
+
+	gitem_t *plasma_pistol = GetItemByIndex(IT_WEAPON_ETF_RIFLE);
+	if (plasma_pistol && ent->client->pers.inventory[plasma_pistol->id])
+		ent->client->newweapon = plasma_pistol;
 }
 
 void G_RemoveAmmo(edict_t *ent, int32_t quantity)
@@ -478,6 +484,35 @@ inline gtime_t Weapon_AnimationTime(edict_t *ent)
 	}
 
 	return gtime_t::from_ms((1.f / ent->client->ps.gunrate) * 1000);
+}
+
+void Oblivion_UpdateWeaponRegen(edict_t *ent)
+{
+	gclient_t *cl = ent->client;
+
+	if (!cl)
+		return;
+
+	if (cl->plasma_pistol_next_regen + 1_sec < level.time)
+	{
+		if (cl->pers.inventory[IT_AMMO_FLECHETTES] < cl->pers.max_ammo[AMMO_FLECHETTES])
+			cl->pers.inventory[IT_AMMO_FLECHETTES]++;
+
+		cl->plasma_pistol_next_regen = level.time;
+	}
+
+	if (cl->pers.plasma_rifle_regen_divisor > 0)
+	{
+		gtime_t regen_interval = gtime_t::from_sec(1.f / cl->pers.plasma_rifle_regen_divisor);
+
+		if (cl->plasma_rifle_next_regen + regen_interval < level.time)
+		{
+			if (cl->pers.inventory[IT_AMMO_MAGSLUG] < cl->pers.max_ammo[AMMO_MAGSLUG])
+				cl->pers.inventory[IT_AMMO_MAGSLUG]++;
+
+			cl->plasma_rifle_next_regen = level.time;
+		}
+	}
 }
 
 /*
@@ -552,6 +587,7 @@ weap_switch_t Weapon_AttemptSwitch(edict_t *ent, gitem_t *item, bool silent)
 	if (item->ammo && !g_select_empty->integer && !(item->flags & IF_AMMO))
 	{
 		gitem_t *ammo_item = GetItemByIndex(item->ammo);
+		int ammo_required = G_WeaponAmmoRequired(item);
 
 		if (!ent->client->pers.inventory[item->ammo])
 		{
@@ -559,7 +595,7 @@ weap_switch_t Weapon_AttemptSwitch(edict_t *ent, gitem_t *item, bool silent)
 				gi.LocClient_Print(ent, PRINT_HIGH, "$g_no_ammo", ammo_item->pickup_name, item->pickup_name_definite);
 			return WEAP_SWITCH_NO_AMMO;
 		}
-		else if (ent->client->pers.inventory[item->ammo] < item->quantity)
+		else if (ent->client->pers.inventory[item->ammo] < ammo_required)
 		{
 			if (!silent)
 				gi.LocClient_Print(ent, PRINT_HIGH, "$g_not_enough_ammo", ammo_item->pickup_name, item->pickup_name_definite);
@@ -817,8 +853,10 @@ inline weapon_ready_state_t Weapon_HandleReady(edict_t *ent, int FRAME_FIRE_FIRS
 			ent->client->latched_buttons &= ~BUTTON_ATTACK;
 			ent->client->weapon_think_time = level.time;
 
+			int ammo_required = G_WeaponAmmoRequired(ent->client->pers.weapon);
+
 			if ((!ent->client->pers.weapon->ammo) ||
-				(ent->client->pers.inventory[ent->client->pers.weapon->ammo] >= ent->client->pers.weapon->quantity))
+				(ent->client->pers.inventory[ent->client->pers.weapon->ammo] >= ammo_required))
 			{
 				ent->client->weaponstate = WEAPON_FIRING;
 				ent->client->last_firing_time = level.time + COOP_DAMAGE_FIRING_TIME;
@@ -1221,6 +1259,195 @@ void Weapon_Grenade(edict_t *ent)
 	// [Paril-KEX] skip the duped frame
 	if (ent->client->ps.gunframe == 1)
 		ent->client->ps.gunframe = 2;
+}
+
+static void Weapon_ProximityMines_Fire(edict_t *ent)
+{
+	vec3_t start, dir;
+	P_ProjectSource(ent, ent->client->v_angle, { 8, 8, -8 }, start, dir);
+
+	gtime_t timer = ent->client->grenade_time - level.time;
+	int speed = ent->health <= 0 ? GRENADE_MINSPEED :
+		(int) min(GRENADE_MINSPEED + (GRENADE_TIMER - timer).seconds() *
+			((GRENADE_MAXSPEED - GRENADE_MINSPEED) / GRENADE_TIMER.seconds()), GRENADE_MAXSPEED);
+
+	ent->client->grenade_time = level.time + 1_sec;
+	fire_proximity_mine(ent, start, dir, speed);
+	G_RemoveAmmo(ent, 1);
+}
+
+void Weapon_ProximityMines(edict_t *ent)
+{
+	constexpr int pause_frames[] = { 29, 34, 39, 48, 0 };
+	constexpr int FRAME_FIRE_LAST = 15;
+	constexpr int FRAME_IDLE_FIRST = 16;
+	constexpr int FRAME_IDLE_LAST = 48;
+
+	if (ent->health <= 0)
+	{
+		Weapon_ProximityMines_Fire(ent);
+		return;
+	}
+
+	if (ent->client->newweapon && ent->client->weaponstate == WEAPON_READY)
+	{
+		ChangeWeapon(ent);
+		return;
+	}
+
+	if (ent->client->weaponstate == WEAPON_ACTIVATING)
+	{
+		if (ent->client->weapon_think_time <= level.time)
+		{
+			ent->client->weaponstate = WEAPON_READY;
+			ent->client->ps.gunframe = FRAME_IDLE_FIRST;
+			ent->client->weapon_think_time = level.time + Weapon_AnimationTime(ent);
+			Weapon_SetFinished(ent);
+		}
+		return;
+	}
+
+	if (ent->client->weaponstate == WEAPON_READY)
+	{
+		bool request_firing = ent->client->weapon_fire_buffered || ((ent->client->latched_buttons | ent->client->buttons) & BUTTON_ATTACK);
+
+		if (request_firing && ent->client->weapon_fire_finished <= level.time)
+		{
+			ent->client->latched_buttons &= ~BUTTON_ATTACK;
+
+			if (ent->client->pers.inventory[ent->client->pers.weapon->ammo])
+			{
+				ent->client->ps.gunframe = 1;
+				ent->client->weaponstate = WEAPON_FIRING;
+				ent->client->grenade_time = 0_ms;
+				ent->client->weapon_think_time = level.time + Weapon_AnimationTime(ent);
+			}
+			else
+			{
+				if (level.time >= ent->pain_debounce_time)
+				{
+					gi.sound(ent, CHAN_VOICE, gi.soundindex("weapons/noammo.wav"), 1, ATTN_NORM, 0);
+					ent->pain_debounce_time = level.time + 1_sec;
+				}
+				NoAmmoWeaponChange(ent, false);
+			}
+			return;
+		}
+		else if (ent->client->weapon_think_time <= level.time)
+		{
+			ent->client->weapon_think_time = level.time + Weapon_AnimationTime(ent);
+
+			for (int n = 0; pause_frames[n]; n++)
+			{
+				if (ent->client->ps.gunframe == pause_frames[n] && irandom(16))
+					return;
+			}
+
+			if (++ent->client->ps.gunframe > FRAME_IDLE_LAST)
+				ent->client->ps.gunframe = FRAME_IDLE_FIRST;
+		}
+		return;
+	}
+
+	if (ent->client->weaponstate != WEAPON_FIRING)
+		return;
+
+	ent->client->last_firing_time = level.time + COOP_DAMAGE_FIRING_TIME;
+
+	if (ent->client->weapon_think_time > level.time)
+		return;
+
+	if (ent->client->ps.gunframe == 5)
+		gi.sound(ent, CHAN_WEAPON, gi.soundindex("weapons/hgrena1b.wav"), 1, ATTN_NORM, 0);
+
+	if (ent->client->ps.gunframe == 11)
+	{
+		if (!ent->client->grenade_time)
+		{
+			ent->client->grenade_time = level.time + GRENADE_TIMER + 200_ms;
+			ent->client->weapon_sound = gi.soundindex("weapons/hgrenc1b.wav");
+		}
+
+		if (!ent->client->grenade_blew_up && level.time >= ent->client->grenade_time)
+		{
+			Weapon_PowerupSound(ent);
+			ent->client->weapon_sound = 0;
+			Weapon_ProximityMines_Fire(ent);
+			ent->client->grenade_blew_up = true;
+			ent->client->grenade_finished_time = level.time + 1_sec;
+		}
+
+		if (ent->client->buttons & BUTTON_ATTACK)
+		{
+			ent->client->weapon_think_time = level.time + 1_ms;
+			return;
+		}
+
+		if (ent->client->grenade_blew_up)
+		{
+			if (level.time >= ent->client->grenade_finished_time)
+			{
+				ent->client->ps.gunframe = FRAME_FIRE_LAST;
+				ent->client->grenade_blew_up = false;
+				ent->client->weapon_think_time = level.time + Weapon_AnimationTime(ent);
+			}
+			else
+			{
+				return;
+			}
+		}
+	}
+
+	if (ent->client->ps.gunframe == 12)
+	{
+		Weapon_PowerupSound(ent);
+		ent->client->weapon_sound = 0;
+		Weapon_ProximityMines_Fire(ent);
+		ent->client->grenade_finished_time = level.time + 1_sec;
+
+		if (Weapon_CanAnimate(ent))
+		{
+			if (ent->client->ps.pmove.pm_flags & PMF_DUCKED)
+			{
+				ent->client->anim_priority = ANIM_ATTACK;
+				ent->s.frame = FRAME_crattak1 - 1;
+				ent->client->anim_end = FRAME_crattak3;
+			}
+			else
+			{
+				ent->client->anim_priority = ANIM_ATTACK | ANIM_REVERSED;
+				ent->s.frame = FRAME_wave08;
+				ent->client->anim_end = FRAME_wave01;
+			}
+			ent->client->anim_time = 0_ms;
+		}
+	}
+
+	ent->client->weapon_think_time = level.time + Weapon_AnimationTime(ent);
+
+	if (ent->client->ps.gunframe == FRAME_FIRE_LAST && level.time < ent->client->grenade_finished_time)
+		return;
+
+	ent->client->ps.gunframe++;
+
+	if (ent->client->ps.gunframe == FRAME_IDLE_FIRST)
+	{
+		ent->client->grenade_finished_time = 0_ms;
+		ent->client->weaponstate = WEAPON_READY;
+		ent->client->weapon_fire_buffered = false;
+		Weapon_SetFinished(ent);
+
+		if (!ent->client->pers.inventory[ent->client->pers.weapon->ammo])
+		{
+			NoAmmoWeaponChange(ent, false);
+			ChangeWeapon(ent);
+		}
+	}
+}
+
+void Weapon_Prox(edict_t *ent)
+{
+	Weapon_ProximityMines(ent);
 }
 
 /*
@@ -1892,6 +2119,231 @@ void Weapon_BFG(edict_t *ent)
 	constexpr int fire_frames[] = { 9, 17, 0 };
 
 	Weapon_Generic(ent, 8, 32, 54, 58, pause_frames, fire_frames, weapon_bfg_fire);
+}
+
+//======================================================================
+
+static void weapon_deatomizer_fire(edict_t *ent)
+{
+	int damage = deathmatch->integer ? irandom(90, 120) : irandom(120, 200);
+	const int ammo_required = G_WeaponAmmoRequired(ent->client->pers.weapon);
+	constexpr player_muzzle_t DEATOMIZER_MUZZLEFLASH = MZ_NUKE4;
+
+	if (is_quad)
+		damage *= damage_multiplier;
+
+	if (ent->client->pers.inventory[ent->client->pers.weapon->ammo] < ammo_required)
+	{
+		NoAmmoWeaponChange(ent, true);
+		return;
+	}
+
+	vec3_t start, dir;
+	P_ProjectSource(ent, ent->client->v_angle, { 16, 8, -8 }, start, dir);
+
+	P_AddWeaponKick(ent, ent->client->v_forward * -2, { -1.f, 0.f, 0.f });
+	fire_deatom(ent, start, dir, damage, 1000);
+
+	gi.WriteByte(svc_muzzleflash);
+	gi.WriteEntity(ent);
+	// Rerelease attaches the stock railgun shot sound to MZ_RAILGUN.
+	// Use the silent blue nuke flash so only the explicit Deatomizer fire sound plays.
+	gi.WriteByte(DEATOMIZER_MUZZLEFLASH | is_silenced);
+	gi.multicast(ent->s.origin, MULTICAST_PVS, false);
+
+	gi.sound(ent, CHAN_VOICE, gi.soundindex("deatom/dfire.wav"), is_silenced ? 0.5f : 1.0f, ATTN_NORM, 0);
+	PlayerNoise(ent, start, PNOISE_WEAPON);
+	G_RemoveAmmo(ent, ammo_required);
+	ent->client->ps.gunframe++;
+}
+
+void Weapon_Deatomizer(edict_t *ent)
+{
+	constexpr int pause_frames[] = { 32, 0 };
+	constexpr int fire_frames[] = { 12, 0 };
+
+	Weapon_Generic(ent, 11, 21, 43, 49, pause_frames, fire_frames, weapon_deatomizer_fire);
+}
+
+static void weapon_dod_fire(edict_t *ent)
+{
+	vec3_t forward;
+
+	ent->client->ps.gunframe++;
+	AngleVectors(ent->s.angles, forward, nullptr, nullptr);
+	fire_dod(ent, ent->s.origin, forward);
+
+	if (!G_CheckInfiniteAmmo(ent->client->pers.weapon))
+		ent->client->pers.inventory[IT_AMMO_DOD]--;
+}
+
+void Weapon_DOD(edict_t *ent)
+{
+	constexpr int pause_frames[] = { 26, 0 };
+	constexpr int fire_frames[] = { 13, 0 };
+
+	Weapon_Generic(ent, 10, 15, 35, 46, pause_frames, fire_frames, weapon_dod_fire);
+}
+
+static void Weapon_Plasma_Fire(edict_t *ent, int damage, int ammo_usage, int plasma_type, const char *sound)
+{
+	if (is_quad)
+		damage *= damage_multiplier;
+
+	vec3_t start, dir;
+	P_ProjectSource(ent, ent->client->v_angle, { 16, 8, -8 }, start, dir);
+
+	P_AddWeaponKick(ent, ent->client->v_forward * -2, { -1.f, 0.f, 0.f });
+	fire_plasma_bolt(ent, start, dir, damage, 2000, plasma_type);
+
+	gi.WriteByte(svc_muzzleflash);
+	gi.WriteEntity(ent);
+	gi.WriteByte(MZ_BLASTER2 | is_silenced);
+	gi.multicast(ent->s.origin, MULTICAST_PVS, false);
+
+	gi.sound(ent, CHAN_VOICE, gi.soundindex(sound), is_silenced ? 0.5f : 1.0f, ATTN_NORM, 0);
+	PlayerNoise(ent, start, PNOISE_WEAPON);
+	G_RemoveAmmo(ent, ammo_usage);
+	ent->client->ps.gunframe++;
+}
+
+static void Weapon_PlasmaPistol_Fire(edict_t *ent)
+{
+	Weapon_Plasma_Fire(ent, deathmatch->integer ? 15 : 10, 1, 0, "plasma1/fire.wav");
+}
+
+void Weapon_PlasmaPistol(edict_t *ent)
+{
+	constexpr int pause_frames[] = { 20, 32, 0 };
+	constexpr int fire_frames[] = { 7, 0 };
+
+	Weapon_Generic(ent, 6, 11, 32, 40, pause_frames, fire_frames, Weapon_PlasmaPistol_Fire);
+}
+
+static void Weapon_PlasmaRifle_Fire(edict_t *ent)
+{
+	Weapon_Plasma_Fire(ent, deathmatch->integer ? 50 : 35, 5, 1, "plasma2/fire.wav");
+}
+
+void Weapon_PlasmaRifle(edict_t *ent)
+{
+	constexpr int pause_frames[] = { 11, 18, 24, 0 };
+	constexpr int fire_frames[] = { 9, 0 };
+
+	Weapon_Generic(ent, 7, 10, 24, 32, pause_frames, fire_frames, Weapon_PlasmaRifle_Fire);
+}
+
+static void weapon_obliterator_fire(edict_t *ent)
+{
+	int damage = 50 + irandom(5);
+	int splash = 60;
+
+	if (is_quad)
+	{
+		damage *= damage_multiplier;
+		splash *= damage_multiplier;
+	}
+
+	vec3_t forward, right, up;
+	AngleVectors(ent->client->v_angle, forward, right, up);
+	P_AddWeaponKick(ent, ent->client->v_forward * -2, { -1.f, 0.f, 0.f });
+
+	vec3_t offset;
+	if (ent->client->ps.gunframe == 15)
+		offset = { 8, 12, -8 };
+	else if (ent->client->ps.gunframe == 16)
+		offset = { 10, 12, -8 };
+	else if (ent->client->ps.gunframe == 17)
+		offset = { 10, 10, -8 };
+	else
+		offset = { 8, 10, -8 };
+
+	vec3_t start, dir;
+	P_ProjectSource(ent, ent->client->v_angle, offset, start, dir);
+	fire_obliterator_projectile(ent, start, dir, damage, 900, 100.f, splash);
+
+	gi.WriteByte(svc_muzzleflash);
+	gi.WriteEntity(ent);
+	gi.WriteByte(MZ_ROCKET | is_silenced);
+	gi.multicast(ent->s.origin, MULTICAST_PVS, false);
+
+	PlayerNoise(ent, start, PNOISE_WEAPON);
+	G_RemoveAmmo(ent, 1);
+	// Retail fires Hellfury/Obliterator on four consecutive frames.
+	// Rerelease Weapon_Generic already advances gunframe between firing steps,
+	// so doing it here skips every other shot and collapses the burst to two rockets.
+}
+
+void Weapon_Obliterator(edict_t *ent)
+{
+	constexpr int pause_frames[] = { 28, 31, 34, 38, 0 };
+	constexpr int fire_frames[] = { 15, 16, 17, 18, 0 };
+
+	Weapon_Generic(ent, 14, 27, 40, 48, pause_frames, fire_frames, weapon_obliterator_fire);
+}
+
+static void weapon_detonation_pack_fire(edict_t *ent)
+{
+	if (ent->client->ps.gunframe == 14)
+	{
+		gitem_t *remote = GetItemByIndex(IT_AMMO_TESLA);
+		ent->client->pers.inventory[remote->id] = 1;
+		ent->client->newweapon = remote;
+		ChangeWeapon(ent);
+		return;
+	}
+
+	ent->client->ps.gunframe++;
+
+	int damage = is_quad ? 800 : 400;
+	float damage_radius = is_quad ? 600.f : 300.f;
+
+	vec3_t start, dir;
+	P_ProjectSource(ent, ent->client->v_angle, { 8, -5, 0 }, start, dir);
+	P_AddWeaponKick(ent, ent->client->v_forward * -2, { -1.f, 0.f, 0.f });
+	fire_detpack(ent, start, dir, damage, damage_radius, 400.f, 0.f);
+
+	PlayerNoise(ent, start, PNOISE_WEAPON);
+	ent->client->pers.inventory[IT_AMMO_TRAP]--;
+}
+
+void Weapon_DetonationPack(edict_t *ent)
+{
+	constexpr int pause_frames[] = { 16, 21, 0 };
+	constexpr int fire_frames[] = { 10, 14, 0 };
+
+	Weapon_Generic(ent, 4, 14, 34, 39, pause_frames, fire_frames, weapon_detonation_pack_fire);
+}
+
+static void weapon_remote_detonator_fire(edict_t *ent)
+{
+	ent->client->ps.gunframe++;
+
+	for (uint32_t i = 0; i < globals.num_edicts; i++)
+	{
+		edict_t *check = &g_edicts[i];
+		if (!check->inuse || check->owner != ent || !check->classname)
+			continue;
+		if (Q_strcasecmp(check->classname, "detpack"))
+			continue;
+
+		detpack_detonate(check);
+	}
+
+	if (!ent->client->pers.inventory[IT_AMMO_TRAP])
+		NoAmmoWeaponChange(ent, false);
+	else
+		ent->client->newweapon = GetItemByIndex(IT_AMMO_TRAP);
+
+	ent->client->pers.inventory[IT_AMMO_TESLA] = 0;
+}
+
+void Weapon_RemoteDetonator(edict_t *ent)
+{
+	constexpr int pause_frames[] = { 18, 23, 28, 0 };
+	constexpr int fire_frames[] = { 7, 0 };
+
+	Weapon_Generic(ent, 4, 8, 28, 33, pause_frames, fire_frames, weapon_remote_detonator_fire);
 }
 
 //======================================================================

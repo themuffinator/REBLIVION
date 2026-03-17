@@ -22,6 +22,7 @@ void SP_func_door_secret(edict_t *ent);
 void SP_func_door_rotating(edict_t *ent);
 void SP_func_water(edict_t *ent);
 void SP_func_train(edict_t *ent);
+void SP_func_rotate_train(edict_t *ent);
 void SP_func_conveyor(edict_t *self);
 void SP_func_wall(edict_t *self);
 void SP_func_object(edict_t *self);
@@ -45,6 +46,7 @@ void SP_trigger_counter(edict_t *ent);
 void SP_trigger_elevator(edict_t *ent);
 void SP_trigger_gravity(edict_t *ent);
 void SP_trigger_monsterjump(edict_t *ent);
+void SP_trigger_misc_camera(edict_t *self);
 void SP_trigger_flashlight(edict_t *self); // [Paril-KEX]
 void SP_trigger_fog(edict_t *self); // [Paril-KEX]
 void SP_trigger_coop_relay(edict_t *self); // [Paril-KEX]
@@ -58,6 +60,8 @@ void SP_target_secret(edict_t *ent);
 void SP_target_goal(edict_t *ent);
 void SP_target_splash(edict_t *ent);
 void SP_target_spawner(edict_t *ent);
+void SP_target_rocket(edict_t *ent);
+void SP_target_railgun(edict_t *ent);
 void SP_target_blaster(edict_t *ent);
 void SP_target_crosslevel_trigger(edict_t *ent);
 void SP_target_crosslevel_target(edict_t *ent);
@@ -83,13 +87,22 @@ void SP_target_achievement(edict_t *self); // [Paril-KEX]
 void SP_target_story(edict_t *self); // [Paril-KEX]
 
 void SP_worldspawn(edict_t *ent);
+void SP_grenade(edict_t *self);
+void SP_detpack(edict_t *self);
+void SP_mine(edict_t *self);
 
 void SP_dynamic_light(edict_t* self);
 void SP_light(edict_t *self);
 void SP_light_mine1(edict_t *ent);
 void SP_light_mine2(edict_t *ent);
+void SP_misc_camera(edict_t *self);
+void SP_misc_camera_target(edict_t *self);
+void SP_misc_screenfader(edict_t *self);
+void SP_misc_deatomizer_control(edict_t *self);
+void SP_misc_deatomizer_target(edict_t *self);
 void SP_info_null(edict_t *self);
 void SP_info_notnull(edict_t *self);
+void SP_info_teleport_dest(edict_t *self);
 void SP_info_landmark (edict_t* self); // [Paril-KEX]
 void SP_info_world_text(edict_t * self);
 void SP_misc_player_mannequin(edict_t * self);
@@ -216,6 +229,12 @@ void SP_info_ctf_teleport_destination(edict_t *self);
 // ZOID
 
 void SP_monster_shambler(edict_t* self);
+void SP_monster_badass(edict_t *self);
+void SP_monster_cyborg(edict_t *self);
+void SP_monster_kigrax(edict_t *self);
+void SP_monster_sentinel(edict_t *self);
+void SP_monster_soldier_deatom(edict_t *self);
+void SP_monster_spider(edict_t *self);
 
 // clang-format off
 static const std::initializer_list<spawn_t> spawns = {
@@ -231,6 +250,7 @@ static const std::initializer_list<spawn_t> spawns = {
 	{ "func_door_rotating", SP_func_door_rotating },
 	{ "func_rotating", SP_func_rotating },
 	{ "func_train", SP_func_train },
+	{ "func_rotate_train", SP_func_rotate_train },
 	{ "func_water", SP_func_water },
 	{ "func_conveyor", SP_func_conveyor },
 	{ "func_areaportal", SP_func_areaportal },
@@ -255,6 +275,7 @@ static const std::initializer_list<spawn_t> spawns = {
 	{ "trigger_elevator", SP_trigger_elevator },
 	{ "trigger_gravity", SP_trigger_gravity },
 	{ "trigger_monsterjump", SP_trigger_monsterjump },
+	{ "trigger_misc_camera", SP_trigger_misc_camera },
 	{ "trigger_flashlight", SP_trigger_flashlight }, // [Paril-KEX]
 	{ "trigger_fog", SP_trigger_fog }, // [Paril-KEX]
 	{ "trigger_coop_relay", SP_trigger_coop_relay }, // [Paril-KEX]
@@ -268,6 +289,8 @@ static const std::initializer_list<spawn_t> spawns = {
 	{ "target_goal", SP_target_goal },
 	{ "target_splash", SP_target_splash },
 	{ "target_spawner", SP_target_spawner },
+	{ "target_rocket", SP_target_rocket },
+	{ "target_railgun", SP_target_railgun },
 	{ "target_blaster", SP_target_blaster },
 	{ "target_crosslevel_trigger", SP_target_crosslevel_trigger },
 	{ "target_crosslevel_target", SP_target_crosslevel_target },
@@ -293,14 +316,24 @@ static const std::initializer_list<spawn_t> spawns = {
 	{ "target_story", SP_target_story }, // [Paril-KEX]
 
 	{ "worldspawn", SP_worldspawn },
+	{ "grenade", SP_grenade },
+	{ "detpack", SP_detpack },
+	{ "mine", SP_mine },
 
 	{ "dynamic_light", SP_dynamic_light },
 	{ "light", SP_light },
 	{ "light_mine1", SP_light_mine1 },
 	{ "light_mine2", SP_light_mine2 },
+	{ "misc_camera", SP_misc_camera },
+	{ "misc_camera_target", SP_misc_camera_target },
+	{ "misc_screenfader", SP_misc_screenfader },
+	{ "misc_deatomizer_control", SP_misc_deatomizer_control },
+	{ "misc_deatomizer_target", SP_misc_deatomizer_target },
 	{ "info_null", SP_info_null },
 	{ "func_group", SP_info_null },
 	{ "info_notnull", SP_info_notnull },
+	{ "info_teleport_dest", SP_info_teleport_dest },
+	{ "info_teleporter_dest", SP_info_teleport_dest },
 	{ "info_landmark", SP_info_landmark },
 	{ "info_world_text", SP_info_world_text },
 	{ "path_corner", SP_path_corner },
@@ -341,6 +374,8 @@ static const std::initializer_list<spawn_t> spawns = {
 	{ "monster_soldier_ss", SP_monster_soldier_ss },
 	{ "monster_tank", SP_monster_tank },
 	{ "monster_tank_commander", SP_monster_tank },
+	{ "monster_badass", SP_monster_badass },
+	{ "monster_cyborg", SP_monster_cyborg },
 	{ "monster_medic", SP_monster_medic },
 	{ "monster_flipper", SP_monster_flipper },
 	{ "monster_chick", SP_monster_chick },
@@ -350,6 +385,10 @@ static const std::initializer_list<spawn_t> spawns = {
 	{ "monster_floater", SP_monster_floater },
 	{ "monster_hover", SP_monster_hover },
 	{ "monster_mutant", SP_monster_mutant },
+	{ "monster_kigrax", SP_monster_kigrax },
+	{ "monster_sentinel", SP_monster_sentinel },
+	{ "monster_soldier_deatom", SP_monster_soldier_deatom },
+	{ "monster_spider", SP_monster_spider },
 	{ "monster_supertank", SP_monster_supertank },
 	{ "monster_boss2", SP_monster_boss2 },
 	{ "monster_boss3_stand", SP_monster_boss3_stand },
@@ -471,6 +510,8 @@ void ED_CallSpawn(edict_t *ent)
 		ent->classname = GetItemByIndex(IT_AMMO_FLECHETTES)->classname;
 	if (!strcmp(ent->classname, "weapon_heatbeam"))
 		ent->classname = GetItemByIndex(IT_WEAPON_PLASMABEAM)->classname;
+	if (!strcmp(ent->classname, "weapon_dod"))
+		ent->classname = GetItemByIndex(IT_AMMO_DOD)->classname;
 	// pmm
 
 	// check item spawn functions
@@ -690,6 +731,10 @@ static const std::initializer_list<field_t> entity_fields = {
 	FIELD_AUTO(wait),
 	FIELD_AUTO(delay),
 	FIELD_AUTO(random),
+	FIELD_AUTO(duration),
+	FIELD_AUTO(rotate),
+	FIELD_AUTO_NAMED("rotate_vec", rotate),
+	FIELD_AUTO_NAMED("speeds", rotate_speed),
 	FIELD_AUTO(move_origin),
 	FIELD_AUTO(move_angles),
 	FIELD_AUTO(style),
@@ -715,7 +760,7 @@ static const std::initializer_list<field_t> entity_fields = {
 	FIELD_AUTO(hackflags), // [Paril-KEX] n64
 	FIELD_AUTO_NAMED("alpha", s.alpha), // [Paril-KEX]
 	FIELD_AUTO_NAMED("scale", s.scale), // [Paril-KEX]
-	{ "mangle" }, // editor field
+	FIELD_AUTO_NAMED("mangle", rotate),
 	FIELD_AUTO_NAMED("dead_frame", monsterinfo.start_frame), // [Paril-KEX]
 	FIELD_AUTO_NAMED("frame", s.frame),
 	FIELD_AUTO_NAMED("effects", s.effects),
@@ -1419,6 +1464,8 @@ Only used for the world.
 */
 void SP_worldspawn(edict_t *ent)
 {
+	G_ScreenFade_Reset();
+
 	ent->movetype = MOVETYPE_PUSH;
 	ent->solid = SOLID_BSP;
 	ent->inuse = true; // since the world doesn't use G_Spawn()

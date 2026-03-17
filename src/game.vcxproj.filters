@@ -82,6 +82,7 @@
     <ClCompile Include="cg_main.cpp" />
     <ClCompile Include="cg_screen.cpp" />
     <ClCompile Include="g_ai.cpp" />
+    <ClCompile Include="g_camera.cpp" />
     <ClCompile Include="g_chase.cpp" />
     <ClCompile Include="g_cmds.cpp" />
     <ClCompile Include="g_combat.cpp" />
@@ -91,6 +92,8 @@
     <ClCompile Include="g_misc.cpp" />
     <ClCompile Include="g_monster.cpp" />
     <ClCompile Include="g_phys.cpp" />
+    <ClCompile Include="g_rtrain.cpp" />
+    <ClCompile Include="g_rtdu.cpp" />
     <ClCompile Include="g_save.cpp" />
     <ClCompile Include="g_spawn.cpp" />
     <ClCompile Include="g_svcmds.cpp" />
@@ -101,6 +104,7 @@
     <ClCompile Include="g_weapon.cpp" />
     <ClCompile Include="m_actor.cpp" />
     <ClCompile Include="m_arachnid.cpp" />
+    <ClCompile Include="m_badass.cpp" />
     <ClCompile Include="m_berserk.cpp" />
     <ClCompile Include="m_boss2.cpp" />
     <ClCompile Include="m_boss3.cpp" />
@@ -108,6 +112,7 @@
     <ClCompile Include="m_boss32.cpp" />
     <ClCompile Include="m_brain.cpp" />
     <ClCompile Include="m_chick.cpp" />
+    <ClCompile Include="m_cyborg.cpp" />
     <ClCompile Include="m_flipper.cpp" />
     <ClCompile Include="m_float.cpp" />
     <ClCompile Include="m_flyer.cpp" />
@@ -118,10 +123,12 @@
     <ClCompile Include="m_hover.cpp" />
     <ClCompile Include="m_infantry.cpp" />
     <ClCompile Include="m_insane.cpp" />
+    <ClCompile Include="m_kigrax.cpp" />
     <ClCompile Include="m_medic.cpp" />
     <ClCompile Include="m_move.cpp" />
     <ClCompile Include="m_mutant.cpp" />
     <ClCompile Include="m_parasite.cpp" />
+    <ClCompile Include="m_spider.cpp" />
     <ClCompile Include="m_shambler.cpp" />
     <ClCompile Include="m_soldier.cpp" />
     <ClCompile Include="m_supertank.cpp" />

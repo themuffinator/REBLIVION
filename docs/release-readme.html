@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Oblivion Nightly Release Readme</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: #10161d;
+      color: #e8edf3;
+      line-height: 1.6;
+    }
+    main {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 40px 24px 64px;
+    }
+    h1, h2 {
+      color: #f7fafc;
+      line-height: 1.2;
+    }
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.2em;
+    }
+    h2 {
+      margin-top: 1.8em;
+      padding-bottom: 0.25em;
+      border-bottom: 1px solid #2d3946;
+    }
+    .eyebrow {
+      color: #8ec5ff;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+    .panel {
+      background: #171f29;
+      border: 1px solid #293442;
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin-top: 20px;
+    }
+    code, pre {
+      font-family: Consolas, "Courier New", monospace;
+    }
+    pre {
+      background: #0b1016;
+      border: 1px solid #24303c;
+      border-radius: 10px;
+      padding: 14px;
+      overflow-x: auto;
+    }
+    a {
+      color: #9dcaff;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+    }
+    th, td {
+      border-bottom: 1px solid #2b3642;
+      text-align: left;
+      padding: 10px 8px;
+      vertical-align: top;
+    }
+    th {
+      color: #9dcaff;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="eyebrow">Oblivion Rerelease</div>
+    <h1>Windows x64 Nightly Build</h1>
+    <p><strong>This archive contains a packaged <code>oblivion/</code> directory for the Quake II rerelease port of Oblivion.</strong></p>
+    <p>The exact build identity for this package is recorded in <code>VERSION.txt</code> inside the bundled <code>oblivion/</code> directory.</p>
+
+    <div class="panel">
+      <p>This release archive contains an <code>oblivion/</code> directory with:</p>
+      <ul>
+        <li><code>game_x64.dll</code></li>
+        <li><code>pak0.pak</code></li>
+        <li><code>README.html</code></li>
+        <li><code>VERSION.txt</code></li>
+      </ul>
+    </div>
+
+    <h2>Installation</h2>
+    <ol>
+      <li>Locate your Quake II rerelease installation directory.</li>
+      <li>Extract this archive into the rerelease root so the bundled <code>oblivion/</code> directory lands beside <code>baseq2/</code>.</li>
+      <li>Allow existing files inside <code>oblivion/</code> to be replaced if you are upgrading an earlier nightly build.</li>
+      <li>Launch the rerelease with <code>+set game oblivion</code>.</li>
+    </ol>
+
+    <p>This package is intended for the rerelease runtime and already includes the packaged Oblivion assets in <code>pak0.pak</code>.</p>
+
+    <h2>Expected Layout</h2>
+    <pre><code>oblivion/
+  game_x64.dll
+  pak0.pak
+  README.html
+  VERSION.txt
+</code></pre>
+
+    <h2>Versioning</h2>
+    <p>Nightly builds use a semantic base version from the repository <code>VERSION</code> file and append nightly identifiers in the release tag and archive name.</p>
+    <p>The format is:</p>
+    <pre><code>v&lt;base-version&gt;-nightly.YYYYMMDD.HHMMSS.g&lt;commit&gt;</code></pre>
+    <p>Example:</p>
+    <pre><code>v0.1.0-nightly.20260317.231500.g1a2b3c4</code></pre>
+
+    <h2>Notes</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Purpose</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>game_x64.dll</code></td>
+          <td>Windows x64 game module for the Quake II rerelease.</td>
+        </tr>
+        <tr>
+          <td><code>pak0.pak</code></td>
+          <td>Packaged Oblivion assets and data from this repository's <code>pack/</code> tree.</td>
+        </tr>
+        <tr>
+          <td><code>VERSION.txt</code></td>
+          <td>Human-readable build metadata including the exact nightly tag, UTC build time, and source commit.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>License And Attribution</h2>
+    <p>Original creative credit remains with the original Oblivion release by Lethargy Software. This repository is distributed under the GNU General Public License; see the repository <code>LICENSE</code> file for details.</p>
+  </main>
+</body>
+</html>

@@ -800,6 +800,7 @@ SAVE_STRUCT_START
 	FIELD_SIMPLE(inventory, ST_INVENTORY),
 
 	FIELD_AUTO(max_ammo),
+	FIELD_AUTO(plasma_rifle_regen_divisor),
 	
 	FIELD_AUTO(weapon),
 	FIELD_AUTO(lastweapon),
@@ -845,6 +846,17 @@ SAVE_STRUCT_START
 	// weapon_thunk not necessary
 	
 	FIELD_AUTO(newweapon),
+	FIELD_AUTO(remote_view_aux_entity),
+	FIELD_AUTO(remote_view_aux_flag),
+	FIELD_AUTO(remote_view_active),
+	FIELD_AUTO(remote_view_cmd_hook),
+	FIELD_AUTO(remote_view_body),
+	FIELD_AUTO(remote_view_entity),
+	FIELD_AUTO(rtdu_turret),
+	FIELD_AUTO(remote_view_state_1),
+	FIELD_AUTO(remote_view_state_2),
+	FIELD_AUTO(remote_view_timer),
+	FIELD_AUTO(remote_view_saved_gunindex),
 
 	// damage_ members are calculated on damage
 
@@ -890,6 +902,8 @@ SAVE_STRUCT_START
 	FIELD_AUTO(grenade_blew_up),
 	FIELD_AUTO(grenade_time),
 	FIELD_AUTO(grenade_finished_time),
+	FIELD_AUTO(plasma_pistol_next_regen),
+	FIELD_AUTO(plasma_rifle_next_regen),
 	FIELD_AUTO(quadfire_time),
 	FIELD_AUTO(silencer_shots),
 	FIELD_AUTO(weapon_sound),
@@ -1080,6 +1094,15 @@ SAVE_STRUCT_START
 	FIELD_AUTO(wait),
 	FIELD_AUTO(delay),
 	FIELD_AUTO(random),
+	FIELD_AUTO(duration),
+	FIELD_AUTO(rotate),
+	FIELD_AUTO(rotate_speed),
+	FIELD_AUTO(camera_path_speed),
+	FIELD_AUTO(camera_path_remaining),
+	FIELD_AUTO(camera_path_tail_speed),
+	FIELD_AUTO(camera_path_time),
+	FIELD_AUTO(camera_path_state),
+	FIELD_AUTO(camera_path_dir),
 
 	FIELD_AUTO(teleport_time),
 		
