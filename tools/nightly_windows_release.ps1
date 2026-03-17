@@ -219,6 +219,13 @@ if ($Publish) {
         $ghRepoArgs += @("--repo", $Repository)
     }
 
+    $releaseApiBase = if ($Repository) {
+        "repos/$Repository/releases"
+    }
+    else {
+        "repos/{owner}/{repo}/releases"
+    }
+
     Push-Location $workspacePath
     try {
         & $ghCommand.Source @ghRepoArgs release view $ReleaseTag *> $null
@@ -230,13 +237,23 @@ if ($Publish) {
                 exit $LASTEXITCODE
             }
 
+            $releaseId = (& $ghCommand.Source @ghRepoArgs release view $ReleaseTag --json databaseId --jq ".databaseId").Trim()
+            if (-not $releaseId) {
+                throw "Failed to resolve release id for $ReleaseTag"
+            }
+
+            & $ghCommand.Source api --method PATCH "$releaseApiBase/$releaseId" -F prerelease=false *> $null
+            if ($LASTEXITCODE -ne 0) {
+                exit $LASTEXITCODE
+            }
+
             & $ghCommand.Source @ghRepoArgs release upload $ReleaseTag $archivePath --clobber
             if ($LASTEXITCODE -ne 0) {
                 exit $LASTEXITCODE
             }
         }
         else {
-            & $ghCommand.Source @ghRepoArgs release create $ReleaseTag $archivePath --title $ReleaseTag --notes-file $notesPath --prerelease
+            & $ghCommand.Source @ghRepoArgs release create $ReleaseTag $archivePath --title $ReleaseTag --notes-file $notesPath
             if ($LASTEXITCODE -ne 0) {
                 exit $LASTEXITCODE
             }
