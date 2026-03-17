@@ -1,0 +1,77 @@
+name: Nightly Windows Release
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 3 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nightly-windows-release
+  cancel-in-progress: false
+
+jobs:
+  build-and-release:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Bootstrap vcpkg
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $vcpkgRoot = Join-Path $env:RUNNER_TEMP 'vcpkg'
+          $manifestPath = Join-Path $env:GITHUB_WORKSPACE 'vcpkg.json'
+
+          if (Test-Path $vcpkgRoot) {
+            Remove-Item -Recurse -Force $vcpkgRoot
+          }
+
+          git clone https://github.com/microsoft/vcpkg.git $vcpkgRoot
+
+          $baseline = (Get-Content $manifestPath -Raw | ConvertFrom-Json).'builtin-baseline'
+          if (-not $baseline) {
+            throw 'builtin-baseline is missing from vcpkg.json'
+          }
+
+          git -C $vcpkgRoot checkout $baseline
+          & (Join-Path $vcpkgRoot 'bootstrap-vcpkg.bat')
+
+          Add-Content -Path $env:GITHUB_ENV -Value "VCPKG_ROOT=$vcpkgRoot"
+          Add-Content -Path $env:GITHUB_ENV -Value "VCPKG_DEFAULT_TRIPLET=x64-windows-static"
+
+      - name: Restore vcpkg Dependencies
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          Push-Location $env:GITHUB_WORKSPACE
+          try {
+            & (Join-Path $env:VCPKG_ROOT 'vcpkg.exe') install --triplet x64-windows-static
+          }
+          finally {
+            Pop-Location
+          }
+
+      - name: Package and Publish Nightly
+        id: package
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          .\tools\nightly_windows_release.ps1 -WorkspaceRoot . -Publish -Repository $env:GITHUB_REPOSITORY
+
+      - name: Upload Nightly Archive
+        uses: actions/upload-artifact@v4
+        with:
+          name: nightly-windows
+          path: ${{ steps.package.outputs.archive_path }}
+          if-no-files-found: error
