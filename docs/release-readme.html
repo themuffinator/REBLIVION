@@ -214,8 +214,8 @@
       <div class="hero-copy">
         <div class="eyebrow">REBLIVION</div>
         <h1>Windows x64 Rerelease Build</h1>
-        <p class="lead"><strong>This archive contains a packaged <code>oblivion/</code> directory for the Quake II rerelease port of Oblivion.</strong> The project brand is REBLIVION, but the shipped folder name stays <code>oblivion/</code> for runtime compatibility.</p>
-        <p class="muted">The exact build identity for this package is recorded in <code>VERSION.txt</code> inside the bundled <code>oblivion/</code> directory.</p>
+        <p class="lead"><strong>This archive contains a packaged <code>reblivion/</code> directory for the Quake II rerelease port of Oblivion.</strong> It is meant to be extracted straight into the rerelease install and launched without any extra assembly work.</p>
+        <p class="muted">The exact build identity for this package is recorded in <code>VERSION.txt</code> inside the bundled <code>reblivion/</code> directory.</p>
 
         <div class="pill-row">
           <div class="pill">Runtime: Quake II rerelease</div>
@@ -242,16 +242,16 @@
         <h2>Install Summary</h2>
         <ol>
           <li>Locate the Quake II rerelease root directory.</li>
-          <li>Extract this archive so the bundled <code>oblivion/</code> folder lands beside <code>baseq2/</code>.</li>
-          <li>Allow existing files in <code>oblivion/</code> to be replaced if upgrading.</li>
-          <li>Launch with <code>+set game oblivion</code>.</li>
+          <li>Extract this archive so the bundled <code>reblivion/</code> folder lands beside <code>baseq2/</code>.</li>
+          <li>Allow existing files in <code>reblivion/</code> to be replaced if upgrading.</li>
+          <li>Launch with <code>+set game reblivion</code>.</li>
         </ol>
       </article>
     </section>
 
     <section class="section">
       <h2>Expected Layout</h2>
-      <pre><code>oblivion/
+      <pre><code>reblivion/
   game_x64.dll
   pak0.pak
   README.html
@@ -275,6 +275,47 @@
       <p><strong>REBLIVION is already in a solid playable state</strong> with a working rerelease DLL, packaged data, and active nightly release automation.</p>
       <p>It still requires broader map-by-map playtesting, edge-case verification, and continued refinement. Treat this as a serious build, not a final one.</p>
       <p>This package already includes the repository's Oblivion data inside <code>pak0.pak</code>, so end users install it directly into the rerelease root instead of assembling a separate retail-era Oblivion directory.</p>
+    </section>
+
+    <section class="section">
+      <h2>Roadmap</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Status</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Oblivion compatibility</td>
+            <td><strong>Done</strong></td>
+            <td>The rerelease port is up and running as a real playable build.</td>
+          </tr>
+          <tr>
+            <td>Q2Re texture <code>.mat</code> material files</td>
+            <td><strong>Done</strong></td>
+            <td>Material support is already in place for rerelease texture handling.</td>
+          </tr>
+          <tr>
+            <td>Q2Re glow maps</td>
+            <td><strong>Done, not final</strong></td>
+            <td>Glow map support exists, but visual cleanup and tuning remain open.</td>
+          </tr>
+          <tr>
+            <td>Map remastering</td>
+            <td><strong>In progress</strong></td>
+            <td>Maps are still being revisited and polished.</td>
+          </tr>
+          <tr>
+            <td>Ongoing enhancements</td>
+            <td><strong>In progress</strong></td>
+            <td>Testing-driven fixes and refinement work continue alongside broader playthrough validation.</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>If you hit a bug or want to suggest an improvement, please file it in <strong>GitHub Issues</strong>. Bug reports and enhancement requests are both welcome.</p>
     </section>
 
     <section class="section">
@@ -321,7 +362,7 @@
 
     <section class="section">
       <h2>Attribution And License</h2>
-      <p>Original creative credit remains with the original <strong>Oblivion</strong> release by <strong>Lethargy Software</strong>. REBLIVION is a rerelease porting and packaging effort built on top of that work and the preserved reconstruction material carried alongside it.</p>
+      <p>Original creative credit remains with the original <strong>Oblivion</strong> release by <strong>Lethargy Software</strong>. REBLIVION is a rerelease porting and packaging effort built on top of that work.</p>
       <p>This repository is distributed under the GNU General Public License v3. See the repository <code>LICENSE</code> file for details.</p>
     </section>
   </main>

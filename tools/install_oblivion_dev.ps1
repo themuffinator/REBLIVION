@@ -1,10 +1,10 @@
 param(
     [string]$WorkspaceRoot = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path,
-    [string]$StageRelativePath = ".install\oblivion",
+    [string]$StageRelativePath = ".install\reblivion",
     [string]$BinaryName = "game_x64.dll",
     [string]$PdbName = "game_x64.pdb",
     [string]$SteamRereleasePath = "C:\Program Files (x86)\Steam\steamapps\common\Quake 2\rerelease",
-    [string]$SteamModName = "oblivion"
+    [string]$SteamModName = "reblivion"
 )
 
 $ErrorActionPreference = "Stop"

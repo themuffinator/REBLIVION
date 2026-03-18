@@ -2,7 +2,7 @@
   <img src="docs/assets/reblivion-banner.png" alt="REBLIVION banner" width="100%">
 
   <h1>REBLIVION</h1>
-  <p><strong>A Quake II rerelease port and release-packaging effort for Oblivion, built to ship as a drop-in <code>oblivion/</code> game directory for the modern rerelease runtime.</strong></p>
+  <p><strong>A Quake II rerelease port of Oblivion, packaged to ship as a ready-to-run <code>reblivion/</code> game directory.</strong></p>
 
   <p>
     <a href="LICENSE"><img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="GPLv3"></a>
@@ -15,6 +15,8 @@
     <a href="#project-goal">Project Goal</a>
     &nbsp;·&nbsp;
     <a href="#project-status">Project Status</a>
+    &nbsp;·&nbsp;
+    <a href="#roadmap">Roadmap</a>
     &nbsp;·&nbsp;
     <a href="#runtime-target">Runtime Target</a>
     &nbsp;·&nbsp;
@@ -31,21 +33,15 @@
 <h2 id="project-goal">Project Goal</h2>
 
 <p>
-  <strong>REBLIVION</strong> is the rerelease-facing Oblivion project. Where the sibling
-  <code>Oblivion-reverse</code> repository is focused on source recovery, parity work, and historical reconstruction,
-  this repository is focused on making Oblivion run cleanly inside the modern <strong>Quake II rerelease</strong> runtime
-  with a shippable Windows x64 DLL, packaged game data, and release automation.
+  <strong>REBLIVION</strong> exists to make Oblivion feel at home in the modern <strong>Quake II rerelease</strong> runtime.
+  The goal is straightforward: build a reliable Windows x64 DLL, package the game cleanly, and make it easy for players
+  and testers to install, launch, and iterate on the project without extra guesswork.
 </p>
 
 <p>
-  The project branding is <strong>REBLIVION</strong>, but the runtime folder intentionally remains
-  <code>oblivion/</code> for compatibility with the rerelease's game-directory model, existing content paths, and current tooling.
-</p>
-
-<p>
-  This is not a fresh reinterpretation of Oblivion. The goal is to carry the original campaign, weapons, monsters,
-  assets, and mission flow into the rerelease environment with as little accidental drift as possible while solving the
-  practical integration work needed to make it build, package, and launch there.
+  That means preserving the character of the original mod while also doing the practical work that makes a rerelease port usable:
+  packaging assets into <code>pak0.pak</code>, staging intro media, publishing nightly builds, and smoothing off the rough edges that
+  show up once real people start running full playthroughs.
 </p>
 
 <h2 id="project-status">Project Status</h2>
@@ -59,6 +55,50 @@
 <p>
   It is <strong>not</strong> being presented as fully settled. Broader map-by-map playtesting, extended campaign validation,
   edge-case gameplay checks, and ongoing refinements are still needed before the port should be treated as comprehensively verified.
+</p>
+
+<h2 id="roadmap">Roadmap</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th align="left">Item</th>
+      <th align="left">Status</th>
+      <th align="left">Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Oblivion compatibility</td>
+      <td><strong>Done</strong></td>
+      <td>The rerelease port is up and running as a real playable project rather than a partial bootstrap.</td>
+    </tr>
+    <tr>
+      <td>Q2Re texture <code>.mat</code> material files</td>
+      <td><strong>Done</strong></td>
+      <td>Material support is in place for rerelease-friendly texture behavior.</td>
+    </tr>
+    <tr>
+      <td>Q2Re glow maps</td>
+      <td><strong>Done, not final</strong></td>
+      <td>Glow support exists, but visual tuning and cleanup are still expected.</td>
+    </tr>
+    <tr>
+      <td>Map remastering</td>
+      <td><strong>In progress</strong></td>
+      <td>Maps are being revisited and refined as the port matures.</td>
+    </tr>
+    <tr>
+      <td>Ongoing enhancements</td>
+      <td><strong>In progress</strong></td>
+      <td>Testing-driven fixes, polish work, and quality improvements continue alongside broader validation.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+  If you run into a bug or have a good idea for the port, please submit it through <strong>GitHub Issues</strong>.
+  Bug reports and enhancement requests are both useful, especially now that the project is at the stage where real testing feedback matters.
 </p>
 
 <h2>What This Repository Contains</h2>
@@ -76,7 +116,7 @@
 <p>
   This repository is currently scoped to the <strong>Windows x64</strong> Quake II rerelease target.
   The produced module is <code>game_x64.dll</code>, and the nightly packaging flow wraps it into a ready-to-extract
-  <code>oblivion/</code> directory.
+  <code>reblivion/</code> directory.
 </p>
 
 <table>
@@ -103,9 +143,9 @@
 <ol>
   <li>Locate your Quake II rerelease installation root, where the existing <code>baseq2/</code> folder lives.</li>
   <li>Download the latest REBLIVION release archive for Windows x64.</li>
-  <li>Extract the archive into the rerelease root so the bundled <code>oblivion/</code> directory lands beside <code>baseq2/</code>.</li>
-  <li>Allow files inside <code>oblivion/</code> to be replaced if you are updating an earlier build.</li>
-  <li>Launch the rerelease with <code>+set game oblivion</code>.</li>
+  <li>Extract the archive into the rerelease root so the bundled <code>reblivion/</code> directory lands beside <code>baseq2/</code>.</li>
+  <li>Allow files inside <code>reblivion/</code> to be replaced if you are updating an earlier build.</li>
+  <li>Launch the rerelease with <code>+set game reblivion</code>.</li>
 </ol>
 
 <p>Each release archive includes:</p>
@@ -128,7 +168,7 @@
 
 <pre><code>rerelease/
   baseq2/
-  oblivion/
+  reblivion/
     game_x64.dll
     pak0.pak
     README.html
@@ -177,7 +217,7 @@ powershell -ExecutionPolicy Bypass -File .\tools\build_game.ps1
 </code></pre>
 
 <p>
-  That script stages a ready-to-run build under <code>.install/oblivion/</code>, rebuilds <code>pak0.pak</code>,
+  That script stages a ready-to-run build under <code>.install/reblivion/</code>, rebuilds <code>pak0.pak</code>,
   copies the intro media, and updates or links the default Steam rerelease install when that path exists on the local machine.
 </p>
 
@@ -243,7 +283,7 @@ powershell -ExecutionPolicy Bypass -File .\tools\build_game.ps1
 
 <p>
   Original creative credit remains with the original <strong>Oblivion</strong> release by <strong>Lethargy Software</strong>.
-  REBLIVION is a porting, packaging, and preservation effort built on top of that work and on the broader reconstruction material preserved beside it.
+  REBLIVION is a rerelease porting and packaging effort built on top of that work.
 </p>
 
 <p>

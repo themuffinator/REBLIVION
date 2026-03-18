@@ -4,7 +4,7 @@ param(
     [ValidateSet("x64")]
     [string]$Platform = "x64",
     [string]$BinaryName = "game_x64.dll",
-    [string]$StageFolderName = "oblivion",
+    [string]$StageFolderName = "reblivion",
     [string]$VersionFileRelativePath = "VERSION",
     [string]$ReadmeRelativePath = "docs\release-readme.html",
     [string]$DistRelativePath = "dist",
@@ -152,11 +152,11 @@ if (-not $ReleaseTag) {
     $ReleaseTag = "v{0}-nightly.{1}.g{2}" -f $baseVersion, $NightlyStamp, $commitShort
 }
 
-$archiveName = "oblivion-windows-x64-{0}.zip" -f $ReleaseTag
+$archiveName = "reblivion-windows-x64-{0}.zip" -f $ReleaseTag
 $archivePath = Join-Path $distRoot $archiveName
 
 $releaseNotes = @(
-    "Oblivion Windows x64 nightly build",
+    "REBLIVION Windows x64 nightly build",
     "",
     "Base version: $baseVersion",
     "Release tag: $ReleaseTag",
@@ -197,7 +197,7 @@ foreach ($introVideoName in $introVideoNames) {
 }
 
 $versionInfo = @(
-    "Oblivion Windows x64 Nightly Build",
+    "REBLIVION Windows x64 Nightly Build",
     "Base Version: $baseVersion",
     "Release Tag: $ReleaseTag",
     "Built At (UTC): $buildTimestampUtc",
