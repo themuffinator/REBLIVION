@@ -2,7 +2,7 @@
   <img src="docs/assets/reblivion-banner.png" alt="REBLIVION banner" width="100%">
 
   <h1>REBLIVION</h1>
-  <p><strong>A Quake II rerelease port of Oblivion, packaged to ship as a ready-to-run <code>reblivion/</code> game directory.</strong></p>
+  <p><strong>A Quake II Rerelease port of Oblivion, focused on compatibility first and gradual enhancement over time.</strong></p>
 
   <p>
     <a href="LICENSE"><img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="GPLv3"></a>
@@ -33,15 +33,12 @@
 <h2 id="project-goal">Project Goal</h2>
 
 <p>
-  <strong>REBLIVION</strong> exists to make Oblivion feel at home in the modern <strong>Quake II rerelease</strong> runtime.
-  The goal is straightforward: build a reliable Windows x64 DLL, package the game cleanly, and make it easy for players
-  and testers to install, launch, and iterate on the project without extra guesswork.
+  <strong>REBLIVION</strong> exists to bring Oblivion to <strong>Quake II Rerelease</strong> and gradually enhance it for modern audiences.
 </p>
 
 <p>
-  That means preserving the character of the original mod while also doing the practical work that makes a rerelease port usable:
-  packaging assets into <code>pak0.pak</code>, staging intro media, publishing nightly builds, and smoothing off the rough edges that
-  show up once real people start running full playthroughs.
+  In practice, that means keeping the original mod's identity intact while improving the parts that benefit from rerelease-era work:
+  compatibility, packaging, presentation, map touch-ups, and steady quality-of-life improvements shaped by real testing.
 </p>
 
 <h2 id="project-status">Project Status</h2>
