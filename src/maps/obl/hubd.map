@@ -8,6 +8,15 @@
 "_sun_surface" "175"
 "classname" "worldspawn"
 "angle" "90"
+"fog_color" "0.909804 0.611765 0.266667"
+"heightfog_falloff" ".035"
+"fog_density" "0.02"
+"fog_sky_factor" ".1"
+"heightfog_density" ".0002"
+"heightfog_start_color" "0.909804 0.611765 0.266667"
+"heightfog_start_dist" "-256"
+"heightfog_end_dist" "-768"
+"heightfog_end_color" "0.45098 0.266667 0.137255"
 // generated from brush #763
 {
 ( -576 1984 -192 ) ( -576 2176 -192 ) ( -480 2176 -192 ) Barracks/metal1_11 [ 0 1 0 0 ] [ 1 0 0 -32 ] 0 1 1

@@ -8,6 +8,15 @@
 "classname" "worldspawn"
 "message" "Strogg City Hub"
 "sounds" "6"
+"fog_color" "0.909804 0.611765 0.266667"
+"heightfog_falloff" ".035"
+"fog_density" "0.02"
+"fog_sky_factor" ".1"
+"heightfog_density" ".0002"
+"heightfog_start_color" "0.909804 0.611765 0.266667"
+"heightfog_start_dist" "-256"
+"heightfog_end_dist" "-768"
+"heightfog_end_color" "0.45098 0.266667 0.137255"
 // generated from brush #550
 {
 ( -1624 1591.9999614022672 208 ) ( -1624 1591.9999614022672 192 ) ( -1560 1655.9999614022672 192 ) Barracks/lite04 [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1

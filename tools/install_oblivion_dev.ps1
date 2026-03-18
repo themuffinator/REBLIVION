@@ -20,7 +20,17 @@ $pakPath = Join-Path $stagePath "pak0.pak"
 $pakScriptPath = Join-Path $workspacePath "tools\make_pak.py"
 $stageBotsPath = Join-Path $stagePath "bots"
 $stageVideoPath = Join-Path $stagePath "video"
-$introOverrideNames = @(
+$introVideoNames = @(
+    "obintro.cin",
+    "obintro.ogv",
+    "obintro.srt",
+    "obintro_de.srt",
+    "obintro_es.srt",
+    "obintro_fr.srt",
+    "obintro_it.srt",
+    "obintro_ru.srt"
+)
+$legacyIntroNames = @(
     "ntro.cin",
     "ntro.ogv",
     "ntro.srt",
@@ -28,18 +38,15 @@ $introOverrideNames = @(
     "ntro_es.srt",
     "ntro_fr.srt",
     "ntro_it.srt",
-    "ntro_ru.srt"
-)
-$legacyIntroNames = @(
+    "ntro_ru.srt",
     "oblintro.cin",
     "oblintro.ogv",
     "oblintro.srt"
 )
 $steamPath = $SteamRereleasePath
 $steamModPath = Join-Path $steamPath $SteamModName
-$steamBaseQ2Path = Join-Path $steamPath "baseq2"
-$steamBootstrapPakPath = Join-Path $steamBaseQ2Path ("pak0-{0}.pak" -f $SteamModName)
 $stageMapDbPath = Join-Path $stagePath "mapdb.json"
+$legacyBootstrapPakPath = Join-Path (Join-Path $steamPath "baseq2") ("pak0-{0}.pak" -f $SteamModName)
 
 if (-not (Test-Path $binaryPath)) {
     throw "Built binary not found: $binaryPath"
@@ -57,10 +64,10 @@ if (-not (Test-Path $pakScriptPath)) {
     throw "PAK builder script not found: $pakScriptPath"
 }
 
-foreach ($introOverrideName in $introOverrideNames) {
-    $introOverridePath = Join-Path $packVideoPath $introOverrideName
-    if (-not (Test-Path $introOverridePath)) {
-        throw "Required intro override asset not found: $introOverridePath"
+foreach ($introVideoName in $introVideoNames) {
+    $introVideoPath = Join-Path $packVideoPath $introVideoName
+    if (-not (Test-Path $introVideoPath)) {
+        throw "Required Oblivion intro asset not found: $introVideoPath"
     }
 }
 
@@ -87,8 +94,8 @@ if (Test-Path $stageBotsPath) {
 Copy-Item -Recurse -Force $packBotsPath $stagePath
 
 New-Item -ItemType Directory -Force -Path $stageVideoPath | Out-Null
-foreach ($introOverrideName in $introOverrideNames) {
-    Copy-Item -Force (Join-Path $packVideoPath $introOverrideName) (Join-Path $stageVideoPath $introOverrideName)
+foreach ($introVideoName in $introVideoNames) {
+    Copy-Item -Force (Join-Path $packVideoPath $introVideoName) (Join-Path $stageVideoPath $introVideoName)
 }
 foreach ($legacyIntroName in $legacyIntroNames) {
     $legacyStagePath = Join-Path $stageVideoPath $legacyIntroName
@@ -102,15 +109,9 @@ if (Test-Path $stageMapDbPath) {
 }
 
 if (Test-Path $steamPath) {
-    if (Test-Path $steamBaseQ2Path) {
-        if (Test-Path $steamBootstrapPakPath) {
-            Remove-Item -Force $steamBootstrapPakPath
-        }
-        Copy-Item -Force $pakPath $steamBootstrapPakPath
-        Write-Host "Updated bootstrap pack at $steamBootstrapPakPath"
-    }
-    else {
-        Write-Warning "Steam baseq2 path not found: $steamBaseQ2Path"
+    if (Test-Path $legacyBootstrapPakPath) {
+        Remove-Item -Force $legacyBootstrapPakPath
+        Write-Host "Removed legacy bootstrap pack at $legacyBootstrapPakPath"
     }
 
     if (Test-Path $steamModPath) {
@@ -154,8 +155,8 @@ if (Test-Path $steamPath) {
 
             $steamVideoPath = Join-Path $steamModPath "video"
             New-Item -ItemType Directory -Force -Path $steamVideoPath | Out-Null
-            foreach ($introOverrideName in $introOverrideNames) {
-                Copy-Item -Force (Join-Path $packVideoPath $introOverrideName) (Join-Path $steamVideoPath $introOverrideName)
+            foreach ($introVideoName in $introVideoNames) {
+                Copy-Item -Force (Join-Path $packVideoPath $introVideoName) (Join-Path $steamVideoPath $introVideoName)
             }
             foreach ($legacyIntroName in $legacyIntroNames) {
                 $legacySteamPath = Join-Path $steamVideoPath $legacyIntroName

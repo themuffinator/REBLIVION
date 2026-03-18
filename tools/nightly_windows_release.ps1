@@ -78,16 +78,30 @@ function Invoke-PythonScript {
 $workspacePath = (Resolve-Path $WorkspaceRoot).Path
 $versionFilePath = Join-Path $workspacePath $VersionFileRelativePath
 $readmePath = Join-Path $workspacePath $ReadmeRelativePath
+$releaseBannerPath = Join-Path $workspacePath "docs\assets\reblivion-banner.png"
 $buildScriptPath = Join-Path $workspacePath "tools\build_game.ps1"
 $pakScriptPath = Join-Path $workspacePath "tools\make_pak.py"
 $packSourcePath = Join-Path $workspacePath "pack"
+$packVideoPath = Join-Path $packSourcePath "video"
 $binaryPath = Join-Path $workspacePath $BinaryName
 $distRoot = Join-Path $workspacePath $DistRelativePath
 $stageRoot = Join-Path $distRoot "windows-x64"
 $stageDir = Join-Path $stageRoot $StageFolderName
+$stageAssetsPath = Join-Path $stageDir "assets"
+$stageVideoPath = Join-Path $stageDir "video"
 $pakPath = Join-Path $stageDir "pak0.pak"
 $versionInfoPath = Join-Path $stageDir "VERSION.txt"
 $notesPath = Join-Path $stageRoot "release-notes.txt"
+$introVideoNames = @(
+    "obintro.cin",
+    "obintro.ogv",
+    "obintro.srt",
+    "obintro_de.srt",
+    "obintro_es.srt",
+    "obintro_fr.srt",
+    "obintro_it.srt",
+    "obintro_ru.srt"
+)
 
 if (-not (Test-Path $versionFilePath)) {
     throw "Missing VERSION file: $versionFilePath"
@@ -95,6 +109,10 @@ if (-not (Test-Path $versionFilePath)) {
 
 if (-not (Test-Path $readmePath)) {
     throw "Missing release readme: $readmePath"
+}
+
+if (-not (Test-Path $releaseBannerPath)) {
+    throw "Missing release banner: $releaseBannerPath"
 }
 
 if (-not (Test-Path $buildScriptPath)) {
@@ -107,6 +125,13 @@ if (-not (Test-Path $pakScriptPath)) {
 
 if (-not (Test-Path $packSourcePath)) {
     throw "Missing pack source directory: $packSourcePath"
+}
+
+foreach ($introVideoName in $introVideoNames) {
+    $introVideoPath = Join-Path $packVideoPath $introVideoName
+    if (-not (Test-Path $introVideoPath)) {
+        throw "Missing Oblivion intro asset: $introVideoPath"
+    }
 }
 
 $baseVersion = (Get-Content $versionFilePath -Raw).Trim()
@@ -161,9 +186,15 @@ if (Test-Path $stageRoot) {
 }
 
 New-Item -ItemType Directory -Force -Path $stageDir | Out-Null
+New-Item -ItemType Directory -Force -Path $stageAssetsPath | Out-Null
+New-Item -ItemType Directory -Force -Path $stageVideoPath | Out-Null
 
 Copy-Item -Force $binaryPath (Join-Path $stageDir $BinaryName)
 Copy-Item -Force $readmePath (Join-Path $stageDir "README.html")
+Copy-Item -Force $releaseBannerPath (Join-Path $stageAssetsPath "reblivion-banner.png")
+foreach ($introVideoName in $introVideoNames) {
+    Copy-Item -Force (Join-Path $packVideoPath $introVideoName) (Join-Path $stageVideoPath $introVideoName)
+}
 
 $versionInfo = @(
     "Oblivion Windows x64 Nightly Build",

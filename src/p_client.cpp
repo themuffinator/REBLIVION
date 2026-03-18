@@ -1759,6 +1759,16 @@ void respawn(edict_t *self)
 		return;
 	}
 
+	// The rerelease "restart level" UI path expects a hidden .restart save.
+	// Oblivion campaign startup currently produces the visible autoslot (save0)
+	// but not that hidden restart slot, which crashes the engine when it tries
+	// to reload after death. Use the autosave directly on Oblivion maps.
+	if (strncmp(level.mapname, "obl/", 4) == 0)
+	{
+		gi.AddCommandString("loadgame save0\n");
+		return;
+	}
+
 	// restart the entire server
 	gi.AddCommandString("menu_loadgame\n");
 }

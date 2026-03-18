@@ -3,145 +3,327 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Oblivion Nightly Release Readme</title>
+  <title>REBLIVION Release Readme</title>
   <style>
+    :root {
+      color-scheme: dark;
+      --bg: #120d0b;
+      --bg-alt: #1d1411;
+      --panel: rgba(34, 23, 18, 0.9);
+      --panel-strong: rgba(47, 31, 24, 0.96);
+      --border: #4f3024;
+      --accent: #ff8f57;
+      --accent-soft: #ffc8a2;
+      --text: #f5ede8;
+      --muted: #d0b4a4;
+      --shadow: 0 24px 60px rgba(0, 0, 0, 0.38);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      padding: 0;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      background: #10161d;
-      color: #e8edf3;
-      line-height: 1.6;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top, rgba(196, 96, 49, 0.18), transparent 38%),
+        linear-gradient(180deg, #19110e 0%, #120d0b 55%, #0c0908 100%);
+      color: var(--text);
+      font-family: "Segoe UI Variable Text", "Aptos", "Trebuchet MS", sans-serif;
+      line-height: 1.65;
     }
+
     main {
-      max-width: 920px;
+      max-width: 1080px;
       margin: 0 auto;
-      padding: 40px 24px 64px;
+      padding: 32px 20px 72px;
     }
-    h1, h2 {
-      color: #f7fafc;
-      line-height: 1.2;
+
+    .hero {
+      background: linear-gradient(180deg, rgba(38, 25, 19, 0.9), rgba(21, 15, 12, 0.94));
+      border: 1px solid rgba(114, 67, 47, 0.8);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
     }
-    h1 {
-      font-size: 2.2rem;
-      margin-bottom: 0.2em;
+
+    .banner {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-bottom: 1px solid rgba(114, 67, 47, 0.8);
     }
-    h2 {
-      margin-top: 1.8em;
-      padding-bottom: 0.25em;
-      border-bottom: 1px solid #2d3946;
+
+    .hero-copy {
+      padding: 28px 28px 32px;
     }
+
     .eyebrow {
-      color: #8ec5ff;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
+      color: var(--accent-soft);
       font-size: 0.8rem;
       font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
     }
-    .panel {
-      background: #171f29;
-      border: 1px solid #293442;
-      border-radius: 14px;
-      padding: 18px 20px;
-      margin-top: 20px;
+
+    h1, h2 {
+      margin: 0;
+      line-height: 1.15;
+      font-family: "Bahnschrift", "Segoe UI Variable Display", "Aptos Display", sans-serif;
     }
+
+    h1 {
+      margin-top: 10px;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+    }
+
+    h2 {
+      margin-top: 2.2rem;
+      margin-bottom: 0.8rem;
+      font-size: 1.45rem;
+      color: #fff5ee;
+    }
+
+    p {
+      margin: 0.85rem 0 0;
+      color: var(--text);
+    }
+
+    .lead {
+      font-size: 1.08rem;
+      color: #fff4ec;
+      max-width: 70ch;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .pill {
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 143, 87, 0.28);
+      background: rgba(255, 143, 87, 0.1);
+      color: #ffe5d4;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .card,
+    .section {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .card {
+      padding: 18px 18px 16px;
+    }
+
+    .section {
+      padding: 22px 22px 20px;
+      margin-top: 18px;
+    }
+
+    .card h2,
+    .section h2 {
+      margin-top: 0;
+    }
+
+    ul, ol {
+      margin: 0.9rem 0 0;
+      padding-left: 1.35rem;
+    }
+
+    li + li {
+      margin-top: 0.45rem;
+    }
+
     code, pre {
-      font-family: Consolas, "Courier New", monospace;
+      font-family: Consolas, "Cascadia Code", "Courier New", monospace;
     }
+
+    code {
+      color: #ffe1ce;
+    }
+
     pre {
-      background: #0b1016;
-      border: 1px solid #24303c;
-      border-radius: 10px;
-      padding: 14px;
+      margin: 1rem 0 0;
+      padding: 16px;
       overflow-x: auto;
+      background: rgba(10, 8, 7, 0.92);
+      border: 1px solid #392319;
+      border-radius: 14px;
+      color: #fce9dc;
     }
-    a {
-      color: #9dcaff;
-    }
+
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 12px;
+      margin-top: 1rem;
+      background: rgba(16, 11, 9, 0.45);
+      border-radius: 14px;
+      overflow: hidden;
     }
+
     th, td {
-      border-bottom: 1px solid #2b3642;
+      padding: 12px 10px;
+      border-bottom: 1px solid rgba(106, 67, 48, 0.45);
       text-align: left;
-      padding: 10px 8px;
       vertical-align: top;
     }
+
     th {
-      color: #9dcaff;
+      color: var(--accent-soft);
+      font-weight: 700;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    a {
+      color: #ffb486;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .section strong {
+      color: #fff7f2;
     }
   </style>
 </head>
 <body>
   <main>
-    <div class="eyebrow">Oblivion Rerelease</div>
-    <h1>Windows x64 Nightly Build</h1>
-    <p><strong>This archive contains a packaged <code>oblivion/</code> directory for the Quake II rerelease port of Oblivion.</strong></p>
-    <p>The exact build identity for this package is recorded in <code>VERSION.txt</code> inside the bundled <code>oblivion/</code> directory.</p>
+    <section class="hero">
+      <img class="banner" src="assets/reblivion-banner.png" alt="REBLIVION banner">
+      <div class="hero-copy">
+        <div class="eyebrow">REBLIVION</div>
+        <h1>Windows x64 Rerelease Build</h1>
+        <p class="lead"><strong>This archive contains a packaged <code>oblivion/</code> directory for the Quake II rerelease port of Oblivion.</strong> The project brand is REBLIVION, but the shipped folder name stays <code>oblivion/</code> for runtime compatibility.</p>
+        <p class="muted">The exact build identity for this package is recorded in <code>VERSION.txt</code> inside the bundled <code>oblivion/</code> directory.</p>
 
-    <div class="panel">
-      <p>This release archive contains an <code>oblivion/</code> directory with:</p>
-      <ul>
-        <li><code>game_x64.dll</code></li>
-        <li><code>pak0.pak</code></li>
-        <li><code>README.html</code></li>
-        <li><code>VERSION.txt</code></li>
-      </ul>
-    </div>
+        <div class="pill-row">
+          <div class="pill">Runtime: Quake II rerelease</div>
+          <div class="pill">Platform: Windows x64</div>
+          <div class="pill">Status: Solid state, ongoing testing</div>
+        </div>
+      </div>
+    </section>
 
-    <h2>Installation</h2>
-    <ol>
-      <li>Locate your Quake II rerelease installation directory.</li>
-      <li>Extract this archive into the rerelease root so the bundled <code>oblivion/</code> directory lands beside <code>baseq2/</code>.</li>
-      <li>Allow existing files inside <code>oblivion/</code> to be replaced if you are upgrading an earlier nightly build.</li>
-      <li>Launch the rerelease with <code>+set game oblivion</code>.</li>
-    </ol>
+    <section class="grid">
+      <article class="card">
+        <h2>Package Contents</h2>
+        <ul>
+          <li><code>game_x64.dll</code></li>
+          <li><code>pak0.pak</code></li>
+          <li><code>video/obintro.cin</code>, <code>video/obintro.ogv</code>, and subtitle files</li>
+          <li><code>README.html</code></li>
+          <li><code>VERSION.txt</code></li>
+          <li><code>assets/reblivion-banner.png</code></li>
+        </ul>
+      </article>
 
-    <p>This package is intended for the rerelease runtime and already includes the packaged Oblivion assets in <code>pak0.pak</code>.</p>
+      <article class="card">
+        <h2>Install Summary</h2>
+        <ol>
+          <li>Locate the Quake II rerelease root directory.</li>
+          <li>Extract this archive so the bundled <code>oblivion/</code> folder lands beside <code>baseq2/</code>.</li>
+          <li>Allow existing files in <code>oblivion/</code> to be replaced if upgrading.</li>
+          <li>Launch with <code>+set game oblivion</code>.</li>
+        </ol>
+      </article>
+    </section>
 
-    <h2>Expected Layout</h2>
-    <pre><code>oblivion/
+    <section class="section">
+      <h2>Expected Layout</h2>
+      <pre><code>oblivion/
   game_x64.dll
   pak0.pak
   README.html
   VERSION.txt
+  assets/
+    reblivion-banner.png
+  video/
+    obintro.cin
+    obintro.ogv
+    obintro.srt
+    obintro_de.srt
+    obintro_es.srt
+    obintro_fr.srt
+    obintro_it.srt
+    obintro_ru.srt
 </code></pre>
+    </section>
 
-    <h2>Versioning</h2>
-    <p>Nightly builds use a semantic base version from the repository <code>VERSION</code> file and append nightly identifiers in the release tag and archive name.</p>
-    <p>The format is:</p>
-    <pre><code>v&lt;base-version&gt;-nightly.YYYYMMDD.HHMMSS.g&lt;commit&gt;</code></pre>
-    <p>Example:</p>
-    <pre><code>v0.1.0-nightly.20260317.231500.g1a2b3c4</code></pre>
+    <section class="section">
+      <h2>Project Status</h2>
+      <p><strong>REBLIVION is already in a solid playable state</strong> with a working rerelease DLL, packaged data, and active nightly release automation.</p>
+      <p>It still requires broader map-by-map playtesting, edge-case verification, and continued refinement. Treat this as a serious build, not a final one.</p>
+      <p>This package already includes the repository's Oblivion data inside <code>pak0.pak</code>, so end users install it directly into the rerelease root instead of assembling a separate retail-era Oblivion directory.</p>
+    </section>
 
-    <h2>Notes</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Item</th>
-          <th>Purpose</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><code>game_x64.dll</code></td>
-          <td>Windows x64 game module for the Quake II rerelease.</td>
-        </tr>
-        <tr>
-          <td><code>pak0.pak</code></td>
-          <td>Packaged Oblivion assets and data from this repository's <code>pack/</code> tree.</td>
-        </tr>
-        <tr>
-          <td><code>VERSION.txt</code></td>
-          <td>Human-readable build metadata including the exact nightly tag, UTC build time, and source commit.</td>
-        </tr>
-      </tbody>
-    </table>
+    <section class="section">
+      <h2>Versioning</h2>
+      <p>Nightly builds use the semantic base version stored in the repository <code>VERSION</code> file and append a nightly stamp and commit suffix to the release tag and archive name.</p>
+      <pre><code>v&lt;base-version&gt;-nightly.YYYYMMDD.HHMMSS.g&lt;commit&gt;</code></pre>
+      <p>Example:</p>
+      <pre><code>v0.1.0-nightly.20260317.231500.g1a2b3c4</code></pre>
+    </section>
 
-    <h2>License And Attribution</h2>
-    <p>Original creative credit remains with the original Oblivion release by Lethargy Software. This repository is distributed under the GNU General Public License; see the repository <code>LICENSE</code> file for details.</p>
+    <section class="section">
+      <h2>Notes</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Purpose</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>game_x64.dll</code></td>
+            <td>Windows x64 game module for the Quake II rerelease runtime.</td>
+          </tr>
+          <tr>
+            <td><code>pak0.pak</code></td>
+            <td>Packaged Oblivion assets and data generated from the repository's <code>pack/</code> tree.</td>
+          </tr>
+          <tr>
+            <td><code>video/</code></td>
+            <td>Loose intro media that must remain outside the pak for the rerelease packaging flow.</td>
+          </tr>
+          <tr>
+            <td><code>VERSION.txt</code></td>
+            <td>Human-readable build metadata including the release tag, UTC build time, and source commit.</td>
+          </tr>
+          <tr>
+            <td><code>README.html</code></td>
+            <td>Standalone release documentation with local branding assets included in the archive.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section">
+      <h2>Attribution And License</h2>
+      <p>Original creative credit remains with the original <strong>Oblivion</strong> release by <strong>Lethargy Software</strong>. REBLIVION is a rerelease porting and packaging effort built on top of that work and the preserved reconstruction material carried alongside it.</p>
+      <p>This repository is distributed under the GNU General Public License v3. See the repository <code>LICENSE</code> file for details.</p>
+    </section>
   </main>
 </body>
 </html>

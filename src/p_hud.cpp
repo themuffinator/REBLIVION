@@ -600,50 +600,21 @@ void HelpComputer(edict_t *ent)
 
 	// send the layout
 
-	std::string helpString = "";
-	helpString += G_Fmt(
-		"xv 32 yv 8 picn help "		   // background
-		"xv 0 yv 25 cstring2 \"{}\" ",  // level name
-		level.level_name);
-
-	if (level.is_n64)
-	{
-		helpString += G_Fmt("xv 0 yv 54 loc_cstring 1 \"{{}}\" \"{}\" ",  // help 1
-			game.helpmessage1);
-	}
-	else 
-	{
-		int y = 54;
-		if (strlen(game.helpmessage1))
-		{
-			helpString += G_Fmt("xv 0 yv {} loc_cstring2 0 \"$g_pc_primary_objective\" "  // title
-				"xv 0 yv {} loc_cstring 0 \"{}\" ",
-				y,
-				y + 11,
-				game.helpmessage1);
-
-			y += 58;
-		}
-
-		if (strlen(game.helpmessage2))
-		{
-			helpString += G_Fmt("xv 0 yv {} loc_cstring2 0 \"$g_pc_secondary_objective\" "  // title
-				"xv 0 yv {} loc_cstring 0 \"{}\" ",
-				y,
-				y + 11,
-				game.helpmessage2);
-		}
-
-	}
-
-	helpString += G_Fmt("xv 55 yv 164 loc_string2 0 \"{}\" "
-		"xv 265 yv 164 loc_rstring2 1 \"{{}}: {}/{}\" \"$g_pc_goals\" "
-		"xv 55 yv 172 loc_string2 1 \"{{}}: {}/{}\" \"$g_pc_kills\" "
-		"xv 265 yv 172 loc_rstring2 1 \"{{}}: {}/{}\" \"$g_pc_secrets\" ",
+	std::string helpString = std::string(G_Fmt(
+		"xv 32 yv 8 picn help "                    // background
+		"xv 202 yv 12 loc_string2 0 \"{}\" "      // skill
+		"xv 0 yv 24 cstring2 \"{}\" "             // level name
+		"xv 0 yv 54 loc_cstring2 1 \"{{}}\" \"{}\" "   // help 1
+		"xv 0 yv 110 loc_cstring2 1 \"{{}}\" \"{}\" "  // help 2
+		"xv 50 yv 164 string2 \" kills     goals    secrets\" "
+		"xv 50 yv 172 string2 \"{:3}/{:3}     {}/{}       {}/{}\" ",
 		sk,
-		level.found_goals, level.total_goals,
+		level.level_name,
+		game.helpmessage1,
+		game.helpmessage2,
 		level.killed_monsters, level.total_monsters,
-		level.found_secrets, level.total_secrets);
+		level.found_goals, level.total_goals,
+		level.found_secrets, level.total_secrets));
 
 	gi.WriteByte(svc_layout);
 	gi.WriteString(helpString.c_str());

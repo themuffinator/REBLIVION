@@ -1,6 +1,6 @@
 {
   "episodes": [
-    {"id": "oblivion", "command": "newgame", "name": "Oblivion", "activity": "start_quake", "needsSkillSelect": true},
+    {"id": "oblivion", "command": "exec obstart.cfg", "name": "Oblivion", "activity": "start_quake", "needsSkillSelect": true},
     {"id": "baseq2", "command": "newgame", "name": "Quake II", "activity": "start_quake", "needsSkillSelect": true},
     {"id": "mg2", "command": "newgame_mg2", "name": "Call of the Machine", "activity": "start_mg2", "needsSkillSelect": true},
     {"id": "xatrix", "command": "newgame_xatrix", "name": "The Reckoning", "activity": "start_xatrix", "needsSkillSelect": true},
@@ -247,8 +247,8 @@
     {"bsp": "obl/friction", "title": "Friction", "episode": "oblivion", "dm": true},
     {"bsp": "obl/icepick", "title": "Icepick", "episode": "oblivion", "dm": true},
     {"bsp": "obl/medieval", "title": "Get Medieval", "episode": "oblivion", "dm": true},
-    {"bsp": "*ntro.cin+obl/base1", "title": "Oblivion", "episode": "oblivion", "display_bsp": false, "sp": true, "coop": true},
-    {"bsp": "ntro.cin", "title": "Intro", "episode": "oblivion", "unit": 1},
+    {"bsp": "*obintro.cin+obl/huba", "title": "Oblivion", "episode": "oblivion", "display_bsp": false, "sp": true, "coop": true},
+    {"bsp": "obintro.cin", "title": "Intro", "episode": "oblivion", "unit": 1},
     {"bsp": "obl/base1", "title": "Insertion", "episode": "oblivion", "unit": 1},
     {"bsp": "obl/huba", "title": "Strogg City Hub", "episode": "oblivion", "unit": 1},
     {"bsp": "obl/comm1", "title": "Comm Station", "episode": "oblivion", "unit": 1},
