@@ -897,6 +897,52 @@ static void Player_GiveStartItems(edict_t *ent, const char *ptr)
 	}
 }
 
+static bool Player_CanActivateStartWeapon(edict_t *ent, gitem_t *item)
+{
+	if (!item || G_WeaponPriority(item) == INT32_MAX)
+		return false;
+
+	if (!ent->client->pers.inventory[item->id])
+		return false;
+
+	if (!item->ammo)
+		return true;
+
+	return ent->client->pers.inventory[item->ammo] >= G_WeaponAmmoRequired(item);
+}
+
+static gitem_t *Player_FindPreferredStartWeapon(edict_t *ent, const char *ptr)
+{
+	char token_copy[MAX_TOKEN_CHARS];
+	const char *token;
+	gitem_t *best = nullptr;
+	int32_t best_priority = INT32_MAX;
+
+	while (*(token = COM_ParseEx(&ptr, ";")))
+	{
+		Q_strlcpy(token_copy, token, sizeof(token_copy));
+		const char *ptr_copy = token_copy;
+
+		const char *item_name = COM_Parse(&ptr_copy);
+		gitem_t *item = FindItemByClassname(item_name);
+
+		if (!item || !item->pickup)
+			gi.Com_ErrorFmt("Invalid g_start_item entry: {}\n", item_name);
+
+		if (!Player_CanActivateStartWeapon(ent, item))
+			continue;
+
+		int32_t priority = G_WeaponPriority(item);
+		if (priority >= best_priority)
+			continue;
+
+		best = item;
+		best_priority = priority;
+	}
+
+	return best;
+}
+
 /*
 ==============
 InitClientPersistant
@@ -956,6 +1002,8 @@ void InitClientPersistant(edict_t *ent, gclient_t *client)
 			}
 		}
 
+		gitem_t *preferred_start_weapon = nullptr;
+
 		if (!taken_loadout)
 		{
 			// fill with 50s, since it's our most common value
@@ -992,7 +1040,10 @@ void InitClientPersistant(edict_t *ent, gclient_t *client)
 			}
 
 			if (level.start_items && *level.start_items)
+			{
 				Player_GiveStartItems(ent, level.start_items);
+				preferred_start_weapon = Player_FindPreferredStartWeapon(ent, level.start_items);
+			}
 
 			if (!deathmatch->integer)
 				client->pers.inventory[IT_ITEM_COMPASS] = 1;
@@ -1008,6 +1059,9 @@ void InitClientPersistant(edict_t *ent, gclient_t *client)
 		}
 
 		NoAmmoWeaponChange(ent, false);
+
+		if (preferred_start_weapon)
+			client->newweapon = preferred_start_weapon;
 
 		client->pers.weapon = client->newweapon;
 		if (client->newweapon)

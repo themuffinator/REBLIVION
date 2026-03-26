@@ -701,7 +701,9 @@ enum monster_ai_flags_t : uint64_t
 	AI_ACTOR_SHOOT_ONCE = bit_v<39>,
 	AI_ACTOR_FRIENDLY = bit_v<40>,
 	AI_ACTOR_PATH_IDLE = bit_v<41>,
-	AI_ACTOR_FOLLOW = bit_v<42>
+	AI_ACTOR_FOLLOW = bit_v<42>,
+	AI_ACTOR_TEMP_HOLD = bit_v<43>,
+	AI_ACTOR_DEFENSIVE_FIRE = bit_v<44>
 };
 MAKE_ENUM_BITFLAGS(monster_ai_flags_t);
 
@@ -2337,6 +2339,9 @@ void HuntTarget(edict_t *self, bool animate_state = true);
 bool infront(edict_t *self, edict_t *other);
 bool visible(edict_t *self, edict_t *other, bool through_glass = true);
 bool FacingIdeal(edict_t *self);
+bool Actor_SanitizeEnemy(edict_t *self);
+bool Actor_ReactToDamage(edict_t *self, edict_t *attacker, edict_t *inflictor);
+bool Actor_ResumeScriptedPath(edict_t *self);
 // [Paril-KEX] generic function
 bool M_CheckAttack_Base(edict_t *self, float stand_ground_chance, float melee_chance, float near_chance, float mid_chance, float far_chance, float strafe_scalar);
 
@@ -2418,6 +2423,7 @@ void pierce_trace(const vec3_t &start, const vec3_t &end, edict_t *ignore, pierc
 //
 void PlayerTrail_Add(edict_t *player);
 void PlayerTrail_Destroy(edict_t *player);
+edict_t *PlayerTrail_PickTarget(edict_t *self, edict_t *target, bool next);
 edict_t *PlayerTrail_Pick(edict_t *self, bool next);
 
 //

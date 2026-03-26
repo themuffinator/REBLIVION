@@ -15,7 +15,391 @@ float   enemy_yaw;
 constexpr float MAX_SIDESTEP = 8.0f;
 // ROGUE
 
+constexpr float ACTOR_PATH_COMBAT_RANGE = 768.0f;
+constexpr float ACTOR_FOLLOW_STOP_DISTANCE = 96.0f;
+constexpr float ACTOR_FOLLOW_WALK_DISTANCE = 128.0f;
+constexpr float ACTOR_FOLLOW_RUN_DISTANCE = 320.0f;
+constexpr float ACTOR_FOLLOW_FRONT_STOP_DISTANCE = 160.0f;
+constexpr float ACTOR_PLAYER_PROTECT_RANGE = 640.0f;
+constexpr float ACTOR_SELF_DEFENSE_RANGE = 224.0f;
+constexpr float ACTOR_WITHDRAW_PLAYER_DISTANCE = 192.0f;
+constexpr float ACTOR_WITHDRAW_HEALTH_FRACTION = 0.35f;
+constexpr float ACTOR_ESCORT_SWITCH_SCORE = 192.0f;
+constexpr float ACTOR_REAR_GUARD_RANGE = 448.0f;
+constexpr float ACTOR_THREAT_DROP_RANGE = 768.0f;
+constexpr float ACTOR_YIELD_DISTANCE = 96.0f;
+constexpr float ACTOR_YIELD_SIDE_DISTANCE = 72.0f;
+constexpr float ACTOR_YIELD_BACKSTEP = 48.0f;
+constexpr float ACTOR_YIELD_SPEED = 80.0f;
+constexpr gtime_t ACTOR_DEFENSIVE_FIRE_TIMEOUT = 1500_ms;
+constexpr gtime_t ACTOR_PLAYER_DANGER_TIME = 2_sec;
+
 //============================================================================
+
+static bool Actor_IsMiscActor(const edict_t *self)
+{
+    return self && self->classname && strcmp(self->classname, "misc_actor") == 0;
+}
+
+static bool Actor_IsFriendlyCompanion(const edict_t *self)
+{
+    return Actor_IsMiscActor(self) && (self->monsterinfo.aiflags & AI_ACTOR_FRIENDLY);
+}
+
+static bool Actor_IsValidEscortTarget(const edict_t *ent)
+{
+    return ent &&
+        ent->inuse &&
+        ent->client &&
+        ent->health > 0 &&
+        !ent->deadflag &&
+        ent->solid;
+}
+
+static bool Actor_IsHostileMonster(const edict_t *ent)
+{
+    return ent &&
+        ent->inuse &&
+        (ent->svflags & SVF_MONSTER) &&
+        !(ent->svflags & SVF_DEADMONSTER) &&
+        !ent->deadflag &&
+        ent->health > 0 &&
+        !(ent->monsterinfo.aiflags & AI_GOOD_GUY);
+}
+
+static bool Actor_PlayerUnderPressure(const edict_t *player)
+{
+    return Actor_IsValidEscortTarget(player) &&
+        player->client->last_attacker_time + ACTOR_PLAYER_DANGER_TIME > level.time;
+}
+
+static bool Actor_IsPathNode(const edict_t *ent)
+{
+    return ent && ent->classname && strcmp(ent->classname, "target_actor") == 0;
+}
+
+static bool Actor_PlayerInFrontArc(const edict_t *player, const edict_t *ent)
+{
+	vec3_t forward;
+	vec3_t to_actor;
+	float distance;
+
+    if (!Actor_IsValidEscortTarget(player) || !ent)
+        return false;
+
+	AngleVectors(player->client->v_angle, forward, nullptr, nullptr);
+	to_actor = ent->s.origin - player->s.origin;
+
+    to_actor = to_actor.normalized(distance);
+    if (!distance)
+        return false;
+
+    return to_actor.dot(forward) > 0.35f;
+}
+
+static int32_t Actor_CountFollowers(const edict_t *player, const edict_t *ignore)
+{
+    int32_t count = 0;
+
+    if (!Actor_IsValidEscortTarget(player))
+        return 0;
+
+    for (uint32_t i = 0; i < globals.num_edicts; i++)
+    {
+        const edict_t *ent = &g_edicts[i];
+
+        if (ent == ignore || !Actor_IsFriendlyCompanion(ent))
+            continue;
+        if (!(ent->monsterinfo.aiflags & AI_ACTOR_PATH_IDLE))
+            continue;
+        if (ent->target_ent == player)
+            count++;
+    }
+
+    return count;
+}
+
+static float Actor_ScoreEscortTarget(edict_t *self, edict_t *player, edict_t *current)
+{
+    float dist = (player->s.origin - self->s.origin).length();
+    float score = 0.0f;
+
+    if (player == current)
+        score += 450.0f;
+    if (visible(self, player))
+        score += 250.0f;
+    if (Actor_PlayerUnderPressure(player))
+        score += 325.0f;
+
+    if (dist <= 512.0f)
+        score += 512.0f - dist;
+    else
+        score -= (dist - 512.0f) * 0.25f;
+
+    score -= Actor_CountFollowers(player, self) * 160.0f;
+
+    if (self->enemy && self->enemy->inuse && self->enemy->enemy == player)
+        score += 250.0f;
+
+    return score;
+}
+
+static edict_t *Actor_SelectEscortTarget(edict_t *self)
+{
+    edict_t *current = Actor_IsValidEscortTarget(self->target_ent) ? self->target_ent : nullptr;
+    edict_t *best = current;
+    float best_score = current ? Actor_ScoreEscortTarget(self, current, current) : -std::numeric_limits<float>::infinity();
+
+    for (auto player : active_players())
+    {
+        if (!Actor_IsValidEscortTarget(player))
+            continue;
+
+        float score = Actor_ScoreEscortTarget(self, player, current);
+        if (!best || score > best_score + (best == current ? ACTOR_ESCORT_SWITCH_SCORE : 0.0f))
+        {
+            best = player;
+            best_score = score;
+        }
+    }
+
+    return best;
+}
+
+static edict_t *Actor_PickEscortBreadcrumb(edict_t *self, edict_t *escort)
+{
+    edict_t *marker = PlayerTrail_PickTarget(self, escort, false);
+    if (!marker)
+        marker = PlayerTrail_PickTarget(self, escort, true);
+
+    if (marker || !Actor_IsValidEscortTarget(escort) || !escort->client || !escort->client->trail_head)
+        return marker;
+
+    edict_t *best_visible = nullptr;
+    float best_visible_dist = std::numeric_limits<float>::infinity();
+    edict_t *best_any = nullptr;
+    float best_any_dist = std::numeric_limits<float>::infinity();
+
+    for (edict_t *trail = escort->client->trail_head; trail; trail = trail->enemy)
+    {
+        float dist = (trail->s.origin - self->s.origin).lengthSquared();
+
+        if (visible(self, trail) && dist < best_visible_dist)
+        {
+            best_visible = trail;
+            best_visible_dist = dist;
+        }
+
+        if (dist < best_any_dist)
+        {
+            best_any = trail;
+            best_any_dist = dist;
+        }
+    }
+
+    return best_visible ? best_visible : best_any;
+}
+
+static edict_t *Actor_SelectFollowGoal(edict_t *self, edict_t *escort)
+{
+    if (!Actor_IsValidEscortTarget(escort))
+        return nullptr;
+
+    if (visible(self, escort))
+        return escort;
+
+    return Actor_PickEscortBreadcrumb(self, escort);
+}
+
+static bool Actor_BuildYieldGoal(edict_t *self, edict_t *escort, vec3_t &goal)
+{
+    vec3_t angles = {};
+    vec3_t forward;
+    vec3_t right;
+
+    if (!Actor_IsFriendlyCompanion(self) || !Actor_IsValidEscortTarget(escort) || !visible(self, escort))
+        return false;
+
+    if (escort->velocity.lengthSquared() >= ACTOR_YIELD_SPEED * ACTOR_YIELD_SPEED)
+        angles[YAW] = vectoyaw(escort->velocity);
+    else if (escort->client)
+        angles = escort->client->v_angle;
+    else
+        angles = escort->s.angles;
+
+    AngleVectors(angles, forward, right, nullptr);
+
+    vec3_t to_actor = self->s.origin - escort->s.origin;
+    float forward_offset = to_actor.dot(forward);
+    if (forward_offset < -24.0f || forward_offset > ACTOR_YIELD_DISTANCE)
+        return false;
+
+    float best_fraction = 0.0f;
+    vec3_t best_goal = self->s.origin;
+    int32_t prefer_side = to_actor.dot(right) >= 0.0f ? 1 : -1;
+
+    for (int32_t side : { prefer_side, -prefer_side })
+    {
+        vec3_t candidate = escort->s.origin + (right * (side * ACTOR_YIELD_SIDE_DISTANCE)) - (forward * ACTOR_YIELD_BACKSTEP);
+        candidate[2] = self->s.origin[2];
+
+        trace_t tr = gi.trace(self->s.origin, self->mins, self->maxs, candidate, self, MASK_MONSTERSOLID);
+        if (tr.fraction > best_fraction)
+        {
+            best_fraction = tr.fraction;
+            best_goal = tr.endpos;
+        }
+    }
+
+    if (best_fraction < 0.35f || (best_goal - self->s.origin).lengthSquared() < 16.0f * 16.0f)
+        return false;
+
+    goal = best_goal;
+    return true;
+}
+
+static bool Actor_ShouldGuardRear(edict_t *self, edict_t *escort, edict_t *threat)
+{
+    if (!Actor_IsFriendlyCompanion(self) || !Actor_IsValidEscortTarget(escort) || !Actor_IsHostileMonster(threat))
+        return false;
+
+    if ((threat->s.origin - escort->s.origin).length() > ACTOR_REAR_GUARD_RANGE)
+        return false;
+
+    if (threat->enemy != self && threat->enemy != escort && !Actor_PlayerUnderPressure(escort))
+        return false;
+
+    return !infront(escort, threat);
+}
+
+static edict_t *Actor_ResolveDamageThreat(edict_t *attacker, edict_t *inflictor)
+{
+    if (Actor_IsHostileMonster(attacker))
+        return attacker;
+
+    if (attacker && attacker->inuse && attacker->owner && attacker->owner->inuse && Actor_IsHostileMonster(attacker->owner))
+        return attacker->owner;
+
+    if (Actor_IsHostileMonster(inflictor))
+        return inflictor;
+
+    if (inflictor && inflictor->inuse && inflictor->owner && inflictor->owner->inuse && Actor_IsHostileMonster(inflictor->owner))
+        return inflictor->owner;
+
+    return nullptr;
+}
+
+static bool Actor_ClearPlayerEnemy(edict_t *self)
+{
+    if (!Actor_IsFriendlyCompanion(self) || !self->enemy || !self->enemy->client)
+        return false;
+
+    self->enemy = nullptr;
+    self->oldenemy = nullptr;
+    self->monsterinfo.last_player_enemy = nullptr;
+    self->goalentity = self->movetarget;
+    self->monsterinfo.aiflags &= ~(AI_SOUND_TARGET | AI_TEMP_STAND_GROUND);
+    self->monsterinfo.aiflags &= ~AI_ACTOR_DEFENSIVE_FIRE;
+    return true;
+}
+
+bool Actor_SanitizeEnemy(edict_t *self)
+{
+    if (!Actor_IsFriendlyCompanion(self) || !self->enemy || !self->enemy->client)
+        return false;
+
+    edict_t *threat = Actor_ResolveDamageThreat(self->monsterinfo.damage_attacker, self->monsterinfo.damage_inflictor);
+
+    self->oldenemy = nullptr;
+    self->monsterinfo.last_player_enemy = nullptr;
+    self->monsterinfo.aiflags &= ~(AI_SOUND_TARGET | AI_TEMP_STAND_GROUND);
+
+    if (threat)
+    {
+        self->enemy = threat;
+        self->goalentity = threat;
+        if (self->monsterinfo.aiflags & AI_ACTOR_PATH_IDLE)
+            self->monsterinfo.aiflags |= AI_ACTOR_DEFENSIVE_FIRE;
+        return true;
+    }
+
+    self->enemy = nullptr;
+    self->goalentity = self->movetarget;
+    self->monsterinfo.aiflags &= ~AI_ACTOR_DEFENSIVE_FIRE;
+    return true;
+}
+
+static bool Actor_BeginDefensiveFire(edict_t *self, edict_t *escort, edict_t *threat)
+{
+    if (!Actor_IsFriendlyCompanion(self) ||
+        !(self->monsterinfo.aiflags & AI_ACTOR_PATH_IDLE) ||
+        !Actor_IsHostileMonster(threat))
+    {
+        return false;
+    }
+
+    if (escort)
+        self->target_ent = escort;
+
+    if (self->enemy && self->enemy != threat && Actor_IsHostileMonster(self->enemy))
+        self->oldenemy = self->enemy;
+
+    self->enemy = threat;
+    self->monsterinfo.aiflags |= (AI_ACTOR_DEFENSIVE_FIRE | AI_ACTOR_FOLLOW);
+    self->monsterinfo.aiflags &= ~(AI_SOUND_TARGET | AI_LOST_SIGHT | AI_TEMP_STAND_GROUND);
+    self->monsterinfo.run(self);
+    return true;
+}
+
+static bool Actor_MoveFollowGoal(edict_t *self, float dist, edict_t *threat = nullptr)
+{
+    edict_t *escort = Actor_IsValidEscortTarget(self->target_ent) ? self->target_ent : Actor_SelectEscortTarget(self);
+    if (!escort)
+        return false;
+
+    self->target_ent = escort;
+
+    edict_t *follow_goal = Actor_SelectFollowGoal(self, escort);
+    self->movetarget = follow_goal;
+    self->goalentity = follow_goal;
+    self->monsterinfo.aiflags |= AI_ACTOR_FOLLOW;
+
+    bool guard_rear = threat && Actor_ShouldGuardRear(self, escort, threat);
+    vec3_t yield_goal;
+    edict_t *temp_goal = nullptr;
+    if (!guard_rear && Actor_BuildYieldGoal(self, escort, yield_goal))
+    {
+        temp_goal = G_Spawn();
+        temp_goal->s.origin = yield_goal;
+        self->goalentity = temp_goal;
+    }
+
+    bool handled = guard_rear || self->goalentity;
+
+    if (self->goalentity)
+    {
+        vec3_t dir = self->goalentity->s.origin - self->s.origin;
+        float goal_dist = dir.length();
+        if (goal_dist > 0.0f)
+            self->ideal_yaw = vectoyaw(dir);
+
+        float stop_distance = Actor_PlayerInFrontArc(escort, self) ? ACTOR_FOLLOW_FRONT_STOP_DISTANCE : ACTOR_FOLLOW_STOP_DISTANCE;
+        bool should_move = guard_rear ? false : temp_goal || self->goalentity != escort || goal_dist > stop_distance;
+
+        if (should_move)
+            M_MoveToGoal(self, dist);
+        else if (!(self->monsterinfo.aiflags & AI_MANUAL_STEERING))
+            M_ChangeYaw(self);
+    }
+
+    if (temp_goal)
+    {
+        G_FreeEdict(temp_goal);
+        self->goalentity = self->movetarget;
+    }
+
+    return handled;
+}
 
 static void Actor_EngageEnemy(edict_t *self)
 {
@@ -38,124 +422,173 @@ static void Actor_EngageEnemy(edict_t *self)
         self->monsterinfo.attack_finished = level.time + random_time(1_sec);
 }
 
-static bool Actor_FindEnemyTarget(edict_t *self)
+static float Actor_ScoreThreatTarget(edict_t *self, edict_t *escort, edict_t *ent, float max_dist)
+{
+    if (!Actor_IsHostileMonster(ent))
+        return -1.0f;
+
+    bool escort_visible_to_monster = escort && visible(escort, ent);
+    bool escort_enemy = escort && ent->enemy == escort;
+    bool self_enemy = ent->enemy == self;
+    bool current_enemy = ent == self->enemy;
+    bool close_visible = visible(self, ent) && (ent->s.origin - self->s.origin).length() <= ACTOR_SELF_DEFENSE_RANGE;
+
+    if (!current_enemy && !self_enemy && !escort_enemy && !close_visible)
+    {
+        if (!escort || !escort_visible_to_monster || infront(escort, ent))
+            return -1.0f;
+    }
+
+    float dist = (ent->s.origin - self->s.origin).length();
+	if (max_dist > 0.0f && dist > max_dist && !current_enemy && !self_enemy && !escort_enemy)
+		return -1.0f;
+
+    bool self_visible = visible(self, ent);
+    if (!self_visible && !self_enemy && !escort_enemy && !current_enemy)
+        return -1.0f;
+
+    float score = self_visible ? 400.0f : 100.0f;
+    score += max(0.0f, ACTOR_PATH_COMBAT_RANGE - dist);
+
+    if (current_enemy)
+        score += self_visible ? 700.0f : 350.0f;
+    if (self_enemy)
+        score += 900.0f;
+
+    if (escort)
+    {
+        float escort_dist = (ent->s.origin - escort->s.origin).length();
+        score += max(0.0f, ACTOR_PLAYER_PROTECT_RANGE - escort_dist) * 0.75f;
+
+        if (escort_enemy)
+            score += 1200.0f;
+        if (escort_visible_to_monster && !infront(escort, ent))
+            score += 250.0f;
+        if (Actor_PlayerUnderPressure(escort))
+            score += 150.0f;
+    }
+
+    return score;
+}
+
+static edict_t *Actor_FindThreatTarget(edict_t *self, edict_t *escort, float max_dist = 0.0f)
 {
     edict_t *best = nullptr;
-    float best_dist = std::numeric_limits<float>::max();
+    float best_score = -1.0f;
 
     if (!self)
-        return false;
+        return nullptr;
 
     for (uint32_t i = 0; i < globals.num_edicts; i++)
     {
         edict_t *ent = &g_edicts[i];
 
-        if (!ent->inuse)
-            continue;
-        if (!(ent->svflags & SVF_MONSTER) || (ent->svflags & SVF_DEADMONSTER))
-            continue;
-        if (ent->deadflag || ent->health <= 0)
-            continue;
-        if (ent->monsterinfo.aiflags & AI_GOOD_GUY)
-            continue;
-        if (!visible(self, ent))
-            continue;
-
-        float dist = (ent->s.origin - self->s.origin).length();
-        if (dist < best_dist)
+        float score = Actor_ScoreThreatTarget(self, escort, ent, max_dist);
+        if (score > best_score)
         {
-            best_dist = dist;
             best = ent;
+            best_score = score;
         }
     }
 
     if (!best)
-        return false;
+        return nullptr;
 
-    self->monsterinfo.aiflags &= ~AI_ACTOR_FOLLOW;
-    self->enemy = best;
-    Actor_EngageEnemy(self);
-    M_ChangeYaw(self);
-    return true;
+    return best;
 }
 
-static bool Actor_IsPlayerFollowTarget(edict_t *ent)
+static bool Actor_ShouldWithdraw(edict_t *self, edict_t *escort, edict_t *threat)
 {
-    edict_t *follow = nullptr;
-
-    if (!ent || !ent->inuse)
+    if (!self || !Actor_IsValidEscortTarget(escort) || !Actor_IsHostileMonster(threat))
         return false;
 
-    if (ent->client)
+    float health_fraction = (float) self->health / max(1, self->max_health);
+    if (health_fraction > ACTOR_WITHDRAW_HEALTH_FRACTION)
+        return false;
+
+    if (threat->enemy != self && threat->enemy != escort)
+        return false;
+
+    return health_fraction < 0.2f ||
+        (escort->s.origin - self->s.origin).length() > ACTOR_WITHDRAW_PLAYER_DISTANCE;
+}
+
+static bool Actor_FindEnemyTarget(edict_t *self, float max_dist = 0.0f)
+{
+    if (!self)
+        return false;
+
+    Actor_ClearPlayerEnemy(self);
+
+    edict_t *escort = Actor_SelectEscortTarget(self);
+    edict_t *best = Actor_FindThreatTarget(self, escort, max_dist);
+
+    if (!best)
+        return false;
+
+    if (escort)
+        self->target_ent = escort;
+
+    if (Actor_ShouldWithdraw(self, escort, best))
+        return false;
+
+    if (Actor_BeginDefensiveFire(self, escort, best))
         return true;
 
-    if (!(ent->monsterinfo.aiflags & AI_ACTOR_FOLLOW))
-        return false;
-
-    follow = ent->goalentity;
-    for (int depth = 0; depth < 10; depth++)
-    {
-        if (!follow || !follow->inuse)
-            return false;
-        if (follow->client)
-            return true;
-        if (!(follow->monsterinfo.aiflags & AI_ACTOR_FOLLOW) || follow == ent)
-            return false;
-        follow = follow->goalentity;
-    }
-
-    return false;
+    self->monsterinfo.aiflags &= ~AI_ACTOR_FOLLOW;
+    if (self->enemy && self->enemy != best && Actor_IsHostileMonster(self->enemy))
+        self->oldenemy = self->enemy;
+    self->enemy = best;
+    FoundTarget(self);
+    return true;
 }
 
 static bool Actor_FindFollowTarget(edict_t *self)
 {
-    edict_t *candidate = nullptr;
-    float best_dist = std::numeric_limits<float>::max();
+    edict_t *escort = nullptr;
+    edict_t *goal = nullptr;
 
     if (!self)
         return false;
 
-    if ((self->monsterinfo.aiflags & AI_ACTOR_FOLLOW) &&
-        self->goalentity && Actor_IsPlayerFollowTarget(self->goalentity))
+    Actor_ClearPlayerEnemy(self);
+    escort = Actor_SelectEscortTarget(self);
+
+    if (!escort)
     {
-        candidate = self->goalentity;
-    }
-
-    if (!candidate)
-    {
-        for (uint32_t i = 0; i < globals.num_edicts; i++)
-        {
-            edict_t *ent = &g_edicts[i];
-
-            if (ent == self || !ent->inuse)
-                continue;
-            if (!ent->client && !(ent->monsterinfo.aiflags & AI_GOOD_GUY))
-                continue;
-            if (!visible(self, ent))
-                continue;
-            if (!Actor_IsPlayerFollowTarget(ent))
-                continue;
-
-            float dist = (ent->s.origin - self->s.origin).length();
-            if (dist < best_dist)
-            {
-                best_dist = dist;
-                candidate = ent;
-            }
-        }
-    }
-
-    if (!candidate)
+        self->monsterinfo.aiflags &= ~(AI_ACTOR_FOLLOW | AI_ACTOR_DEFENSIVE_FIRE);
+        self->target_ent = nullptr;
+        self->goalentity = self->movetarget = nullptr;
         return false;
+    }
 
-    vec3_t dir = candidate->s.origin - self->s.origin;
+    self->target_ent = escort;
+    self->monsterinfo.aiflags |= AI_ACTOR_FOLLOW;
+    self->monsterinfo.aiflags &= ~AI_ACTOR_DEFENSIVE_FIRE;
+
+    goal = Actor_SelectFollowGoal(self, escort);
+    self->goalentity = self->movetarget = goal;
+
+    if (!goal)
+    {
+        self->monsterinfo.stand(self);
+        return true;
+    }
+
+    vec3_t dir = goal->s.origin - self->s.origin;
     self->ideal_yaw = vectoyaw(dir);
     M_ChangeYaw(self);
-    self->goalentity = candidate;
-    self->movetarget = candidate;
-    self->monsterinfo.aiflags |= AI_ACTOR_FOLLOW;
 
-    if (dir.length() >= 100.0f)
+    float dist = dir.length();
+    float stop_distance = Actor_PlayerInFrontArc(escort, self) ? ACTOR_FOLLOW_FRONT_STOP_DISTANCE : ACTOR_FOLLOW_STOP_DISTANCE;
+    float walk_distance = max(ACTOR_FOLLOW_WALK_DISTANCE, stop_distance + 16.0f);
+    bool should_keep_walking =
+        (self->monsterinfo.aiflags & AI_ACTOR_FOLLOW) &&
+        dist >= stop_distance;
+
+    if (dist >= ACTOR_FOLLOW_RUN_DISTANCE)
+        self->monsterinfo.run(self);
+    else if (dist >= walk_distance || should_keep_walking)
         self->monsterinfo.walk(self);
     else
         self->monsterinfo.stand(self);
@@ -163,9 +596,112 @@ static bool Actor_FindFollowTarget(edict_t *self)
     return true;
 }
 
+bool Actor_ReactToDamage(edict_t *self, edict_t *attacker, edict_t *inflictor)
+{
+    if (!Actor_IsFriendlyCompanion(self))
+        return false;
+
+    if ((inflictor) && inflictor->classname && !strcmp(inflictor->classname, "tesla_mine"))
+        return false;
+
+    edict_t *threat = Actor_ResolveDamageThreat(attacker, inflictor);
+    if (!threat)
+    {
+        if (!attacker || !attacker->inuse || attacker == self || attacker == self->enemy)
+            return true;
+
+        if (attacker->client || (attacker->monsterinfo.aiflags & AI_GOOD_GUY))
+            return true;
+
+        return true;
+    }
+
+    if ((self->monsterinfo.aiflags & (AI_ACTOR_SHOOT_ONCE | AI_ACTOR_TEMP_HOLD)) && self->enemy && self->enemy->inuse)
+        return true;
+
+    edict_t *escort = Actor_SelectEscortTarget(self);
+    if (escort)
+        self->target_ent = escort;
+
+    if (Actor_ShouldWithdraw(self, escort, threat))
+    {
+        self->enemy = nullptr;
+        self->goalentity = self->movetarget;
+        return true;
+    }
+
+    self->monsterinfo.aiflags &= ~AI_SOUND_TARGET;
+
+    if (self->enemy && self->enemy != threat && Actor_IsHostileMonster(self->enemy))
+        self->oldenemy = self->enemy;
+
+    if (Actor_BeginDefensiveFire(self, escort, threat))
+        return true;
+
+    self->enemy = threat;
+
+    if (!(self->monsterinfo.aiflags & AI_DUCKED))
+        FoundTarget(self);
+
+    return true;
+}
+
+static void Actor_RunDefensiveFollow(edict_t *self, float dist)
+{
+    edict_t *escort = Actor_IsValidEscortTarget(self->target_ent) ? self->target_ent : Actor_SelectEscortTarget(self);
+    if (escort)
+        self->target_ent = escort;
+
+    bool retval = ai_checkattack(self, dist);
+
+    if ((self->enemy) && (self->enemy->inuse) && enemy_vis)
+    {
+        self->monsterinfo.aiflags &= ~AI_LOST_SIGHT;
+    }
+    else if (self->monsterinfo.trail_time + ACTOR_DEFENSIVE_FIRE_TIMEOUT <= level.time &&
+        (!self->enemy || !self->enemy->inuse ||
+            ((self->enemy->enemy != self) && (!escort || self->enemy->enemy != escort))))
+    {
+        self->monsterinfo.aiflags &= ~AI_ACTOR_DEFENSIVE_FIRE;
+        self->enemy = nullptr;
+        self->oldenemy = nullptr;
+        self->monsterinfo.last_player_enemy = nullptr;
+        Actor_FindFollowTarget(self);
+        return;
+    }
+
+    bool moved = escort && Actor_MoveFollowGoal(self, dist, self->enemy);
+
+    if (!moved && self->enemy)
+    {
+        vec3_t dir = self->enemy->s.origin - self->s.origin;
+        self->ideal_yaw = vectoyaw(dir);
+        if (!(self->monsterinfo.aiflags & AI_MANUAL_STEERING))
+            M_ChangeYaw(self);
+    }
+
+    if (!enemy_vis && self->enemy &&
+        (!escort || self->enemy->enemy != escort) &&
+        self->enemy->enemy != self &&
+        (self->enemy->s.origin - self->s.origin).length() > ACTOR_THREAT_DROP_RANGE)
+    {
+        self->monsterinfo.aiflags &= ~AI_ACTOR_DEFENSIVE_FIRE;
+        self->enemy = nullptr;
+        self->oldenemy = nullptr;
+        self->monsterinfo.last_player_enemy = nullptr;
+        Actor_FindFollowTarget(self);
+        return;
+    }
+
+    if (retval)
+        return;
+}
+
 static void ai_stand_tail(edict_t *self)
 {
     vec3_t v;
+
+    Actor_SanitizeEnemy(self);
 
     if (self->enemy)
     {
@@ -397,10 +933,19 @@ void ai_walk(edict_t *self, float dist)
 {
     edict_t *temp_goal = nullptr;
 
+    if (Actor_SanitizeEnemy(self) && self->enemy)
+    {
+        self->monsterinfo.run(self);
+        return;
+    }
+
     if ((self->monsterinfo.aiflags & AI_GOOD_GUY) &&
         (self->monsterinfo.aiflags & AI_ACTOR_PATH_IDLE))
     {
-        M_MoveToGoal(self, dist);
+        if (Actor_IsFriendlyCompanion(self))
+            Actor_MoveFollowGoal(self, dist);
+        else
+            M_MoveToGoal(self, dist);
         FindTarget(self);
         return;
     }
@@ -863,12 +1408,19 @@ bool FindTarget(edict_t *self)
 
     if (self->monsterinfo.aiflags & AI_GOOD_GUY)
     {
-        if (self->monsterinfo.aiflags & AI_ACTOR_PATH_IDLE)
-        {
-            if ((self->monsterinfo.aiflags & AI_ACTOR_FRIENDLY) && Actor_FindEnemyTarget(self))
-                return true;
+		if (self->monsterinfo.aiflags & AI_ACTOR_PATH_IDLE)
+		{
+			if ((self->monsterinfo.aiflags & AI_ACTOR_FRIENDLY) && Actor_FindEnemyTarget(self, ACTOR_PLAYER_PROTECT_RANGE))
+				return true;
 
             return Actor_FindFollowTarget(self);
+        }
+
+        if (Actor_IsMiscActor(self) &&
+            (self->monsterinfo.aiflags & AI_ACTOR_FRIENDLY) &&
+            (Actor_IsPathNode(self->goalentity) || Actor_IsPathNode(self->movetarget)))
+        {
+            return Actor_FindEnemyTarget(self, ACTOR_PATH_COMBAT_RANGE);
         }
 
         if (self->goalentity && self->goalentity->inuse && self->goalentity->classname)
@@ -1491,11 +2043,30 @@ bool ai_checkattack(edict_t *self, float dist)
 
     if (hesDeadJim && !(self->hackflags & HACKFLAG_ATTACK_PLAYER))
     {
+        bool scripted_actor = Actor_IsMiscActor(self);
+        bool scripted_pause_waiting =
+            scripted_actor &&
+            self->movetarget &&
+            self->movetarget->inuse &&
+            self->timestamp > level.time;
+
         // ROGUE
         self->monsterinfo.aiflags &= ~AI_MEDIC;
         // ROGUE
         self->enemy = self->goalentity = nullptr;
         self->monsterinfo.close_sight_tripped = false;
+
+        if (scripted_actor)
+            self->monsterinfo.aiflags &= ~(AI_ACTOR_SHOOT_ONCE | AI_ACTOR_TEMP_HOLD | AI_BRUTAL | AI_STAND_GROUND | AI_ACTOR_DEFENSIVE_FIRE);
+
+        if (scripted_pause_waiting)
+        {
+            self->oldenemy = nullptr;
+            self->monsterinfo.last_player_enemy = nullptr;
+            if (Actor_ResumeScriptedPath(self))
+                return true;
+        }
+
         // FIXME: look all around for other targets
         if (self->oldenemy && self->oldenemy->health > 0)
         {
@@ -1723,6 +2294,36 @@ void ai_run(edict_t *self, float dist)
     }
     // PGM
     //==========
+
+    if (Actor_IsFriendlyCompanion(self))
+    {
+        if (Actor_SanitizeEnemy(self) && !self->enemy)
+        {
+            Actor_FindFollowTarget(self);
+            return;
+        }
+
+        edict_t *escort = Actor_SelectEscortTarget(self);
+        if (Actor_ShouldWithdraw(self, escort, self->enemy))
+        {
+            if (escort)
+                self->target_ent = escort;
+
+            self->monsterinfo.aiflags &= ~AI_ACTOR_DEFENSIVE_FIRE;
+            self->enemy = nullptr;
+            self->goalentity = self->movetarget;
+            Actor_FindFollowTarget(self);
+            return;
+        }
+
+        if ((self->monsterinfo.aiflags & AI_ACTOR_PATH_IDLE) &&
+            (self->monsterinfo.aiflags & AI_ACTOR_DEFENSIVE_FIRE) &&
+            self->enemy)
+        {
+            Actor_RunDefensiveFollow(self, dist);
+            return;
+        }
+    }
 
     if (self->monsterinfo.aiflags & AI_SOUND_TARGET)
     {

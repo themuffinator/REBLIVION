@@ -324,6 +324,9 @@ void M_ReactToDamage(edict_t *targ, edict_t *attacker, edict_t *inflictor)
 	// pmm
 	bool new_tesla;
 
+	if (Actor_ReactToDamage(targ, attacker, inflictor))
+		return;
+
 	if (!(attacker->client) && !(attacker->svflags & SVF_MONSTER))
 		return;
 

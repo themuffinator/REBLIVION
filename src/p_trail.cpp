@@ -100,17 +100,17 @@ void PlayerTrail_Add(edict_t *player)
 
 // pick a trail node that matches the player
 // we're hunting that is visible to us.
-edict_t *PlayerTrail_Pick(edict_t *self, bool next)
+edict_t *PlayerTrail_PickTarget(edict_t *self, edict_t *target, bool next)
 {
 	// not player or doesn't have a trail yet
-	if (!self->enemy->client || !self->enemy->client->trail_head)
+	if (!self || !target || !target->client || !target->client->trail_head)
 		return nullptr;
 
 	// find which marker head that was dropped while we
 	// were searching for this enemy
 	edict_t *marker;
 
-	for (marker = self->enemy->client->trail_head; marker; marker = marker->enemy)
+	for (marker = target->client->trail_head; marker; marker = marker->enemy)
 	{
 		if (marker->timestamp <= self->monsterinfo.trail_time)
 			continue;
@@ -150,4 +150,12 @@ edict_t *PlayerTrail_Pick(edict_t *self, bool next)
 	}
 
 	return marker;
+}
+
+edict_t *PlayerTrail_Pick(edict_t *self, bool next)
+{
+	if (!self || !self->enemy)
+		return nullptr;
+
+	return PlayerTrail_PickTarget(self, self->enemy, next);
 }

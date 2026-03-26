@@ -54,6 +54,7 @@ namespace
 }
 
 static void kigrax_dead(edict_t *self);
+static void kigrax_explode(edict_t *self);
 static void kigrax_strike1(edict_t *self);
 static void kigrax_strike2(edict_t *self);
 static void kigrax_fire_plasma(edict_t *self);
@@ -248,7 +249,7 @@ mframe_t kigrax_frames_death[] = {
 	{ ai_move },
 	{ ai_move }
 };
-MMOVE_T(kigrax_move_death) = { KIGRAX_FRAME_DEATH_FIRST, KIGRAX_FRAME_DEATH_LAST, kigrax_frames_death, kigrax_dead };
+MMOVE_T(kigrax_move_death) = { KIGRAX_FRAME_DEATH_FIRST, KIGRAX_FRAME_DEATH_LAST, kigrax_frames_death, kigrax_explode };
 
 mframe_t kigrax_frames_melee1[] = {
 	{ ai_charge, 1 },
@@ -427,6 +428,11 @@ static void kigrax_dead(edict_t *self)
 	gi.linkentity(self);
 }
 
+static void kigrax_explode(edict_t *self)
+{
+	BecomeExplosion1(self);
+}
+
 DIE(kigrax_die) (edict_t *self, edict_t *inflictor, edict_t *attacker, int damage, const vec3_t &point, const mod_t &mod) -> void
 {
 	(void) inflictor;
@@ -454,6 +460,7 @@ DIE(kigrax_die) (edict_t *self, edict_t *inflictor, edict_t *attacker, int damag
 	if (self->deadflag)
 		return;
 
+	gi.sound(self, CHAN_VOICE, sound_death, 1, ATTN_NORM, 0);
 	self->deadflag = true;
 	self->takedamage = true;
 	M_SetAnimation(self, &kigrax_move_death);
@@ -487,7 +494,9 @@ void SP_monster_kigrax(edict_t *self)
 	self->gib_health = -100;
 	self->mass = 150;
 	self->yaw_speed = KIGRAX_YAW_SPEED;
-	self->viewheight = 90;
+	// Companion visibility/attack traces aim at enemy->origin + viewheight.
+	// Keep this within the Kigrax bbox so allies can acquire and shoot it.
+	self->viewheight = 12;
 
 	self->pain = kigrax_pain;
 	self->die = kigrax_die;

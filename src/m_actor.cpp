@@ -213,13 +213,15 @@ PAIN(actor_pain) (edict_t *self, edict_t *other, float kick, int damage, const m
 {
 	int n;
 
+	Actor_SanitizeEnemy(self);
+
 	if (level.time < self->pain_debounce_time)
 		return;
 
 	self->pain_debounce_time = level.time + 3_sec;
 	//	gi.sound (self, CHAN_VOICE, actor.sound_pain, 1, ATTN_NORM, 0);
 
-	if ((other->client) && (frandom() < 0.4f))
+	if ((other->client) && !(self->monsterinfo.aiflags & AI_ACTOR_FRIENDLY) && (frandom() < 0.4f))
 	{
 		vec3_t		v;
 		const char *name;
@@ -248,6 +250,9 @@ void actorMachineGun(edict_t *self)
 {
 	vec3_t start, target;
 	vec3_t forward, right;
+
+	if (Actor_SanitizeEnemy(self) && !self->enemy)
+		return;
 
 	AngleVectors(self->s.angles, forward, right, nullptr);
 	start = G_ProjectSource(self->s.origin, monster_flash_offset[MZ2_ACTOR_MACHINEGUN_1], forward, right);
@@ -286,12 +291,50 @@ static void Actor_SetupRenderModel(edict_t *self)
 static void Actor_EnterIdlePath(edict_t *self)
 {
 	self->monsterinfo.aiflags |= AI_ACTOR_PATH_IDLE;
-	self->monsterinfo.aiflags &= ~AI_ACTOR_FOLLOW;
+	self->monsterinfo.aiflags &= ~(AI_ACTOR_FOLLOW | AI_ACTOR_DEFENSIVE_FIRE);
 }
 
 static void Actor_LeaveIdlePath(edict_t *self)
 {
-	self->monsterinfo.aiflags &= ~(AI_ACTOR_PATH_IDLE | AI_ACTOR_FOLLOW);
+	self->monsterinfo.aiflags &= ~(AI_ACTOR_PATH_IDLE | AI_ACTOR_FOLLOW | AI_ACTOR_DEFENSIVE_FIRE);
+	self->target_ent = nullptr;
+}
+
+static void Actor_QueueNodePause(edict_t *self, float wait)
+{
+	self->timestamp = wait > 0.0f ? level.time + gtime_t::from_sec(wait) : 0_ms;
+}
+
+bool Actor_ResumeScriptedPath(edict_t *self)
+{
+	if (!self || !self->inuse || !self->classname || strcmp(self->classname, "misc_actor") != 0)
+		return false;
+
+	self->monsterinfo.aiflags &= ~(AI_ACTOR_SHOOT_ONCE | AI_ACTOR_TEMP_HOLD | AI_BRUTAL | AI_ACTOR_DEFENSIVE_FIRE);
+	self->monsterinfo.aiflags &= ~AI_STAND_GROUND;
+
+	if (!self->movetarget || !self->movetarget->inuse)
+	{
+		self->timestamp = 0_ms;
+		return false;
+	}
+
+	Actor_LeaveIdlePath(self);
+	self->goalentity = self->movetarget;
+
+	if (self->timestamp > level.time)
+	{
+		self->monsterinfo.pausetime = self->timestamp;
+		self->monsterinfo.stand(self);
+	}
+	else
+	{
+		self->timestamp = 0_ms;
+		self->monsterinfo.pausetime = 0_ms;
+		self->monsterinfo.walk(self);
+	}
+
+	return true;
 }
 
 void actor_dead(edict_t *self)
@@ -385,6 +428,27 @@ void actor_fire(edict_t *self)
 		self->monsterinfo.aiflags |= AI_HOLD_FRAME;
 }
 
+static void actor_attack_finished(edict_t *self)
+{
+	if (self->monsterinfo.aiflags & AI_ACTOR_SHOOT_ONCE)
+	{
+		self->enemy = nullptr;
+		self->oldenemy = nullptr;
+		self->monsterinfo.last_player_enemy = nullptr;
+
+		if (Actor_ResumeScriptedPath(self))
+			return;
+	}
+
+	if ((self->monsterinfo.aiflags & AI_ACTOR_DEFENSIVE_FIRE) && self->enemy && self->enemy->inuse)
+	{
+		actor_run(self);
+		return;
+	}
+
+	actor_stand(self);
+}
+
 mframe_t actor_frames_attack[] = {
 	{ ai_charge, -2, actor_fire },
 	{ ai_charge, -2 },
@@ -395,7 +459,7 @@ mframe_t actor_frames_attack[] = {
 	{ ai_charge, 3 },
 	{ ai_charge, 2 }
 };
-MMOVE_T(actor_move_attack) = { ACTOR_FRAME_ATTACK_FIRST, ACTOR_FRAME_ATTACK_LAST, actor_frames_attack, actor_stand };
+MMOVE_T(actor_move_attack) = { ACTOR_FRAME_ATTACK_FIRST, ACTOR_FRAME_ATTACK_LAST, actor_frames_attack, actor_attack_finished };
 
 MONSTERINFO_ATTACK(actor_attack) (edict_t *self) -> void
 {
@@ -403,9 +467,45 @@ MONSTERINFO_ATTACK(actor_attack) (edict_t *self) -> void
 	self->monsterinfo.pausetime = level.time + gtime_t::from_ms(100 * (10 + irandom(16)));
 }
 
+MONSTERINFO_CHECKATTACK(actor_checkattack) (edict_t *self) -> bool
+{
+	if (Actor_SanitizeEnemy(self) && !self->enemy)
+		return false;
+
+	if (!self->enemy)
+		return false;
+
+	if ((self->monsterinfo.aiflags & AI_STAND_GROUND) &&
+		!M_CheckClearShot(self, monster_flash_offset[MZ2_ACTOR_MACHINEGUN_1]))
+	{
+		self->monsterinfo.attack_state = AS_STRAIGHT;
+		return false;
+	}
+
+	if (self->monsterinfo.aiflags & AI_ACTOR_SHOOT_ONCE)
+	{
+		if (level.time < self->monsterinfo.attack_finished)
+			return false;
+
+		if (!M_CheckClearShot(self, monster_flash_offset[MZ2_ACTOR_MACHINEGUN_1]))
+			return false;
+
+		self->monsterinfo.attack_state = AS_MISSILE;
+		self->monsterinfo.attack_finished = level.time;
+		return true;
+	}
+
+	return M_CheckAttack_Base(self, 0.65f, 0.35f, 0.2f, 0.04f, 0.0f, 1.0f);
+}
+
 USE(actor_use) (edict_t *self, edict_t *other, edict_t *activator) -> void
 {
 	vec3_t v;
+
+	self->timestamp = 0_ms;
+	self->monsterinfo.aiflags &= ~(AI_ACTOR_SHOOT_ONCE | AI_ACTOR_TEMP_HOLD | AI_BRUTAL | AI_ACTOR_DEFENSIVE_FIRE);
+	self->monsterinfo.aiflags &= ~AI_STAND_GROUND;
+	self->target_ent = nullptr;
 
 	if (!self->target || !*self->target)
 	{
@@ -430,7 +530,11 @@ USE(actor_use) (edict_t *self, edict_t *other, edict_t *activator) -> void
 	self->ideal_yaw = self->s.angles[YAW] = vectoyaw(v);
 	Actor_LeaveIdlePath(self);
 	self->monsterinfo.walk(self);
-	self->target = nullptr;
+
+	// START_ON actors are pre-used before monster_start_go() runs; keep the route target
+	// long enough for the startup think to seed the initial path cleanly.
+	if (self->monsterinfo.aiflags & AI_SPAWNED_ALIVE)
+		self->target = nullptr;
 }
 
 constexpr spawnflags_t SPAWNFLAG_ACTOR_CORPSE = SPAWNFLAG_MONSTER_CORPSE;
@@ -496,6 +600,8 @@ void SP_misc_actor(edict_t *self)
 	self->monsterinfo.attack = actor_attack;
 	self->monsterinfo.melee = nullptr;
 	self->monsterinfo.sight = nullptr;
+	self->monsterinfo.checkattack = actor_checkattack;
+	self->monsterinfo.combat_style = COMBAT_RANGED;
 	self->monsterinfo.setskin = nullptr;
 
 	if (!self->target)
@@ -516,7 +622,7 @@ void SP_misc_actor(edict_t *self)
 	// walkmonster_start rewires use to monster_use; scripted actors keep actor_use.
 	self->use = actor_use;
 
-	if (self->spawnflags.has(SPAWNFLAG_ACTOR_START_ON))
+	if (self->spawnflags.has(SPAWNFLAG_ACTOR_START_ON) && !self->spawnflags.has(SPAWNFLAG_MONSTER_TRIGGER_SPAWN))
 		self->use(self, world, world);
 }
 
@@ -552,6 +658,7 @@ TOUCH(target_actor_touch) (edict_t *self, edict_t *other, const trace_t &tr, boo
 		return;
 
 	other->goalentity = other->movetarget = nullptr;
+	Actor_QueueNodePause(other, self->wait);
 
 	if (self->message)
 	{
@@ -585,6 +692,7 @@ TOUCH(target_actor_touch) (edict_t *self, edict_t *other, const trace_t &tr, boo
 		if (other->enemy)
 		{
 			other->goalentity = other->enemy;
+			other->monsterinfo.aiflags &= ~(AI_ACTOR_SHOOT_ONCE | AI_ACTOR_TEMP_HOLD | AI_BRUTAL | AI_ACTOR_DEFENSIVE_FIRE);
 			if (self->spawnflags.has(SPAWNFLAG_TARGET_ACTOR_SHOOT))
 				other->monsterinfo.aiflags |= AI_ACTOR_SHOOT_ONCE;
 			if (self->spawnflags.has(SPAWNFLAG_TARGET_ACTOR_BRUTAL))
@@ -592,6 +700,7 @@ TOUCH(target_actor_touch) (edict_t *self, edict_t *other, const trace_t &tr, boo
 
 			if (self->spawnflags.has(SPAWNFLAG_TARGET_ACTOR_HOLD) || self->spawnflags.has(SPAWNFLAG_TARGET_ACTOR_SHOOT))
 			{
+				other->monsterinfo.aiflags |= AI_ACTOR_TEMP_HOLD;
 				other->monsterinfo.aiflags |= AI_STAND_GROUND;
 				actor_stand(other);
 			}
@@ -619,6 +728,7 @@ TOUCH(target_actor_touch) (edict_t *self, edict_t *other, const trace_t &tr, boo
 
 	if (!other->movetarget && !other->enemy)
 	{
+		other->timestamp = 0_ms;
 		other->monsterinfo.pausetime = level.time + ACTOR_IDLE_PAUSE;
 		other->monsterinfo.stand(other);
 		Actor_EnterIdlePath(other);
@@ -634,6 +744,12 @@ TOUCH(target_actor_touch) (edict_t *self, edict_t *other, const trace_t &tr, boo
 			v = other->movetarget->s.origin - other->s.origin;
 			other->ideal_yaw = vectoyaw(v);
 		}
+	}
+
+	if (!other->enemy && other->timestamp > level.time)
+	{
+		other->monsterinfo.pausetime = other->timestamp;
+		other->monsterinfo.stand(other);
 	}
 }
 
