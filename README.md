@@ -104,6 +104,7 @@
   <li>The rerelease game-module source in <code>src/</code>, including the Windows x64 DLL target and gameplay code.</li>
   <li>Editable map sources under <code>src/maps/</code> and packaged runtime assets under <code>pack/</code>.</li>
   <li>Packaging tools that build <code>pak0.pak</code>, stage local installs, and publish nightly archives.</li>
+  <li>Editor support assets under <code>editor/</code>, including committed NetRadiant-Custom and TrenchBroom packs for the <code>reblivion</code> mod.</li>
   <li>A standalone release document in <code>docs/release-readme.html</code> that is copied into release archives as <code>README.html</code>.</li>
   <li>Preserved reconstruction and reverse-engineering reference material under <code>references/Oblivion-reverse/</code>.</li>
 </ul>
@@ -231,6 +232,19 @@ powershell -ExecutionPolicy Bypass -File .\tools\build_game.ps1
   the project has real substance already, but it still needs testing and continued cleanup work.
 </p>
 
+<p>
+  Nightly releases also publish a separate <strong>level-design archive</strong>. That archive contains nested
+  <strong>NetRadiant-Custom</strong> and <strong>TrenchBroom</strong> zips, each arranged to extract directly into the
+  corresponding editor root while targeting the <code>reblivion</code> mod on top of <code>baseq2</code>.
+</p>
+
+<p>
+  Both editor packs start from the stock Quake II rerelease definitions and append a generated runtime delta from the
+  current <code>src/</code> tree, using <code>references/Oblivion-reverse/pack/oblivion.c</code> only as a metadata fallback.
+  That keeps the full retail q2re surface available while also documenting the extra rerelease/runtime and REBLIVION-specific
+  entities level designers can actually use in this project.
+</p>
+
 <h2 id="repository-layout">Repository Layout</h2>
 
 <table>
@@ -252,6 +266,10 @@ powershell -ExecutionPolicy Bypass -File .\tools\build_game.ps1
     <tr>
       <td><code>pack/</code></td>
       <td>Runtime content packed into <code>pak0.pak</code>, plus loose intro video assets staged for releases.</td>
+    </tr>
+    <tr>
+      <td><code>editor/</code></td>
+      <td>Committed editor integration assets, currently including NetRadiant-Custom and TrenchBroom support plus the generated runtime delta FGDs for the <code>reblivion</code> mod.</td>
     </tr>
     <tr>
       <td><code>tools/</code></td>

@@ -75,3 +75,10 @@ jobs:
           name: nightly-windows
           path: ${{ steps.package.outputs.archive_path }}
           if-no-files-found: error
+
+      - name: Upload Level Design Archive
+        uses: actions/upload-artifact@v4
+        with:
+          name: nightly-windows-leveldesign
+          path: ${{ steps.package.outputs.leveldesign_archive_path }}
+          if-no-files-found: error
