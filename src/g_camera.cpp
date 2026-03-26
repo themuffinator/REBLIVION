@@ -11,6 +11,16 @@ constexpr int32_t CAMERA_MAX_STEPS_PER_THINK = 64;
 
 static void Camera_MoveStep(edict_t *self);
 
+static float Camera_ResolvePathSpeed(const edict_t *node, float fallback_speed)
+{
+	if (node && node->speed > 0.0f)
+		return node->speed;
+	if (fallback_speed > 0.0f)
+		return fallback_speed;
+
+	return CAMERA_PATH_DEFAULT_SPEED;
+}
+
 static edict_t *Camera_FindPathCorner(edict_t *self, const char *targetname, const edict_t *skip = nullptr)
 {
 	edict_t *node;
@@ -79,7 +89,7 @@ static bool Camera_RunReadySteps(edict_t *self)
 static void Camera_StartPath(edict_t *self, edict_t *start, float speed)
 {
 	self->movetarget = start;
-	self->camera_path_speed = speed > 0.0f ? speed : CAMERA_PATH_DEFAULT_SPEED;
+	self->camera_path_speed = Camera_ResolvePathSpeed(start, speed);
 	self->camera_path_state = 0;
 	self->s.origin = start->s.origin;
 	self->s.old_origin = self->s.origin;
@@ -399,26 +409,37 @@ static void Camera_MoveStep(edict_t *self)
 		return;
 
 	case 2:
+	{
+		float next_path_speed;
+
 		self->camera_path_time = 0_ms;
+		next_path_speed = self->camera_path_speed;
+		if (self->movetarget)
+		{
+			// Preserve the save layout by reusing delay as the cached path_corner wait.
+			self->delay = self->movetarget->wait;
+			if (self->movetarget->speed > 0.0f)
+				next_path_speed = self->movetarget->speed;
+		}
+
 		if (self->camera_path_remaining > 0.0f)
 		{
 			speed = self->camera_path_tail_speed;
-			self->camera_path_speed = speed;
 			if (speed > 0.0f)
 			{
 				self->velocity = self->camera_path_dir * speed;
 				self->camera_path_time = level.time + gtime_t::from_sec(self->camera_path_remaining / speed);
 			}
-			if (self->movetarget)
-				self->delay = self->movetarget->delay;
 		}
 
+		self->camera_path_speed = next_path_speed;
 		self->camera_path_remaining = 0.0f;
 		self->camera_path_tail_speed = 0.0f;
 		self->camera_path_state = 3;
 		if (self->camera_path_time == 0_ms)
 			self->camera_path_time = level.time;
 		return;
+	}
 
 	case 3:
 	{
@@ -445,7 +466,8 @@ static void Camera_MoveStep(edict_t *self)
 		{
 			self->camera_path_time = 0_ms;
 			self->camera_path_state = 0;
-			self->delay = 0.0f;
+			if (self->delay != CAMERA_PATH_STOPPED)
+				self->delay = 0.0f;
 		}
 
 		self->movetarget = next;
@@ -535,7 +557,7 @@ THINK(Camera_Think) (edict_t *self) -> void
 		return;
 	}
 
-	if (self->movetarget && self->delay == CAMERA_PATH_STOPPED)
+	if (self->delay == CAMERA_PATH_STOPPED)
 	{
 		Camera_Deactivate(self);
 		return;
@@ -543,6 +565,12 @@ THINK(Camera_Think) (edict_t *self) -> void
 
 	if (self->movetarget)
 		Camera_RunReadySteps(self);
+
+	if (self->delay == CAMERA_PATH_STOPPED)
+	{
+		Camera_Deactivate(self);
+		return;
+	}
 
 	if (self->enemy && !self->enemy->inuse)
 		self->enemy = nullptr;
@@ -577,6 +605,12 @@ THINK(Camera_Think) (edict_t *self) -> void
 
 void SP_misc_camera(edict_t *self)
 {
+	if (deathmatch->integer)
+	{
+		G_FreeEdict(self);
+		return;
+	}
+
 	self->solid = SOLID_NOT;
 	self->movetype = MOVETYPE_FLYMISSILE;
 	self->svflags |= SVF_NOCLIENT;
@@ -713,6 +747,12 @@ TOUCH(TriggerCamera_Touch) (edict_t *self, edict_t *other, const trace_t &tr, bo
 
 void SP_trigger_misc_camera(edict_t *self)
 {
+	if (deathmatch->integer)
+	{
+		G_FreeEdict(self);
+		return;
+	}
+
 	if (self->sounds == 1)
 		self->noise_index = gi.soundindex("misc/secret.wav");
 	else if (self->sounds == 2)
@@ -785,6 +825,14 @@ THINK(Camera_TargetThink) (edict_t *self) -> void
 
 	Camera_RunReadySteps(self);
 
+	if (self->delay == CAMERA_PATH_STOPPED)
+	{
+		Camera_ResetPathState(self, false);
+		self->count = 0;
+		self->nextthink = 0_ms;
+		return;
+	}
+
 	if (!self->movetarget && self->camera_path_time == 0_ms)
 	{
 		Camera_ResetPathState(self, false);
@@ -798,6 +846,12 @@ THINK(Camera_TargetThink) (edict_t *self) -> void
 
 void SP_misc_camera_target(edict_t *self)
 {
+	if (deathmatch->integer)
+	{
+		G_FreeEdict(self);
+		return;
+	}
+
 	self->solid = SOLID_NOT;
 	self->movetype = MOVETYPE_FLYMISSILE;
 	self->svflags |= SVF_NOCLIENT;
