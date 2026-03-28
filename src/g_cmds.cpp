@@ -648,10 +648,6 @@ void Cmd_Use_f(edict_t *ent)
 			Cmd_Use_TogglePair(ent, &s, "Mines");
 		else if (!Q_strcasecmp(s, "Mines"))
 			Cmd_Use_TogglePair(ent, &s, "Grenades");
-		else if (!Q_strcasecmp(s, "Machinegun"))
-			Cmd_Use_TogglePair(ent, &s, "Plasma Rifle");
-		else if (!Q_strcasecmp(s, "Plasma Rifle"))
-			Cmd_Use_TogglePair(ent, &s, "Machinegun");
 		else if (!Q_strcasecmp(s, "Deatomizer"))
 			Cmd_Use_TogglePair(ent, &s, "HyperBlaster");
 		else if (!Q_strcasecmp(s, "HyperBlaster"))
